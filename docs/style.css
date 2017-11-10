@@ -32,6 +32,12 @@ h1.title {
   color:  #2C3E50  ;
 }
 
+.section h3 {
+  font-size: 15px;
+  font-weight: bold;
+  color:  #2C3E50  ;
+}
+
 a, a:hover, a:focus {
   color: DodgerBlue;
 }
