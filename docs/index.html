@@ -257,13 +257,7 @@ jmvtools::install()
 </div>
 <div id="troubleshooting" class="section level1">
 <h1>Troubleshooting</h1>
-<p>The modules installs dependencies automatically, but in some R installations the process seems to fail when it comes to the dependencies. The solution is to install in the module build folder the required package that fails before installing the module. For example, if “pbkrtest” fails and you cloned the source in YOURCLONEFOLDER folder, run this before installing the module.</p>
-<pre><code>package&lt;-&quot;pbkrtest&quot;
-dirroot&lt;-YOURCLONEFOLDER
-instdir&lt;-paste0(dirroot,&quot;/build/R&quot;)
-install.packages(package,lib = instdir)
-
-</code></pre>
+<p>Please check out the <a href="https://mcfanda.github.io/gamlj_docs/troubles.html">troubleshooting page</a>.</p>
 </div>
 
 
