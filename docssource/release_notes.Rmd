@@ -13,7 +13,9 @@ output:
 
 * First release to go public
 
-# version 0.9.1 (yet to release)
+# `from future import` version 0.9.1 
+
+(_yet to be release_)
 
 * Fixed a bug in the GZLM R-squared. Now the R-squared corresponds to McFadden’s R squared [ref info](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/)
 
@@ -21,3 +23,4 @@ output:
 
 * Better warnings when emmeans fails to estimate the post-hocs in GZLM
 
+* Labels in multinomial plots for separate lines variable

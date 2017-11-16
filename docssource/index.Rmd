@@ -66,4 +66,8 @@ jmvtools::install()
 
 Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_docs/troubles.html). 
 
+# Release notes
+
+Please check out the  [Release notes](release_notes.html). 
+
 
