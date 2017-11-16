@@ -1,0 +1,23 @@
+---
+title: "Released Notes"
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+
+---
+  
+  
+# version 0.0.9
+
+* First release to go public
+
+# version 0.9.1 (yet to release)
+
+* Fixed a bug in the GZLM R-squared. Now the R-squared corresponds to McFadden’s R squared [ref info](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/)
+
+* Fix errors with  non-standard names of variables
+
+* Better warnings when emmeans fails to estimate the post-hocs in GZLM
+

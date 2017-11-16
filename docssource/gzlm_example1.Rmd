@@ -62,7 +62,7 @@ As soon as we fix the variables, the results are there, with the first table sho
 
 <img src="examples/gzlm1/result1_1.png" class="img-responsive" alt="">
 
-Here we can outline the R-squared, that gives information about the goodness of fit of the model (see [technical details](gxlm_specs.html) for more info). Our error of approximation of the data decreases of 4% thanks to the `ses` variable. Put it in another way, our ability to predict `prog` increases of %4 thanks to `ses` over using only the observed probabilities.
+Here we can outline the R-squared, that gives information about the goodness of fit of the model (see [technical details](gzlm_specs.html) for more info). Our error of approximation of the data decreases of 4% thanks to the `ses` variable. Put it in another way, our ability to predict `prog` increases of %4 thanks to `ses` over using only the observed probabilities.
 
 ## Omnibus test
 
