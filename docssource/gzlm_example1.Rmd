@@ -10,7 +10,7 @@ output:
 
 In this example we study the relationships between a continuous independent variable, a categorical independent variable and their interaction on a categorical dependent variable. 
 
-We run the analyses with the GAMLj module in Jamovi. One can follow the example by downloading the [csv file](data/hsbdemo.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
+We run the analyses with the GAMLj module in Jamovi. One can follow the example by downloading the [csv file](https://github.com/mcfanda/gamlj_docs/blob/master/data/hsbdemo.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
 The data are from a [idre hsbdemo](https://stats.idre.ucla.edu/stat/data/hsbdemo.dta) example. You can find similar analyses in pure R and a nice explanation of them at the [UCLA idre web page](https://stats.idre.ucla.edu/r/dae/multinomial-logistic-regression/).
 
