@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -33,10 +33,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -311,20 +313,24 @@ div.tocify {
 </div>
 
 
-<div id="version-0.0.9" class="section level1">
-<h1>version 0.0.9</h1>
-<ul>
-<li>First release to go public</li>
-</ul>
-</div>
-<div id="from-future-import-version-0.9.1" class="section level1">
-<h1><code>from future import</code> version 0.9.1</h1>
+<div id="version-0.9.3" class="section level1">
+<h1>version 0.9.3</h1>
 <p>(<em>yet to be release</em>)</p>
+</div>
+<div id="version-0.9.2" class="section level1">
+<h1>version 0.9.2</h1>
 <ul>
 <li><p>Fixed a bug in the GZLM R-squared. Now the R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a></p></li>
 <li><p>Fix errors with non-standard names of variables</p></li>
 <li><p>Better warnings when emmeans fails to estimate the post-hocs in GZLM</p></li>
 <li><p>Labels in multinomial plots for separate lines variable</p></li>
+<li><p>Uncorrelated random effects option now works</p></li>
+</ul>
+</div>
+<div id="version-0.0.9" class="section level1">
+<h1>version 0.0.9</h1>
+<ul>
+<li>First release to go public</li>
 </ul>
 </div>
 
