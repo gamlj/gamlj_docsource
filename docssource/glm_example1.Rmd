@@ -1,5 +1,5 @@
 ---
-title: "GLM in Jamovi"
+title: "GLM in jamovi"
 output: 
   html_document:
      toc: true
@@ -37,7 +37,7 @@ We first run a multiple regression (to warm up), then we estimate a multiple reg
 
 ## Multiple regression
 
-Jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type. 
+jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type. 
 
 <img src="examples/glm1/variables.png" class="img-responsive" alt="">
 
@@ -47,7 +47,7 @@ As soon as the variables are set, jamovi  fills in the tables in the output pane
 
 <img src="examples/glm1/model.png" class="img-responsive" alt="">
 
-Jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.
+jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.
 
 Thus, the model we are estimating now is `yendu~xage+zexer`.
 
@@ -66,7 +66,7 @@ For each coefficient the condidence interavals are also reported.
 
 A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, afterall, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable means. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling' tab.
 
-In general, we want to report standardized effect size indeces, for the sake of comparisons, meta-analyses, APA task forces (and probably the Marvel Avengers league). Jamovi GLM offers a plethora of them: 
+In general, we want to report standardized effect size indeces, for the sake of comparisons, meta-analyses, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them: 
 
 * betas: standardized coefficients.
 * eta-squared: proportion of variance explained over the total variance of the dependent variable.
@@ -99,13 +99,13 @@ The interaction term appears to be statistically significant, B=0.047, t(241)=3.
 * `xage` B=-.261:  one year more in age corresponds on average to a decrease in endurance of .26 minutes. 
 * `zexer` B=-.972:  one year more of exercising corresponds on average to an increase in endurance of .97 minutes.
 
-One can also report the betas (last column in the `Model Coefficients` table). Please notice that Jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.
+One can also report the betas (last column in the `Model Coefficients` table). Please notice that jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.
 
 ## Simple Slopes
 
 We can now probe the interaction. We go to `Simple effects` tab and select `xage`  as `Simple effec variable` and `zexer` as `Moderator`. In this way we obtain the effect of age computed for high exercise (`zexer` centered to 1 SD above average), the main effect of age (`zexer` centered to 1 SD above average) and the effect of age computed for low exercise (`zexer` centered to -1 SD above average).
 
-Jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.
+jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.
 
 <img src="examples/glm1/resultssimple.png" class="img-responsive" alt="">
 

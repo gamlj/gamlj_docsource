@@ -11,7 +11,7 @@
 
 
 
-<title>GLM in Jamovi</title>
+<title>GLM in jamovi</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -308,7 +308,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GLM in Jamovi</h1>
+<h1 class="title toc-ignore">GLM in jamovi</h1>
 
 </div>
 
@@ -333,12 +333,12 @@ div.tocify {
 <h1>GLM</h1>
 <div id="multiple-regression" class="section level2">
 <h2>Multiple regression</h2>
-<p>Jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type.</p>
+<p>jamovi GAMLj module for GLM requires to set the variables in the right field depending on their role in the model and their type.</p>
 <p><img src="examples/glm1/variables.png" class="img-responsive" alt=""></p>
 <p>Thus, we push <code>yendu</code> in the <code>Dependent Variable</code> field and both <code>xage</code> and <code>zexer</code> in the <code>Covariates</code> field, being both variables quantitative.</p>
 <p>As soon as the variables are set, jamovi fills in the tables in the output panel with the estimation results. However, it is worth noticing that the statistical model has been defined by default by the software: We can see that in the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model.png" class="img-responsive" alt=""></p>
-<p>Jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.</p>
+<p>jamovi, following a somehow old tradition established by SPSS, automatically includes continuous independent variables in the model without their interaction. For categorical variables the default behavior is to include both main effects and interactions.</p>
 <p>Thus, the model we are estimating now is <code>yendu~xage+zexer</code>.</p>
 </div>
 <div id="results" class="section level2">
@@ -352,7 +352,7 @@ div.tocify {
 </ul>
 <p>For each coefficient the condidence interavals are also reported.</p>
 <p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, afterall, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable means. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
-<p>In general, we want to report standardized effect size indeces, for the sake of comparisons, meta-analyses, APA task forces (and probably the Marvel Avengers league). Jamovi GLM offers a plethora of them:</p>
+<p>In general, we want to report standardized effect size indeces, for the sake of comparisons, meta-analyses, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
 <ul>
 <li>betas: standardized coefficients.</li>
 <li>eta-squared: proportion of variance explained over the total variance of the dependent variable.</li>
@@ -378,12 +378,12 @@ div.tocify {
 <li><code>xage</code> B=-.261: one year more in age corresponds on average to a decrease in endurance of .26 minutes.</li>
 <li><code>zexer</code> B=-.972: one year more of exercising corresponds on average to an increase in endurance of .97 minutes.</li>
 </ul>
-<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that Jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
 <p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effec variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to 1 SD above average) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
-<p>Jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
+<p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p><img src="examples/glm1/resultssimple.png" class="img-responsive" alt=""></p>
 <p>The first row of the table shows the simple slope of age (the effect of age) computed for exercise equal to minus one standard deviation (-4.78). The effect of age is negative and strong ,B=-.487, t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope of age (the effect of age) computed for average exercise (0). The effect of age is negative and but weaker than for high exercise ,B=-.261, t(241)=-4.085,p&lt;.001. Finally, for high exercise (+4.78), the effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>
 </div>

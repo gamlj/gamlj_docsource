@@ -1,5 +1,5 @@
 ---
-title: "Mixed Models in Jamovi"
+title: "Mixed Models in jamovi"
 output: 
   html_document:
      toc: true
