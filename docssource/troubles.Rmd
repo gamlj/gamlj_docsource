@@ -13,7 +13,7 @@ output:
 # Common 
 
 ### Variable names:
-In the current version, if variables have names not following R standard, all post-hoc procedures fail. Non standard names are names with space, parentheses or brackets, exclamation mark etc. This is due to the way GAMLj build the formulas to be passed to R `emmeans` package. 
+If variables have names not following R standard, some problem may still appear. The new version should be able to deal with non-standard variables names, but not all bugs related to this have been removed.
 
 ### Solution:
 Use variable names without space, parentheses or brackets, etc. 
@@ -28,9 +28,5 @@ nothing yet
 
 # Mixed  models
 
+nothing yet
 
-### Variable names:
-In the current version, if variables have names not following R standard, the module fails in estimating any analysis. This is due to the way GAMLj build the formulas to be passed to R `lme4::lmer()` procedures. Solution
-
-### Solution:
-Use variable names without space, parentheses or brackets, etc. 
