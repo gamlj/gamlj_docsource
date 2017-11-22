@@ -33,8 +33,9 @@ Please visit the sub-mudule pages for details:
 Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)
 
 * [Moderated Regression with GAMLj GLM](glm_example1.html)
-* [Random regression with GAMLj Mixed Model](mixed_example1.html)
 * [Multinomial analysis in GAMLj GLM](gzlm_example1.html)
+* [Random regression with GAMLj Mixed Model](mixed_example1.html)
+* [Repeated measures in GAMLj Mixed Model](mixed_example2.html)
 
 
 # Installation

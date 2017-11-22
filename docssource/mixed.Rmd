@@ -118,3 +118,5 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 # Examples
 
 * [Random regresion with GAMLj Mixed Model](mixed_example1.html)
+
+* [Repeated measures in GAMLj Mixed Model](mixed_example2.html)
