@@ -7,7 +7,15 @@ output:
         collapsed: false
 ---
 
-# General Linear Model example: Multiple regression, moderated regression, and simple slopes
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+
+
+# Multiple regression, moderated regression, and simple slopes
+
+`r keywords("Multiple regression, moderated regression, simple slopes")`
 
 In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj/blob/master/data/exercise.csv)
 

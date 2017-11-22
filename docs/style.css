@@ -41,3 +41,22 @@ h1.title {
 a, a:hover, a:focus {
   color: DodgerBlue;
 }
+
+span.keywords {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  background-color: #3E6DA9;
+  margin-bottom: 25px;
+}
+
+span.keytitle {
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+}

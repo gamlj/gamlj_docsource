@@ -11,7 +11,10 @@ output:
 #  version 0.9.3
 
 (_yet to be release_)
-  
+
+* contrasts labels in the simple effects parameters table
+
+* Intra-class correlation for the random intercepts in mixed models
   
 
 #  version 0.9.2
