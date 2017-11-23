@@ -416,8 +416,8 @@ div.tocify {
 </div>
 <div id="trend-analysis" class="section level3">
 <h3>Trend analysis</h3>
-<p>Let’s now study how time changes the dependent variable and whether the two groups show different trends. We do a trend analysis by coding the <code>time</code> variable with polynomial contrasts: polynomial contrasts describe possible trends in the means (shape of the time-dependent trend). The most important shapes are <em>linear</em> (means tend to increase or decrease over time), <em>quadratic</em> (the trend tends to flat out or raise up over time), and <em>cubic</em> (the trend shows a tendency to seesaw or fluctuate up and down) The size and the statistical significance (if one relies on it) of the polynomial contrasts inform us on what are the charaterstics of overall trend of means observed in the groups.</p>
-<p>First, we set to <code>polynomial</code> the coding of <code>time</code> in the <code>Factor Coding</code> panel.</p>
+<p>Let’s now study how time changes the dependent variable and whether the two groups show different trends. We do a trend analysis by coding the <code>time</code> variable with <strong>polynomial contrasts</strong>: polynomial contrasts describe possible trends in the means (shape of the time-dependent trend). The most important shapes are <em>linear</em> (means tend to increase or decrease over time), <em>quadratic</em> (the trend tends to flat out or raise up over time), and <em>cubic</em> (the trend shows a tendency to seesaw or fluctuate up and down) The size and the statistical significance (if one relies on it) of the polynomial contrasts inform us on what are the charaterstics of overall trend of means observed in the groups.</p>
+<p>First, we set to <code>polynomial</code> the coding of <code>time</code> in the <code>Factors Coding</code> panel.</p>
 <p><img src="examples/mixed2/contrasts1.png" class="img-responsive" alt=""></p>
 <p>Then we look at the <code>Fixed Effects Parameters</code> table.</p>
 <p><img src="examples/mixed2/r.contrasts1.png" class="img-responsive" alt=""></p>
@@ -435,7 +435,7 @@ div.tocify {
 <p><img src="examples/mixed2/posthoc.png" class="img-responsive" alt=""></p>
 <p>Results are almost self-explanatory:</p>
 <p><img src="examples/mixed2/r.posthoc1.png" class="img-responsive" alt=""></p>
-<p>Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST) only from time 6, and time 3 and 6 are not differnt. That’s conclude the probing of the main effect time. The same can be done for the interaction, which would produce <span class="math inline">\({(8 \cdot 7) \over 2}=28\)</span>. We stop here because post-hoc tests are very boring.</p>
+<p>Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST) only from time 6, and time 3 and 6 are not differnt. That concludes the probing of the main effect of time. The same can be done for the interaction, which would produce <span class="math inline">\({(8 \cdot 7) \over 2}=28\)</span>. We stop here because post-hoc tests are very boring.</p>
 </div>
 </div>
 </div>
