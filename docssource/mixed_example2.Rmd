@@ -183,7 +183,7 @@ We can be happy about this analysis, but let face the case that a reviewer frown
 
 <img src="examples/mixed2/r.simple2.png" class="img-responsive" alt="">
 
-Recall that `time1` is the linear contrast, `time2` is the quadratic contrast, and `time3` is the cubic contrast (here we would like to see the contrast labels as well: future releases). `Simple Effects Parameters` informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the linear trend is present in both groups (we knew that already), the quadratic is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction `cubic * group` that this difference is not that large afterall.
+Recall that `time1` is the linear contrast, `time2` is the quadratic contrast, and `time3` is the cubic contrast (here we would like to see the contrast labels as well: future releases). `Simple Effects Parameters` table informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the linear trend is present in both groups (we knew that already), the quadratic is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction `cubic * group` that this difference is not that large afterall.
 
 
 ### Post-hoc
