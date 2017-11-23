@@ -1,5 +1,6 @@
 ---
-title: "Multinomial analysis in Jamovi"
+title: "Multinomial analysis in jamovi"
+author: "(by Marcello Gallucci)"
 output: 
   html_document:
      toc: true
@@ -12,7 +13,7 @@ output:
 source("../R/functions.R")
 ```
 
-`r keywords("jamovi, multinomial models, generalized linear models, post-hoc")`
+`r keywords("jamovi, multinomial models, generalized linear models, post-hoc, moderated regression, interactions")`
 
 
 In this example we study the relationships between a continuous independent variable, a categorical independent variable and their interaction on a categorical dependent variable. 
@@ -41,26 +42,26 @@ We want to understand if choosing a particular program out of the three availabl
 The dependent variable is a 3-level categorical variable, so we need a multinomial model. The aim of a multinomial model is straightfoward: Estimating how the probability of each category in the dependent variable varies as a function of the independent variable(s). In our example, we are going to estimate how the probability of choosing each program dependends on the ability to write (scores of `write`) and whether this probability is different for the three levels of social economical status (groups of `ses`).
 
 ## Details
-The way the multinomial model does that is less straightforward ( _you can skip this if you are in a hurry_ ): The dependent variable is decomposed in K-1 dummy variables (where K is the number of categories in the dependent variable) and a (sort of) logistic model is estimated for each dummy. Thus, if we pick a reference group for the dependent variable, say `academic program`, the model estimates the influence of the independent variable(s) on the logit (log of odd) of choosing each program over the academic program. Having three programs, our analysis will estimate two (K-1) set of coefficients: the effect of the independent variables on the (log) odd of choosing `general` program over choosing `academic`, and the (log) odd of choosing `vocation` program over choosing `academic`. The exact information about the change in odd (rather than the logit) can be obtained by looking at the odd ratio (`exp(B)`).
+The way the multinomial model does that is less straightforward ( _you can skip this if you are in a hurry_ ): The dependent variable is decomposed in K-1 dummy variables (where K is the number of categories in the dependent variable) and a (sort of) logistic model is estimated for each dummy. Thus, if we pick a reference group for the dependent variable, say `academic program`, the model estimates the influence of the independent variable(s) on the __logit__ (log of odd) of choosing each program over the academic program. Having three programs, our analysis will estimate two (K-1) set of coefficients: the effect of the independent variables on the (log) odd of choosing `general` program over choosing `academic`, and the (log) odd of choosing `vocation` program over choosing `academic`. The exact information about the change in odd (rather than the logit) can be obtained by looking at the __odd ratios__ (`exp(B)`).
 
 To be clearer, let's consider the frequencies of the dependent variable:
 
 <img src="examples/gzlm1/freq2.png" class="img-responsive" alt="">
 
-The proabilities in the dependent variable are P(academic)=.525, P(general)=.225, P(vocation)=.25. To capture the "change" in probabilities and link it to the independent variable, the multinomial model starts with the odds: the general vs academic odd is P(general)/P(academic)=.225/.525=`r round(.225/.525,digits=3)`. Thus, on average, choosing the general program is less than half as likely as to choosing the academic program. The model estimates how this odd depends on the dependent variable. The same goes for the vocation vs academic oddm, P(vocation)/P(academic)=.25/.525=`r round(.25/.525,digits=3)`. The model estimates how this odd is influenced by the independent variables. Remember that the B coefficients are expressed in the logit scale (log(odd)), the `exp(B)` in the odd scale.
+The proabilities in the dependent variable are P(academic)=.525, P(general)=.225, P(vocation)=.25. To capture the "change" in probabilities and link it to the independent variable, the multinomial model starts with the odds: the general vs academic odd is P(general)/P(academic)=.225/.525=`r round(.225/.525,digits=3)`. Thus, on average, choosing the general program is less than half as likely as choosing the academic program. The model estimates how this odd depends on the independent variable. The same goes for the vocation vs academic odd, P(vocation)/P(academic)=.25/.525=`r round(.25/.525,digits=3)`. The model estimates how this odd is influenced by the independent variables. Remember that the B coefficients are expressed in the logit scale (log(odd)), the `exp(B)` in the odd scale.
 
 ## Interpretation
 
 The overall test for each independent variable (Omnibus test Chi-squared) tests the null hypothesis that all the coefficients associated with an independent variable are zero, thus providing a "main effect" across all the dependent variable groups.
 
-To simplify the interpretation, we can always look at the plots of the effects. In Jamovi GAMLj the plots are on the probability scale, thus very easy to interpret: they show how the probability of each program changes for different levels of the independent variable.
+To simplify the interpretation, we can always look at the plots of the effects. In jamovi GAMLj the plots are on the probability scale, thus very easy to interpret: they show how the probability of each program changes for different levels of the independent variable.
 
-The choise of the reference group is statisticaly immaterial, but can be adjusted for interpretational purposes. Here we use `academic` because in jamovi GAMLj  the default is to set the first group as the reference group: the `prog` variable is a string variable, thus the groups are alphabetically ordered. If one needs to change the reference group, a different coding of the dependent variable groups can be used.
+The choice of the reference group is statisticaly immaterial, but can be adjusted for interpretational purposes. Here we use `academic` because in jamovi GAMLj  the default is to set the first group as the reference group: the `prog` variable is a string variable, thus the groups are alphabetically ordered. If one needs to change the reference group, a different coding of the dependent variable groups can be used.
 
 
 # Simple Multinomial model
 
-Let's start with predicting `prog` with the social economical status. In GAMLj `generalized linear model` we select the `multinomial model`,  push the `prog` variable in the 'Dependent Variable' field and `ses` in `Factors`.  
+Let's start with predicting `prog` with the social economical status. In GAMLj `generalized linear model` we select the `multinomial model`,  push the `prog` variable in the `Dependent Variable` field and `ses` in `Factors`.  
 
 <img src="examples/gzlm1/variable1.png" class="img-responsive" alt="">
 
@@ -69,7 +70,7 @@ As soon as we fix the variables, the results are there, with the first table sho
 
 <img src="examples/gzlm1/result1_1.png" class="img-responsive" alt="">
 
-Here we can outline the R-squared, that gives information about the goodness of fit of the model (see [technical details](gzlm_specs.html) for more info). Our error of approximation of the data decreases of 4% thanks to the `ses` variable. Put it in another way, our ability to predict `prog` increases of %4 thanks to `ses` over using only the observed probabilities.
+Here we can outline the R-squared, that gives information about the goodness of fit of the model (see [technical details](gzlm_specs.html) for more info). Our error of approximation of the data decreases of 4% thanks to the `ses` variable. Put it in another way, our ability to predict `prog` increases of 4% thanks to `ses` over using only the observed probabilities.
 
 ## Omnibus test
 
@@ -117,7 +118,7 @@ Now we have two omnibus tests, indicating that the ability to write has a stisti
 
 The better one writes, the higher the probability of choosing the academic program (prog=1), and the lower is the probability of choosing the vocational program (prog=3). Choosing the general program does not depends on the writing skills. 
 
-Please notice in the plot that the independent variable `write` it is centered to its mean. This is a default of Jamovi GAMLj in order to avoid unexpected results when interactions and other complex effects are estimated. However, it is only a default setting, so we can change it as we're pleased. 
+Please notice in the plot that the independent variable `write` it is centered to its mean. This is a default of jamovi GAMLj in order to avoid unexpected results when interactions and other complex effects are estimated. However, it is only a default setting, so we can change it as we're pleased. 
 
 By going to `Covariates scoring` tab, one can choose not to center the variable.
 
@@ -131,7 +132,7 @@ Obviously, the results are not different, but the plot x-axis looks nicer now.
 
 A question we can ask is whether the effect of writing abilities may be different at different levels of social economical status, thus putting forward a moderation hypothesis. 
 
-After setting the `write` covariate back to centered, we can go to the `Model` tab and push the interaction term  on the right field. We need this because GAMLj abides by an old rule of not estimating by default the iteraction between continuous and categorical variable (this default may change in future releases).
+After setting the `write` covariate back to centered, we can go to the `Model` tab and push the interaction term to the right field. We need this because GAMLj abides by an old rule of not estimating by default the iteraction between continuous and categorical variable (this default may change in future releases).
 
 <img src="examples/gzlm1/interaction.png" class="img-responsive" alt="">
 
