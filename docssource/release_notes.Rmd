@@ -12,6 +12,8 @@ output:
 
 (_yet to be release_)
 
+* Plots raw data along with predicted effects
+
 * contrasts labels in the simple effects parameters table
 
 * Intra-class correlation for the random intercepts in mixed models
