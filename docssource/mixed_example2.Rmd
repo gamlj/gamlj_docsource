@@ -1,5 +1,6 @@
 ---
 title: "Mixed Models in jamovi"
+author: "(by Marcello Gallucci)"
 output: 
   html_document:
      toc: true
@@ -26,7 +27,7 @@ The data are from a [David C. Howell](https://www.uvm.edu/~dhowell/StatPages/Mor
 
 "[Howell] has created data to have a number of characteristics. There are two groups - a Control group and a Treatment group, measured at 4 times. These times are labeled as 1 (pretest), 2 (one month posttest), 3 (3 months follow-up), and 4 (6 months follow-up). I created the treatment group to show a sharp drop at post-test and then sustain that drop (with slight regression) at 3 and 6 months. The Control group declines slowly over the 4 intervals but does not reach the low level of the Treatment group. There are noticeable individual differences in the Control group, and some subjects show a steeper slope than others. In the Treatment group there are individual differences in level but the slopes are not all that much different from one another. You might think of this as a study of depression, where the dependent variable is a depression score (e.g. Beck Depression Inventory) and the treatment is drug versus no drug. If the drug worked about as well for all subjects the slopes would be comparable and negative across time. For the control group we would expect some subjects to get better on their own and some to stay depressed, which would lead to differences in slope for that group." ( [Howell](https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html) )
 
-The design is thus a 2 (group) X 6 (time) design with the latter factor repeated within participants.
+The design is thus a 2 (group) X 4 (time) design with the latter factor repeated within participants.
 
 <img src="examples/mixed2/freq.png" class="img-responsive" alt="">
 
@@ -53,7 +54,7 @@ Later on, we also explore the possibility that the effect of time is different f
 To run a mixed model, we should answer three questions:
 
 * Which is the cluster variable: in our case it is clearly the `subj` variable.
-* What are the fixed effects: here they are the effect of `time`, of `group` and their interaction. Please notice that GAMLj automatically push the categorical variables and their interaction in the fixed effects definition (cf. panel `Fixed Effects`). If one needs a different set of fixed effects, there is the place to work.
+* What are the fixed effects: here they are the effect of `time`, of `group` and their interaction. Please notice that GAMLj automatically push the categorical variables and their interaction in the fixed effects definition (cf. panel `Fixed Effects`). If one needs a different set of fixed effects, that is the place to work.
 * What are the random effects: for the first run on the estimation, we go for a random intercepts model, thus the random coefficients are the interectps.
 
 
@@ -82,11 +83,11 @@ If we now look at the results panel, we see that the model definition is not com
 
 <img src="examples/mixed2/resultsnone.png" class="img-responsive" alt="">
 
-We need to specify the random component, that is we should set which coefficient are random. We do that by expanding the `Random Effects` tab.
+We need to specify the random component by selecting what coefficients are random. We do that by expanding the `Random Effects` tab.
 
 <img src="examples/mixed2/random1.png" class="img-responsive" alt="">
 
-On the left side, under `Components` we find all possible random effects allowed in the model already prepared by jamovi. They are prepared based on the variables previously selected, but some of them may be not interesting or even absurd. In our example, we need the `intercept` to vary randomly across participants, thus we simply select `Intercept|subj`. Jamovi uses the R formulation of random effects as implemented by the [lme4 R package](https://cran.r-project.org/web/packages/lme4/index.html). The bar `|` means __random across__, thus we can read the "components" as `Intercept` random across `subj`,  `group` effects random across `subj`,  `time` effects random across `subj`, and so on.
+On the left side, under `Components` we find all possible random effects allowed in the model already prepared by jamovi. They are prepared based on the variables previously selected, so not all of them may be interesting. In our example, we need the `intercept` to vary randomly across participants, thus we simply select `Intercept|subj`. Jamovi uses the R formulation of random effects as implemented by the [lme4 R package](https://cran.r-project.org/web/packages/lme4/index.html). The bar `|` means __random across__, thus we can read the "components" as `Intercept` random across `subj`,  `group` effects random across `subj`,  `time` effects random across `subj`, and so on.
 
 <img src="examples/mixed2/random2.png" class="img-responsive" alt="">
 
@@ -106,7 +107,7 @@ The first table in the output contains info about the model and the estimation.
 
 * The `Call` row display the model in [lme4 R package](https://cran.r-project.org/web/packages/lme4/index.html) formulation. This can be useful to re-run the same analysis in R (not using GAMLj module). 
 * The `AIC` row display the Aikeke Information Criterion, which can be useful to evaluate the model, especially in comparison with other models. Details can be found in [GAMLj docs](https://github.com/mcfanda/gamlj/blob/master/docs/mixed_specs.html) and in [Zuur et. al , 2009] al.](http://www.springer.com/la/book/9780387874579)
-* R-marginal and R-conditional are proportion of reduced error, or pseudo-$R^2$. They are described in [Johnson (2014)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01) and implemented in [piecewiseSEM](https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models). For our purposes, we can interpret them as follows: __R-marginal__ is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The __R-conditional__ is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects explain a good share of the variance (${R_m}^2$=.554), but the overall model (fixed+random) captures an even bigger share of the variance (${R_c}^2$=.554).
+* R-marginal and R-conditional are proportions of reduced error, or pseudo-$R^2$. They are described in [Johnson (2014)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01) and implemented in [piecewiseSEM](https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models). For our purposes, we can interpret them as follows: __R-marginal__ is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The __R-conditional__ is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects explain a good share of the variance (${R_m}^2$=.554), but the overall model (fixed+random) captures an even bigger share of the variance (${R_c}^2$=.768).
 
 <img src="examples/mixed2/res.info.png" class="img-responsive" alt="">
 
@@ -117,12 +118,12 @@ The first table in the output contains info about the model and the estimation.
 As regards the degrees of freedom (nobody cares about them, I've been told before), jamovi mixed model tries to use Satterthwaite approximation as much as possible, but for complex models it may fail. When that happens, Kenword-Roger approximation is used and, if the latter does not fail, F-tests are computed. A note signals which approximation is used.
 
 
-In the output there's also a `Fixed effects Parameters Estimates` tables that gives the fixed B coefficients. For the moment the B coefficients are not interesting, so we skip the interpretation of this table (see later on what we do with them).
+In the output there's also a `Fixed effects Parameters Estimates` table that gives the fixed B coefficients. For the moment the B coefficients are not interesting, so we skip the interpretation of this table (see further down this document what we do with it).
 
 <img src="examples/mixed2/r.random.png" class="img-responsive" alt="">
 
 
-The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (${\sigma_a}^2$=), thus we did well in letting the intercepts vary from cluster to cluster. (${\sigma_a}^2$=2536) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
+The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (${\sigma_a}^2$=2536), thus we did well in letting the intercepts vary from cluster to cluster. ${\sigma_a}^2$ can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
 (future releases will compute that for you).
 
 ## Mixed vs RM Anova
@@ -145,7 +146,7 @@ We can now ask several questions to the model. There are different strategies to
 
 ### Simple effects analysis
 
-We ask the question whether the effect of time is present in each group. We know from the significant interaction that `time` has a different effect in the two groups, we know test if it is there in each group. 
+We ask the question whether the effect of time is present in each group. We know from the significant interaction that `time` has a different effect in the two groups, we now test if it is there in each group. 
 
 This means estimating the simple effects of `time` for different levels of `group`. We go to the `Simple Effects` panel and select the variables accordingly.
 

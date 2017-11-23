@@ -9,6 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="(by Marcello Gallucci)" />
 
 
 <title>Mixed Models in jamovi</title>
@@ -309,6 +310,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Mixed Models in jamovi</h1>
+<h4 class="author"><em>(by Marcello Gallucci)</em></h4>
 
 </div>
 
@@ -323,7 +325,7 @@ div.tocify {
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>“[Howell] has created data to have a number of characteristics. There are two groups - a Control group and a Treatment group, measured at 4 times. These times are labeled as 1 (pretest), 2 (one month posttest), 3 (3 months follow-up), and 4 (6 months follow-up). I created the treatment group to show a sharp drop at post-test and then sustain that drop (with slight regression) at 3 and 6 months. The Control group declines slowly over the 4 intervals but does not reach the low level of the Treatment group. There are noticeable individual differences in the Control group, and some subjects show a steeper slope than others. In the Treatment group there are individual differences in level but the slopes are not all that much different from one another. You might think of this as a study of depression, where the dependent variable is a depression score (e.g. Beck Depression Inventory) and the treatment is drug versus no drug. If the drug worked about as well for all subjects the slopes would be comparable and negative across time. For the control group we would expect some subjects to get better on their own and some to stay depressed, which would lead to differences in slope for that group.” ( <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">Howell</a> )</p>
-<p>The design is thus a 2 (group) X 6 (time) design with the latter factor repeated within participants.</p>
+<p>The design is thus a 2 (group) X 4 (time) design with the latter factor repeated within participants.</p>
 <p><img src="examples/mixed2/freq.png" class="img-responsive" alt=""></p>
 <p>The depenent variable is a continuous variable.</p>
 <p><img src="examples/mixed2/desc.png" class="img-responsive" alt=""></p>
@@ -341,7 +343,7 @@ div.tocify {
 <p>To run a mixed model, we should answer three questions:</p>
 <ul>
 <li>Which is the cluster variable: in our case it is clearly the <code>subj</code> variable.</li>
-<li>What are the fixed effects: here they are the effect of <code>time</code>, of <code>group</code> and their interaction. Please notice that GAMLj automatically push the categorical variables and their interaction in the fixed effects definition (cf. panel <code>Fixed Effects</code>). If one needs a different set of fixed effects, there is the place to work.</li>
+<li>What are the fixed effects: here they are the effect of <code>time</code>, of <code>group</code> and their interaction. Please notice that GAMLj automatically push the categorical variables and their interaction in the fixed effects definition (cf. panel <code>Fixed Effects</code>). If one needs a different set of fixed effects, that is the place to work.</li>
 <li>What are the random effects: for the first run on the estimation, we go for a random intercepts model, thus the random coefficients are the interectps.</li>
 </ul>
 <div id="set-up" class="section level2">
@@ -363,9 +365,9 @@ div.tocify {
 <p><img src="examples/mixed2/variables4.png" class="img-responsive" alt=""></p>
 <p>If we now look at the results panel, we see that the model definition is not completed yet.</p>
 <p><img src="examples/mixed2/resultsnone.png" class="img-responsive" alt=""></p>
-<p>We need to specify the random component, that is we should set which coefficient are random. We do that by expanding the <code>Random Effects</code> tab.</p>
+<p>We need to specify the random component by selecting what coefficients are random. We do that by expanding the <code>Random Effects</code> tab.</p>
 <p><img src="examples/mixed2/random1.png" class="img-responsive" alt=""></p>
-<p>On the left side, under <code>Components</code> we find all possible random effects allowed in the model already prepared by jamovi. They are prepared based on the variables previously selected, but some of them may be not interesting or even absurd. In our example, we need the <code>intercept</code> to vary randomly across participants, thus we simply select <code>Intercept|subj</code>. Jamovi uses the R formulation of random effects as implemented by the <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a>. The bar <code>|</code> means <strong>random across</strong>, thus we can read the “components” as <code>Intercept</code> random across <code>subj</code>, <code>group</code> effects random across <code>subj</code>, <code>time</code> effects random across <code>subj</code>, and so on.</p>
+<p>On the left side, under <code>Components</code> we find all possible random effects allowed in the model already prepared by jamovi. They are prepared based on the variables previously selected, so not all of them may be interesting. In our example, we need the <code>intercept</code> to vary randomly across participants, thus we simply select <code>Intercept|subj</code>. Jamovi uses the R formulation of random effects as implemented by the <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a>. The bar <code>|</code> means <strong>random across</strong>, thus we can read the “components” as <code>Intercept</code> random across <code>subj</code>, <code>group</code> effects random across <code>subj</code>, <code>time</code> effects random across <code>subj</code>, and so on.</p>
 <p><img src="examples/mixed2/random2.png" class="img-responsive" alt=""></p>
 <p>At this point, the model is estimated and the results appear in the results panel. Before inspecting the results, we have a look at the fixed effects definition, by expanding the `Fixed Effects’ tab.</p>
 <p><img src="examples/mixed2/fixedeffects.png" class="img-responsive" alt=""></p>
@@ -379,15 +381,15 @@ div.tocify {
 <ul>
 <li>The <code>Call</code> row display the model in <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a> formulation. This can be useful to re-run the same analysis in R (not using GAMLj module).</li>
 <li>The <code>AIC</code> row display the Aikeke Information Criterion, which can be useful to evaluate the model, especially in comparison with other models. Details can be found in <a href="https://github.com/mcfanda/gamlj/blob/master/docs/mixed_specs.html">GAMLj docs</a> and in [Zuur et. al , 2009] al.](<a href="http://www.springer.com/la/book/9780387874579" class="uri">http://www.springer.com/la/book/9780387874579</a>)</li>
-<li>R-marginal and R-conditional are proportion of reduced error, or pseudo-<span class="math inline">\(R^2\)</span>. They are described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01">Johnson (2014)</a> and implemented in <a href="https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models">piecewiseSEM</a>. For our purposes, we can interpret them as follows: <strong>R-marginal</strong> is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The <strong>R-conditional</strong> is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects explain a good share of the variance (<span class="math inline">\({R_m}^2\)</span>=.554), but the overall model (fixed+random) captures an even bigger share of the variance (<span class="math inline">\({R_c}^2\)</span>=.554).</li>
+<li>R-marginal and R-conditional are proportions of reduced error, or pseudo-<span class="math inline">\(R^2\)</span>. They are described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01">Johnson (2014)</a> and implemented in <a href="https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models">piecewiseSEM</a>. For our purposes, we can interpret them as follows: <strong>R-marginal</strong> is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The <strong>R-conditional</strong> is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects explain a good share of the variance (<span class="math inline">\({R_m}^2\)</span>=.554), but the overall model (fixed+random) captures an even bigger share of the variance (<span class="math inline">\({R_c}^2\)</span>=.768).</li>
 </ul>
 <p><img src="examples/mixed2/res.info.png" class="img-responsive" alt=""></p>
 <p><code>Fixed effects ANOVA</code> gives the F-tests associated with the model fixed effects. Here we see that <code>time</code> has a statistical significant effect (on average), <code>group</code> has a statistically significant effect, and there’s also an interaction between the factors.</p>
 <p><img src="examples/mixed2/r.anova.png" class="img-responsive" alt=""></p>
 <p>As regards the degrees of freedom (nobody cares about them, I’ve been told before), jamovi mixed model tries to use Satterthwaite approximation as much as possible, but for complex models it may fail. When that happens, Kenword-Roger approximation is used and, if the latter does not fail, F-tests are computed. A note signals which approximation is used.</p>
-<p>In the output there’s also a <code>Fixed effects Parameters Estimates</code> tables that gives the fixed B coefficients. For the moment the B coefficients are not interesting, so we skip the interpretation of this table (see later on what we do with them).</p>
+<p>In the output there’s also a <code>Fixed effects Parameters Estimates</code> table that gives the fixed B coefficients. For the moment the B coefficients are not interesting, so we skip the interpretation of this table (see further down this document what we do with it).</p>
 <p><img src="examples/mixed2/r.random.png" class="img-responsive" alt=""></p>
-<p>The <strong>Random Component</strong> display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=), thus we did well in letting the intercepts vary from cluster to cluster. (<span class="math inline">\({\sigma_a}^2\)</span>=2536) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span> (future releases will compute that for you).</p>
+<p>The <strong>Random Component</strong> display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=2536), thus we did well in letting the intercepts vary from cluster to cluster. <span class="math inline">\({\sigma_a}^2\)</span> can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span> (future releases will compute that for you).</p>
 </div>
 <div id="mixed-vs-rm-anova" class="section level2">
 <h2>Mixed vs RM Anova</h2>
@@ -405,7 +407,7 @@ div.tocify {
 <p>We can now ask several questions to the model. There are different strategies to probe the interaction, and usually one picks the one that better suits the researcher’s hypotheses and interests. Here we use them all, mainly for showing how they can pursued in jamovi GAMLj.</p>
 <div id="simple-effects-analysis" class="section level3">
 <h3>Simple effects analysis</h3>
-<p>We ask the question whether the effect of time is present in each group. We know from the significant interaction that <code>time</code> has a different effect in the two groups, we know test if it is there in each group.</p>
+<p>We ask the question whether the effect of time is present in each group. We know from the significant interaction that <code>time</code> has a different effect in the two groups, we now test if it is there in each group.</p>
 <p>This means estimating the simple effects of <code>time</code> for different levels of <code>group</code>. We go to the <code>Simple Effects</code> panel and select the variables accordingly.</p>
 <p><img src="examples/mixed2/simple1.png" class="img-responsive" alt=""></p>
 <p>The results panel shows now a series of tables about the simple effects. We focus on “Simple Effects ANOVA” table.</p>
