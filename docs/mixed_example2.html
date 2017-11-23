@@ -389,7 +389,7 @@ div.tocify {
 <p>As regards the degrees of freedom (nobody cares about them, I’ve been told before), jamovi mixed model tries to use Satterthwaite approximation as much as possible, but for complex models it may fail. When that happens, Kenword-Roger approximation is used and, if the latter does not fail, F-tests are computed. A note signals which approximation is used.</p>
 <p>In the output there’s also a <code>Fixed effects Parameters Estimates</code> table that gives the fixed B coefficients. For the moment the B coefficients are not interesting, so we skip the interpretation of this table (see further down this document what we do with it).</p>
 <p><img src="examples/mixed2/r.random.png" class="img-responsive" alt=""></p>
-<p>The <strong>Random Component</strong> display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=2536), thus we did well in letting the intercepts vary from cluster to cluster. <span class="math inline">\({\sigma_a}^2\)</span> can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span> (future releases will compute that for you).</p>
+<p>The <strong>Random Component</strong> display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (<span class="math inline">\({\sigma_a}^2\)</span>=2539), thus we did well in letting the intercepts vary from cluster to cluster. <span class="math inline">\({\sigma_a}^2\)</span> can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace (<span class="math inline">\(\sigma^2\)</span>), that is <span class="math inline">\(v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}\)</span> (future releases will compute that for you).</p>
 </div>
 <div id="mixed-vs-rm-anova" class="section level2">
 <h2>Mixed vs RM Anova</h2>
@@ -407,7 +407,7 @@ div.tocify {
 <p>We can now ask several questions to the model. There are different strategies to probe the interaction, and usually one picks the one that better suits the researcher’s hypotheses and interests. Here we use them all, mainly for showing how they can pursued in jamovi GAMLj.</p>
 <div id="simple-effects-analysis" class="section level3">
 <h3>Simple effects analysis</h3>
-<p>We ask the question whether the effect of time is present in each group. We know from the significant interaction that <code>time</code> has a different effect in the two groups, we now test if it is there in each group.</p>
+<p>We ask the question whether the effect of time is present in each group. We know from the significant interaction that <code>time</code> has a different effect in the two groups, we now test if it is present in each group.</p>
 <p>This means estimating the simple effects of <code>time</code> for different levels of <code>group</code>. We go to the <code>Simple Effects</code> panel and select the variables accordingly.</p>
 <p><img src="examples/mixed2/simple1.png" class="img-responsive" alt=""></p>
 <p>The results panel shows now a series of tables about the simple effects. We focus on “Simple Effects ANOVA” table.</p>

@@ -123,7 +123,7 @@ In the output there's also a `Fixed effects Parameters Estimates` table that giv
 <img src="examples/mixed2/r.random.png" class="img-responsive" alt="">
 
 
-The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (${\sigma_a}^2$=2536), thus we did well in letting the intercepts vary from cluster to cluster. ${\sigma_a}^2$ can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
+The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is variance in the intercepts (${\sigma_a}^2$=2539), thus we did well in letting the intercepts vary from cluster to cluster. ${\sigma_a}^2$ can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
 (future releases will compute that for you).
 
 ## Mixed vs RM Anova
@@ -146,7 +146,7 @@ We can now ask several questions to the model. There are different strategies to
 
 ### Simple effects analysis
 
-We ask the question whether the effect of time is present in each group. We know from the significant interaction that `time` has a different effect in the two groups, we now test if it is there in each group. 
+We ask the question whether the effect of time is present in each group. We know from the significant interaction that `time` has a different effect in the two groups, we now test if it is present in each group. 
 
 This means estimating the simple effects of `time` for different levels of `group`. We go to the `Simple Effects` panel and select the variables accordingly.
 
