@@ -38,7 +38,7 @@ if (window.hljs) {
   hljs.configure({languages: []});
   hljs.initHighlightingOnLoad();
   if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+    window.setTimeout(function() { hljs.initHighlightingOnLoad(); }, 0);
   }
 }
 </script>
@@ -401,6 +401,8 @@ div.tocify {
 <p><img src="examples/mixed2/plots1.png" class="img-responsive" alt=""></p>
 <p>Results show that for group 1 there is a slow decay of the dependent variable, whereas for group 2 there is a fast decay from time 0 to time 1, and a flat trend from time 1 on. On average, group 1 shows higher levels of the <code>dv</code>, and, on average, the <code>dv</code> decreases over time.</p>
 <p><img src="examples/mixed2/r.plots1.png" class="img-responsive" alt=""></p>
+<p>A clearer and more honest account of the model fit can be seen by looking at the estimated means over the actual observed scores (GALMj v. &gt;= 0.9.3), option <code>Plot -&gt; Observed scores</code>.</p>
+<p><img src="examples/mixed2/r.plots3.png" class="img-responsive" alt=""></p>
 </div>
 <div id="probing-the-effects" class="section level2">
 <h2>Probing the effects</h2>

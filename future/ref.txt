@@ -1,0 +1,2 @@
+# prediction confidence interval for mermod
+https://cran.r-project.org/web/packages/merTools/vignettes/Using_predictInterval.html

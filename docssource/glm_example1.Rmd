@@ -122,3 +122,7 @@ It plots the effect of the `Horizontal axis` variable for three levels (-1 SD, m
 <img src="examples/glm1/resultsplot.png" class="img-responsive" alt="">
 
 The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.
+
+Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (GAMLj v. >= 0.9.3). 
+
+<img src="examples/glm1/resultsplot2.png" class="img-responsive" alt="">

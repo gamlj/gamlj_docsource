@@ -140,6 +140,12 @@ Results show that for group 1 there is a slow decay of the dependent variable, w
 
 <img src="examples/mixed2/r.plots1.png" class="img-responsive" alt="">
 
+A clearer and more honest account of the model fit can be seen by looking at the estimated means over the actual observed scores (GALMj v. >= 0.9.3), option `Plot -> Observed scores`.
+
+<img src="examples/mixed2/r.plots3.png" class="img-responsive" alt="">
+
+
+
 ## Probing the effects
 
 We can now ask several questions to the model. There are different strategies to probe the interaction, and usually one picks the one that better suits the researcher's hypotheses and interests. Here we use them all, mainly for showing how they can pursued in jamovi GAMLj.
