@@ -13,8 +13,9 @@ output:
 source("../R/functions.R")
 ```
 
-`r keywords("jamovi, logistic models, generalized linear models, odd-ratio, ANOVA, ANCOVA, factorial designs, interactions")`
+`r keywords("jamovi, logistic models, generalized linear models, odd-ratios, ANOVA, ANCOVA, factorial designs, interactions")`
 
+`r draft`
 
 In this example we analyze a 3 X 2 X 2 design, with a dicotomous dependent variable. We employ logistic regression for modelling the dichotomous dependent variable.
 
@@ -90,17 +91,17 @@ The effect of `Sex` is due to the fact that `men` group is much more likely to r
 ## Living the comfort zone I (technical)
 (_you can skip this if you're not interested in beautiful details and some fundamental law of statistics_)
 
-We should stop for a while and think very broadly about this set of results, because they have many things to teach us in general terms. We can see that `Sex` has a statistical significant effect on `Pain`, but in the plots the confidence intervals seem to overalap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weired error deviance being included in the SE computation, but is is not. We can remove `Treatment` and still find that `Sex` is significant but the confidence intervals of the two means of gender overlap. 
+We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that `Sex` has a statistical significant effect on `Pain`, but in the plots the confidence intervals seem to overalap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weired error deviance being included in the SE computation, but is is not. We can remove `Treatment` and still find that `Sex` is significant but the confidence intervals of the two means of gender overlap. 
 
 <img src="examples/gzlm2/r.sex1.png" class="img-responsive" alt="">
 
 <img src="examples/gzlm2/r.plots2.png" class="img-responsive" alt="">
 
-Some people may find this strange, because of the common belief that two overlapping confidence interval should correspond to a non-significant difference. Howerver, this belief is wrong.
+Some people may find this strange, because of the common belief that two overlapping confidence intervals should correspond to a non-significant difference. Howerver, this belief is wrong.
 
 [Andrea Knezevic at the Cornell University](www.cscu.cornell.edu/news/statnews/Stnews73insert.pdf) and  [Prasanna Parasurama at Atipica](https://towardsdatascience.com/why-overlapping-confidence-intervals-mean-nothing-about-statistical-significance-48360559900a) explain this in a clear way. Here is a shorter version:
 
-Take a z-test for simplicity. Given two means _a_ and _b_, their significance depends on the inequality ${a-b} > 1.96 \cdot \sqrt{{SE_a}^2+{SE_b}^2}$. The confidence intervals of the two means are not-overlapping if ${a-b} > 1.96 \cdot ( \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2})$. Thus, as $a-b$ increases, the significance is reached first by the test with smaller right term of the inequality. By [Jensen inequality](https://en.wikipedia.org/wiki/Jensen's_inequality), we know that $\sqrt{{SE_a}^2+{SE_b}^2} < \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2}$ therefore there will be some values of $a-b$ where the t-test is significant but the means confidence intervals is not. Our examples shows exactly this.
+Take a z-test for simplicity. Given two means _a_ and _b_, their significance depends on the inequality ${a-b} > 1.96 \cdot \sqrt{{SE_a}^2+{SE_b}^2}$. The confidence intervals of the two means are not-overlapping if ${a-b} > 1.96 \cdot ( \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2})$. Thus, as $a-b$ increases, the significance is reached first by the test with smaller right term of the inequality. By [Jensen inequality](https://en.wikipedia.org/wiki/Jensen's_inequality), we know that $\sqrt{{SE_a}^2+{SE_b}^2} < \sqrt{{SE_a}^2}+\sqrt{{SE_b}^2}$ therefore there will be some values of $a-b$ where the t-test is significant but the means confidence intervals overalap. Our examples shows exactly this.
 
 From the same reasoning we can derive that the opposite is not true: If the confidence intervals do not overlap, the z-test must be significant. 
 
@@ -112,14 +113,14 @@ If one needs (and seldom one does in these cases), one can look at the model coe
 
 <img src="examples/gzlm2/r.params1.png" class="img-responsive" alt="">
 
-Skipping the intercept (recall that nobody interprets the interaction :-) ), the first coefficient, `Sex1`. The `exp(B)` is 2.449. This means that the odd of reportin `Pain=yes` over `Pain=No` for man (see `Contrast` column) is 2.499 times larger than for the averge of the sample (`(M,F)`).
-This conparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is `deviations`, meaing that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is `simple` that "simply" compare the two groups. We can set the conding in `Factor coding`.
+Skipping the intercept (recall that nobody interprets the intercept :-) ), the first coefficient, `Sex1`. The `exp(B)` is 2.449. This means that the odd of reportin `Pain=yes` over `Pain=No` for men (see `Contrast` column) is 2.499 times larger than for the averge of the sample (`(M,F)`).
+This conparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is `deviations`, meaing that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is `simple` that "simply" compares the two groups. We can set the conding in `Factor Coding`.
 
 <img src="examples/gzlm2/contrasts1.png" class="img-responsive" alt="">
 
 <img src="examples/gzlm2/r.params2.png" class="img-responsive" alt="">
 
-The B and exp(B) parameters associated with `Sex` is now different, although the z-test and p-value do not change. The odd-ratio associated with `Sex` is not exp(B)=6, and the contrast says `M-F`- This means that the odd of reporting the pain is 6 times larger for men than for women.  
+The B and exp(B) parameters associated with `Sex` have changed, although the z-test and p-value did not. The odd-ratio associated with `Sex` is not exp(B)=6, and the contrast says `M-F`- This means that the odd of reporting the pain is 6 times larger for men than for women.  
 
 Indeed, if we ask for the estimated marginal means of Sex averaging across Treatment we see the probabilities of reporting pain for the two genders.
 
@@ -129,7 +130,7 @@ Indeed, if we ask for the estimated marginal means of Sex averaging across Treat
 
 we can check that the probability of pain is .613 for men and .209 for women, which yields:
 
-* odd for men ${odd_M}={.613 \over {1-.613}}=1.58$
+* odd for men ${odd_M}={.614 \over {1-.614}}=1.58$
 * odd for women ${odd_F}={.209 \over {1-.209}}=.264$
 * the odd for men is $\exp{B}={1.58 \over .264} =6$ times lager than the odd for women
 
@@ -163,5 +164,25 @@ The elderler one gets, the more pain one reports, and the critial age seems to b
 
 As regards `Treatment` we can state that `Treatment` has still an effect even when `Age` and `Duration` are kept constant.
 
+# Moderation model
+
+The last interesting question is whether treatment has a different effect depending on the patient's age. To answer this question we should simply add the interaction `Treatment*Age` in the model and plot the interaction plot. I find it easier to plot `Age` on the x-axis and show the probabilities of pain for different treatments. Let's do all that.
 
 
+## Set-up
+<img src="examples/gzlm2/model1.png" class="img-responsive" alt="">
+
+## Omnibus tests
+
+<img src="examples/gzlm2/r.omnibus3.png" class="img-responsive" alt="">
+
+As suspected, there is an interaction between `Treatment` and `Age`, so it means that the efficacy of the treatments dependens on the patient's age. The plot will tell us how. 
+
+## Plot
+<img src="examples/gzlm2/plots4.png" class="img-responsive" alt="">
+
+<img src="examples/gzlm2/r.plots4.png" class="img-responsive" alt="">
+
+First, the placebo group reports high rates of pain independently of age (blue line). For younger people (age<70) the two treatments A and B are beneficial, because the probability of reporting pain is very low. When patients get older, treatments are not so effective any longer, because the probabilities increase and converge to high rates for all three groups.
+
+This may very well conclude the analyses.

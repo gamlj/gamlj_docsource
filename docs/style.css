@@ -60,3 +60,17 @@ span.keytitle {
   font-weight: bold;
   font-style: normal;
 }
+
+
+
+span.draft {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  color: black;
+  background-color: #FCF8E3;
+  margin-bottom: 10px;
+}
