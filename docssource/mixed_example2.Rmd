@@ -202,7 +202,7 @@ Results are almost self-explanatory:
 
 <img src="examples/mixed2/r.posthoc1.png" class="img-responsive" alt="">
 
-Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST)  only from time 6, and time 3 and 6 are not differnt. That concludes the probing of the main effect of time. The same can be done for the interaction, which would produce  ${(8 \cdot 7) \over 2}=28$. We stop here because post-hoc tests are very boring.
+Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST)  only from time 6, and time 3 and 6 are not differnt. That concludes the probing of the main effect of time. The same can be done for the interaction, which would produce  ${(8 \cdot 7) \over 2}=28$ comparisons. We stop here because post-hoc tests are very boring.
 
 
 
