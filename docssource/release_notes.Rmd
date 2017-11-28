@@ -23,6 +23,8 @@ output:
 
 * Y-axis range can be set to the range of the dependent variable 
 
+* Confidence intervals for all models in the plots
+
 * Catching several errors with degenerated or non-estimable multinomial models
 
   
