@@ -2,9 +2,11 @@
 title: "Released Notes"
 output: 
   html_document:
-     toc: true
-     toc_float:
-        collapsed: false
+    includes:
+         in_header: ganalytics.txt
+    toc: true
+    toc_float:
+         collapsed: false
 
 ---
 

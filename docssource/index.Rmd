@@ -1,5 +1,10 @@
 ---
 title: "GAMLj: Generale Analyses for the Linear Model in Jamovi"
+output: 
+  html_document:
+    includes:
+         in_header: ganalytics.txt
+
 ---
   
 

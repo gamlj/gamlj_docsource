@@ -2,6 +2,8 @@
 title: "Mixed Models module"
 output: 
   html_document:
+     includes:
+         in_header: ganalytics.txt
      toc: true
      toc_float:
         collapsed: false
