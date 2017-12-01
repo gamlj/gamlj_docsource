@@ -127,3 +127,5 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 * [Multinomial analysis in GAMLj GLM](gzlm_example1.html)
 * [Logistic analysis for factorial designs](gzlm_example2.html)
 
+
+`r issues()`

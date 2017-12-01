@@ -16,6 +16,8 @@ source("../R/functions.R")
 
 `r keywords("jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts")`
 
+`r version("0.9.3")`
+
 In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
 
 We use the GAMLj module in Jamovi. One can follow the example by downloading the file [howell_rep](https://github.com/mcfanda/gamlj/blob/master/data/howell_rep.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 

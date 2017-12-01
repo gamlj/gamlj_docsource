@@ -47,3 +47,6 @@ output:
 # version 0.0.9
 
 * First release to go public
+
+
+`r issues()`

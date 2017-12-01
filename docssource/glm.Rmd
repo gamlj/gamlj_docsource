@@ -110,3 +110,4 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 
 * [Moderated regresion with GAMLj GLM](glm_example1.html)
 
+`r issues()`

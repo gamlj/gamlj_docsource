@@ -313,8 +313,43 @@ div.tocify {
 </div>
 
 
+<p>In this page some details about the GAMLj GZLM (Generalized linear model) implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module. In the code, <code>model</code> is always the R variable containing the appropriated model estimation results (such as <code>model&lt;-glm(...)</code>.</p>
+<div id="model-info" class="section level1">
+<h1>Model info</h1>
+<div id="r-square" class="section level2">
+<h2>R-square</h2>
+<p>R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a></p>
+<p>It is implemented by taking the model log-likelihood and compare it with the null-model log-likelihood:</p>
+<p>`<br />
+### McFadden’s R-squared #####</p>
+<pre><code>sumr&lt;-summary(model)
+llfull&lt;-logLik(model)  ### model loglikelihood
+llnull&lt;-llfull-((sumr$null.deviance-sumr$deviance)/2) ## intercept only loglikelihood
+as.numeric(1-(llfull/llnull))</code></pre>
+<p>` ## AIC</p>
+<p>Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>model$aic</code> for all GZLM model but the multinomial, which is <code>model$AIC</code></p>
+</div>
+<div id="deviance" class="section level2">
+<h2>Deviance</h2>
+<p>This is the residual deviance of the model, usefull to judge goodness of fit in comparison with alternative (usually nested) models. It is</p>
+<p><span class="math inline">\(2 ( \ell (M_s) - \ell (M_e) )\)</span></p>
+<p>Where <span class="math inline">\(\ell\)</span> is the log-likelihood, <span class="math inline">\(M_s\)</span> is the saturated model and <span class="math inline">\(M_e\)</span> is the estimated model.</p>
+</div>
+<div id="residual-df" class="section level2">
+<h2>Residual DF</h2>
+<p>Residual variance degrees of freedom: <span class="math inline">\(DF_{M_s} -DF_{M_e}\)</span>, where <span class="math inline">\(M_s\)</span> is the saturated model and <span class="math inline">\(M_e\)</span> is the estimated model.</p>
+</div>
+<div id="valuedf" class="section level2">
+<h2>Value/DF</h2>
+<p>a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson <span class="math inline">\(\chi^2\)</span> statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually &gt; 3) indicate overdispersion. Values smaller than 1 (usually &lt; .333) indicate underdispersion. It is useful to decide whether the Poisson model is mispresenting overdispersion, in which case <code>Quasipoisson</code> or <code>negative binomial</code> models may be preferred.</p>
+<p>It is implemented as follows:</p>
+<pre><code>  value &lt;- sum(residuals(model, type = &quot;pearson&quot;)^2)
+  result &lt;- value/model$df.residual
+</code></pre>
+</div>
+</div>
 <div id="post-hocs" class="section level1">
-<h1>Post Hocs</h1>
+<h1>Post-Hocs</h1>
 <p>Post-hoc tests are model-based: Each comparison comparares two groups means using the standard error derived from the model error. This means that the comparisons are consisistent to the model they belong to and that different models may produce different results for the same set of comparisons.</p>
 <p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. For all GZLM models estimated with <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html">glm function</a> (all but multinomial model) post hoc are implemented as follows (for any given <code>model</code> and <code>term</code> selected by the user) :</p>
 <pre><code>          referenceGrid &lt;- emmeans::emmeans(model, formula)
@@ -332,10 +367,13 @@ lsm = emmeans::emmeans(model, ~ dependent|term, mode = &quot;latent&quot;)
 cmp = pairs(lsm,  by=&quot;dependent&quot;,interaction=F) 
 
 </code></pre>
-<p>This implementation is based on <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>, which explains that because dependent variable categories probabilities sum to 1 (and the latent values sum to 0) over the multivariate-response levels, all sensible results from emmeans must involve dependent variable as one of the factors.</p>
-</div>
-<div id="section" class="section level1">
-<h1></h1>
+<p><a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a> manual explains that because dependent variable categories probabilities sum to 1 (recall that the latent values sum to 0) over the multivariate-response levels, all sensible results from emmeans must involve dependent variable as one of the factors.</p>
+<h1>
+Comments?
+</h1>
+<br>
+<div>
+<p>Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/mcfanda/gamlj/issues "> GAMLj at github“</a> or <a href="mcfanda@gmail.com">send me an email</a></p>
 </div>
 
 

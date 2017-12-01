@@ -61,6 +61,24 @@ span.keytitle {
   font-style: normal;
 }
 
+span.version {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  background-color: green;
+  margin-bottom: 10px;
+}
+
+span.versiontitle {
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+}
 
 
 span.draft {

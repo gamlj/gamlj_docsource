@@ -78,3 +78,4 @@ Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_doc
 Please check out the  [Release notes](release_notes.html). 
 
 
+`r issues()`

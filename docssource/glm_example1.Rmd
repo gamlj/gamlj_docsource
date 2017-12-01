@@ -128,3 +128,6 @@ The nice plot we get shows the simple effects (simple equations to be precise) w
 Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (GAMLj v. >= 0.9.3). 
 
 <img src="examples/glm1/resultsplot2.png" class="img-responsive" alt="">
+
+
+`r issues()`

@@ -143,3 +143,5 @@ Results show very weak support for an interaction, because the Chi-square is low
 <img src="examples/gzlm1/plots3.png" class="img-responsive" alt="">
 
 <img src="examples/gzlm1/results2_5.png" class="img-responsive" alt="">
+
+`r issues()`
