@@ -1,6 +1,7 @@
 ---
 title: "Simple frequencies analysis with Poisson models"
 author: "(by Marcello Gallucci)"
+topic: gzlm
 output: 
   html_document:
      includes:

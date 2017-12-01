@@ -10,6 +10,10 @@ output:
 ---
 
 
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
 **Generalized Linear Models** module of the GAMLj suite for jamovi
 
 <img src="gzlm/main.png" class="img-responsive" alt="">
@@ -124,8 +128,8 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 
 # Examples
 
-* [Multinomial analysis in GAMLj GLM](gzlm_example1.html)
-* [Logistic analysis for factorial designs](gzlm_example2.html)
+Some worked out examples of the analyses carried out with jamovi GAMLj GZLM are posted here (more to come)
 
+`r include_examples("gzlm")`
 
 `r issues()`

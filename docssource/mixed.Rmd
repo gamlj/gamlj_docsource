@@ -11,6 +11,10 @@ output:
 ---
 
 
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
 **Mixed Linear Models** module of the GAMLj suite for jamovi
 
 <img src="mixed/i1.png" class="img-responsive" alt="">
@@ -119,6 +123,6 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 
 # Examples
 
-* [Random regresion with GAMLj Mixed Model](mixed_example1.html)
+Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)
 
-* [Repeated measures in GAMLj Mixed Model](mixed_example2.html)
+`r include_examples("mixed")`

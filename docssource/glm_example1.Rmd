@@ -1,5 +1,7 @@
 ---
 title: "GLM in jamovi"
+author: "(Marcello Gallucci)"
+topic: glm
 output: 
   html_document:
      includes:

@@ -1,11 +1,16 @@
 ---
-title: "GAMLj: Generale Analyses for the Linear Model in Jamovi"
+title: "GAMLj: General Analyses for the Linear Model in Jamovi"
 output: 
   html_document:
     includes:
          in_header: ganalytics.txt
 
 ---
+  
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
   
 
 General, Mixed and Generalized Models module for Jamovi
@@ -37,11 +42,7 @@ Please visit the sub-mudule pages for details:
 
 Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)
 
-* [Moderated Regression with GAMLj GLM](glm_example1.html)
-* [Multinomial analysis in GAMLj GLM](gzlm_example1.html)
-* [Logistic analysis for factorial designs](gzlm_example2.html)
-* [Random regression with GAMLj Mixed Model](mixed_example1.html)
-* [Repeated measures in GAMLj Mixed Model](mixed_example2.html)
+`r include_examples()`
 
 
 # Installation

@@ -10,6 +10,10 @@ output:
 ---
 
 
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
 **General Linear Model** module of the GAMLj suite for jamovi
 
 <img src="glm/main.png  " class="img-responsive" alt="">
@@ -108,6 +112,8 @@ Print the estimate expected means, SE, df and confidence intervals of the depend
 
 # Examples
 
-* [Moderated regresion with GAMLj GLM](glm_example1.html)
+Some worked out examples of the analyses carried out with jamovi GAMLj are posted here (more to come)
+
+`r include_examples("glm")`
 
 `r issues()`

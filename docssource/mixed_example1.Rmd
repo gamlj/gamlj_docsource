@@ -1,5 +1,7 @@
 ---
 title: "Mixed Models in Jamovi"
+author: (Marcello Gallucci)
+topic: mixed
 output: 
   html_document:
      includes:
