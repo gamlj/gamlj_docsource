@@ -1,7 +1,8 @@
 ---
-title: "Mixed Models in jamovi"
+title: "Mixed Models: Repeated measure designs"
 author: "(by Marcello Gallucci)"
 topic: mixed
+nickname: mixedrepeated
 output: 
   html_document:
      toc: true
@@ -13,7 +14,6 @@ output:
 ```{r echo=FALSE,results='hide'}
 source("../R/functions.R")
 ```
-# Repeated measure design example
 
 `r keywords("jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts")`
 

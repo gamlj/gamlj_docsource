@@ -1,7 +1,8 @@
 ---
-title: "Mixed Models in Jamovi"
+title: "Mixed Models: Random coefficients regression"
 author: (Marcello Gallucci)
 topic: mixed
+nickname: randomcoefficients
 output: 
   html_document:
      includes:
@@ -12,7 +13,6 @@ output:
 
 ---
 
-# Mixed models example: Random coefficients regression
 
 In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. The complete set of analyses and results (for the lazy reader) can be downloaded [here](https://github.com/mcfanda/gamlj/blob/master/docs/examples/beers_bars.omv)
 

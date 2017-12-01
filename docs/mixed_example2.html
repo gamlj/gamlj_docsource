@@ -12,7 +12,7 @@
 <meta name="author" content="(by Marcello Gallucci)" />
 
 
-<title>Mixed Models in jamovi</title>
+<title>Mixed Models: Repeated measure designs</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,20 +309,17 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models in jamovi</h1>
+<h1 class="title toc-ignore">Mixed Models: Repeated measure designs</h1>
 <h4 class="author"><em>(by Marcello Gallucci)</em></h4>
 
 </div>
 
 
-<div id="repeated-measure-design-example" class="section level1">
-<h1>Repeated measure design example</h1>
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.3 </span></p>
 <p>In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.</p>
 <p>We use the GAMLj module in Jamovi. One can follow the example by downloading the file <a href="https://github.com/mcfanda/gamlj/blob/master/data/howell_rep.csv">howell_rep</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install GAMLj module from within jamovi library.</p>
 <p>The data are from a <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">David C. Howell</a> website. You can find there a lot of very clear information and discussion of repeated measures mixed model analysis, in SPSS, SAS, and R. As you would expect from David C. Howell, the material is simply great.</p>
-</div>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>“[Howell] has created data to have a number of characteristics. There are two groups - a Control group and a Treatment group, measured at 4 times. These times are labeled as 1 (pretest), 2 (one month posttest), 3 (3 months follow-up), and 4 (6 months follow-up). I created the treatment group to show a sharp drop at post-test and then sustain that drop (with slight regression) at 3 and 6 months. The Control group declines slowly over the 4 intervals but does not reach the low level of the Treatment group. There are noticeable individual differences in the Control group, and some subjects show a steeper slope than others. In the Treatment group there are individual differences in level but the slopes are not all that much different from one another. You might think of this as a study of depression, where the dependent variable is a depression score (e.g. Beck Depression Inventory) and the treatment is drug versus no drug. If the drug worked about as well for all subjects the slopes would be comparable and negative across time. For the control group we would expect some subjects to get better on their own and some to stay depressed, which would lead to differences in slope for that group.” ( <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">Howell</a> )</p>

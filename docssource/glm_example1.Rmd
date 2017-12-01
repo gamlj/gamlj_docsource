@@ -1,6 +1,7 @@
 ---
-title: "GLM in jamovi"
+title: "GLM: Multiple regression, moderated regression, and simple slopes"
 author: "(Marcello Gallucci)"
+nicname: exercise
 topic: glm
 output: 
   html_document:
@@ -15,9 +16,6 @@ output:
 source("../R/functions.R")
 ```
 
-
-
-# Multiple regression, moderated regression, and simple slopes
 
 `r keywords("Multiple regression, moderated regression, simple slopes")`
 
