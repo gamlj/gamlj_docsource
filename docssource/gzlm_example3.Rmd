@@ -2,6 +2,7 @@
 title: "Simple frequencies analysis with Poisson models"
 author: "(by Marcello Gallucci)"
 topic: gzlm
+nickname: simplePoisson
 output: 
   html_document:
      includes:
@@ -24,7 +25,7 @@ In this example we analyze a dependent variable featuring frequency of events, o
 
 We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the [csv file](https://github.com/mcfanda/gamlj_docs/blob/master/data/cells.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
-The data are simulated, not real, so please do not cite them to argue about any issue. The reason of this is to provide an example where the Poisson model assumptions are surely met, so some of the difficulties of dealing with count data and frequencies are not present. For more elaborated examples see [the other example](Advanced frequencies analysis with Poisson models](gzml_example4.html)
+The data are simulated, not real, so please do not cite them to argue about any issue. The reason of this is to provide an example where the Poisson model assumptions are surely met, so some of the difficulties of dealing with count data and frequencies are not present. For more elaborated examples see `r cite_example("overPoisson")`.
 
 
 # The research design
