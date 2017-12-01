@@ -159,4 +159,7 @@ As usual, a picture is worth a thousand words.
 This concludes these set of analyses.
 
 
+# Related examples
+`r include_examples("gzlm")`
+
 `r issues()`

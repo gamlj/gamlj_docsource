@@ -189,3 +189,8 @@ As suspected, there is an interaction between `Treatment` and `Age`, so it means
 First, the placebo group reports high rates of pain independently of age (blue line). For younger people (age<70) the two treatments A and B are beneficial, because the probability of reporting pain is very low. When patients get older, treatments are not so effective any longer, because the probabilities increase and converge to high rates for all three groups.
 
 This may very well conclude the analyses.
+
+# Related examples
+`r include_examples("gzlm")`
+
+`r issues()`

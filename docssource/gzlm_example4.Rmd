@@ -24,6 +24,6 @@ source("../R/functions.R")
 Work in progress
 
 # Related examples
-
 `r include_examples("gzlm")`
+
 `r issues()`
