@@ -163,3 +163,6 @@ Finally, a correlation between intercepts and slopes can be observed, $r$=-.762,
 The final model, with random intercepts and slopes, would capture the data with several slopes, with very different intercepts and slightly varianble slopes.
 
 <img src="examples/mixed1/plot2.png" class="img-responsive" alt="">
+
+
+`r issues()`
