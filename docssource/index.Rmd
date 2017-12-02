@@ -18,7 +18,7 @@ General, Mixed and Generalized Models module for Jamovi
 <img src="docs/i1.png" class="img-responsive" alt="">
 
 
-Estimates a General Linear Model, Mixed Linear Models and Generalized Linear Model (the latter yet to be implemented) with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.
+Estimates a General Linear Model, Mixed Linear Models and Generalized Linear Model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.
 
 * ANOVA and Regression approach
 * Continuous and categorical independent variables
@@ -31,6 +31,24 @@ Estimates a General Linear Model, Mixed Linear Models and Generalized Linear Mod
 * Plots for up to three-way interactions
 * Automatic selection of best estimation methods and degrees of freedom selection
 * Type III estimation
+
+Available models are:
+
+* OLS Regression (GLM)
+* OLS ANOVA (GLM)
+* OLS ANCOVA (GLM)
+* Random coefficients regression (Mixed)
+* Random coefficients ANOVA-ANCOVA (Mixed)
+* Logistic regression (GZLM)
+* Logistic ANOVA-like model (GZLM)
+* Multinomial regression (GZLM)
+* Multinomial ANOVA-like model (GZLM)
+* Poisson regression (GZLM)
+* Poisson ANOVA-like model (GZLM)
+* Overdispersed Poisson regression (GZLM)
+* Overdispersed Poisson ANOVA-like model (GZLM)
+* Negative binomial regression (GZLM)
+* Negative binomail  ANOVA-like model (GZLM)
 
 Please visit the sub-mudule pages for details:
 

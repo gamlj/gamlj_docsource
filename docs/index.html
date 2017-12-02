@@ -220,7 +220,7 @@ $(document).ready(function () {
 
 <p>General, Mixed and Generalized Models module for Jamovi</p>
 <p><img src="docs/i1.png" class="img-responsive" alt=""></p>
-<p>Estimates a General Linear Model, Mixed Linear Models and Generalized Linear Model (the latter yet to be implemented) with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
+<p>Estimates a General Linear Model, Mixed Linear Models and Generalized Linear Model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc etc.</p>
 <ul>
 <li>ANOVA and Regression approach</li>
 <li>Continuous and categorical independent variables</li>
@@ -233,6 +233,24 @@ $(document).ready(function () {
 <li>Plots for up to three-way interactions</li>
 <li>Automatic selection of best estimation methods and degrees of freedom selection</li>
 <li>Type III estimation</li>
+</ul>
+<p>Available models are:</p>
+<ul>
+<li>OLS Regression (GLM)</li>
+<li>OLS ANOVA (GLM)</li>
+<li>OLS ANCOVA (GLM)</li>
+<li>Random coefficients regression (Mixed)</li>
+<li>Random coefficients ANOVA-ANCOVA (Mixed)</li>
+<li>Logistic regression (GZLM)</li>
+<li>Logistic ANOVA-like model (GZLM)</li>
+<li>Multinomial regression (GZLM)</li>
+<li>Multinomial ANOVA-like model (GZLM)</li>
+<li>Poisson regression (GZLM)</li>
+<li>Poisson ANOVA-like model (GZLM)</li>
+<li>Overdispersed Poisson regression (GZLM)</li>
+<li>Overdispersed Poisson ANOVA-like model (GZLM)</li>
+<li>Negative binomial regression (GZLM)</li>
+<li>Negative binomail ANOVA-like model (GZLM)</li>
 </ul>
 <p>Please visit the sub-mudule pages for details:</p>
 <ul>
