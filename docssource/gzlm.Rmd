@@ -51,7 +51,7 @@ Model are defined based on the link function (LF) and the dependent variable dis
 
 
 # Estimates
-The module provides Analysis of Deviance tables and parameter estimates for any estimated model. Variables definition follows jamovi standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
+The module provides Analysis of Deviance tables and parameter estimates for any estimated model. Variables definition follows jamovi standards, with categorical independent variables defined in "factors" and continuous independent variables in "covariates".
 
 <img src="gzlm/variables.png" class="img-responsive" alt="">
 
