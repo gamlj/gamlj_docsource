@@ -25,7 +25,10 @@ The module can estimates several linear models:
 
 * Linear model
 * Poisson model
+* Poisson overdispersed
+* Negative binomial model
 * Logistic model
+* Probit model
 * Multinomial model
 
 

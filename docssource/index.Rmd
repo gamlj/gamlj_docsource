@@ -41,6 +41,8 @@ Available models are:
 * Random coefficients ANOVA-ANCOVA (Mixed)
 * Logistic regression (GZLM)
 * Logistic ANOVA-like model (GZLM)
+* Probit regression (GZLM)
+* Probit ANOVA-like model (GZLM)
 * Multinomial regression (GZLM)
 * Multinomial ANOVA-like model (GZLM)
 * Poisson regression (GZLM)
