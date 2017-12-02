@@ -41,7 +41,12 @@ Model are defined based on the link function (LF) and the dependent variable dis
 
 * Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.
 * Poisson model: logaritm LF, poisson distribution, modelling count dependent variables. This model is often called log-linear models when the independent variables are all categorical.
+* Poisson model: logaritm LF, poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
+* Negative binomial model: logaritm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
+
 * Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.
+* Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.
+
 * Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables. 
 
 

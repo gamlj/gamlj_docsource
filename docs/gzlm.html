@@ -343,8 +343,11 @@ div.tocify {
 <ul>
 <li>Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.</li>
 <li>Poisson model: logaritm LF, poisson distribution, modelling count dependent variables. This model is often called log-linear models when the independent variables are all categorical.</li>
+<li>Poisson model: logaritm LF, poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</li>
+<li><p>Negative binomial model: logaritm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.</p></li>
 <li>Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.</li>
-<li>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</li>
+<li><p>Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.</p></li>
+<li><p>Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables.</p></li>
 </ul>
 </div>
 <div id="estimates" class="section level1">
