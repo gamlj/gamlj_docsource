@@ -113,8 +113,13 @@ Ticking the options add confidence intervals (or confidence bands) or standard e
 
 Plots interpretation varies depending on the model being estimated. All plots are, however, depicting predicted values in the response original scale (usually probabilities). See details and interpretation discussion.
 
+
 <img src="gzlm/plots_e1.png" class="img-responsive" alt="">
+
+
 <img src="gzlm/plots_e2.png" class="img-responsive" alt="">
+
+Ticking the option "Observed scores" overimpose the actual scores to the graph. The `Y-axis observed range` allows to plot the estimated score in the observed dependent variable range without the need to plot the actual data.
 
 
 # Simple effects

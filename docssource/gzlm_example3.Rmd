@@ -30,12 +30,12 @@ The data are simulated, not real, so please do not cite them to argue about any 
 
 # The research design
 
-Imagine an hypothetical study about addiction to mobile phones. Imagine a researcher developed a self-report questionnaire to measure participants mobile phone addiction (over-usage) and wanted to test whether the scores of the questionnaire predicts actual addictive behavior. Addictive behavior is measured in an experimental setting by counting how times the participants checked the mobile phone while waiting for the experimenters to arrive to start the measurement session (let's ignore the time spent on each checks and assume all participants waited for the same ammount of time). 
+Imagine a hypothetical study about addiction to mobile phones. Imagine a researcher developed a self-report questionnaire to measure participants mobile phone addiction (over-usage) and wanted to test whether the scores of the questionnaire predicts actual addictive behavior. Addictive behavior is measured in an experimental setting by counting how times the participants checked the mobile phone while waiting for the experimenters to arrive to start the measurement session (let's ignore the time spent on each checks and assume all participants waited for the same ammount of time). 
 
 The variables are then: 
 
 * _checks_: number of time spent checking the phones.
-* _slefreport_: the total score of the self-report questionnaire
+* _selfreport_: the total score of the self-report questionnaire
 * _brand_ : brand of the participant's phone: either `Pears` or `Apples`
 
 The descriptive and frequencies the independent variables show the sample charateristics.
@@ -51,7 +51,7 @@ It is clear that the average number of checks is about 10, but the distribution 
 
 # Understanding the problem
 
-We want to understand how the frequency of checks is associated with the participant self-report questionnaire score (a sort of validity check of the questionnaire), if the brand of the phone makes a difference in the expected frequency of checking, and whether the questionnaire predictive ability varies for the two cell phone brands. Thus, we are looking for an effect of `selfreport` and a main effect of `brand` to answer the first two questions, and for the `interaction` between `selfreport` and  `brand` to answer the third question.
+We want to understand how the frequency of checks is associated with the participant self-report questionnaire score (a sort of validity check of the questionnaire), if the brand of the phone makes a difference in the expected frequency of checking, and whether the questionnaire predictive ability varies for the two cell phone brands. Thus, we are looking for an effect of `selfreport` and a main effect of `brand` to answer the first two questions, and for the interaction between `selfreport` and  `brand` to answer the third question.
 
 We employ the Poisson model because it is the classical model for modelling count dependent variables, and, being a special case of the generalized linear model,  can accomodate main effects and intereactions. This is equivalent to a linear model where the link function is the logarithm of the predicted frequencies $log(\hat{F})$, and the Poisson distribution is assumed for the dependent variable.
 
@@ -61,7 +61,7 @@ We first start with only `selfreport` as independent variable, then we estimate 
 
 ## Interpretation
 
-Recall that the predicted values of the models are the logarithm of the frequencies of checking the phone. Thus, the model coefficients are expressed in the log(Freq) scale. A clearer scale is obtained by removing the logarithm from the coefficients, obtaining coefficients expressed in original frequency scale. This is the `exp(B)` column of the results tables:  `exp(B)` is the frequency rate of change: How many times should we multiply the expected frequency at $x_i$ to obtain the frequency at $x_{i+1}$. In other words, the rate of change of the frequency as one increases the independent variable of one unity (or move to one group to the other for categorical independent variables).
+Recall that the predicted values of the models are the logarithm of the frequencies of checking the phone. Thus, the model coefficients are expressed in the log(Freq) scale. A clearer scale is obtained by removing the logarithm from the coefficients, obtaining coefficients expressed in original frequency scale. This is the `exp(B)` column of the results tables:  `exp(B)` is the frequency rate of change: How many times should we multiply the expected frequency at $x_i$ to obtain the frequency at $x_{i+1}$. In other words, the rate of change of the frequency as one increases the independent variable of one unity (or move from one group to the other for categorical independent variables).
 
 The plots and the estimated marginal means are conviniently transformed in the frequency scale, so they can be interpreted directly as the frequency of checking.
 
@@ -77,13 +77,13 @@ The model yields its results.
 
 As soon as we fix the variables, results are displayed in the tables, with the first table showing some info about the model. 
 
-<img src="examples/gzlm3/r.infos1.png" class="img-responsive" alt="">
+<img src="examples/gzlm3/r.info1.png" class="img-responsive" alt="">
 
 Here we find several info, some noteworthy ((see [technical details](gzlm_specs.html) for more info):
 
-* the R-squared, that gives information about the goodness of fit of the model . Our ability to predict pain increases of 30% thanks to the independent variable as compared to using the expected (average) frequency  alone. 
+* the R-squared, that gives information about the goodness of fit of the model . Our ability to predict the frequencies of checks increases of 33% thanks to the independent variable as compared to using the expected (average) frequency  alone. 
 * AIC (Aikake Information Criterion)_ Based on the likelihood of the model, decreases with the goodness of fit of the model. Usualful to compare the present model with alternative models (see below)
-* Value/DF: This is the Pearson $\chi^2$ divided by the degrees of freedom. If the model fits well, its value should be around 1. This index is useful to evaluate the dispersion of the model. A model is overdispersed if the variance of the dependent variable is larger than what expected by the assumed distribution.  In this example, it's value is bourderline, as it is three times what it should be. However, we still have to include the `brand` variable which may explain variability of the dependent variable and thus capture dispersion.  More details in  [the other example](Advanced frequencies analysis with Poisson models](gzml_example4.html) and in  [technical details](gzlm_specs.html).
+* Value/DF: This is the Pearson $\chi^2$ divided by the degrees of freedom. If the model fits well, its value should be around 1. This index is useful to evaluate the dispersion of the model. A model is overdispersed if the variance of the dependent variable is larger than what expected by the assumed distribution.  In this example, it's value is bourderline, as it is three times what it should be. However, we still have to include the `brand` variable which may explain variability of the dependent variable and thus capture dispersion.  More details in  [Advanced frequencies analysis with Poisson models](gzml_example4.html) and in  [technical details](gzlm_specs.html).
 
 ## Omnibus tests
 
@@ -95,7 +95,7 @@ The omnibus Chi-Squared test is showing a statistical significant relationship b
 
 ## Model Coefficients
 
-There is a positive relationship between `selfreport` and `checks` (B=1.04, exp(B)=2.84), such that for one unit more in the self-report score, the frequency of checks _increases 2.84 times_. We just deduce this by looking at the `exp(b)`. Is that a big effect? Difficult to say, because we do not understand the units of the self-report score, so "one unit" does no say much. To overcome this interpretational limit, we can standardized the independent variable in `Covariated Scoring` panel,
+There is a positive relationship between `selfreport` and `checks` (B=1.04, exp(B)=2.84), such that for one unit more in the self-report score, the frequency of checks _increases 2.84 times_. We just deduce this by looking at the `exp(b)`. Is that a big effect? Difficult to say, because we do not understand the units of the self-report score, so "one unit" does not say much. To overcome this interpretational limit, we can standardized the independent variable in `Covariated Scoring` panel,
 
 <img src="examples/gzlm3/covscore1.png" class="img-responsive" alt="">
 
@@ -111,7 +111,7 @@ Finaly, we can ask for the plot of the predicted score, along with confidence in
 
 <img src="examples/gzlm3/r.plots2.png" class="img-responsive" alt="">
 
-The graph shows a clear exponential relationship between `relfreport` and the frequency of check (which we took into the account thanks to the log() transformation): below the avergage of self-report score the frequency does not change much, but when the score gets to one standard deviation above averare its' increase intensifies and reaches very high frequencies for scores up to 2 standard deviations above average. We also see a reasonable fit of the predicted frequencies to the observed ones. 
+The graph shows a clear exponential relationship between `relfreport` and the frequency of check (which we took into the account thanks to the log() transformation): below the avergage of self-report score, the frequency does not change much, but when the score gets to one standard deviation above averare its increase intensifies and reaches very high frequencies for scores up to 2 standard deviations above average. We also see a reasonable fit of the predicted frequencies to the observed ones. 
 
 
 # Full model.
@@ -128,7 +128,7 @@ We need this second steps because jamovi GAMLj follows a somehow old tradition e
 ## Model info
 <img src="examples/gzlm3/r.info2.png" class="img-responsive" alt="">
 
-We first note that the $R^2$ rised up to .50, showing a strong effect of `brand`. We can also appreciate that the `Value/DF` index is now 0.987, practically 1: the model in now well in line with the assumption of the  Poisson model, and no overdispersion is present.
+We first note that the $R^2$ rised up to .50, showing a strong effect of `brand`. We can also appreciate that the `Value/DF` index is now 0.987, practically 1: The model in now well in line with the assumptions of the  Poisson model, and no overdispersion is present.
 
 ## Omnibus tests
 

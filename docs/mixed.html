@@ -380,7 +380,11 @@ div.tocify {
 <p>By filling in “Horizontal axis” one obtains the group means of the selected factor or the regression line for the selected covariate</p>
 <p>By filling in “Horizontal axis” and “Separated lines” one a different plot depending on the type of variables selected: - “Horizontal axis” and “Separated lines” are both factos, one obtains the interaction plot of group means. - “Horizontal axis”=factor and “Separated lines”=covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. +1 SD, the mean, and -1 SD. - “Horizontal axis”=covariate and “Separated lines”=covariate. One obtains the simple slopes graph of the simple slope of the variable in horizontal axis estimated at three different levels of the covariate. +1 SD, the mean, and -1 SD.</p>
 <p>By filling in “separate plots” one can proble three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the “separate plots” variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the “separate plots” variable centered to +1SD, the mean, and -1SD.</p>
-<p>Ticking the options add confidence intervals (or confidence bands) or standard errors to the plots does not do anything (yet to be implemented)</p>
+<p>Ticking the option add confidence intervals (or confidence bands) or standard errors to the plots.</p>
+<p>All plots are, however, depicting predicted values in the response. See details and interpretation discussion.</p>
+<p><img src="mixed/plots_e1.png" class="img-responsive" alt=""> <img src="mixed/plots_e2.png" class="img-responsive" alt=""></p>
+<p>Ticking the option “Observed scores” overimpose the actual scores to the graph. The <code>Y-axis observed range</code> allows to plot the estimated score in the observed dependent variable range without the need to plot the actual data (here is an example for a logistic model).</p>
+<p><img src="mixed/plots_e3.png" class="img-responsive" alt=""></p>
 </div>
 <div id="simple-effects" class="section level1">
 <h1>Simple effects</h1>
