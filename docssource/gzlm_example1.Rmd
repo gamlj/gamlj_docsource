@@ -117,7 +117,7 @@ Now we have two omnibus tests, indicating that the ability to write has a stisti
 
 <img src="examples/gzlm1/results2_2.png" class="img-responsive" alt="">
 
-The better one writes, the higher the probability of choosing the academic program (prog=1), and the lower is the probability of choosing the vocational program (prog=3). Choosing the general program does not depends on the writing skills. 
+The better one writes, the higher the probability of choosing the academic program, and the lower is the probability of choosing the vocational program. Choosing the general program does not depends on the writing skills. 
 
 Please notice in the plot that the independent variable `write` it is centered to its mean. This is a default of jamovi GAMLj in order to avoid unexpected results when interactions and other complex effects are estimated. However, it is only a default setting, so we can change it as we're pleased. 
 
