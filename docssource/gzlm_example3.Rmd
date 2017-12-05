@@ -82,7 +82,7 @@ As soon as we fix the variables, results are displayed in the tables, with the f
 Here we find several info, some noteworthy ((see [technical details](gzlm_specs.html) for more info):
 
 * the R-squared, that gives information about the goodness of fit of the model . Our ability to predict the frequencies of checks increases of 33% thanks to the independent variable as compared to using the expected (average) frequency  alone. 
-* AIC (Aikake Information Criterion)_ Based on the likelihood of the model, decreases with the goodness of fit of the model. Usualful to compare the present model with alternative models (see below)
+* AIC (Aikake Information Criterion)_ Based on the likelihood of the model, decreases with the goodness of fit of the model. Useful to compare the present model with alternative models (see below)
 * Value/DF: This is the Pearson $\chi^2$ divided by the degrees of freedom. If the model fits well, its value should be around 1. This index is useful to evaluate the dispersion of the model. A model is overdispersed if the variance of the dependent variable is larger than what expected by the assumed distribution.  In this example, it's value is bourderline, as it is three times what it should be. However, we still have to include the `brand` variable which may explain variability of the dependent variable and thus capture dispersion.  More details in  [Advanced frequencies analysis with Poisson models](gzml_example4.html) and in  [technical details](gzlm_specs.html).
 
 ## Omnibus tests

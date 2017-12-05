@@ -34,7 +34,7 @@ Here is the data description from [SAS User's Guide](https://support.sas.com/doc
 "The data set Neuralgia contains five variables: Treatment, Sex, Age, Duration, and Pain. The last variable, Pain, is the response variable. A specification of Pain=Yes indicates there was pain, and Pain=No indicates no pain. The variable Treatment is a categorical variable with three levels: A and B represent the two test treatments, and P represents the placebo treatment. The gender of the patients is given by the categorical variable Sex. The variable Age is the age of the patients, in years, when treatment began. The duration of complaint, in months, before the treatment began is given by the variable Duration."
 
 
-The cross-tab of frequencies of participants `Treatment` by `Sex` is in the next table (in jamovi `frequencies` -> `Contingency tables`), and those are the first independent variables we analyze.
+The cross-tab of frequencies of participants `Treatment` by `Sex` is in the next table (in jamovi `frequencies` -> `Contingency tables`), and these are the first independent variables we analyze.
 
 <img src="examples/gzlm2/r.crosstabs.png" class="img-responsive" alt="">
 
@@ -53,7 +53,7 @@ We want to understand how the pain reported by the patients is affected by the T
 
 We first start with `Treatment` and `Sex` and their interaction as predictors of  `Pain`. Then we include also `Age` and `Duration`. In the terminology of the general linear model, these two analyses correspond to an ANOVA and an ANCOVA, respectively. Because the dependent variable is a dichotomous variable, we employ a logistic model. In the logistic model there's no variance to be analyzed (is the deviance or likelihood that is analyzed), thus we should intend the terminology used here as meaning _ANOVA-like_ and _ANCOVA-like_ models.
 
-The logistic model predicts the probability of being in one group defined by the dependent variable over the probability of being in the other group (the odd). Jamovi GAMLj predicts the probability of the group indicated by th last level of the dependent variable, in this example being `Pain=Yes`. If you are comparing the present results with the analyses in the  [SAS User's Guide](https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm), please keep in mind that SAS predicts `Pain=No`, so the results are equivalent but the effects go in the opposite direction. One can change the direction of the effects by recoding the `Pain` variable.
+The logistic model predicts the probability of being in one group defined by the dependent variable over the probability of being in the other group (the odd). Jamovi GAMLj predicts the probability of the group indicated by the last level of the dependent variable, in this example being `Pain=Yes`. If you are comparing the present results with the analyses in the  [SAS User's Guide](https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm), please keep in mind that SAS predicts `Pain=No`, so the results are equivalent but the effects go in the opposite direction. One can change the direction of the effects by recoding the `Pain` variable.
 
 
 ## Interpretation
@@ -116,8 +116,8 @@ If one needs (and seldom one does in these cases), one can look at the model coe
 
 <img src="examples/gzlm2/r.params1.png" class="img-responsive" alt="">
 
-Skipping the intercept (recall that nobody interprets the intercept :-) ), the first coefficient, `Sex1`. The `exp(B)` is 2.449. This means that the odd of reportin `Pain=yes` over `Pain=No` for men (see `Contrast` column) is 2.499 times larger than for the averge of the sample (`(M,F)`).
-This conparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is `deviations`, meaing that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is `simple` that "simply" compares the two groups. We can set the conding in `Factor Coding`.
+Skipping the intercept (recall that nobody interprets the intercept :-) ), the first coefficient is `Sex1`: B=0.896. The `exp(B)` is 2.449. This means that the odd of reportin `Pain=yes` over `Pain=No` for men (see `Contrast` column) is 2.499 times larger than for the averge of the sample (`(M,F)`).
+This conparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is `deviations`, meaing that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is `simple`, that "simply" compares the two groups. We can set the conding in `Factor Coding`.
 
 <img src="examples/gzlm2/contrasts1.png" class="img-responsive" alt="">
 
@@ -131,7 +131,7 @@ Indeed, if we ask for the estimated marginal means of Sex averaging across Treat
 
 <img src="examples/gzlm2/r.means1.png" class="img-responsive" alt="">
 
-we can check that the probability of pain is .613 for men and .209 for women, which yields:
+we can check that the probability of pain is .614 for men and .209 for women, which yields:
 
 * odd for men ${odd_M}={.614 \over {1-.614}}=1.58$
 * odd for women ${odd_F}={.209 \over {1-.209}}=.264$
