@@ -10,13 +10,30 @@ output:
 
 ---
 
-#  version 0.9.4 (future)
+#  version 0.9.6 (future)
 
-(_yet to be release_)
+(yet to be published)
 
 * contrasts labels in the simple effects parameters table
 
-* Intra-class correlation for the random intercepts in mixed models
+#  version 0.9.5 (current)
+
+* Fix labels in estimated marginal means
+
+
+#  version 0.9.4 
+
+## New features
+
+* Probit model
+* Over-dispersed Poisson model
+* Negative binomial model
+
+## Bug fixes
+
+* Plot without confidence intervals 
+* Contrasts coding in line wiht ANOVA module
+
   
 #  version 0.9.3 (current)
 
