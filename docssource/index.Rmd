@@ -98,5 +98,9 @@ Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_doc
 
 Please check out the  [Release notes](release_notes.html). 
 
+# Quality control
+
+please check the [rosetta store](rosetta.html) for alignment with other software results and possible discrepancies.
+
 
 `r issues()`
