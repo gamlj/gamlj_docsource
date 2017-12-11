@@ -388,7 +388,7 @@ UNIANOVA Score BY Group
 
 ## R
 
-R does not have an out-of-the-box contrast equivalent to `repeated` contrast. One can, howerver, uses the `contr.sdif()` function in `MASS` package. As compared with jamovi and SPSS the comparisons are in the opposite directions, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):
+R does not have an out-of-the-box contrast equivalent to `repeated` contrast. One can, howerver, uses the `contr.sdif()` function in `MASS` package. As compared with jamovi and SPSS the comparisons are in the opposite direction, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):
 
 ```{r}
 
@@ -486,7 +486,7 @@ summary(model)
 
 The reason of this discrepancy is that the LMATRIX is not the contrast matrix SPSS uses to estimate the model, but it is a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the coding system actually used. Thus, the LMATRIX is useful to understand what is going on in the comparisons: by inspecting the LMATRIX one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on. 
 
-Ok, but what is the relation between the LMATRIX and the R contrast matrix? or even better: How do I get from the LMATRIX to the R constrast matrix? Just __take the inverse of the LMATRIX__. In R, one can take the inverse of a matrix by using `MASS::ginv()` function. Let's see:
+Ok, but what is the relation between the LMATRIX and the R contrast matrix? or even better: How do I get from the LMATRIX to the R constrast matrix? Just __take the inverse of the LMATRIX and traspose it__. In R, one can take the inverse of a matrix by using `MASS::ginv()` function. Let's see:
 
 
 ```{r}
