@@ -344,6 +344,7 @@ Or divide the contrast weights by $\mathbf{cv}$
 diag_cv<-matrix(rep(cv,each=4),ncol=3)
 ########  divide the contrast weights ##########
 helm<-con_weights/diag_cv
+helm
 contrasts(dat$Group)<-helm
 model<-lm(Score~Group,data=dat)
 summary(model)

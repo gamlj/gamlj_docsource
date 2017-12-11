@@ -667,7 +667,13 @@ cv</code></pre>
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
 ########  divide the contrast weights ##########
 helm&lt;-con_weights/diag_cv
-contrasts(dat$Group)&lt;-helm
+helm</code></pre>
+<pre><code>##    [,1]       [,2] [,3]
+## 1  0.75  0.0000000  0.0
+## 2 -0.25  0.6666667  0.0
+## 3 -0.25 -0.3333333  0.5
+## 4 -0.25 -0.3333333 -0.5</code></pre>
+<pre class="r"><code>contrasts(dat$Group)&lt;-helm
 model&lt;-lm(Score~Group,data=dat)
 summary(model)</code></pre>
 <pre><code>## 
