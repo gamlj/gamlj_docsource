@@ -46,7 +46,7 @@ if (window.hljs) {
   hljs.configure({languages: []});
   hljs.initHighlightingOnLoad();
   if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlightingOnLoad(); }, 0);
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
 </script>
@@ -320,9 +320,9 @@ div.tocify {
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.5 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Here you can find comparisons of results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing the identical results across programs.</p>
+<p>Here you can find comparisons of results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.</p>
 <p>Example data are <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/rosetta.contrasts.csv">here</a>. One continuous dependent variable, one factor with 4 groups.</p>
-<p>Unfortunately, contrasts coding scheme get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this. For partially overlapping coding scheme definitions see <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>, <a href="https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm">SPSS manual</a> and <em>Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge.</em> If you have familiarity with python, you can compare results also with <a href="http://www.statsmodels.org/dev/contrasts.html">python statmodels results</a></p>
+<p>Unfortunately, contrasts coding schemes get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this. For partially overlapping coding scheme definitions see <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>, <a href="https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm">SPSS manual</a> and <em>Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge.</em> If you have familiarity with python, you can compare results also with <a href="http://www.statsmodels.org/dev/contrasts.html">python statmodels results</a></p>
 </div>
 <div id="more-technical-details" class="section level1">
 <h1>More technical details</h1>
@@ -340,11 +340,11 @@ div.tocify {
 <p>To interpret a contrast, it is often necessary to refer to “the first group” or “subsequent groups”. The order is always defined as the alphanumeric order.</p>
 <p>Furthermore, different software packages have different rounding rules, so we say “the same results” when results agree apart for decimal rounding.</p>
 </div>
-<div id="contrasts-deviation" class="section level1">
-<h1>Contrasts: deviation</h1>
+<div id="contrast-deviation" class="section level1">
+<h1>Contrast: deviation</h1>
 <div id="meaning" class="section level2">
 <h2>Meaning</h2>
-<p><b>Definition:</b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The last group is omitted</i></p>
+<p><b>Definition:</b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The first group is omitted</i></p>
 </div>
 <div id="jamovi-anova" class="section level2">
 <h2>Jamovi ANOVA</h2>
@@ -380,7 +380,7 @@ div.tocify {
 </div>
 <div id="r" class="section level2">
 <h2>R</h2>
-<p>In R, deviation contrast is called <code>contr.sum</code>. The function defaults to omitting the last group, so we reversed it to omit the first.</p>
+<p>In R, deviation contrast is called <code>contr.sum</code>. The function defaults to omitting the last group, so we reverse it to omit the first.</p>
 <pre class="r"><code>file&lt;-&quot;../data/rosetta.contrasts.csv&quot;
 dat&lt;-read.csv2(file)
 
@@ -422,8 +422,8 @@ summary(model)</code></pre>
 ##  0.009545455 -0.090555556  0.253111111  0.452666667</code></pre>
 </div>
 </div>
-<div id="contrasts-simple" class="section level1">
-<h1>Contrasts: simple</h1>
+<div id="contrast-simple" class="section level1">
+<h1>Contrast: simple</h1>
 <div id="meaning-1" class="section level2">
 <h2>Meaning</h2>
 <p><b>Definition:</b><i> Compares each group with the first group.</i></p>
@@ -494,7 +494,7 @@ summary(model)</code></pre>
 </div>
 <div id="contrast-difference" class="section level1">
 <h1>Contrast: difference</h1>
-<p>Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi uses the same definition of them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.</p>
+<p>Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.</p>
 <p><b>Definition:</b><i>Compares each group with the average of previous groups. First group omitted.</i></p>
 <p>This is sometimes named <em>Reverse Helmert Coding</em> , cf. <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA idre web site</a>.</p>
 <div id="jamovi-anova-2" class="section level2">
@@ -522,7 +522,7 @@ summary(model)</code></pre>
 </div>
 <div id="r-2" class="section level2">
 <h2>R</h2>
-<p>The difference contrast t-test and p-value can be obtained in R using the <code>contr.helmert()</code> function. Despite the name, <code>contr.helmert()</code> implements what is usually named “Reversed Helmert contrast”. Obviously, this is perfectly fine (cf. <a href="http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0761922806&amp;linkCode=as2&amp;tag=curiousanduseful">An R and S-Plus Companion to Applied Regression</a>), but one should know what the direction of the contrast is. Furthermore, the contrast weights in R are scaled differently than in SPSS or jamovi, thus the contrast values (coefficients) are not identical to the ones obtained in jamovi, but they are proportional to them (that is why the t-tests are the same).</p>
+<p>The t-tests and p-values associated with the <em>difference contrast</em> can be obtained in R using the <code>contr.helmert()</code> function. Despite the name, <code>contr.helmert()</code> implements what is usually named “Reversed Helmert contrast”. Obviously, this is perfectly fine (cf. <a href="http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0761922806&amp;linkCode=as2&amp;tag=curiousanduseful">An R and S-Plus Companion to Applied Regression</a>), but one should be aware of this differences. The contrast weights in R are scaled differently than in SPSS or jamovi, thus the contrast values (the coefficients) are not identical to the ones obtained in jamovi and SPSS, but they are proportional to them (that is why the t-tests are the same).</p>
 <pre class="r"><code>dat$Group&lt;-factor(dat$Group)
 contrasts(dat$Group)&lt;-contr.helmert(4)
 contrasts(dat$Group)</code></pre>
@@ -553,18 +553,17 @@ summary(model)</code></pre>
 ## Residual standard error: 0.5109 on 166 degrees of freedom
 ## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
 ## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
-<p>To obtain the jamovi/SPSS values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(cv=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
+<p>To obtain the jamovi/SPSS estimate values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a <em>conversion vector</em> that works both for deviation and helmert contrasts. Let the <em>conversion vector</em> be <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, where <span class="math inline">\(c_i\)</span> is a column of the contrast matrix.</p>
 <pre class="r"><code>cv&lt;-apply(contr.helmert(4),2,max)+1
 cv</code></pre>
 <pre><code>## [1] 2 3 4</code></pre>
-<p>To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by <span class="math inline">\(cv\)</span></p>
+<p>To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
 <pre><code>##     Group1     Group2     Group3 
 ## -0.1001010  0.2936162  0.3952997</code></pre>
-<p>Or divide the contrast weights by <span class="math inline">\(cv\)</span></p>
+<p>Or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
-
 contrasts(dat$Group)&lt;-contr.helmert(4)/diag_cv
 contrasts(dat$Group)</code></pre>
 <pre><code>##   [,1]       [,2]  [,3]
@@ -619,7 +618,6 @@ summary(model)</code></pre>
   /PRINT=TEST(LMATRIX)
   /CRITERIA=ALPHA(.05)
   /DESIGN=Group.
-
 </code></pre>
 <p><img src="rosetta/contrasts/r.c4.spss1.png" class="img-responsive" alt=""></p>
 </div>
@@ -657,16 +655,17 @@ summary(model)</code></pre>
 ## Residual standard error: 0.5109 on 166 degrees of freedom
 ## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
 ## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
-<p>To obtain the jamovi/SPSS values in R, we should compute <span class="math inline">\(cv=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
+<p>To obtain the jamovi/SPSS values in R, we should compute <span class="math inline">\(\mathbf{cv}=max(c_i)+1\)</span>, and multiply it by the model coefficients.</p>
 <pre class="r"><code>cv&lt;-apply(con_weights,2,max)+1
 cv</code></pre>
 <pre><code>## [1] 4 3 2</code></pre>
 <pre class="r"><code>coef(model)[c(2:4)]*cv</code></pre>
 <pre><code>##     Group1     Group2     Group3 
 ## -0.1955286 -0.4434444 -0.1995556</code></pre>
-<p>Or divide the contrast weights by <span class="math inline">\(cv\)</span></p>
+<p>Or divide the contrast weights by <span class="math inline">\(\mathbf{cv}\)</span></p>
 <pre class="r"><code>### make a diagonal matrix with cv in the diagonal ##########
 diag_cv&lt;-matrix(rep(cv,each=4),ncol=3)
+########  divide the contrast weights ##########
 helm&lt;-con_weights/diag_cv
 contrasts(dat$Group)&lt;-helm
 model&lt;-lm(Score~Group,data=dat)
@@ -722,15 +721,15 @@ summary(model)</code></pre>
 </div>
 <div id="r-4" class="section level2">
 <h2>R</h2>
-<p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package:</p>
+<p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package. As compared with jamovi and SPSS the comparisons are in the opposite directions, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):</p>
 <pre class="r"><code>library(MASS)
-repeated&lt;-contr.sdif(4) 
+repeated&lt;-(-1)*contr.sdif(4) 
 repeated</code></pre>
 <pre><code>##     2-1  3-2   4-3
-## 1 -0.75 -0.5 -0.25
-## 2  0.25 -0.5 -0.25
-## 3  0.25  0.5 -0.25
-## 4  0.25  0.5  0.75</code></pre>
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
 <pre class="r"><code>contrasts(dat$Group)&lt;-repeated
 summary(lm(Score~Group,data=dat))</code></pre>
 <pre><code>## 
@@ -744,9 +743,9 @@ summary(lm(Score~Group,data=dat))</code></pre>
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)  0.15619    0.03936   3.969 0.000107 ***
-## Group2-1    -0.10010    0.11481  -0.872 0.384538    
-## Group3-2     0.34367    0.11424   3.008 0.003036 ** 
-## Group4-3     0.19956    0.10770   1.853 0.065681 .  
+## Group2-1     0.10010    0.11481   0.872 0.384538    
+## Group3-2    -0.34367    0.11424  -3.008 0.003036 ** 
+## Group4-3    -0.19956    0.10770  -1.853 0.065681 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -784,7 +783,7 @@ summary(lm(Score~Group,data=dat))</code></pre>
 </div>
 <div id="r-5" class="section level2">
 <h2>R</h2>
-<p>R has an out-of-the-box contrast named <code>contr.poly()</code> contrast. it works like a sharm.</p>
+<p>R has an out-of-the-box contrast named <code>contr.poly()</code> contrast. It works like a sharm.</p>
 <pre class="r"><code>contrasts(dat$Group)&lt;-contr.poly(4)
 summary(lm(Score~Group,data=dat))</code></pre>
 <pre><code>## 
@@ -816,22 +815,22 @@ summary(lm(Score~Group,data=dat))</code></pre>
 <p>This is the <code>LMATRIX</code> one gets in SPSS</p>
 <p><img src="rosetta/contrasts/r.c7.spss1.png" class="img-responsive" alt=""></p>
 <p>and this is the contrast coding one gets from R (or jamovi):</p>
-<pre class="r"><code>contr.sdif(4)</code></pre>
+<pre class="r"><code>(-1)*contr.sdif(4)</code></pre>
 <pre><code>##     2-1  3-2   4-3
-## 1 -0.75 -0.5 -0.25
-## 2  0.25 -0.5 -0.25
-## 3  0.25  0.5 -0.25
-## 4  0.25  0.5  0.75</code></pre>
+## 1  0.75  0.5  0.25
+## 2 -0.25  0.5  0.25
+## 3 -0.25 -0.5  0.25
+## 4 -0.25 -0.5 -0.75</code></pre>
 <p>Recall (cf. the repeated contrast results above) that the results are identical between the two softwares. Now, if you try to use the SPSS LMATRIX in R, you are not going to get the results expected by the <code>repeated</code> contrast. Indeed :</p>
 <pre class="r"><code># Weired things: LMATRIX vs R contrasts
 
-ones&lt;-matrix(c(-1,1,0,0,0,-1,1,0,0,0,-1,1),ncol=3)
+ones&lt;-matrix(c(1,-1,0,0,0,1,-1,0,0,0,1,-1),ncol=3)
 ones</code></pre>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]   -1    0    0
-## [2,]    1   -1    0
-## [3,]    0    1   -1
-## [4,]    0    0    1</code></pre>
+## [1,]    1    0    0
+## [2,]   -1    1    0
+## [3,]    0   -1    1
+## [4,]    0    0   -1</code></pre>
 <pre class="r"><code>contrasts(dat$Group)&lt;-ones
 summary(model)</code></pre>
 <pre><code>## 
@@ -859,30 +858,30 @@ summary(model)</code></pre>
 <pre class="r"><code>##### SPSS LMATRIX ####
 ones</code></pre>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]   -1    0    0
-## [2,]    1   -1    0
-## [3,]    0    1   -1
-## [4,]    0    0    1</code></pre>
+## [1,]    1    0    0
+## [2,]   -1    1    0
+## [3,]    0   -1    1
+## [4,]    0    0   -1</code></pre>
 <pre class="r"><code>### take the inverse ####
 iones&lt;-ginv(ones)
 ### transpose it ###
 t(iones)</code></pre>
 <pre><code>##       [,1] [,2]  [,3]
-## [1,] -0.75 -0.5 -0.25
-## [2,]  0.25 -0.5 -0.25
-## [3,]  0.25  0.5 -0.25
-## [4,]  0.25  0.5  0.75</code></pre>
-<p>and there you are.</p>
+## [1,]  0.75  0.5  0.25
+## [2,] -0.25  0.5  0.25
+## [3,] -0.25 -0.5  0.25
+## [4,] -0.25 -0.5 -0.75</code></pre>
+<p>and there you are: the R contrast matrix.</p>
 <p>Does it work in general? Yes! Take <code>deviation</code> contrast, with group 1 omitted.</p>
 <p>SPSS LMATRIX is: <img src="rosetta/contrasts/r.c7.spss2.png" class="img-responsive" alt=""></p>
-<p>and R contrast codes are:</p>
+<p>and R contrast codes are we have seen before:</p>
 <pre class="r"><code>(deviation&lt;-matrix(rev(contr.sum(4)),ncol=3))</code></pre>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]   -1   -1   -1
 ## [2,]    1    0    0
 ## [3,]    0    1    0
 ## [4,]    0    0    1</code></pre>
-<p>They seem different, but taking the inverse of the LMATRIX returns the R coding system.</p>
+<p>They seem different, but taking the inverse of the LMATRIX and transposing it, we get the R coding system.</p>
 <pre class="r"><code>##### SPSS LMATRIX ####
 lmat&lt;-matrix(rep(-.25,12),ncol=3)
 lmat[2,1]&lt;-.75
