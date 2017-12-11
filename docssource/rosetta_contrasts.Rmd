@@ -51,7 +51,7 @@ To interpret a contrast, it is often necessary to refer to "the first group" or 
 Furthermore, different software packages have different rounding rules, so we say "the same results" when results agree apart for decimal rounding. 
 
 
-# Contrast: deviation
+# Contrast: Deviation
 
 ## Meaning
 
@@ -131,7 +131,7 @@ summary(model)
 ```
 
 
-# Contrast: simple
+# Contrast: Simple
 
 ## Meaning
 
@@ -198,7 +198,7 @@ summary(model)
 
 
 
-# Contrast: difference 
+# Contrast: Difference 
 
 Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi use the same definition for them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.
 
@@ -280,7 +280,7 @@ summary(model)
 
 ... and we get the same values, t-tests and p-values as in jamovi and SPSS.
 
-# Contrast: helmert
+# Contrast: Helmert
 
 
 <b>Definition:</b><i>Compares each group with the average of subsequent groups</i> 
@@ -404,7 +404,7 @@ summary(lm(Score~Group,data=dat))
 
 
 
-# Contrast: polynomial
+# Contrast: Polynomial
 
 <b>Definition:</b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i> 
 
