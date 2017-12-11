@@ -43,7 +43,7 @@ if (window.hljs) {
   hljs.configure({languages: []});
   hljs.initHighlightingOnLoad();
   if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+    window.setTimeout(function() { hljs.initHighlightingOnLoad(); }, 0);
   }
 }
 </script>
@@ -220,7 +220,7 @@ $(document).ready(function () {
 
 <p>Comparisons with other software:</p>
 <ul>
-<li><a href="rosetta/rosetta_contrasts.html">Contrasts analysis</a></li>
+<li><a href="rosetta_contrasts.html">Contrasts analysis</a></li>
 </ul>
 <h1>
 Comments?

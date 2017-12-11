@@ -1,0 +1,555 @@
+---
+title: "Rosetta store: contrasts"
+output: 
+  html_document:
+    includes:
+         in_header: ganalytics.txt
+    toc: true
+    toc_float:
+         collapsed: true
+    
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+`r keywords("jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum")`
+
+`r version("0.9.5")` `r draft` 
+
+  
+# Introduction
+
+Here you can find comparisons of  results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing the identical results across programs.
+
+Example data are [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/rosetta.contrasts.csv). One continuous dependent variable, one factor with 4 groups.
+
+
+Unfortunately, contrasts coding scheme get different names in different publications and they are implemented in different ways across software. Things can get a bit confusing because of this.  For partially overlapping coding scheme definitions see [UCLA idre web site](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/), [SPSS manual](https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/contrasts.htm) and _Cohen, J., Cohen, P., West, S. G., & Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge._  If you have familiarity with python, you can compare results also with [python statmodels results](http://www.statsmodels.org/dev/contrasts.html)
+
+# More technical details
+
+Contrasts can be computed in two different ways: 
+
+* As the coefficients of a model where the categorical variable(s) is coded accordingly to a coding scheme. Jamovi GAMLj and standard R use this strategy. Understanding this approach opens to the possibility to test contrasts-based hypotheses in complex models, such as when interactions are involved, mediatiated effects or simple effects are of interest.
+
+* As a comparison between sets of means tested with model-derived standard errors. jamovi ANOVA and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.
+
+* As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here. 
+
+The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. We will point out here when different coding schemes give the same results and try to explain the underlying reasons. 
+
+Furthermore, in simple models (such as one-way ANOVA), the two first approaches gives exactly the same results. When models get more complex, results may diverge across software because they estimate different things. __The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means__. 
+
+
+# Terminology
+
+To interpret a contrast, it is often necessary to refer to "the first group" or "subsequent groups". The order is always defined as the alphanumeric order.
+
+Furthermore, different software packages have different rounding rules, so we say "the same results" when results agree apart for decimal rounding. 
+
+
+# Contrasts: deviation
+
+## Meaning
+
+<b>Definition:</b><i> Compares each group mean to the grand mean. The grand mean is the mean of the groups means. The last group is omitted</i>
+
+
+
+## Jamovi ANOVA
+
+<img src="rosetta/contrasts/c1.anova1.png" class="img-responsive" alt="">
+
+Setting the contrasts to `deviation`
+
+<img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c1.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+<img src="rosetta/contrasts/c1.gamlj1.png" class="img-responsive" alt="">
+
+By default, GAMLj sets contrasts to `deviation`, so `default` and `deviation` is equivalent (this may change in future releases)
+
+<img src="rosetta/contrasts/c1.gamlj2.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c1.gamlj1.png" class="img-responsive" alt="">
+
+The expected means of the four groups are:
+
+<img src="rosetta/contrasts/r.c1.gamlj2.png" class="img-responsive" alt="">
+
+## SPSS
+
+Please note that SPSS default sets the last group as reference group (the omitted group), thus to obtain the same results as before, we should set  `/CONTRAST(Group)=Deviation(1)`, mind the "1"", which corresponds to "first" in the GUI options.
+
+<img src="rosetta/contrasts/c1.spss1.png" class="img-responsive" alt="">
+
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=Deviation(1)
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+```
+
+<img src="rosetta/contrasts/r.c1.spss1.png" class="img-responsive" alt="">
+
+
+## R
+
+In R, deviation contrast is called `contr.sum`. The function defaults to omitting the last group, so we reversed it to omit the first.
+
+
+```{r}
+file<-"../data/rosetta.contrasts.csv"
+dat<-read.csv2(file)
+
+dat$Group<-factor(dat$Group)
+
+### reverse contrast sum ###
+contrasts(dat$Group)<-matrix(rev(contr.sum(4)),ncol=3)
+contrasts(dat$Group)
+model<-lm(Score~Group,data=dat)
+summary(model)
+## means
+(mm<-tapply(dat$Score, dat$Group, mean))
+
+```
+
+
+# Contrasts: simple
+
+## Meaning
+
+<b>Definition:</b><i> Compares each group with the first group.</i>
+
+## Jamovi ANOVA
+
+We set the contrasts to `simple`
+
+<img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c2.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+Setting the contrasts in GAMLj is identical to the ANOVA module, so I omitted the screenshot from now on. Results are:
+
+<img src="rosetta/contrasts/r.c2.gamlj1.png" class="img-responsive" alt="">
+
+
+## SPSS
+
+Please note that SPSS default sets the last group as reference group, thus to obtain the same results as before, we should set  `/CONTRAST(Group)=Simple(1)`, mind the "1"", which corresponds to "first" in the GUI options.
+
+<img src="rosetta/contrasts/c2.spss1.png" class="img-responsive" alt="">
+
+
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=Simple(1)
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+
+```
+
+
+Results:
+
+<img src="rosetta/contrasts/r.c2.spss1.png" class="img-responsive" alt="">
+
+
+## R
+
+In R, simple contrast is called `contr.treatment`.
+
+```{r}
+
+#### contrast=treatment or effect dummy #######
+dat$Group<-factor(dat$Group)
+contrasts(dat$Group)<-contr.treatment(4)
+contrasts(dat$Group)
+model<-lm(Score~Group,data=dat)
+summary(model)
+
+```
+
+
+
+# Contrast: difference 
+
+Difference and helmert contrasts are great source of confusion when one is comparing different software results. SPSS and jamovi uses the same definition of them, but R has a different implementation. Different authors uses different definitions, so be aware of which comparisons are implemented.
+
+
+<b>Definition:</b><i>Compares each group with the average of previous groups. First group omitted.</i> 
+
+This is sometimes named _Reverse Helmert Coding_ , cf. [UCLA idre web site](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/). 
+
+## Jamovi ANOVA
+
+<img src="rosetta/contrasts/c3.anova1.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c3.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+<img src="rosetta/contrasts/r.c3.gamlj1.png" class="img-responsive" alt="">
+
+## SPSS
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=DIFFERENCE
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+
+```
+
+<img src="rosetta/contrasts/r.c3.spss1.png" class="img-responsive" alt="">
+
+
+
+## R
+
+The difference contrast t-test and p-value can be obtained in R using the `contr.helmert()` function. Despite the name, `contr.helmert()` implements what is usually named "Reversed Helmert contrast". Obviously, this is perfectly fine (cf. [ An R and S-Plus Companion to Applied Regression](http://www.amazon.com/gp/product/0761922806/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0761922806&linkCode=as2&tag=curiousanduseful)), but one should know what the direction of the contrast is. Furthermore, the contrast weights in R are scaled differently than in SPSS or jamovi, thus the contrast values (coefficients) are not identical to the ones obtained in jamovi, but they are proportional to them (that is why the t-tests are the same).
+
+```{r}
+
+dat$Group<-factor(dat$Group)
+contrasts(dat$Group)<-contr.helmert(4)
+contrasts(dat$Group)
+model<-lm(Score~Group,data=dat)
+summary(model)
+
+```
+
+To obtain the jamovi/SPSS values in R, we should multiply the coefficients obtained in R by the index of the column of the contrasts (starting from 2 because 1 is for the intercept). To make things a bit more general, we can define a _conversion vector_ that works both for deviation and helmert contrasts. Let the _conversion vector_ be $cv=max(c_i)+1$, where $c_i$ is a column of the contrast matrix.
+
+```{r}
+cv<-apply(contr.helmert(4),2,max)+1
+cv
+```
+To obtain the same coefficients in R and in jamovi/SPSS, we can multiply the model coefficients by $cv$
+
+```{r}
+
+coef(model)[c(2:4)]*cv
+
+```
+
+Or divide the contrast weights by $cv$
+
+```{r}
+### make a diagonal matrix with cv in the diagonal ##########
+diag_cv<-matrix(rep(cv,each=4),ncol=3)
+
+contrasts(dat$Group)<-contr.helmert(4)/diag_cv
+contrasts(dat$Group)
+model<-lm(Score~Group,data=dat)
+summary(model)
+```
+
+... and we get the same values, t-tests and p-values as in jamovi and SPSS.
+
+# Contrast: helmert
+
+
+<b>Definition:</b><i>Compares each group with the average of subsequent groups</i> 
+
+
+## Jamovi ANOVA
+
+<img src="rosetta/contrasts/c4.anova1.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c4.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+<img src="rosetta/contrasts/r.c4.gamlj1.png" class="img-responsive" alt="">
+
+## SPSS
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=HELMERT
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+
+```
+
+<img src="rosetta/contrasts/r.c4.spss1.png" class="img-responsive" alt="">
+
+## R
+
+R defines helmert contrast in the reverse order as compared with jamovi and SPSS, and uses a different scaling. To obtain the helmert contrast as is was defined, we should reverse `contr.helmert()` and rescale the coding as we did for the `difference` contrasts. Without rescaling, the t-test and p-values are the same as in jamovi/spss, but the estimated values are different (but proportional).
+
+```{r}
+
+dat$Group<-factor(dat$Group)
+contrasts(dat$Group)<-matrix(rev(contr.helmert(4)),ncol=3)
+con_weights<-contrasts(dat$Group)
+con_weights
+model<-lm(Score~Group,data=dat)
+summary(model)
+
+```
+
+To obtain the jamovi/SPSS values in R, we should compute $cv=max(c_i)+1$, and multiply it by the model coefficients.
+
+```{r}
+
+cv<-apply(con_weights,2,max)+1
+cv
+coef(model)[c(2:4)]*cv
+```
+
+Or divide the contrast weights by $cv$
+
+```{r}
+### make a diagonal matrix with cv in the diagonal ##########
+diag_cv<-matrix(rep(cv,each=4),ncol=3)
+helm<-con_weights/diag_cv
+contrasts(dat$Group)<-helm
+model<-lm(Score~Group,data=dat)
+summary(model)
+```
+
+... and we're happy campers.
+
+# Contrast: Repeated
+
+
+<b>Definition:</b><i> Compares each group with the subsequent group</i> 
+
+
+## Jamovi ANOVA
+
+<img src="rosetta/contrasts/c5.anova1.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c5.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+<img src="rosetta/contrasts/r.c5.gamlj1.png" class="img-responsive" alt="">
+
+## SPSS
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=REPEATED
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+
+```
+
+<img src="rosetta/contrasts/r.c5.spss1.png" class="img-responsive" alt="">
+
+## R
+
+R does not have an out-of-the-box contrast equivalent to `repeated` contrast. One can, howerver, uses the `contr.sdif()` function in `MASS` package:
+
+```{r}
+
+library(MASS)
+repeated<-contr.sdif(4) 
+repeated
+contrasts(dat$Group)<-repeated
+summary(lm(Score~Group,data=dat))
+
+```
+
+... and we're just fine.
+
+
+
+# Contrast: polynomial
+
+<b>Definition:</b><i> Test polynomial (linear, quadratic, cubic, etc.) trends in the means pattern</i> 
+
+
+
+## Jamovi ANOVA
+
+<img src="rosetta/contrasts/c6.anova1.png" class="img-responsive" alt="">
+
+Results:
+
+<img src="rosetta/contrasts/r.c6.anova1.png" class="img-responsive" alt="">
+
+
+## Jamovi GAMLj GLM
+
+<img src="rosetta/contrasts/r.c6.gamlj1.png" class="img-responsive" alt="">
+
+## SPSS
+
+```
+UNIANOVA Score BY Group
+  /CONTRAST(Group)=POLYNOMIAL
+  /METHOD=SSTYPE(3)
+  /INTERCEPT=INCLUDE
+  /PRINT=TEST(LMATRIX)
+  /CRITERIA=ALPHA(.05)
+  /DESIGN=Group.
+
+
+```
+
+<img src="rosetta/contrasts/r.c6.spss1.png" class="img-responsive" alt="">
+
+## R
+
+R has an out-of-the-box contrast named `contr.poly()` contrast. it works like a sharm.
+
+```{r}
+
+
+contrasts(dat$Group)<-contr.poly(4)
+summary(lm(Score~Group,data=dat))
+
+```
+
+... and we can sleep like babies.
+
+
+
+
+
+# Contrast matrix details
+
+We can notice that Jamovi and SPSS provide descriptions of the comparisons being estimated as labels of the contrast. However, if one needs to deepen the understanding of the contrast at hand, one needs to examin the contrasts coding scheme, that is, the __contrast matrix__. In R one simply outputs the contrast function (e.g. running `contr.sdif(n=4)`), in SPSS one uses the option   `/PRINT=TEST(LMATRIX)`. However, comparing the coding can be confusing, so one needs to know what is going on. Let's see an example using the `repeated` contrast:    
+
+This is the `LMATRIX` one gets in SPSS
+
+<img src="rosetta/contrasts/r.c7.spss1.png" class="img-responsive" alt="">
+
+and this is the contrast coding one gets from R (or jamovi):
+
+```{r}
+contr.sdif(4)
+
+```
+
+Recall (cf. the repeated contrast results above) that the results are identical between the two softwares. Now, if you try to use the SPSS LMATRIX in R, you are not going to get the results expected by the `repeated` contrast. Indeed :
+
+```{r}
+
+# Weired things: LMATRIX vs R contrasts
+
+ones<-matrix(c(-1,1,0,0,0,-1,1,0,0,0,-1,1),ncol=3)
+ones
+contrasts(dat$Group)<-ones
+summary(model)
+```
+
+The reason of this discrepancy is that the LMATRIX is not the contrast matrix SPSS uses to estimate the model, but it is a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the coding system actually used. Thus, the LMATRIX is useful to understand what is going on in the comparisons: by inspecting the LMATRIX one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on. 
+
+Ok, but what is the relation between the LMATRIX and the R contrast matrix? or even better: How do I get from the LMATRIX to the R constrast matrix? Just __take the inverse of the LMATRIX__. In R, one can take the inverse of a matrix by using `MASS::ginv()` function. Let's see:
+
+
+```{r}
+##### SPSS LMATRIX ####
+ones
+### take the inverse ####
+iones<-ginv(ones)
+### transpose it ###
+t(iones)
+
+```
+
+and there you are.
+
+Does it work in general? Yes! Take `deviation` contrast, with group 1 omitted.
+
+SPSS LMATRIX is:
+<img src="rosetta/contrasts/r.c7.spss2.png" class="img-responsive" alt="">
+
+and R contrast codes are:
+
+```{r}
+(deviation<-matrix(rev(contr.sum(4)),ncol=3))
+
+```
+
+They seem different, but taking the inverse of the LMATRIX returns the R coding system.
+
+```{r}
+##### SPSS LMATRIX ####
+lmat<-matrix(rep(-.25,12),ncol=3)
+lmat[2,1]<-.75
+lmat[3,2]<-.75
+lmat[4,3]<-.75
+lmat
+### take the inverse ####
+ilmat<-ginv(lmat)
+### transpose it ###
+round(t(ilmat),digits = 3)
+
+```
+
+There you have the actual contrast matrix.
+
+Let's be sure and check polynomial contrasts. 
+SPSS LMATRIX is:
+<img src="rosetta/contrasts/r.c7.spss3.png" class="img-responsive" alt="">
+
+R contrast matrix:
+
+```{r}
+(polynom<-contr.poly(4))
+
+```
+
+They are the same, this time! Does it means that in this case the "inversion" does not apply? Well, it does apply, but because the polynomial contrast codes are orthogonal, the inverse of the contrast matrix is equal to the transpose of the contrast matrix, thus taking the inverse and then transpose it gives back the same matrix (cf [orthogonam matrix](https://en.wikipedia.org/wiki/Orthogonal_matrix))
+
+```{r}
+ipoly<-ginv(polynom)
+t(ipoly)
+```
+
+
+
+`r issues()`

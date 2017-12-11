@@ -15,7 +15,7 @@ source("../R/functions.R")
 
 Comparisons with other software:
 
-* [Contrasts analysis](rosetta/rosetta_contrasts.html)
+* [Contrasts analysis](rosetta_contrasts.html)
 
 
 
