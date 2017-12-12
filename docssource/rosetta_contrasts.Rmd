@@ -17,7 +17,7 @@ editor_options:
 source("../R/functions.R")
 ```
 
-`r keywords("jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum")`
+`r keywords("jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum, emmeans")`
 
 `r version("0.9.5")` `r draft` 
 
