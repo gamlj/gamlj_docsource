@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Marcello Gallucci" />
 
 
-<title>Mixed Models module technical details</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,21 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-110344212-1');
-</script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -176,107 +165,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -317,20 +205,10 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models module technical details</h1>
 
 </div>
 
 
-<div id="degrees-of-freedom" class="section level1">
-<h1>Degrees of freedom</h1>
-<p>As far as it is possible, inferential tests are based on an automatic selection of the degrees of freedom for the t-tests and the F-tests.</p>
-<ul>
-<li><p>For the t-tests the module relies on the Satherwaite approximation of degrees of freedom as it is implemented by the <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>. <code>Lmertest::summary()</code> produces t-test DF and p-values in the majority of cases. When the model does not converge, or some problems with the model occur, the DF cannot be estimated and thus the p-values are not reported in the parameter estimates table. A warning note is displayed in those cases. See details in <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>.</p></li>
-<li><p>For the F-tests of the main model (“Fixed Effects ANOVA”), the module relies again on the Satherwaite approximation of degrees of freedom as it is implemented by the <a href="https://cran.r-project.org/web/packages/lmerTest/index.html">lmerTest package</a>. <code>Lmertest::anova()</code> has difficulties in calculating F-test DF and p-values when the model does not converge, there are problems with the model random variances, or when numerical independent variables appear in complex interactions. When the <code>Lmertest::anova()</code> does not produce the DF and p-values, the module switches to <code>car::Anova(..,type=3, test=&quot;F&quot;)</code> function of the R <a href="https://cran.r-project.org/web/packages/car/index.html">car package</a>. <code>car::Anova(..,type=3, test=&quot;F&quot;)</code> implements the Kenward-Roger method for degrees of freedom. A warning note is displayed in those cases.</p></li>
-<li><p>For F-tests of simple effects the <code>car::Anova(..,type=3, test=&quot;F&quot;)</code> is always used, thus the the Kenward-Roger method for degrees of freedom is employed. This is because the <code>lmertest::anova()</code> requires the factor contrast to be <code>contr.sum()</code>, which does not allow to estimate simple effects. <code>car::Anova(..,type=3, test=&quot;F&quot;)</code> has not such a limitations, so it works fine for the purpose.</p></li>
-</ul>
-</div>
 <div id="post-hocs" class="section level1">
 <h1>Post Hocs</h1>
 <p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. In particular, the actual implementation is as follows (for any given model term selected by the user) :</p>
@@ -344,8 +222,6 @@ div.tocify {
 
 
 
-</div>
-</div>
 
 </div>
 
