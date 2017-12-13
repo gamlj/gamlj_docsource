@@ -165,4 +165,7 @@ The final model, with random intercepts and slopes, would capture the data with 
 <img src="examples/mixed1/plot2.png" class="img-responsive" alt="">
 
 
+# Related examples
+`r include_examples("mixed")`
+
 `r issues()`
