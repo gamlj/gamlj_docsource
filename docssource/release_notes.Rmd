@@ -10,15 +10,19 @@ output:
 
 ---
 
-#  version 0.9.6 (future)
+#  version 0.9.8 (future)
 
 (yet to be published)
 
 * contrasts labels in the simple effects parameters table
 
-#  version 0.9.5 (current)
+#  version 0.9.7 (current)
 
-* Fix labels in estimated marginal means
+* Fix interaction symbol in windows 10
+
+#  version 0.9.6 
+
+* Fix multinomial plot axes
 
 
 #  version 0.9.4 
