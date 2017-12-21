@@ -19,7 +19,7 @@ source("../R/functions.R")
 
 `r keywords("Multiple regression, moderated regression, simple slopes")`
 
-In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj/blob/master/data/exercise.csv)
+In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in `r cite_example("ros_exercise")`.
 
 # The research design
 
@@ -105,7 +105,7 @@ One can also report the betas (last column in the `Model Coefficients` table). P
 
 ## Simple Slopes
 
-We can now probe the interaction. We go to `Simple effects` tab and select `xage`  as `Simple effec variable` and `zexer` as `Moderator`. In this way we obtain the effect of age computed for high exercise (`zexer` centered to 1 SD above average), the main effect of age (`zexer` centered to 1 SD above average) and the effect of age computed for low exercise (`zexer` centered to -1 SD above average).
+We can now probe the interaction. We go to `Simple effects` tab and select `xage`  as `Simple effec variable` and `zexer` as `Moderator`. In this way we obtain the effect of age computed for high exercise (`zexer` centered to 1 SD above average), the main effect of age (`zexer` centered to its mean) and the effect of age computed for low exercise (`zexer` centered to -1 SD above average).
 
 jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.
 

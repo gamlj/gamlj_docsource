@@ -1,5 +1,6 @@
 ---
 title: "Rosetta store: results across software"
+author: "(Marcello Gallucci)"
 output: 
   html_document:
     includes:
@@ -13,10 +14,10 @@ source("../R/functions.R")
 ```
   
 
-Comparisons with other software:
+Comparisons with other software: Here you can find comparisons of  results obtained in jamovi GAMLj,  and other software, usually jamovi (jmv), pure R, and SPSS. The pages are primarily meant to test convergence between GAMLj and well-established packages, but they can be useful also to check how to get equivalent results across different programs.
 
-* [Contrasts analysis](rosetta_contrasts.html)
 
+`r list_docs("rosetta_")`
 
 
 `r issues()`

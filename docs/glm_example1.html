@@ -304,6 +304,9 @@ div.tocify {
 <li>
   <a href="gzlm.html">Generalized Models</a>
 </li>
+<li>
+  <a href="rosetta.html">Rosetta store</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -325,7 +328,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> Multiple regression, moderated regression, simple slopes </span></p>
-<p>In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj/blob/master/data/exercise.csv">here</a></p>
+<p>In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>. A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in <a href="rosetta_moderation.html">Rosetta store: moderation</a>.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
 <p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Edurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well (in jamovi <code>Exploration</code> -&gt; <code>Descriptive</code>)</p>
@@ -390,7 +393,7 @@ div.tocify {
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
-<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effec variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to 1 SD above average) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
+<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effec variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
 <p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p><img src="examples/glm1/resultssimple.png" class="img-responsive" alt=""></p>
 <p>The first row of the table shows the simple slope of age (the effect of age) computed for exercise equal to minus one standard deviation (-4.78). The effect of age is negative and strong ,B=-.487, t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope of age (the effect of age) computed for average exercise (0). The effect of age is negative and but weaker than for high exercise ,B=-.261, t(241)=-4.085,p&lt;.001. Finally, for high exercise (+4.78), the effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>

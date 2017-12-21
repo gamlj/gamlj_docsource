@@ -2,6 +2,7 @@
 title: "Rosetta store: contrasts"
 section: rosetta
 topic: contrasts
+nickname: ros_contrasts
 output: 
   html_document:
     
@@ -766,5 +767,11 @@ contrast(emm,"helmert",adjust="none")
 ```
 
 and we get the contrast estimates as expected. For the `difference` contrast we can use `con_weights<-contr.helmert(n)` in the function and we get the correct codes.
+
+# Rosetta's files
+
+`r list_docs("rosetta_")`
+
+
 
 `r issues()`

@@ -11,6 +11,9 @@ navbar:
     href: mixed.html
   - text: "Generalized Models"
     href:  gzlm.html
+  - text: "Rosetta store"
+    href:  rosetta.html
+
   right: 
   - text: "View on Github"
     href: https://github.com/mcfanda/gamlj
