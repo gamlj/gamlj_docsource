@@ -251,7 +251,7 @@ SPSS returns both the F-tests and the parameter estimates (with t-tests and p-va
 
 Now we can play with the model for estimating contrasts on its parameters. Recall that a simple slope for $x$ is simple $B_x+ B_{xz} \cdot z_0$, for some value of $z_0$ of the moderator. Thus, for a centered model,the simple slope of $x$ for $z=+SD$ is  $B_x+ B_{xz} \cdot  SD_z$, and for  $z=-SD$, we get  $B_x+ B_{xz} \cdot -SD_z$.
 
-Estimation and test for combination of  model parameters can be obtained in SPSS with `/LMATRIX` subcommand. `/LMATRIX` subcommand syntax is `/LMATRIX label term1 code1 term2 code2 etc `. In our case, `term1` is `cxage`, code1 is 1, term2 is the interaction `cxage*czexer` and code2 is one SD of `zexer`. 
+Estimation and testing for combinations of  model parameters can be obtained in SPSS with `/LMATRIX` subcommand. `/LMATRIX` subcommand syntax is `/LMATRIX label term1 code1 term2 code2 etc `. In our case, `term1` is `cxage`, code1 is 1, term2 is the interaction `cxage*czexer` and code2 is one SD of `zexer`. 
 
 ```spss
 
@@ -273,7 +273,7 @@ In the contrast results, we find the estimates, the confidence intervals and the
 
 To obtains a simple slope plot we need to write some numbers in the systax. That's a drag! The good news is that it works for any king of model, glm, generalized, EEM, mixed, hierarchical etc. etc.
 
-We write build a dataset with all combinations of  interesting levels (SD and mean) of the independent variables.
+We build a dataset with all combinations of  interesting levels (SD and mean) of the independent variables.
 
 ```spss
 
@@ -301,9 +301,11 @@ GRAPH
   /SCATTERPLOT(BIVAR)=x WITH y BY z.
 
 ```
-You can manually change the plot, but it will come back ugly when you re-run it. To get  nice graphical results without manual intevention you can use SPSS GGRAPH with GPL (not explained here) and get something like this. 
+
 
 <img src="rosetta/moderation/r.spss6.png" class="img-responsive" alt="">
+
+You can manually change the plot, but it will come back ugly when you re-run it. To get  nice graphical results without manual intevention you can use SPSS GGRAPH with GPL (not explained here) and get something like this. 
 
 
 ```spss

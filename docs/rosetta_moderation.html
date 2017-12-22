@@ -560,7 +560,7 @@ GLM yendu WITH czexer cxage
 <p>SPSS returns both the F-tests and the parameter estimates (with t-tests and p-value). We look at the latter ones.</p>
 <p><img src="rosetta/moderation/r.spss2.png" class="img-responsive" alt=""></p>
 <p>Now we can play with the model for estimating contrasts on its parameters. Recall that a simple slope for <span class="math inline">\(x\)</span> is simple <span class="math inline">\(B_x+ B_{xz} \cdot z_0\)</span>, for some value of <span class="math inline">\(z_0\)</span> of the moderator. Thus, for a centered model,the simple slope of <span class="math inline">\(x\)</span> for <span class="math inline">\(z=+SD\)</span> is <span class="math inline">\(B_x+ B_{xz} \cdot SD_z\)</span>, and for <span class="math inline">\(z=-SD\)</span>, we get <span class="math inline">\(B_x+ B_{xz} \cdot -SD_z\)</span>.</p>
-<p>Estimation and test for combination of model parameters can be obtained in SPSS with <code>/LMATRIX</code> subcommand. <code>/LMATRIX</code> subcommand syntax is <code>/LMATRIX label term1 code1 term2 code2 etc</code>. In our case, <code>term1</code> is <code>cxage</code>, code1 is 1, term2 is the interaction <code>cxage*czexer</code> and code2 is one SD of <code>zexer</code>.</p>
+<p>Estimation and testing for combinations of model parameters can be obtained in SPSS with <code>/LMATRIX</code> subcommand. <code>/LMATRIX</code> subcommand syntax is <code>/LMATRIX label term1 code1 term2 code2 etc</code>. In our case, <code>term1</code> is <code>cxage</code>, code1 is 1, term2 is the interaction <code>cxage*czexer</code> and code2 is one SD of <code>zexer</code>.</p>
 <pre class="spss"><code>
 GLM yendu WITH czexer cxage
   /INTERCEPT=INCLUDE
@@ -574,7 +574,7 @@ GLM yendu WITH czexer cxage
 <div id="simple-slopes-plot-2" class="section level2">
 <h2>Simple slopes plot</h2>
 <p>To obtains a simple slope plot we need to write some numbers in the systax. That’s a drag! The good news is that it works for any king of model, glm, generalized, EEM, mixed, hierarchical etc. etc.</p>
-<p>We write build a dataset with all combinations of interesting levels (SD and mean) of the independent variables.</p>
+<p>We build a dataset with all combinations of interesting levels (SD and mean) of the independent variables.</p>
 <pre class="spss"><code>
 ORTHOPLAN /FACTORS=x (10 0 10) z (-4 0 4) /REPLACE.
 </code></pre>
@@ -590,8 +590,8 @@ compute y=a+bx*x+bz*z+bint*x*z.</code></pre>
 <pre><code>GRAPH
   /SCATTERPLOT(BIVAR)=x WITH y BY z.
 </code></pre>
-<p>You can manually change the plot, but it will come back ugly when you re-run it. To get nice graphical results without manual intevention you can use SPSS GGRAPH with GPL (not explained here) and get something like this.</p>
 <p><img src="rosetta/moderation/r.spss6.png" class="img-responsive" alt=""></p>
+<p>You can manually change the plot, but it will come back ugly when you re-run it. To get nice graphical results without manual intevention you can use SPSS GGRAPH with GPL (not explained here) and get something like this.</p>
 <pre class="spss"><code>
 string mod(a10).
 recode z (-4=&quot;-1 DS&quot; ) (0=&quot;Mean&quot;) ( 4=&quot;+1 DS&quot;) into mod.
