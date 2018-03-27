@@ -1,5 +1,7 @@
 ---
 title: "General Linear Model"
+topic: glm
+category: help
 output: 
   html_document:
      includes:
@@ -59,7 +61,7 @@ It allows to code the categorical variables accoring to different coding schemes
 
 Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting "Contrasts definition table". 
 
-Details of the contrasts definition can be found [here](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/)
+Details of the contrasts definition can be found [here](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/), and in `r link_pages(category="rosetta",topic="contrast")`
 
 # Contrasts Naming scheme
 Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.
@@ -117,3 +119,4 @@ Some worked out examples of the analyses carried out with jamovi GAMLj are poste
 `r include_examples("glm")`
 
 `r issues()`
+

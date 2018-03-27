@@ -432,8 +432,13 @@ summary(model)</code></pre>
 <h2>R emmeans</h2>
 <p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust=&quot;none&quot;</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
-<pre class="r"><code>library(emmeans)
-model&lt;-lm(Score~Group,data=dat)
+<pre class="r"><code>library(emmeans)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;emmeans&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     test</code></pre>
+<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast    estimate         SE  df t.ratio p.value
@@ -1160,9 +1165,9 @@ helmert.emmc(levels(dat$Group))</code></pre>
 <h1>
 Comments?
 </h1>
-<br>
-<div>
-<p>Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/mcfanda/gamlj/issues "> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a></p>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/mcfanda/gamlj/issues "> GAMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
 </div>
 
 

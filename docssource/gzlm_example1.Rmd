@@ -2,6 +2,8 @@
 title: "Multinomial analysis in jamovi"
 author: "(by Marcello Gallucci)"
 topic: gzlm
+category: example
+nickname: multinomial
 output: 
   html_document:
      toc: true

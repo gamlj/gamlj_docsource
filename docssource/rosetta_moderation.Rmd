@@ -1,6 +1,6 @@
 ---
 title: "Rosetta store: moderation"
-section: rosetta
+category: rosetta
 topic: moderation
 nickname: ros_exercise
 author: "(Marcello Gallucci)"
@@ -28,7 +28,7 @@ source("../R/functions.R")
 
 Here you can find comparisons of  results obtained in jamovi GAMLj, pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs (not necessarely with the most efficient strategy).
 
-In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). GAMLj analyses on this dataset (without comparisons with other software) can be found in `r cite_example("exercise")`.
+In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). GAMLj analyses on this dataset (without comparisons with other software) can be found in `r link_pages(nickname="exercise")`.
 
 # The research design
 
@@ -38,7 +38,7 @@ The research is about physical endurance associated with age and physical exerci
 
 The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expectedly negative) is moderated by exercise, such that the more participants work out (higher levels of `exer`) the less age negatively affects endurance. 
 
-For a longer discussion please check out `r cite_example("exercise")`.
+For a longer discussion please check out `r link_pages(nickname="exercise")`.
 
 # GAMLj GLM
 

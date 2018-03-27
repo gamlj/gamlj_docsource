@@ -2,6 +2,7 @@
 title: "Mixed Models: Random coefficients regression"
 author: (Marcello Gallucci)
 topic: mixed
+category: example
 nickname: randomcoefficients
 output: 
   html_document:
