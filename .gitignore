@@ -8,7 +8,7 @@
 # jamovi
 build/
 temp/
-*.R
+#*.R
 gamlj.jmo
 problems/
 future/
@@ -44,5 +44,5 @@ vignettes/*.pdf
 
 # docs sources
 
-*analytics.txt
+analytics.txt
 
