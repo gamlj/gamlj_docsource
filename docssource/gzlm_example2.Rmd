@@ -91,7 +91,7 @@ and see what we obtain:
 The effect of `Sex` is due to the fact that `men` group is much more likely to report pain than `women`. The effect of `Treatment` is mainly due to the higher pain report rate in the P treatment than in the other two. The treatments are working.
 
   
-## Living the comfort zone I (technical)
+## Leaving the comfort zone  (technical)
 (_you can skip this if you're not interested in beautiful details and some fundamental law of statistics_)
 
 We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that `Sex` has a statistical significant effect on `Pain`, but in the plots the confidence intervals seem to overalap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weired error deviance being included in the SE computation, but is is not. We can remove `Treatment` and still find that `Sex` is significant but the confidence intervals of the two means of gender overlap. 

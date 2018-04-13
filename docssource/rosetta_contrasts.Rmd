@@ -1,7 +1,7 @@
 ---
 title: "Rosetta store: contrasts"
-section: rosetta
-topic: contrasts
+topic: contrast
+category: rosetta
 nickname: ros_contrasts
 output: 
   html_document:
@@ -770,7 +770,7 @@ and we get the contrast estimates as expected. For the `difference` contrast we 
 
 # Rosetta's files
 
-`r list_docs("rosetta_")`
+`r list_pages(category="rosetta")`
 
 
 

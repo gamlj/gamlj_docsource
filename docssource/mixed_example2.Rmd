@@ -3,6 +3,7 @@ title: "Mixed Models: Repeated measure designs"
 author: "(by Marcello Gallucci)"
 topic: mixed
 nickname: mixedrepeated
+category: example
 output: 
   html_document:
      toc: true

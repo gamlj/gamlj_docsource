@@ -3,6 +3,7 @@ title: "GLM: Multiple regression, moderated regression, and simple slopes"
 author: "(Marcello Gallucci)"
 nickname: exercise
 topic: glm
+category: example
 output: 
   html_document:
      includes:
@@ -19,7 +20,7 @@ source("../R/functions.R")
 
 `r keywords("Multiple regression, moderated regression, simple slopes")`
 
-In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in `r cite_example("ros_exercise")`.
+In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from   [Cohen et al 2003](http://psycnet.apa.org/record/2002-18109-000) and can be downloaded  [here](https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv). A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in `r link_pages(nickname="ros_exercise")`.
 
 # The research design
 

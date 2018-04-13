@@ -2,6 +2,7 @@
 title: "Frequencies analysis with overdispersed models"
 author: "(by Marcello Gallucci)"
 topic: gzlm
+category: example
 nickname: overPoisson
 output: 
   html_document:
