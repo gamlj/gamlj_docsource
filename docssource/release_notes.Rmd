@@ -10,15 +10,30 @@ output:
 
 ---
 
-#  version 0.9.8 (future)
+#  version 1.0.0 (future)
 
-(yet to be published)
+## Common
 
 * contrasts labels in the simple effects parameters table
+* contrasts labels in the plots
+* custom levels for conditioning of continuous variables 
+* labels or values in simple effects tables and plots for continuous covariates
+* fix interaction disappearing from model
+* fix variables name with spaces and weired characters 
+* add dummy coding (0 and 1) with intercept equal to reference group
+* Fix interaction symbol in windows 10
+
+## Mixed models
+
+* fix for models without fixed intercept
+* fix for random intercept only models 
+* wider range of estimation techniques when model does not converge at first run
+* better warnings when model does not converge
+
 
 #  version 0.9.7 (current)
 
-* Fix interaction symbol in windows 10
+* fix cluster-based centering and standardizing
 
 #  version 0.9.6 
 

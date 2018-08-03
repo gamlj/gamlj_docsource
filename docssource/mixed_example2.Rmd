@@ -18,7 +18,7 @@ source("../R/functions.R")
 
 `r keywords("jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts")`
 
-`r version("0.9.3")`
+`r version("1.0.0")`
 
 In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
 
@@ -180,7 +180,7 @@ Then we look at the `Fixed Effects Parameters` table.
 
 <img src="examples/mixed2/r.contrasts1.png" class="img-responsive" alt="">
 
-Here are the B coefficients of the effects. Because `group` is centered, it is coded with `deviations` scheme, the B coefficients associated with `time` contrasts can be interpreted as average effects. Thus, on average time seems to have a linear, a quadratic and a cubic trend. Remember that trends should be combined while interpreting the pattern of means. Accordingly (see plots of the main effect of `time`), on average the dependent variable means tend to decrease over time (a significant linear trend), the decrease rate diminishes over time (the quadratic) but the flatting out of the trend fluctuates a bit from time to time (the cubic trend).
+Here are the B coefficients of the effects. Because `group` is centered, it is coded with `deviations` scheme, the B coefficients associated with `time` contrasts can be interpreted as average effects. Thus, on average time seems to have a linear, a quadratic and a cubic trend. Remember that trends should be combined while interpreting the pattern of means. Accordingly (see plots of the main effect of `time`), on average the dependent variable means tend to decrease over time (a significant linear trend), the decrease rate diminishes over time (the quadratic) but the flatting out of the trend fluctuates a bit from time to time (the cubic trend). Notice we asked for the confidence intervals to be plot along the means.  
 
 <img src="examples/mixed2/r.plots2.png" class="img-responsive" alt="">
 
@@ -193,7 +193,7 @@ We can be happy about this analysis, but let face the case that a reviewer frown
 
 <img src="examples/mixed2/r.simple2.png" class="img-responsive" alt="">
 
-Recall that `time1` is the linear contrast, `time2` is the quadratic contrast, and `time3` is the cubic contrast (here we would like to see the contrast labels as well: future releases). `Simple Effects Parameters` table informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the linear trend is present in both groups (we knew that already), the quadratic is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction `cubic * group` that this difference is not that large afterall.
+`Simple Effects Parameters` table informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the `linear` trend is present in both groups (we knew that already), the `quadratic` is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction `cubic * group` that this difference is not that large after all.
 
 
 ### Post-hoc

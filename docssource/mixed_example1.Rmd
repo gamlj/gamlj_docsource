@@ -15,7 +15,16 @@ output:
 ---
 
 
-In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. The complete set of analyses and results (for the lazy reader) can be downloaded [here](https://github.com/mcfanda/gamlj/blob/master/docs/examples/beers_bars.omv)
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+
+`r keywords("Mixed models, hierarchical linear model, multilevel model, simple slopes")`
+
+`r version("0.9.7")` 
+
+In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj_docs/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. The complete set of analyses and results (for the lazy reader) can be downloaded [here](https://github.com/mcfanda/gamlj/blob/master/docs/examples/beers_bars.omv)
 
 # The research design
 
@@ -115,7 +124,7 @@ The first table in the output contains info about the model and the estimation.
 
 * The `Call` row display the model in [lme4 R package](https://cran.r-project.org/web/packages/lme4/index.html) formulation. This can be useful to re-run the same analysis in R (not using GAMLj module). 
 * The `AIC` row display the Aikeke Information Criterion, which can be useful to evaluate the model, especially in comparison with other models. Details can be found in [GAMLj docs](https://github.com/mcfanda/gamlj/blob/master/docs/mixed_specs.html) and in [Zuur et. al , 2009] al.](http://www.springer.com/la/book/9780387874579)
-* R-marginal and R-conditional are proportion of reduced error, or pseudo-$R^2$. They are described in [Johnson (2014)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01) and implemented in [piecewiseSEM](https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models). For our purposes, we can interpret them as follows: __R-marginal__ is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The __R-conditional__ is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.089), but the overall model (fixed+random) captures a fairly big share of the variance (.817).
+* R-marginal and R-conditional are proportion of reduced error, or pseudo-$R^2$. They are described in [Johnson (2014)](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01) and implemented in [piecewiseSEM](https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models). For our purposes, we can interpret them as follows: __R-marginal__ is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The __R-conditional__ is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.107), but the overall model (fixed+random) captures a fairly big share of the variance (.853).
 
 <img src="examples/mixed1/resultsrimf.png" class="img-responsive" alt="">
 
@@ -130,15 +139,15 @@ As regards the degrees of freedom (nobody cares about them, I know), jamovi mixe
 
 <img src="examples/mixed1/resultsrimr.png" class="img-responsive" alt="">
 
-As regards the intercept (which people usually ignore) we should interpret it as the expected number of smiles for the average number of beers drunken. This can be surprising because one expects the interecept to be the expected value of Y when X=0. It is, of course, also here but jomovi mixed model module center the continuous variables by default. Thus, X=0 mean X=mean. Indeed, in the `Covariates Scaling` tab we see that:
+As regards the intercept (which people usually ignore) we should interpret it as the expected number of smiles for the average number of beers drunken. This can be surprising because one expects the interecept to be the expected value of Y when X=0. It is, of course, also here but jamovi mixed model module centers the continuous variables by default. Thus, X=0 means X=mean. Indeed, in the `Covariates Scaling` tab we see that:
 
 <img src="examples/mixed1/xscaling.png" class="img-responsive" alt="">
 
-Options are available to scale the covariates, by centering it or standardizing it. The options "cluster-based" operate the re-scaling (centering or standardizing) within each cluster rather than on the sample as a whole.
+Options are available to scale the covariates, by centering it or standardizing it. The options "cluster-based-*" operate the re-scaling (centering or standardizing) within each cluster rather than on the sample as a whole.
 
 
 
-The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (${\sigma_a}^2$=5.77), thus we did well in letting the intercepts vary from cluster to cluster. (${\sigma_a}^2$=5.77) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
+The **Random Component** display the variances and SD of the random coefficients, in this case of the random intercepts. From the table we can see that there is a good variance of the intercepts (${\sigma_a}^2$=6.53), thus we did well in letting the intercepts vary from cluster to cluster. (${\sigma_a}^2$=6.53) can be reported as an intra-class correlation by dividing it by the sum of itself and the residual variace ($\sigma^2$), that is $v_{ic}={{\sigma_a}^2 \over {{\sigma_a}^2+{\sigma}^2}}$
 
 
 # Random Slopes Model
@@ -157,9 +166,9 @@ Notice that we have now two random effects, that can be correlated or fixed to b
 
 Results are substantially the same, showing that the variability of the slopes do no influence the interpretation of the results in a substantial way. We can notice, however, that the DF of the tests are different as compared with the random intercepts model. This is due to the fact that now the fixed slope 0.584 is computed as the average of the random slopes, and thus its inferential sample is much smaller. 
 
-In the 'Random Components' table we see a small variance of beer ${\sigma_b}^2$=0.0258, indicating that slopes do not vary much. Nontheless, their variability it is not null, so allowing them to be random increases our model fit. This is also testified by a (slightly) smaller AIC (from 811 to 809) and a larger $R^2$-conditional (from .81 to .82). Because we do not test any inferential hypothesis on these variances, it is better to keep them in the model. As they say: _if it ain't  broken, don't fix it_.
+In the 'Random Components' table we see a small variance of beer ${\sigma_b}^2$=0.0345, indicating that slopes do not vary much. Nontheless, their variability it is not null, so allowing them to be random increases our model fit. This is also testified by a (slightly) smaller AIC (from 786 to 784) and a larger $R^2$-conditional (from .81 to .82). Because we do not test any inferential hypothesis on these variances, it is better to keep them in the model. As they say: _if it ain't  broken, don't fix it_.
 
-Finally, a correlation between intercepts and slopes can be observed, $r$=-.762, indicating that bars where people smile more on average (intercept) are the bars were the effect of beer is smaller.
+Finally, a correlation between intercepts and slopes can be observed, $r$=-.681, indicating that bars where people smile more on average (intercept) are the bars were the effect of beer is smaller.
 
 The final model, with random intercepts and slopes, would capture the data with several slopes, with very different intercepts and slightly varianble slopes.
 
