@@ -350,7 +350,9 @@ div.tocify {
 <h1>Random effects</h1>
 <p><img src="mixed/i4.png" class="img-responsive" alt=""></p>
 <p>Random effects across clustering variables are automatically prepared by the module following R lmer() standards: <code>term | cluster</code> indicates a that the coefficient associated with <code>term</code> is random across <code>cluster</code>.</p>
-<p>BY default the module assumes correlated random effects. A variance component model can be estimated by de-selecting “Correlated Effects” options.</p>
+<p>By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting “Correlated Effects” options.</p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
+<p>The option <code>LRT for random effects</code> produces a table of <em>Likelihood Ratio Tests</em> for the random effects. The table is estimated with <code>lmerTest::ranova</code> command, documented <a href="https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf">here</a>. The tests basically compare the likelihood of a model with the <code>effect</code> versus model without the <code>effect</code>. For example, <code>x in (1+x|cluster)</code> means that the model with <code>(1+x|cluster)</code> random structure is compared with a model with <code>1|cluster)</code> random structure. If significant, the model with random effect <code>x</code> is significantly better (in terms of likelihood) than the model with <code>(1|cluster)</code> structure.</p>
 </div>
 <div id="fixed-effects-model" class="section level1">
 <h1>Fixed effects Model</h1>

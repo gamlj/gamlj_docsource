@@ -51,7 +51,11 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates a that the coefficient associated with `term` is random across `cluster`. 
 
-BY default the module assumes correlated random effects. A variance component model can be estimated by de-selecting "Correlated Effects" options.
+By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting "Correlated Effects" options.
+
+`r version("1.0.0")`
+
+The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The tests basically compare the likelihood of a model with the `effect` versus model without the `effect`. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
 # Fixed effects Model 
 <img src="mixed/i3.png" class="img-responsive" alt="">
