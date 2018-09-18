@@ -10,15 +10,53 @@ output:
 
 ---
 
-#  version 0.9.8 (future)
+#  version 1.0.0 (future)
 
-(yet to be published)
+## Common
 
+* Estimated marginal means for conditioned covariates
 * contrasts labels in the simple effects parameters table
+* contrasts labels in the plots
+* custom levels for conditioning of continuous variables involved in interactions
+* labels or values in simple effects tables and plots for continuous covariates
+* fix interaction disappearing from model declaration
+* fix variables name with spaces and weired characters 
+* Improved description of contrast coding
+* add dummy coding (0 and 1) with intercept equal to reference group
+* Fix interaction symbol in windows 10
+* Restructuring of simple effects and posthoc table for better reading
+* Improved compatibility with R when loaded as R package
+* Helper functions to interact with the results in R
+* Recycle of table results to speed up results updating
+* Fix for factor levels labels with spaces and other weired characters
+* Fix for variable names with spaces and other weired characters
+* Improved plots
+
+## Mixed models
+
+
+* Intra-class correlation for random intercepts
+* Random effects plots
+* LRT for random effects
+* Fix for models without fixed intercept
+* Fix for random intercept only models 
+* Wider range of estimation techniques when model does not converge at first run
+* Improved warnings and comments
+* More flexible estimation of simple effects
+
+## GLM models
+
+* Added Kolmogorov-Smirnov and Shapiro-Wilk tests for normality of residuals
+* Added Adjusted R-squared
+
+## GLZM models
+
+* Several small bug fixes
+* Improved info table regarding model implementation
 
 #  version 0.9.7 (current)
 
-* Fix interaction symbol in windows 10
+* fix cluster-based centering and standardizing
 
 #  version 0.9.6 
 

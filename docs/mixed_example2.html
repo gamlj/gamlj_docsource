@@ -95,6 +95,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -319,7 +322,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts </span></p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.3 </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.7 </span>,<span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
 <p>In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.</p>
 <p>We use the GAMLj module in Jamovi. One can follow the example by downloading the file <a href="https://github.com/mcfanda/gamlj/blob/master/data/howell_rep.csv">howell_rep</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install GAMLj module from within jamovi library.</p>
 <p>The data are from a <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">David C. Howell</a> website. You can find there a lot of very clear information and discussion of repeated measures mixed model analysis, in SPSS, SAS, and R. As you would expect from David C. Howell, the material is simply great.</p>
@@ -424,14 +427,23 @@ div.tocify {
 <p><img src="examples/mixed2/contrasts1.png" class="img-responsive" alt=""></p>
 <p>Then we look at the <code>Fixed Effects Parameters</code> table.</p>
 <p><img src="examples/mixed2/r.contrasts1.png" class="img-responsive" alt=""></p>
-<p>Here are the B coefficients of the effects. Because <code>group</code> is centered, it is coded with <code>deviations</code> scheme, the B coefficients associated with <code>time</code> contrasts can be interpreted as average effects. Thus, on average time seems to have a linear, a quadratic and a cubic trend. Remember that trends should be combined while interpreting the pattern of means. Accordingly (see plots of the main effect of <code>time</code>), on average the dependent variable means tend to decrease over time (a significant linear trend), the decrease rate diminishes over time (the quadratic) but the flatting out of the trend fluctuates a bit from time to time (the cubic trend).</p>
+<p>Here are the B coefficients of the effects. Because <code>group</code> is centered, it is coded with <code>deviations</code> scheme, the B coefficients associated with <code>time</code> contrasts can be interpreted as average effects. Thus, on average time seems to have a linear, a quadratic and a cubic trend. Remember that trends should be combined while interpreting the pattern of means. Accordingly (see plots of the main effect of <code>time</code>), on average the dependent variable means tend to decrease over time (a significant linear trend), the decrease rate diminishes over time (the quadratic) but the flatting out of the trend fluctuates a bit from time to time (the cubic trend). Notice we asked for the confidence intervals to be plot along the means.</p>
 <p><img src="examples/mixed2/r.plots2.png" class="img-responsive" alt=""></p>
 <p>Now we can interpret the interaction terms involving the contrasts. <code>Time1 * groups</code> corresponds to <code>linear * group</code> contrasts, and it is clearly small (compare the B=-.894 with the other B’s) and not statistically significant (p=.934). This means that the linear trend is basically the same for the two groups defined by <code>group</code>. Indeed, the two groups starts more or less at the same hight and end up at the same level: same linear trend. Very different is the quadratic term, because the interaction <code>quadratic * group</code> is strong and significant (p&lt;.001). Indeed, for group 1 there is no “bending” of the trend, whereas for group 1 the rate of change over time is much faster at the begining and very small at the end. The fluctuation captured by the cubic trend does not really differ in the two groups (p=.103)</p>
 <p><img src="examples/mixed2/r.plots1.png" class="img-responsive" alt=""></p>
 <p>We can be happy about this analysis, but let face the case that a reviewer frowns at us because we talked about a quadratic trend in group 2 and the absence of it in group 1, but we did not test these two sentences! Well, just look at the new results of the simple effects (recall that jamovi updates the results table when you change something in the setup).</p>
 <p><img src="examples/mixed2/r.simple2.png" class="img-responsive" alt=""></p>
-<p>Recall that <code>time1</code> is the linear contrast, <code>time2</code> is the quadratic contrast, and <code>time3</code> is the cubic contrast (here we would like to see the contrast labels as well: future releases). <code>Simple Effects Parameters</code> table informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the linear trend is present in both groups (we knew that already), the quadratic is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction <code>cubic * group</code> that this difference is not that large afterall.</p>
+<p><code>Simple Effects Parameters</code> table informs us whether the three trends are statistically significant in each group and how big they are. We can then say that the <code>linear</code> trend is present in both groups (we knew that already), the <code>quadratic</code> is present in group 2 but not in group 1. As for the cubic, it seems to be significant in group 2 (p=.006) but not in group 1 (p=.631). However, we know from the interaction <code>cubic * group</code> that this difference is not that large after all.</p>
 </div>
+</div>
+<div id="coding-scheme" class="section level2">
+<h2>Coding scheme</h2>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
+<p>In case one has doubts about the meaning of the chosen coding scheme for the factors, one can ask for the table of contrasts weights. This is done in <code>Factor coding</code> by selecting <code>Contrast coefficients tables</code>.</p>
+<p><img src="examples/mixed2/contrasts2.png" class="img-responsive" alt=""></p>
+<p>This produces a table in the results panel as shown here.</p>
+<p><img src="examples/mixed2/r.contrasts2.png" class="img-responsive" alt=""></p>
+<p>More info about coding schemes <a href="rosetta_contrasts.html">Rosetta store: contrasts</a></p>
 <div id="post-hoc" class="section level3">
 <h3>Post-hoc</h3>
 <p>Let now assume that we have no hypothesis and we are not interested in trends, by we just want to check which pair of means is different and which is not across times. The variable <code>time</code> has 4 levels, so <span class="math inline">\({(4 \cdot 3) \over 2}=6\)</span> comparisons can be done. This is the task of post-hoc. GAMLj offers post-hoc comparisons with Bonferroni and Holm correction. The setup is easy: push from the left panel within the <code>Post-hoc tests</code> panel to the right panel.</p>
@@ -441,6 +453,13 @@ div.tocify {
 <p>Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST) only from time 6, and time 3 and 6 are not differnt. That concludes the probing of the main effect of time. The same can be done for the interaction, which would produce <span class="math inline">\({(8 \cdot 7) \over 2}=28\)</span> comparisons. We stop here because post-hoc tests are very boring.</p>
 </div>
 </div>
+</div>
+<div id="estiamted-marginal-means" class="section level1">
+<h1>Estiamted Marginal Means</h1>
+<p>In any case, one can inspect the means involved in the main effects and of in the interaction by clicking <code>Estimated Marginal Means</code> in the <code>Estimated Marginal Means</code> panel.</p>
+<p><img src="examples/mixed2/emmeans1.png" class="img-responsive" alt=""></p>
+<p>Which yields:</p>
+<p><img src="examples/mixed2/r.emmeans1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>

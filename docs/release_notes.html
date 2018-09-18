@@ -103,6 +103,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -325,17 +328,62 @@ div.tocify {
 </div>
 
 
-<div id="version-0.9.8-future" class="section level1">
-<h1>version 0.9.8 (future)</h1>
-<p>(yet to be published)</p>
+<div id="version-1.0.0-future" class="section level1">
+<h1>version 1.0.0 (future)</h1>
+<div id="common" class="section level2">
+<h2>Common</h2>
 <ul>
+<li>Estimated marginal means for conditioned covariates</li>
 <li>contrasts labels in the simple effects parameters table</li>
+<li>contrasts labels in the plots</li>
+<li>custom levels for conditioning of continuous variables involved in interactions</li>
+<li>labels or values in simple effects tables and plots for continuous covariates</li>
+<li>fix interaction disappearing from model declaration</li>
+<li>fix variables name with spaces and weired characters</li>
+<li>Improved description of contrast coding</li>
+<li>add dummy coding (0 and 1) with intercept equal to reference group</li>
+<li>Fix interaction symbol in windows 10</li>
+<li>Restructuring of simple effects and posthoc table for better reading</li>
+<li>Improved compatibility with R when loaded as R package</li>
+<li>Helper functions to interact with the results in R</li>
+<li>Recycle of table results to speed up results updating</li>
+<li>Fix for factor levels labels with spaces and other weired characters</li>
+<li>Fix for variable names with spaces and other weired characters</li>
+<li>Improved plots</li>
 </ul>
+</div>
+<div id="mixed-models" class="section level2">
+<h2>Mixed models</h2>
+<ul>
+<li>Intra-class correlation for random intercepts</li>
+<li>Random effects plots</li>
+<li>LRT for random effects</li>
+<li>Fix for models without fixed intercept</li>
+<li>Fix for random intercept only models</li>
+<li>Wider range of estimation techniques when model does not converge at first run</li>
+<li>Improved warnings and comments</li>
+<li>More flexible estimation of simple effects</li>
+</ul>
+</div>
+<div id="glm-models" class="section level2">
+<h2>GLM models</h2>
+<ul>
+<li>Added Kolmogorov-Smirnov and Shapiro-Wilk tests for normality of residuals</li>
+<li>Added Adjusted R-squared</li>
+</ul>
+</div>
+<div id="glzm-models" class="section level2">
+<h2>GLZM models</h2>
+<ul>
+<li>Several small bug fixes</li>
+<li>Improved info table regarding model implementation</li>
+</ul>
+</div>
 </div>
 <div id="version-0.9.7-current" class="section level1">
 <h1>version 0.9.7 (current)</h1>
 <ul>
-<li>Fix interaction symbol in windows 10</li>
+<li>fix cluster-based centering and standardizing</li>
 </ul>
 </div>
 <div id="version-0.9.6" class="section level1">

@@ -103,6 +103,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -320,7 +323,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum, emmeans </span></p>
-<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.5 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.5 </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Here you can find comparisons of results obtained in jamovi GAMLj, jamovi (jmv), pure R, and SPSS. When not explicitely discussed, the code of different software is written with the aim of obtaing identical results across programs.</p>
@@ -1000,7 +1003,7 @@ summary(model)</code></pre>
 ## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
 ## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
 <p>The reason of this discrepancy is that the LMATRIX is the contrast matrix, a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the model matrix itself. Thus, the constrast matrix (SPSS LMATRIX) is useful to understand what is going on in the comparisons: by inspecting the contrast matrix one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on.</p>
-<p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<span class="math inline">\(\mathbf{C}\)</span> in the Venable’s vignette) and the model matrix (<span class="math inline">\(\mathbf{B}\)</span> in the vignette).</p>
+<p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<strong><span class="math inline">\(C\)</span></strong>) in the Venable’s vignette) and the model matrix (<strong><span class="math inline">\(B\)</span></strong>) in the vignette).</p>
 <p>Ok, but what is the relation between the contrast matrix and the R model matrix? or even better: How do I get from the contrast matrix to the R model matrix? Just <strong>take the inverse of the contrast matrix and traspose it</strong>. In R, one can take the inverse of a matrix by using <code>MASS::ginv()</code> function. Let’s see:</p>
 <pre class="r"><code>##### SPSS LMATRIX ####
 ones</code></pre>

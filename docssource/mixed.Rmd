@@ -15,6 +15,9 @@ output:
 source("../R/functions.R")
 ```
 
+`r version("0.9.7")` ,`r version("1.0.0")` 
+
+
 **Mixed Linear Models** module of the GAMLj suite for jamovi
 
 <img src="mixed/i1.png" class="img-responsive" alt="">
@@ -48,7 +51,11 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates a that the coefficient associated with `term` is random across `cluster`. 
 
-BY default the module assumes correlated random effects. A variance component model can be estimated by de-selecting "Correlated Effects" options.
+By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting "Correlated Effects" options.
+
+`r version("1.0.0")`
+
+The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The tests basically compare the likelihood of a model with the `effect` versus model without the `effect`. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
 # Fixed effects Model 
 <img src="mixed/i3.png" class="img-responsive" alt="">
@@ -58,22 +65,39 @@ By default, the model fixed effects terms are filled in automatically for main e
 Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
 
 # Factors coding
+`r version("0.9.7")` 
 <img src="mixed/i5.png" class="img-responsive" alt="">
+
+`r version("1.0.0")`
+
+<img src="mixed/i5_1.png" class="img-responsive" alt="">
 
 It allows to code the categorical variables accoring to different coding schemes. The coding scheme applies to the parameter estimates, simple effects and plots. The ANOVA table uses always the "deviation" scheme, that is "-1 0 1" coding. _default_ uses the factor coding "contr.sum", that is the -1 0 1 coding which results in appropriated Type III Sum of Squares.
 
-Note that all contrasts, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects.
+Note that all contrasts but `dummy`, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects. If contrast `dummy` is set, the intercept is the average of the dependent variable computed for the first group of the categorical IV.  
 
 Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting "Show contrast definition table". 
 
-## Contrasts Naming scheme
-
 Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.
 
+## Contrasts  schemes
+
+Details of the contrasts definition can be found [here](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/), and in `r link_pages(category="rosetta",topic="contrast")`
+
+
+
 # Covariates Scaling
+`r version("1.0.0")`
+
 <img src="mixed/i6.png" class="img-responsive" alt="">
 
 Continuous variables can be centered, standardized or used as they are ("none", the default). Both centering and standardization can be obtained based on the whole sample mean and SD, or cluster-based. Cluster based standardization uses the mean and the SD of each cluster.
+
+The second part of the panel allows to decide how to condition the continuous independent variables (covariates) in plots and simple effects analyses involving interactions. Default is `Mean +- 1 SD`, which is the standard conditioning to the mean, the mean plus 1 standard deviation and the mean minus one standard deviation. `Mean +- offset` allows to condition to the mean plus and minus any value the user wants. `Percentile (25,50,75)` conditions the covariates to the respective percentiles, while `Percentile +- offset` conditions to the median (50th percetile) plus and minus any value of percentile. The latter offset should be less than 50.
+
+**`Covariates labeling`** allows to use in plots and simple effects analyses either the labels of the conditioning values, their actual values, or both.
+
+
 
 
 # Post-hocs

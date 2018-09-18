@@ -22,7 +22,7 @@ source("../R/functions.R")
 
 `r keywords("jamovi, SPSS, R, contrasts, comparisons, planned comparisons, LMATRIX, contr.sum, emmeans")`
 
-`r version("0.9.5")` `r draft` 
+`r version("0.9.5")` 
 
   
 # Introduction
@@ -633,7 +633,7 @@ summary(model)
 
 The reason of this discrepancy is that the LMATRIX  is the contrast matrix, a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the model matrix itself. Thus, the constrast matrix (SPSS LMATRIX) is useful to understand what is going on in the comparisons: by inspecting the contrast matrix one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on. 
 
-A clear technical explanation is provided in [Venables 2017](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf), where you find the definition of the contrast matrix ($\mathbf{C}$ in the Venable's vignette) and the model matrix ($\mathbf{B}$ in the vignette).
+A clear technical explanation is provided in [Venables 2017](https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf), where you find the definition of the contrast matrix (**$C$**) in the Venable's vignette) and the model matrix (**$B$**) in the vignette).
 
 Ok, but what is the relation between the contrast matrix and the R model matrix? or even better: How do I get from the contrast matrix to the R model matrix? Just __take the inverse of the contrast matrix and traspose it__. In R, one can take the inverse of a matrix by using `MASS::ginv()` function. Let's see:
 

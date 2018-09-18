@@ -103,6 +103,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -325,6 +328,7 @@ div.tocify {
 </div>
 
 
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.7 </span> ,<span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
 <p><strong>Mixed Linear Models</strong> module of the GAMLj suite for jamovi</p>
 <p><img src="mixed/i1.png" class="img-responsive" alt=""></p>
 <p>The module estimate a mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. For more information about how to module works, please check the <a href="mixed_specs.html">technical details</a></p>
@@ -346,7 +350,9 @@ div.tocify {
 <h1>Random effects</h1>
 <p><img src="mixed/i4.png" class="img-responsive" alt=""></p>
 <p>Random effects across clustering variables are automatically prepared by the module following R lmer() standards: <code>term | cluster</code> indicates a that the coefficient associated with <code>term</code> is random across <code>cluster</code>.</p>
-<p>BY default the module assumes correlated random effects. A variance component model can be estimated by de-selecting “Correlated Effects” options.</p>
+<p>By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting “Correlated Effects” options.</p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
+<p>The option <code>LRT for random effects</code> produces a table of <em>Likelihood Ratio Tests</em> for the random effects. The table is estimated with <code>lmerTest::ranova</code> command, documented <a href="https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf">here</a>. The tests basically compare the likelihood of a model with the <code>effect</code> versus model without the <code>effect</code>. For example, <code>x in (1+x|cluster)</code> means that the model with <code>(1+x|cluster)</code> random structure is compared with a model with <code>1|cluster)</code> random structure. If significant, the model with random effect <code>x</code> is significantly better (in terms of likelihood) than the model with <code>(1|cluster)</code> structure.</p>
 </div>
 <div id="fixed-effects-model" class="section level1">
 <h1>Fixed effects Model</h1>
@@ -356,19 +362,25 @@ div.tocify {
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
-<p><img src="mixed/i5.png" class="img-responsive" alt=""></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.7 </span> <img src="mixed/i5.png" class="img-responsive" alt=""></p>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
+<p><img src="mixed/i5_1.png" class="img-responsive" alt=""></p>
 <p>It allows to code the categorical variables accoring to different coding schemes. The coding scheme applies to the parameter estimates, simple effects and plots. The ANOVA table uses always the “deviation” scheme, that is “-1 0 1” coding. <em>default</em> uses the factor coding “contr.sum”, that is the -1 0 1 coding which results in appropriated Type III Sum of Squares.</p>
-<p>Note that all contrasts, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects.</p>
+<p>Note that all contrasts but <code>dummy</code>, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects. If contrast <code>dummy</code> is set, the intercept is the average of the dependent variable computed for the first group of the categorical IV.</p>
 <p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting “Show contrast definition table”.</p>
-<div id="contrasts-naming-scheme" class="section level2">
-<h2>Contrasts Naming scheme</h2>
 <p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
+<div id="contrasts-schemes" class="section level2">
+<h2>Contrasts schemes</h2>
+<p>Details of the contrasts definition can be found <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">here</a>, and in <a href="rosetta_contrasts.html">Rosetta store: contrasts</a></p>
 </div>
 </div>
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
+<p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
 <p><img src="mixed/i6.png" class="img-responsive" alt=""></p>
 <p>Continuous variables can be centered, standardized or used as they are (“none”, the default). Both centering and standardization can be obtained based on the whole sample mean and SD, or cluster-based. Cluster based standardization uses the mean and the SD of each cluster.</p>
+<p>The second part of the panel allows to decide how to condition the continuous independent variables (covariates) in plots and simple effects analyses involving interactions. Default is <code>Mean +- 1 SD</code>, which is the standard conditioning to the mean, the mean plus 1 standard deviation and the mean minus one standard deviation. <code>Mean +- offset</code> allows to condition to the mean plus and minus any value the user wants. <code>Percentile (25,50,75)</code> conditions the covariates to the respective percentiles, while <code>Percentile +- offset</code> conditions to the median (50th percetile) plus and minus any value of percentile. The latter offset should be less than 50.</p>
+<p><strong><code>Covariates labeling</code></strong> allows to use in plots and simple effects analyses either the labels of the conditioning values, their actual values, or both.</p>
 </div>
 <div id="post-hocs" class="section level1">
 <h1>Post-hocs</h1>
