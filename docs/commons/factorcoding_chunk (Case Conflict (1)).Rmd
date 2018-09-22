@@ -1,0 +1,17 @@
+---
+title: "factorcoding_chunk"
+output: html_document
+---
+
+# Factors coding
+`r version("1.0.0")`
+
+<img src="common/pics/factorCoding.png" class="img-responsive" alt="">
+
+It allows to code the categorical variables accoring to different coding schemas. The coding schema applies to the parameter estimates, simple effects and plots. The ANOVA table uses always the "deviation" scheme, that is "-1 0 1" coding. _default_ uses the factor coding "contr.sum", that is the -1 0 1 coding which results in appropriated Type III Sum of Squares.
+
+Note that all contrasts but `dummy`, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects. If contrast `dummy` is set, the intercept is the average of the dependent variable computed for the first group of the categorical IV.  
+
+Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting "Show contrast definition table". 
+
+Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.

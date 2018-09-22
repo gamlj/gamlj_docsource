@@ -301,6 +301,9 @@ div.tocify {
 <li>
   <a href="rosetta.html">Rosetta store</a>
 </li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -354,11 +357,12 @@ div.tocify {
 <h1>Simple Multinomial model</h1>
 <p>Let’s start with predicting <code>prog</code> with the social economical status. In GAMLj <code>generalized linear model</code> we select the <code>multinomial model</code>, push the <code>prog</code> variable in the <code>Dependent Variable</code> field and <code>ses</code> in <code>Factors</code>.</p>
 <p><img src="examples/gzlm1/variable1.png" class="img-responsive" alt=""></p>
-<div id="r-squared" class="section level2">
-<h2>R-squared</h2>
+<div id="r-squared-and-model-info" class="section level2">
+<h2>R-squared and Model info</h2>
 <p>As soon as we fix the variables, the results are there, with the first table showing some info about the model.</p>
-<p><img src="examples/gzlm1/result1_1.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm1/info.results.png" class="img-responsive" alt=""></p>
 <p>Here we can outline the R-squared, that gives information about the goodness of fit of the model (see <a href="gzlm_specs.html">technical details</a> for more info). Our error of approximation of the data decreases of 4% thanks to the <code>ses</code> variable. Put it in another way, our ability to predict <code>prog</code> increases of 4% thanks to <code>ses</code> over using only the observed probabilities.</p>
+<p>The other information in the table helps to interpret the results. In particulat, the raw <code>Direction</code> is useful. It gives the definition of the logit that is used, including which is the reference group of the dependent variable. In the example, it indicates that the there are two logits, one is comparing <code>prog=general</code> against <code>prog=academic</code>, the other <code>prog=general</code> against <code>prog=academic</code>. Thus we know that all the independent variables positively related with the first logit are positively related with the odd of being in program general over the academic one, the independent variables positively related with the rescon logit are positively related with the odd of being in program vocation over the academic one.</p>
 </div>
 <div id="omnibus-test" class="section level2">
 <h2>Omnibus test</h2>
@@ -367,7 +371,7 @@ div.tocify {
 <p>Ask for the plot in the <code>Plots</code> panel:</p>
 <p><img src="examples/gzlm1/plots1.png" class="img-responsive" alt=""></p>
 <p>and see what we obtain:</p>
-<p><img src="examples/gzlm1/results1_3.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm1/plot.results1.png" class="img-responsive" alt=""></p>
 <p>The effec of <code>ses</code> is due to the fact that <code>high ses</code> group is much more likely to choose the academic program (<code>prog</code>=1) over the other two programs, while <code>low ses</code> and <code>middle ses</code> choose the three programs with more or less the same probability. The effect is not strong (recall R-squared=.04), but is at least visible in the plot.</p>
 <p>An interesting note can be made for the omnibus test Chi-squared=16.8, p=.002. This test is equivalent to the standard Chi-squared one obtains by running a chi-squared test on the contingency table <code>prog X ses</code>. In fact (in jamovi <code>frequencies</code> -&gt; <code>Contingency tables</code>)</p>
 <p><img src="examples/gzlm1/results1_4.png" class="img-responsive" alt=""></p>
@@ -387,12 +391,12 @@ div.tocify {
 <p>Let’s include <code>write</code> as independent variable and see the results.</p>
 <p><img src="examples/gzlm1/results2_1.png" class="img-responsive" alt=""></p>
 <p>Now we have two omnibus tests, indicating that the ability to write has a stistically significant effect on the probability of choosing a program, while keeping constant <code>ses</code>. The analysis also confirms an effect of <code>ses</code>, also when <code>write</code> is kept constant. As before, we can interpret the results by looking at the probability plot.</p>
-<p><img src="examples/gzlm1/results2_2.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm1/model2.plot.results.png" class="img-responsive" alt=""></p>
 <p>The better one writes, the higher the probability of choosing the academic program, and the lower is the probability of choosing the vocational program. Choosing the general program does not depends on the writing skills.</p>
 <p>Please notice in the plot that the independent variable <code>write</code> it is centered to its mean. This is a default of jamovi GAMLj in order to avoid unexpected results when interactions and other complex effects are estimated. However, it is only a default setting, so we can change it as we’re pleased.</p>
 <p>By going to <code>Covariates scoring</code> tab, one can choose not to center the variable.</p>
 <p><img src="examples/gzlm1/scaling.png" class="img-responsive" alt=""></p>
-<p>Obviously, the results are not different, but the plot x-axis looks nicer now. <img src="examples/gzlm1/results2_3.png" class="img-responsive" alt=""></p>
+<p>Obviously, the results are not different, but the plot x-axis looks nicer now. <img src="examples/gzlm1/model2.scaling.results.png" class="img-responsive" alt=""></p>
 </div>
 <div id="moderated-multinomial-model" class="section level1">
 <h1>Moderated multinomial model</h1>
@@ -402,7 +406,7 @@ div.tocify {
 <p><img src="examples/gzlm1/results2_4.png" class="img-responsive" alt=""></p>
 <p>Results show very weak support for an interaction, because the Chi-square is low (3.46) and the p-value high (.484). This means that the probabilities profile along the <code>write</code> scores are not substantially different across social economical groups. We can verify that by eyeballing the plot of probabilities broken down by <code>ses</code> groups.</p>
 <p><img src="examples/gzlm1/plots3.png" class="img-responsive" alt=""></p>
-<p><img src="examples/gzlm1/results2_5.png" class="img-responsive" alt=""></p>
+<p><img src="examples/gzlm1/model2.moderation.plot.results1.png" class="img-responsive" alt=""> <img src="examples/gzlm1/model2.moderation.plot.results2.png" class="img-responsive" alt=""> <img src="examples/gzlm1/model2.moderation.plot.results3.png" class="img-responsive" alt=""></p>
 <h1>
 Comments?
 </h1>
