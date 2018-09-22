@@ -310,6 +310,9 @@ div.tocify {
 <li>
   <a href="rosetta.html">Rosetta store</a>
 </li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -357,8 +360,8 @@ div.tocify {
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p><img src="examples/glm1/resultsmr1.png" class="img-responsive" alt=""></p>
-<p>Results show that both age and exercising have an effect on endurance while keeping constant the other variable. The ANOVA table shows also the R-squared, R-squared=.166, indicating the the two independent variables together explain around 16% of the dependent variable variance.</p>
+<p><img src="examples/glm1/model.results.png" class="img-responsive" alt=""></p>
+<p>Results show that both age and exercising have an effect on endurance while keeping constant the other variable. The <code>Model Info</code> table shows the R-squared, R-squared=.166 (adjusted .159), indicating the the two independent variables together explain around 16% of the dependent variable variance.</p>
 <p>The <code>Model Coefficients</code> table reports the B coefficients estimates. We can interpret the B coefficients (under <code>Estimate</code> column of <code>Model Coefficients</code> table) because the units of the variables are intuitively clear:</p>
 <ul>
 <li><code>xage</code> B=-.257: While keeping exercise constant, one year more in age corresponds on average to a decrease in endurance of .257 minutes.</li>
@@ -374,7 +377,7 @@ div.tocify {
 <li>omega-squared: expected proportion of variance explained over the variance not explained by other effects, expected in the population.</li>
 </ul>
 <p>By ticking the options in the variable definition panel, we obtain the ES indeces as follows.</p>
-<p><img src="examples/glm1/resultsmr2.png" class="img-responsive" alt=""></p>
+<p><img src="examples/glm1/model.results2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="moderated-regression" class="section level2">
 <h2>Moderated regression</h2>
@@ -386,7 +389,7 @@ div.tocify {
 <div id="results-1" class="section level2">
 <h2>Results</h2>
 <p>Let’s us first focus on the parameters estimates, the B coefficients.</p>
-<p><img src="examples/glm1/resultsmoderate.png" class="img-responsive" alt=""></p>
+<p><img src="examples/glm1/model2.results.png" class="img-responsive" alt=""></p>
 <p>The interaction term appears to be statistically significant, B=0.047, t(241)=3.48,p&lt;.001,eta^2=0.048, justifying interpreting the first-order effects as conditional effects. Because we have centered the variables to their means, we can interpret the first-order effect as “average” effects. On average:</p>
 <ul>
 <li><code>xage</code> B=-.261: one year more in age corresponds on average to a decrease in endurance of .26 minutes.</li>
@@ -396,20 +399,28 @@ div.tocify {
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
-<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effec variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
+<p>We can now probe the interaction. We go to <code>Simple effects</code> tab and select <code>xage</code> as <code>Simple effects variable</code> and <code>zexer</code> as <code>Moderator</code>. In this way we obtain the effect of age computed for high exercise (<code>zexer</code> centered to 1 SD above average), the main effect of age (<code>zexer</code> centered to its mean) and the effect of age computed for low exercise (<code>zexer</code> centered to -1 SD above average).</p>
+<p><img src="examples/glm1/simple.png" class="img-responsive" alt=""></p>
 <p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
-<p><img src="examples/glm1/resultssimple.png" class="img-responsive" alt=""></p>
+<p><img src="examples/glm1/simple.results.png" class="img-responsive" alt=""></p>
 <p>The first row of the table shows the simple slope of age (the effect of age) computed for exercise equal to minus one standard deviation (-4.78). The effect of age is negative and strong ,B=-.487, t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope of age (the effect of age) computed for average exercise (0). The effect of age is negative and but weaker than for high exercise ,B=-.261, t(241)=-4.085,p&lt;.001. Finally, for high exercise (+4.78), the effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>
+<p>One can change the conditining levels of the moderators going back to <code>Covariates scaling</code> panel. Assume we want to use the percentiles (25%,50%,75%), we can flag the options in <code>Covariates scaling</code> accordingly.</p>
+<p><img src="examples/glm1/scaling.png" class="img-responsive" alt=""></p>
+<p>and check the the simple effects are now changed, because they are estimated for different values of the moderator.</p>
+<p><img src="examples/glm1/scaling.results.png" class="img-responsive" alt=""></p>
+<p>One can further tweak the appearance of the tables by selecting different value/labels options in <code>Covariates Scaling</code> panel. For instance, by selecting <code>Values + Labels</code> one obtains detailed labeling in the tables.</p>
+<p><img src="examples/glm1/labeling.png" class="img-responsive" alt=""></p>
+<p><img src="examples/glm1/labeling.results.png" class="img-responsive" alt=""></p>
 </div>
 <div id="simple-slopes-plot" class="section level2">
 <h2>Simple Slopes Plot</h2>
 <p>We can get a clear picture of the interaction by asking for a plot. Also the plot module takes care of centering the variables in a way that makes the plot clearly understandable.</p>
 <p><img src="examples/glm1/plots.png" class="img-responsive" alt=""></p>
-<p>It plots the effect of the <code>Horizontal axis</code> variable for three levels (-1 SD, mean, +1 SD) of the <code>Separate Lines</code> variable.</p>
-<p><img src="examples/glm1/resultsplot.png" class="img-responsive" alt=""></p>
+<p>It plots the effect of the <code>Horizontal axis</code> variable for three levels (decided in <code>Covariate scaling</code>) of the <code>Separate Lines</code> variable.</p>
+<p><img src="examples/glm1/plots.results.png" class="img-responsive" alt=""></p>
 <p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
-<p>Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data (GAMLj v. &gt;= 0.9.3).</p>
-<p><img src="examples/glm1/resultsplot2.png" class="img-responsive" alt=""></p>
+<p>Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the plots of the actual data.</p>
+<p><img src="examples/glm1/data.plots.png" class="img-responsive" alt=""></p>
 <h1>
 Comments?
 </h1>

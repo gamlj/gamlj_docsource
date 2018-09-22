@@ -15,21 +15,18 @@ output:
 source("../R/functions.R")
 ```
 
-`r version("0.9.7")` ,`r version("1.0.0")` 
+`r version("1.0.0")` 
 
 
 **Mixed Linear Models** module of the GAMLj suite for jamovi
 
-<img src="mixed/i1.png" class="img-responsive" alt="">
+<img src="mixed/main.png" class="img-responsive" alt="">
 
-The module estimate a mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. For more information about how to module works, please check the [technical details](mixed_specs.html)
+The module estimates a mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. For more information about how to module works, please check the [technical details](mixed_specs.html)
  
 
 # Module
 The module can estimates REML and ML linear mixed models for any combination of categorical and continuous variables, thus providing an easy way of obtaining multilevel or hierarchical linear models for any combination of independent variables types.
-
-<img src="mixed/i2.png" class="img-responsive" alt="">
-
 
 # Estimates
 The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.
@@ -39,7 +36,7 @@ Variables definition follows jamovi standards, with categorical independent vari
 <img src="mixed/variables.png" class="img-responsive" alt="">
 
 
-The grouping variable is simply set by putting the corresponding variable(s) into "cluster". In this version, multiple clustering variables are possible, but not combinations of classifications ( see [Technical Details](mixed_specs.html) ). 
+The grouping variable is simply set by putting the corresponding variable(s) into `cluster`. In this version, multiple clustering variables are possible, but not combinations of classifications ( see [Technical Details](mixed_specs.html) ). 
 
 Confidence intervals for the parameters estimates and  REML or ML can be chosen.
 
@@ -47,15 +44,13 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 # Random effects
 
-<img src="mixed/i4.png" class="img-responsive" alt="">
+<img src="mixed/random.png" class="img-responsive" alt="">
 
-Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates a that the coefficient associated with `term` is random across `cluster`. 
+Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates that the coefficient associated with `term` is random across `cluster`. 
 
-By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting "Correlated Effects" options.
+By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting `Correlated Effects` option.
 
-`r version("1.0.0")`
-
-The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The tests basically compare the likelihood of a model with the `effect` versus model without the `effect`. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
+The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The test basically compares the likelihood of a model with the `effect` included versus a model with the `effect` excluded. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
 # Fixed effects Model 
 <img src="mixed/i3.png" class="img-responsive" alt="">
@@ -65,91 +60,53 @@ By default, the model fixed effects terms are filled in automatically for main e
 Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
 
 # Factors coding
-`r version("0.9.7")` 
-<img src="mixed/i5.png" class="img-responsive" alt="">
 
-`r version("1.0.0")`
+<img src="commons/pics/factorCoding.png" class="img-responsive" alt="">
 
-<img src="mixed/i5_1.png" class="img-responsive" alt="">
+```{Call_child, child='commons/factorCoding_chunk.Rmd'}
+```
 
-It allows to code the categorical variables accoring to different coding schemes. The coding scheme applies to the parameter estimates, simple effects and plots. The ANOVA table uses always the "deviation" scheme, that is "-1 0 1" coding. _default_ uses the factor coding "contr.sum", that is the -1 0 1 coding which results in appropriated Type III Sum of Squares.
-
-Note that all contrasts but `dummy`, when employed in the model, guarantees to be centered to zero (intercept being the grand mean ), so when involved in interactions their coefficients can be interpret as (main) average effects. If contrast `dummy` is set, the intercept is the average of the dependent variable computed for the first group of the categorical IV.  
-
-Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting "Show contrast definition table". 
-
-Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.
-
-## Contrasts  schemes
-
-Details of the contrasts definition can be found [here](https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/), and in `r link_pages(category="rosetta",topic="contrast")`
-
+More details and examples `r link_pages("ros_contrasts")`.
 
 
 # Covariates Scaling
-`r version("1.0.0")`
+<img src="commons/pics/xscoring.png" class="img-responsive" alt="">
 
-<img src="mixed/i6.png" class="img-responsive" alt="">
+Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simple select `none`.
 
-Continuous variables can be centered, standardized or used as they are ("none", the default). Both centering and standardization can be obtained based on the whole sample mean and SD, or cluster-based. Cluster based standardization uses the mean and the SD of each cluster.
-
-The second part of the panel allows to decide how to condition the continuous independent variables (covariates) in plots and simple effects analyses involving interactions. Default is `Mean +- 1 SD`, which is the standard conditioning to the mean, the mean plus 1 standard deviation and the mean minus one standard deviation. `Mean +- offset` allows to condition to the mean plus and minus any value the user wants. `Percentile (25,50,75)` conditions the covariates to the respective percentiles, while `Percentile +- offset` conditions to the median (50th percetile) plus and minus any value of percentile. The latter offset should be less than 50.
-
-**`Covariates labeling`** allows to use in plots and simple effects analyses either the labels of the conditioning values, their actual values, or both.
+ `cluster-based centered` and `cluster-based standardized` center each score using the mean of the cluster in which the score belongs. For `cluster-based standardized` the score is also divided by the cluster standard deviation.
 
 
-
+```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
+```
 
 # Post-hocs
-<img src="mixed/i8a.png" class="img-responsive" alt="">
-
-Major post-hoc tests can be accomplished for the categorical variables groups by selecting the appropriated factor and tick the required tests
-
-Post-hoc are always computed on the expected means (EMMEANS). 
-
-# Fixed Effects Plots
-
-<img src="mixed/i7.png" class="img-responsive" alt="">
-
-The "plots" menu allows for plotting  fixed main effects and fixed interactions for any combination of types of variables, 
-making it easy to plot interaction means plots, simple slopes, and combinations of them. The best plot type is chosen automatically.
-
-By filling in "Horizontal axis" one obtains the group means of the selected factor or the regression line for the selected covariate
-
-By filling in "Horizontal axis" and "Separated lines" one a different plot depending on the type of variables selected:
-  - "Horizontal axis" and "Separated lines" are both factos, one obtains the interaction plot of group means.
-  - "Horizontal axis"=factor and "Separated lines"=covariate. One obtains the plot of group means of the factor estimated at three different levels of the covariate. +1 SD, the mean, and -1 SD.
-  - "Horizontal axis"=covariate and "Separated lines"=covariate. One obtains the simple slopes graph of the simple slope of the variable in horizontal axis estimated at three different levels of the covariate. +1 SD, the mean, and -1 SD.
-  
-By filling in "separate plots" one can proble three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the "separate plots" variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the "separate plots" variable centered to +1SD, the mean, and -1SD.
-
-Ticking the option add confidence intervals (or confidence bands) or standard errors to the plots.
-
-All plots are, however, depicting predicted values in the response. See details and interpretation discussion.
-
-<img src="mixed/plots_e1.png" class="img-responsive" alt="">
-<img src="mixed/plots_e2.png" class="img-responsive" alt="">
-
-Ticking the option "Observed scores" overimpose the actual scores to the graph. The `Y-axis observed range` allows to plot the estimated score in the observed dependent variable range without the need to plot the actual data (here is an example for a logistic model).
-
-<img src="mixed/plots_e3.png" class="img-responsive" alt="">
+<img src="mixed/posthoc.png" class="img-responsive" alt="">
 
 
-# Simple effects
+```{Call_child, child='commons/posthoc_chunk.Rmd'}
+```
 
-<img src="mixed/ai8.png" class="img-responsive" alt="">
 
-Simple effects for the fixed effects can be computed for any combination of types of variables, 
-making it easy to proble interaction, simple slopes, and combinations of them. 
-Simple effects can estimated  up to a three-way interaction.
 
-Simple effects are computed following the same logic of the plots. They correspond to the plotted effects as defined above.
+# Plots
+
+<img src="mixed/plots.png" class="img-responsive" alt="">
+
+
+```{Call_child, child='commons/plots_chunk.Rmd'}
+```
+
+By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. 
 
 # Estimated marginal means
 
-<img src="mixed/i9.png" class="img-responsive" alt="">
+<img src="commons/pics/emmeans.png" class="img-responsive" alt="">
 
-Print the estimate expected means, SE, df and confidence intervals of the dependent variable by factors in the model.
+```{Call_child, child='commons/emm_chunk.Rmd'}
+```
+
+
 
 # More info
 

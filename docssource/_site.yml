@@ -13,6 +13,8 @@ navbar:
     href:  gzlm.html
   - text: "Rosetta store"
     href:  rosetta.html
+  - text: "Release notes"
+    href:  release_notes.html
 
   right: 
   - text: "View on Github"
