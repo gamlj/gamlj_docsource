@@ -10,7 +10,11 @@ output:
 
 ---
 
-#  version 1.0.0 (future)
+#  version 1.0.1 (future)
+
+* bug fix regarding recycling results with very large datasets
+
+#  version 1.0.0 
 
 ## Common
 
