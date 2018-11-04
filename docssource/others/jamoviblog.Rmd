@@ -70,7 +70,7 @@ Updating GAMLj to version 1.0 is as simple as for any other jamovi module. Withi
 
 <img src="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/docs/others/update.png" class="img-responsive" alt="">
 
-You find the model menus below the `linear models` icon.
+You find the module menus below the `linear models` icon.
 
   
 
