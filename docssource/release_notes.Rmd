@@ -10,14 +10,15 @@ output:
 
 ---
 
-#  version 1.0.1 (future)
+#  version 1.0.3 (future)
 
-* bug fix regarding recycling results with very large datasets
+* add R interface command to obtain ggplot object
 
-#  version 1.0.0 
+#  version 1.0.1 
 
 ## Common
 
+* bug fix regarding recycling results with very large datasets
 * Estimated marginal means for conditioned covariates
 * contrasts labels in the simple effects parameters table
 * contrasts labels in the plots

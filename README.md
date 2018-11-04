@@ -1,2 +1,2 @@
 # gamlj_docs
-Documentation for gamlj
+Documentation for [gamlj](https://mcfanda.github.io/gamlj_docs/)
