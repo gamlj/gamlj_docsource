@@ -15,30 +15,35 @@ output:
 
 
 
-GAMLj version 1.0 is out, more powerful than ever but as easy as usual!  Module GAMLj is a suite for jamovi to estimate, manipulate, and visualize linear models, from simple regression/ANOVA models (GLM) to mixed models and generalized models (logistic, multinomial and similar models). Version 1.0 offers many new features for all of those models, such as conditioning continuous moderators at any value you want, clear description of the contrast coding for catagorical variables, and estimation of marginal means at both categorial and continuos variables levels. Specific new features were also added for each model, like significance testing and plotting of random effects in the mixed model, or normality tests for the GLM. There's plenty to explore in GAMLj, and plenty to do.  
+GAMLj version 1.0 is out, more powerful then ever but as easy as usual!  Module GAMLj is a suite for [jamovi](https://www.jamovi.org/download.html) to estimate, manipulate, and visualize linear models, from simple regression/ANOVA models (GLM) to mixed models and generalized models (logistic, multinomial and similar linear models). Version 1.0 offers many new features for all of those models, such as conditioning continuous moderators at any value you want ([cf. example](https://mcfanda.github.io/gamlj_docs/glm_example1.html)), clear description of the [contrast coding](https://mcfanda.github.io/gamlj_docs/rosetta_contrasts.html) for catagorical variables , and estimation of marginal means at both categorial and continuos variables levels. Specific new features were also added for each model, like significance testing and plotting of random effects in the [mixed model](https://mcfanda.github.io/gamlj_docs/mixed.html), or normality tests for the [GLM](https://mcfanda.github.io/gamlj_docs/glm.html#assumptions_checks). There's plenty to explore in GAMLj, and plenty to do.  
 
-Version 1.0 benefits from several months of testing of previous versions, yielding a module based on more solid code and a robust interface. The philosophy behind GAMLj is still the same: Providing the user with a simple interface for all the linear models handled by the module,  allowing the user to interact in the same way with different models, no matter how complex or easy the models are, or what statistical machinery is working behind the scene. But version 1.0 does not only consolidate the past: new features were added, many of them available, in a single module, only in jamovi. Let's see what is confirmed and what is new.
+<img src="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/docs/others/pic1.png" class="img-responsive" alt="">
+  
+Version 1.0 benefits from several months of testing of previous versions, yielding a module based on more solid code and a robust interface. The philosophy behind GAMLj is still the same: Providing the user with a simple interface for all the linear models handled by the module,  allowing the user to interact in the same way with different models, no matter how complex or easy the models are, or what statistical machinery is working behind the scene. 
 
-<img src="pic1.png" class="img-responsive" alt="">
+Version 1.0 does not only consolidate the past: new features were added, many of them available, in a single module, only in jamovi. Let's see what is confirmed and what is new.
+
 
 
 ## Common features of GAMLj models
 
-Users of statistical software, expecially at the beginning of their statistical journey, get to know the charateristics of linear models by studying simple regression and ANOVA: in GAMLj, if you know how to run an regression/ANOVA, you can run all the linear models available, flying over the technicalities and getting the job done, correctly. 
+Users of statistical software, expecially at the beginning of their statistical journey, become familiar with the charateristics of linear models by studying simple regression and ANOVA: in GAMLj, if you know how to run an regression/ANOVA, you can run all the linear models available, flying over the technicalities and getting the job done, correctly. 
 
 In fact, for the GLM, the mixed model and the generalized linear model GAMLj offers plenty of tools to explore and test model results:
 
 * Continuous and categorical independent variables
-* F-test and parameter estimates
+* Omnibus tests and parameter estimates
 * Confidence intervals
 * Simple slopes analysis
 * Simple effects
-* post-hocs analysis
+* Post-hoc tests
 * Plots for up to three-way interactions for both categorical and continuous independent variables.
 * Automatic selection of best estimation methods and degrees of freedom selection
 * Type III estimation
+* Estimate the model in R and manipulate results and plots with R syntax.
 
-All those operation can be done on a pletora of linear models:
+
+All these operations can be done on a plethora of linear models:
 
 * OLS Regression (GLM)
 * OLS ANOVA (GLM)
@@ -56,9 +61,17 @@ All those operation can be done on a pletora of linear models:
 * Overdispersed Poisson regression (GZLM)
 * Overdispersed Poisson ANOVA-like model (GZLM)
 * Negative binomial regression (GZLM)
-* Negative binomail  ANOVA-like model (GZLM)
+* Negative binomial  ANOVA-like model (GZLM)
 
 
+## Update
 
+Updating GAMLj to version 1.0 is as simple as for any other jamovi module. Within jamovi, open the module library and look for GAMLj. Click `update` and you are ready to go.
+
+<img src="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/docs/others/update.png" class="img-responsive" alt="">
+
+You find the model menus below the `linear models` icon.
+
+  
 
 
