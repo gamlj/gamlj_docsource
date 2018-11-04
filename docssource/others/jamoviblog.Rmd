@@ -40,6 +40,8 @@ In fact, for the GLM, the mixed model and the generalized linear model GAMLj off
 * Plots for up to three-way interactions for both categorical and continuous independent variables.
 * Automatic selection of best estimation methods and degrees of freedom selection
 * Type III estimation
+* Estimate the model in R and manipulate results and plots with R syntax.
+
 
 All these operations can be done on a plethora of linear models:
 
