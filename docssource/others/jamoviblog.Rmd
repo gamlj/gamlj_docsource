@@ -15,21 +15,17 @@ output:
 
 
 
-GAMLj version 1.0 is out, more powerful then ever but as easy as usual!  Module GAMLj is a suite for [jamovi](https://www.jamovi.org/download.html) to estimate, manipulate, and visualize linear models, from simple regression/ANOVA models (GLM) to mixed models and generalized models (logistic, multinomial and similar linear models). Version 1.0 offers many new features for all of those models, such as conditioning continuous moderators at any value you want ([cf. example](https://mcfanda.github.io/gamlj_docs/glm_example1.html)), clear description of the [contrast coding](https://mcfanda.github.io/gamlj_docs/rosetta_contrasts.html) for catagorical variables , and estimation of marginal means at both categorial and continuos variables levels. Specific new features were also added for each model, like significance testing and plotting of random effects in the [mixed model](https://mcfanda.github.io/gamlj_docs/mixed.html), or normality tests for the [GLM](https://mcfanda.github.io/gamlj_docs/glm.html#assumptions_checks). There's plenty to explore in GAMLj, and plenty to do.  
+GAMLj version 1.0 is out, a more powerful version, but still neat and easy as the previous ones. Module GAMLj is a suite for [jamovi](https://www.jamovi.org/download.html) to estimate, manipulate, and visualize linear models, from simple regression/ANOVA models (GLM) to mixed models and generalized models (logistic, multinomial and similar linear models). Version 1.0 offers many new features available for all these models, such as conditioning continuous moderators at any value you want ([cf. example](https://mcfanda.github.io/gamlj_docs/glm_example1.html)), improved information about [contrast coding](https://mcfanda.github.io/gamlj_docs/rosetta_contrasts.html) for catagorical variables, and estimation of marginal means at both categorial and continuos variables levels. 
+
+Specific new features were also added for each model, like significance testing and plotting of random effects in the [mixed model](https://mcfanda.github.io/gamlj_docs/mixed.html), or normality tests for the [GLM](https://mcfanda.github.io/gamlj_docs/glm.html#assumptions_checks). There's plenty to explore in GAMLj, and plenty to do.  
 
 <img src="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/docs/others/pic1.png" class="img-responsive" alt="">
   
-Version 1.0 benefits from several months of testing of previous versions, yielding a module based on more solid code and a robust interface. The philosophy behind GAMLj is still the same: Providing the user with a simple interface for all the linear models handled by the module,  allowing the user to interact in the same way with different models, no matter how complex or easy the models are, or what statistical machinery is working behind the scene. 
+Version 1.0 benefits from several months of testing of previous versions, yielding a module based on more solid code and a robust interface. And the philosophy behind GAMLj is did not change: Providing the user with a simple interface for all the linear models handled by the module,  allowing the user to interact in the same way with different models, no matter how complex the models are, or what statistical machinery is working behind the scene. 
 
-Version 1.0 does not only consolidate the past: new features were added, many of them available, in a single module, only in jamovi. Let's see what is confirmed and what is new.
+Users of statistical software, expecially at the beginning of their statistical journey, become familiar with the charateristics of linear models by studying simple regression and ANOVA: in GAMLj, if you know how to run a regression/ANOVA, you can run all the other linear models, flying over the technicality and getting the job done, correctly. 
 
-
-
-## Common features of GAMLj models
-
-Users of statistical software, expecially at the beginning of their statistical journey, become familiar with the charateristics of linear models by studying simple regression and ANOVA: in GAMLj, if you know how to run an regression/ANOVA, you can run all the linear models available, flying over the technicalities and getting the job done, correctly. 
-
-In fact, for the GLM, the mixed model and the generalized linear model GAMLj offers plenty of tools to explore and test model results:
+GAMLj offers plenty of tools to explore and test model results. Among the most important, we can highlight:
 
 * Continuous and categorical independent variables
 * Omnibus tests and parameter estimates
@@ -37,13 +33,13 @@ In fact, for the GLM, the mixed model and the generalized linear model GAMLj off
 * Simple slopes analysis
 * Simple effects
 * Post-hoc tests
-* Plots for up to three-way interactions for both categorical and continuous independent variables.
-* Automatic selection of best estimation methods and degrees of freedom selection
+* Plots for up to three-way interactions for both categorical and continuous independent variables
+* Automatic selection of best estimation methods and degrees of freedom
 * Type III estimation
-* Estimate the model in R and manipulate results and plots with R syntax.
+* Estimation of the model in R and manipulation of results and plots with R syntax
 
 
-All these operations can be done on a plethora of linear models:
+All these operations can be done on a plethora of linear models, such as:
 
 * OLS Regression (GLM)
 * OLS ANOVA (GLM)
@@ -66,11 +62,11 @@ All these operations can be done on a plethora of linear models:
 
 ## Update
 
-Updating GAMLj to version 1.0 is as simple as for any other jamovi module. Within jamovi, open the module library and look for GAMLj. Click `update` and you are ready to go.
+Updating GAMLj to version 1.0 is as simple as for any other module in jamovi. Within jamovi, open the module library and look for GAMLj. Click `update` and you are ready to go.
 
 <img src="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/docs/others/update.png" class="img-responsive" alt="">
 
-You find the model menus below the `linear models` icon.
+You find the module menus below the `linear models` icon. If you need directions or just want to read more details, help files and examples are available on  [GAMLj docs page](https://mcfanda.github.io/gamlj_docs/).
 
   
 
