@@ -362,7 +362,7 @@ div.tocify {
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
 <p><img src="commons/pics/factorCoding.png" class="img-responsive" alt=""></p>
-<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to the parameter estimates, simple effects and plots. The Omnibus Tests (ANOVA) table uses always the “deviation” scheme, that is “-1 0 1” coding, which results in a correct Type III analysis.</p>
+<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameter estimates.</p>
 <p>Note that all contrasts but <code>dummy</code> guarantee to be centered to zero (intercept being the grand mean), so when involved in interactions the other variables coefficients can be interpret as (main) average effects. If contrast <code>dummy</code> is set, the intercept and the effects of other variables in interactions are estimated for the first group of the categorical IV.</p>
 <p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting “Show contrast definition table”.</p>
 <p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
@@ -372,7 +372,7 @@ div.tocify {
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
 <p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simple select <code>none</code>.</p>
+<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
 <p><code>Covariates conditioning</code> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
 <li><p><code>Mean+SD</code>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>
