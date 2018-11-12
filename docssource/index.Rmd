@@ -53,7 +53,7 @@ Available models are:
 * Negative binomial regression (GZLM)
 * Negative binomail  ANOVA-like model (GZLM)
 
-Please visit the sub-module pages for details:
+Please visit the sub-modules pages for details:
 
 * [GAMLj GLM](glm.html)
 * [GAMLj Mixed models](mixed.html)
