@@ -12,7 +12,7 @@
 <meta name="author" content="(by Marcello Gallucci)" />
 
 
-<title>Mixed Models: Repeated measure designs</title>
+<title>Mixed Models: Repeated measures designs</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -318,7 +318,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Mixed Models: Repeated measure designs</h1>
+<h1 class="title toc-ignore">Mixed Models: Repeated measures designs</h1>
 <h4 class="author"><em>(by Marcello Gallucci)</em></h4>
 
 </div>
@@ -326,7 +326,7 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> jamovi, Mixed model, simple effects, post-hoc, polynomial contrasts </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 0.9.7 </span>,<span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.0 </span></p>
-<p>In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.</p>
+<p>In this example we work out the analysis of a simple repeated measures design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.</p>
 <p>We use the GAMLj module in Jamovi. One can follow the example by downloading the file <a href="https://github.com/mcfanda/gamlj/blob/master/data/howell_rep.csv">howell_rep</a> and open it in <a href="https://www.jamovi.org/download.html">jamovi</a>. Be sure to install GAMLj module from within jamovi library.</p>
 <p>The data are from a <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">David C. Howell</a> website. You can find there a lot of very clear information and discussion of repeated measures mixed model analysis, in SPSS, SAS, and R. As you would expect from David C. Howell, the material is simply great.</p>
 <div id="the-research-design" class="section level1">
@@ -341,7 +341,7 @@ div.tocify {
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
-<p>Here we simple need to estimate the main effects of <code>time</code>, of <code>group</code> and their interaction, as one would do in a standard ANOVA. Because we have a repeated measure factor (<code>time</code>), we should take dependency in the data into the account. We do that by allowing the intercepts to vary from subject to subject. In this way, each participant is “allowed” to have a higher or lower overall response (average response over time), and thus the error term (the residuals) are computed as deviation from the participant’s mean (and the fixed effects). This captures (for a good share) the dependency among data.</p>
+<p>Here we simple need to estimate the main effects of <code>time</code>, of <code>group</code> and their interaction, as one would do in a standard ANOVA. Because we have a repeated measures factor (<code>time</code>), we should take dependency in the data into the account. We do that by allowing the intercepts to vary from subject to subject. In this way, each participant is “allowed” to have a higher or lower overall response (average response over time), and thus the error term (the residuals) are computed as deviation from the participant’s mean (and the fixed effects). This captures (for a good share) the dependency among data.</p>
 <p>We can talk about “average response” because we are going to use <code>deviations</code> coding for the categorical variables (GAMLj does that by default), so the fixed intercept is the expected value of the dependent variable on avergare, and the random intercepts are individual deviations from it.</p>
 <p>Later on, we also explore the possibility that the effect of time is different from participant to participant. This is done by setting also the effect of time as random effect. The data will suggest if there’s enough variability in the effects to justify this model.</p>
 </div>
@@ -400,7 +400,7 @@ div.tocify {
 </div>
 <div id="mixed-vs-rm-anova" class="section level2">
 <h2>Mixed vs RM Anova</h2>
-<p>If one looks at the results discussed in <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">David C. Howell</a> website, one can appreciate that our results are almost perfectly in line with the ones obtained with SPSS, SAS, and with a repeated measure ANOVA. The latter it is not always true, meaning that depending on the data and model charateristics, RM ANOVA and the Mixed model results may differ. RM ANOVA and the Mixed model are different strategies to estimates effects in RM designs, thus they are not always overlapping.</p>
+<p>If one looks at the results discussed in <a href="https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html">David C. Howell</a> website, one can appreciate that our results are almost perfectly in line with the ones obtained with SPSS, SAS, and with a repeated measures ANOVA. The latter it is not always true, meaning that depending on the data and model charateristics, RM ANOVA and the Mixed model results may differ. RM ANOVA and the Mixed model are different strategies to estimates effects in RM designs, thus they are not always overlapping.</p>
 </div>
 <div id="estimated-means-plots" class="section level2">
 <h2>Estimated Means Plots</h2>
@@ -471,7 +471,7 @@ div.tocify {
 <a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>
 </li>
 <li>
-<a href="mixed_example2.html">Mixed Models: Repeated measure designs</a>
+<a href="mixed_example2.html">Mixed Models: Repeated measures designs</a>
 </li>
 </ul>
 <h1>

@@ -1,5 +1,5 @@
 ---
-title: "Mixed Models: Repeated measure designs"
+title: "Mixed Models: Repeated measures designs"
 author: "(by Marcello Gallucci)"
 topic: mixed
 nickname: mixedrepeated
@@ -20,7 +20,7 @@ source("../R/functions.R")
 
 `r version("0.9.7")`,`r version("1.0.0")`
 
-In this example we work out the analysis of a simple repeated measure design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
+In this example we work out the analysis of a simple repeated measures design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
 
 We use the GAMLj module in Jamovi. One can follow the example by downloading the file [howell_rep](https://github.com/mcfanda/gamlj/blob/master/data/howell_rep.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
@@ -47,7 +47,7 @@ Data are in the long format: Each observation is a row, and the variable `subj` 
 
 # Understanding the problem
 
-Here we simple need to estimate the main effects of `time`, of `group` and their interaction, as one would do in a standard ANOVA. Because we have a repeated measure factor (`time`), we should take dependency in the data into the account. We do that by allowing the intercepts to vary from subject to subject. In this way, each participant is "allowed" to have a higher or lower overall response (average response over time), and thus the error term (the residuals) are computed as deviation from the participant's mean (and the fixed effects). This captures (for a good share) the dependency among data.
+Here we simple need to estimate the main effects of `time`, of `group` and their interaction, as one would do in a standard ANOVA. Because we have a repeated measures factor (`time`), we should take dependency in the data into the account. We do that by allowing the intercepts to vary from subject to subject. In this way, each participant is "allowed" to have a higher or lower overall response (average response over time), and thus the error term (the residuals) are computed as deviation from the participant's mean (and the fixed effects). This captures (for a good share) the dependency among data.
 
 We can talk about "average response" because we are going to use `deviations` coding for the categorical variables (GAMLj does that by default), so the fixed intercept is the expected value of the dependent variable on avergare, and the random intercepts are individual deviations from it.
 
@@ -132,7 +132,7 @@ The **Random Component** display the variances and SD of the random coefficients
 
 ## Mixed vs RM Anova
 
-If one looks at the results discussed in [David C. Howell](https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html) website, one can appreciate that our results are almost perfectly in line with the ones obtained with SPSS, SAS, and with a repeated measure ANOVA. The latter it is not always true, meaning that depending on the data and model charateristics, RM ANOVA and the Mixed model results may differ. RM ANOVA and the Mixed model are different strategies to estimates effects in RM designs, thus they are not always overlapping.  
+If one looks at the results discussed in [David C. Howell](https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html) website, one can appreciate that our results are almost perfectly in line with the ones obtained with SPSS, SAS, and with a repeated measures ANOVA. The latter it is not always true, meaning that depending on the data and model charateristics, RM ANOVA and the Mixed model results may differ. RM ANOVA and the Mixed model are different strategies to estimates effects in RM designs, thus they are not always overlapping.  
 
 ## Estimated Means Plots 
 
