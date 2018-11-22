@@ -48,12 +48,12 @@ By looking at the scatterplot (in jamovi `Exploration` -> `scatr::Scatterplot`)
 
 <img src="examples/mixed1/scat1.png" class="img-responsive" alt="">
 
-we can see that it seems to be a negative relationship between the two variables. A Simple regression ((in jamovi `Linear Models` -> `GAMLj::General Linear Model`)) confirms this impression.
+we can see that there seems to be a negative relationship between the two variables. A Simple regression ((in jamovi `Linear Models` -> `GAMLj::General Linear Model`)) confirms this impression.
 
 <img src="examples/mixed1/glm.png" class="img-responsive" alt="">
 <img src="examples/mixed1/glmplot.png" class="img-responsive" alt="">
 
-The problem with this analysis is that does not consider the clustering of the data, that is, that customers are grouped across bars. If customer within a bar are more similar in their scores than customer across bars, data show dependencies and thus the GLM we ran would be biased. We have to take clustering into account.
+The problem with this analysis is that it does not consider the clustering of the data, that is, that customers are grouped within bars. If customers within a bar are more similar in their scores than customers across bars, data show dependency and thus the GLM we ran would be biased. We have to take clustering into the account.
 
 To get the feeling of possible effects of clustering, let's first look at the distributions of `smile` and `beer` within each bar (in jamovi `Exploration` -> `Descriptives`, put `bar` in `split by` field).
 
@@ -62,7 +62,7 @@ To get the feeling of possible effects of clustering, let's first look at the di
 
 We can notice that bars tend to have different means both in the `smile` and in the `beer` variables, pointing to possible dependency in the data.
 
-Furthermore, a scatter-plot highlighting the bar classification seems to suggest that the points are clustered within bars, and reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.
+Furthermore, a scatterplot highlighting the bars classification seems to suggest that the points representing scores (# of smiles given the # of beers) are clustered within bars, and also reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.
 
 <img src="examples/mixed1/scat2.png" class="img-responsive" alt="">
 
@@ -88,7 +88,7 @@ In order to estimate the model with jamovi, we first need to set each variable i
 
 <img src="examples/mixed1/variables.png" class="img-responsive" alt="">
 
-First we put `smile` in the `Dependent Variable` field and `beer` in the `covariates` field. When a variable is put in the `Covariates` field, it is treated as a continuous quantitative variable (`as.numeric()` in R). Had we had a categorical independent variable, we would have put it in "Factors", so that proper coding of the groups would be obtained (`as.factor()` in R).   
+First we put `smile` in the `Dependent Variable` field and `beer` in the `Covariates` field. When a variable is put in the `Covariates` field, it is treated as a continuous quantitative variable (`as.numeric()` in R). Had we had a categorical independent variable, we would have put it in "Factors", so that proper coding of the groups would be obtained (`as.factor()` in R).   
 
 After that, we define `bar` as the clustering (grouping) variable, by putting it in the `Cluster` field.
 

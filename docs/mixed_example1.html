@@ -350,13 +350,13 @@ div.tocify {
 <p>If we ignore for a moment the fact that we sampled customers within bars, the analytic problem would boil down to a simple regression, with <code>smile</code> as dependent variable and <code>beer</code> as independent variable.</p>
 <p>By looking at the scatterplot (in jamovi <code>Exploration</code> -&gt; <code>scatr::Scatterplot</code>)</p>
 <p><img src="examples/mixed1/scat1.png" class="img-responsive" alt=""></p>
-<p>we can see that it seems to be a negative relationship between the two variables. A Simple regression ((in jamovi <code>Linear Models</code> -&gt; <code>GAMLj::General Linear Model</code>)) confirm this impression.</p>
+<p>we can see that there seems to be a negative relationship between the two variables. A Simple regression ((in jamovi <code>Linear Models</code> -&gt; <code>GAMLj::General Linear Model</code>)) confirms this impression.</p>
 <p><img src="examples/mixed1/glm.png" class="img-responsive" alt=""> <img src="examples/mixed1/glmplot.png" class="img-responsive" alt=""></p>
-<p>The problem with this analysis is that does not consider the clustering of the data, that is, that customers are grouped across bars. If customer within a bar are more similar in their scores than customer across bars, data show dependencies and thus the GLM we ran would be biased. We have to take clustering into account.</p>
+<p>The problem with this analysis is that it does not consider the clustering of the data, that is, that customers are grouped within bars. If customers within a bar are more similar in their scores than customers across bars, data show dependency and thus the GLM we ran would be biased. We have to take clustering into the account.</p>
 <p>To get the feeling of possible effects of clustering, let’s first look at the distributions of <code>smile</code> and <code>beer</code> within each bar (in jamovi <code>Exploration</code> -&gt; <code>Descriptives</code>, put <code>bar</code> in <code>split by</code> field).</p>
 <p><img src="examples/mixed1/dist3.png" class="img-responsive" alt=""> <img src="examples/mixed1/dist2.png" class="img-responsive" alt=""></p>
 <p>We can notice that bars tend to have different means both in the <code>smile</code> and in the <code>beer</code> variables, pointing to possible dependency in the data.</p>
-<p>Furthermore, a scatter-plot highlighting the bar classification seems to suggest that the points are clustered within bars, and reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.</p>
+<p>Furthermore, a scatterplot highlighting the bars classification seems to suggest that the points representing scores (# of smiles given the # of beers) are clustered within bars, and also reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.</p>
 <p><img src="examples/mixed1/scat2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="mixed-model" class="section level1">
@@ -374,7 +374,7 @@ div.tocify {
 <p>We can see that the regression lines plotted in the graph have different intercepts but they are all perfectly parallel, meaning that they have the same (fixed) slope. This model is called __random intercepts_ model to signal that only the intercepts are allowed to vary from cluster to cluster.</p>
 <p>In order to estimate the model with jamovi, we first need to set each variable in the right field.</p>
 <p><img src="examples/mixed1/variables.png" class="img-responsive" alt=""></p>
-<p>First we put <code>smile</code> in the <code>Dependent Variable</code> field and <code>beer</code> in the <code>covariates</code> field. When a variable is put in the <code>Covariates</code> field, it is treated as a continuous quantitative variable (<code>as.numeric()</code> in R). Had we had a categorical independent variable, we would have put it in “Factors”, so that proper coding of the groups would be obtained (<code>as.factor()</code> in R).</p>
+<p>First we put <code>smile</code> in the <code>Dependent Variable</code> field and <code>beer</code> in the <code>Covariates</code> field. When a variable is put in the <code>Covariates</code> field, it is treated as a continuous quantitative variable (<code>as.numeric()</code> in R). Had we had a categorical independent variable, we would have put it in “Factors”, so that proper coding of the groups would be obtained (<code>as.factor()</code> in R).</p>
 <p>After that, we define <code>bar</code> as the clustering (grouping) variable, by putting it in the <code>Cluster</code> field.</p>
 <p><img src="examples/mixed1/variables2.png" class="img-responsive" alt=""></p>
 <p>If we now look at the results panel, we see that the model definition is not completed yet.</p>
