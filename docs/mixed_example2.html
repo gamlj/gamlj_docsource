@@ -342,7 +342,7 @@ div.tocify {
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
 <p>Here we simple need to estimate the main effects of <code>time</code>, of <code>group</code> and their interaction, as one would do in a standard ANOVA. Because we have a repeated measures factor (<code>time</code>), we should take dependency in the data into the account. We do that by allowing the intercepts to vary from subject to subject. In this way, each participant is “allowed” to have a higher or lower overall response (average response over time), and thus the error term (the residuals) are computed as deviation from the participant’s mean (and the fixed effects). This captures (for a good share) the dependency among data.</p>
-<p>We can talk about “average response” because we are going to use <code>deviations</code> coding for the categorical variables (GAMLj does that by default), so the fixed intercept is the expected value of the dependent variable on avergare, and the random intercepts are individual deviations from it.</p>
+<p>We can talk about “average response” because we are going to use <code>deviations</code> coding for the categorical variables (GAMLj does that by default), so the fixed intercept is the expected value of the dependent variable on average, and the random intercepts are individual deviations from it.</p>
 <p>Later on, we also explore the possibility that the effect of time is different from participant to participant. This is done by setting also the effect of time as random effect. The data will suggest if there’s enough variability in the effects to justify this model.</p>
 </div>
 <div id="mixed-model-random-intercepts-model" class="section level1">

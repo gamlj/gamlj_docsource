@@ -386,7 +386,7 @@ div.tocify {
 <p><img src="examples/mixed1/random2.png" class="img-responsive" alt=""></p>
 <p>At this point, the model is estimated and the results appear in the results panel. Before inspecting the results, we have a look at the fixed effects definition, by expanding the `Fixed Effects’ tab.</p>
 <p><img src="examples/mixed1/fixedeffects.png" class="img-responsive" alt=""></p>
-<p>Although we did not do anything about the fixed effects, jamovi automatically includes all independent variables defined in <code>Covariates</code> or in <code>Factor</code> in the fixed effects model. Obviously, when the models are complex, one can tweak the model terms to suits the analysis aim.</p>
+<p>Although we did not do anything about the fixed effects, jamovi automatically includes all independent variables defined in <code>Covariates</code> or in <code>Factor</code> in the fixed effects model. Obviously, when the models are complex, one can tweak the model terms to suit the analysis aims.</p>
 <p><img src="examples/mixed1/resultsRIM.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results" class="section level2">
@@ -394,7 +394,7 @@ div.tocify {
 <p>The first table in the output contains info about the model and the estimation.</p>
 <p><img src="examples/mixed1/resultsinfo.png" class="img-responsive" alt=""></p>
 <ul>
-<li>The <code>Call</code> row display the model in <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a> formulation. This can be useful to re-run the same analysis in R (not using GAMLj module).</li>
+<li>The <code>Call</code> row displays the model in <a href="https://cran.r-project.org/web/packages/lme4/index.html">lme4 R package</a> formulation. This can be useful to re-run the same analysis in R (not using GAMLj module).</li>
 <li>The <code>AIC</code> row displays the Aikeke Information Criterion, which can be useful to evaluate the model, especially in comparison with other models. Details can be found in <a href="https://github.com/mcfanda/gamlj/blob/master/docs/mixed_specs.html">GAMLj docs</a> and in [Zuur et. al , 2009] al.](<a href="http://www.springer.com/la/book/9780387874579" class="uri">http://www.springer.com/la/book/9780387874579</a>)</li>
 <li>R-marginal and R-conditional are proportion of reduced error, or pseudo-<span class="math inline">\(R^2\)</span>. They are described in <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12225/abstract;jsessionid=2018A0141FC9ABFF1B654117812A8FCA.f03t01">Johnson (2014)</a> and implemented in <a href="https://github.com/jslefche/piecewiseSEM/blob/master/README.md#get-r2-for-individual-models">piecewiseSEM</a>. For our purposes, we can interpret them as follows: <strong>R-marginal</strong> is the variance explained by the fixed effects over the total (expected) variance of the dependent variable. The <strong>R-conditional</strong> is the variance explained by the fixed and the random effects together over the total (expected) variance of the dependent variable. In our example, the fixed effects do not explain much (.107), but the overall model (fixed+random) captures a fairly big share of the variance (.853).</li>
 </ul>
