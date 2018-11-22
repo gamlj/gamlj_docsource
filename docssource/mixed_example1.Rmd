@@ -42,7 +42,7 @@ Number of beers and number of smiles are recorded in the dataset as `beer` and `
 
 # Understanding the problem
 
-If we ignore for a moment the fact that we sampled customers within bars, the analytic problem would boil down to a simple regression, with `smile` as dependent variable and `beer` as independent variable. 
+If we ignore for a moment the fact that we sampled customers within bars, the analytic problem boils down to a simple regression, with `smile` as dependent variable and `beer` as independent variable. 
 
 By looking at the scatterplot (in jamovi `Exploration` -> `scatr::Scatterplot`)
 
