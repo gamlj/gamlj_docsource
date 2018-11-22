@@ -12,7 +12,7 @@ output:
 
 #  version 1.0.3 (future)
 
-* add R interface command to obtain ggplot object
+* add R interface command to obtain a ggplot object
 * fix some characters in Windows
 
 #  version 1.0.1 

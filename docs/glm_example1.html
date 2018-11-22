@@ -337,9 +337,9 @@ div.tocify {
 <p>In this example we tackle a moderated regression analysis with simple slopes analysis and simple slopes graphs. Data are from <a href="http://psycnet.apa.org/record/2002-18109-000">Cohen et al 2003</a> and can be downloaded <a href="https://github.com/mcfanda/gamlj_docs/blob/master/data/exercise.csv">here</a>. A detailed comparison between the following results and results obtained with other software (SPSS, PROCESS, and R) can be found in <a href="rosetta_moderation.html">Rosetta store: moderation</a>.</p>
 <div id="the-research-design" class="section level1">
 <h1>The research design</h1>
-<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Edurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well (in jamovi <code>Exploration</code> -&gt; <code>Descriptive</code>)</p>
+<p>The research is about physical endurance associated with age and physical exercise. 245 participants were measured while jogging on a treadmill. Endurance was measured in minutes (‘yendu’ in the file). Participants’ age (<code>xage</code> in years) and number of years of physical exercise (<code>zexer</code> in years) were recorded as well (in jamovi <code>Exploration</code> -&gt; <code>Descriptive</code>)</p>
 <p><img src="examples/glm1/desc.png" class="img-responsive" alt=""></p>
-<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expectedly negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
+<p>The researcher is interested in studying the relationships between endurance, age, and exercising, with the hypothesis that the effect of age (expected to be negative) is moderated by exercise, such that the more participants work out (higher levels of <code>exer</code>) the less age negatively affects endurance.</p>
 </div>
 <div id="understanding-the-problem" class="section level1">
 <h1>Understanding the problem</h1>
@@ -367,8 +367,8 @@ div.tocify {
 <li><code>xage</code> B=-.257: While keeping exercise constant, one year more in age corresponds on average to a decrease in endurance of .257 minutes.</li>
 <li><code>zexer</code> B=-.916: While keeping age constant, one year more of exercising corresponds on average to an increase in endurance of .916 minutes.</li>
 </ul>
-<p>For each coefficient the condidence interaval is also reported.</p>
-<p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, afterall, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable mean. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
+<p>For each coefficient the confidence interval is also reported.</p>
+<p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, after all, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable mean. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
 <p>In general, we want to report standardized effect size indexes, for the sake of comparison, meta-analysis, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
 <ul>
 <li>betas: standardized coefficients.</li>
@@ -404,7 +404,7 @@ div.tocify {
 <p>jamovi GLM produces both the F-tests and the parameter estimates for the simple slopes. We focus on the latter table now.</p>
 <p><img src="examples/glm1/simple.results.png" class="img-responsive" alt=""></p>
 <p>The first row of the table shows the simple slopes of age (the effect of age) computed for exercise equal to minus one standard deviation (-4.78). The effect of age is negative and strong ,B=-.487, t(241)=-5.289,p&lt;.001. Going down the table we find the simple slope of age (the effect of age) computed for average exercise (0): The average effect of age, B=-.261, t(241)=-4.085,p&lt;.001, is negative and weaker than for high exercise. Finally, for high exercise (+4.78), the effect is weak and not significant, B=-.036, t(241)=-0.400,p=.690.</p>
-<p>One can change the conditining levels of the moderators by going back to <code>Covariates scaling</code> panel. If we want to use the percentiles (25%,50%,75%), for instance, we can flag the option in <code>Covariates scaling</code> accordingly.</p>
+<p>One can change the conditioning levels of the moderators by going back to <code>Covariates scaling</code> panel. If we want to use the percentiles (25%,50%,75%), for instance, we can flag the option in <code>Covariates scaling</code> accordingly.</p>
 <p><img src="examples/glm1/scaling.png" class="img-responsive" alt=""></p>
 <p>The simple effects are now changed, because they are estimated for a different set of values of the moderator.</p>
 <p><img src="examples/glm1/scaling.results.png" class="img-responsive" alt=""></p>
@@ -419,7 +419,7 @@ div.tocify {
 <p>The command plots the effect of the <code>Horizontal axis</code> variable for three levels (decided in <code>Covariate scaling</code>) of the <code>Separate Lines</code> variable.</p>
 <p><img src="examples/glm1/plots.results.png" class="img-responsive" alt=""></p>
 <p>The nice plot we get shows the simple effects (simple equations to be precise) with the prediction confidence intervals indicated by the colored shades around the lines. If needed, the confidence intervals can be substituted with the standard errors of the estimates or they can be removed completely.</p>
-<p>Finaly, in order to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data.</p>
+<p>Finally, in order to give a more honest account of the model fit, we can visualize the simple slopes over the the actual data.</p>
 <p><img src="examples/glm1/data.plots.png" class="img-responsive" alt=""></p>
 </div>
 </div>
