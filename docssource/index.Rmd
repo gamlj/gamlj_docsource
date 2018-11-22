@@ -108,7 +108,7 @@ Please check out the  [Release notes](release_notes.html).
 
 # Quality control
 
-please check the [rosetta store](rosetta.html) for alignment with other software results and possible discrepancies.
+Please check the [rosetta store](rosetta.html) for alignment with other software results and possible discrepancies.
 
   
 `r issues()`

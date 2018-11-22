@@ -372,17 +372,17 @@ div.tocify {
 <div id="omnibus-tests" class="section level2">
 <h2>Omnibus tests</h2>
 <p><img src="examples/gzlm2/r.omnibus1.png" class="img-responsive" alt=""></p>
-<p>The omnibus Chi-Squared tests inform us on the main effects and interaction statistical significance. We can see there that we obtained a main effect of <code>Treatment</code> and one of <code>Sex</code>. Thus, on average, the probability of being in pain changes across treatments and is different between women and men. There is definitely no interaction (<span class="math inline">\(\chi^2\)</span>=0, p=1).</p>
-<p>To interpret the main effects, let’s ask for the plot in the <code>Plots</code> panel:</p>
+<p>The omnibus Chi-Squared tests inform us on the main effects and interactions statistical significance. We can see there that we obtained a main effect of <code>Treatment</code> and one of <code>Sex</code>. Thus, on average, the probability of being in pain changes across treatments and it is different between women and men. There is clearly no interaction (<span class="math inline">\(\chi^2\)</span>=0, p=1).</p>
+<p>To interpret the main effects, let’s ask for the plot in the <code>Plots</code> tab:</p>
 <p><img src="examples/gzlm2/plots1.png" class="img-responsive" alt=""></p>
 <p>and see what we obtain:</p>
 <p><img src="examples/gzlm2/r.plots1.png" class="img-responsive" alt=""></p>
-<p>The effect of <code>Sex</code> is due to the fact that <code>men</code> group is much more likely to report pain than <code>women</code>. The effect of <code>Treatment</code> is mainly due to the higher pain report rate in the P treatment than in the other two. The treatments are working.</p>
+<p>The effect of <code>Sex</code> is due to the fact that the <code>men</code> group is much more likely to report pain than the group of <code>women</code>. The effect of <code>Treatment</code> is mainly due to the higher pain report rate in the P treatment than in the other two conditions. The treatments are working.</p>
 </div>
 <div id="leaving-the-comfort-zone-technical" class="section level2">
 <h2>Leaving the comfort zone (technical)</h2>
-<p>(<em>you can skip this if you’re not interested in beautiful details and some fundamental law of statistics</em>)</p>
-<p>We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that <code>Sex</code> has a statistical significant effect on <code>Pain</code>, but in the plots the confidence intervals seem to overlap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weird error deviance being included in the SE computation, but is is not. We can remove <code>Treatment</code> and still find that <code>Sex</code> is significant but the confidence intervals of the two means of gender overlap.</p>
+<p>(<em>you can skip this if you’re not interested in beautiful details and some fundamental laws of statistics</em>)</p>
+<p>We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that <code>Sex</code> has a statistical significant effect on <code>Pain</code>, but in the plots the confidence intervals seem to overlap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weird error deviance being included in the SE computation, but it is not. We can remove <code>Treatment</code> and still find that <code>Sex</code> is significant but the confidence intervals of the two means of gender overlap.</p>
 <p><img src="examples/gzlm2/r.sex1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.plots2.png" class="img-responsive" alt=""></p>
 <p>Some people may find this strange, because of the common belief that two overlapping confidence intervals should correspond to a non-significant difference. However, this belief is wrong.</p>
@@ -417,17 +417,17 @@ div.tocify {
 <div id="omnibus-tests-1" class="section level2">
 <h2>Omnibus tests</h2>
 <p><img src="examples/gzlm2/r.omnibus2.png" class="img-responsive" alt=""></p>
-<p>Results show that <code>Duration</code> does not have a significant effects on <code>Pain</code>, whereas <code>Age</code> does. We can check the direction of the <code>Age</code> effect by looking at the parameters.</p>
+<p>Results show that <code>Duration</code> does not have a significant effect on <code>Pain</code>, whereas <code>Age</code> does. We can check the direction of the <code>Age</code> effect by looking at the parameters.</p>
 <p><img src="examples/gzlm2/r.params3.png" class="img-responsive" alt=""></p>
 <p>The effect of Age is positive, B=0.268, and the odd-ratio is larger then 1, exp(B)=1.30. The older one gets, the more pain one reports.</p>
 <p>As usual, a picture is worth a thousand words.</p>
-<p><img src="examples/gzlm2/r.plots3.png" class="img-responsive" alt=""> The older one gets, the more pain one reports, and the critical age seems to be around 70 years, where changes of reporting pain considerably increase.</p>
+<p><img src="examples/gzlm2/r.plots3.png" class="img-responsive" alt=""> The older one gets, the more pain one reports, and the critical age seems to be around 70 years, where chanches of reporting pain considerably increase.</p>
 <p>As regards <code>Treatment</code> we can state that <code>Treatment</code> has still an effect even when <code>Age</code> and <code>Duration</code> are kept constant.</p>
 </div>
 </div>
 <div id="moderation-model" class="section level1">
 <h1>Moderation model</h1>
-<p>The last interesting question is whether treatment has a different effect depending on the patient’s age. To answer this question we should simply add the interaction <code>Treatment*Age</code> in the model and plot the interaction plot. I find it easier to plot <code>Age</code> on the x-axis and show the probabilities of pain for different treatments. Let’s do all that.</p>
+<p>The last interesting question is whether treatment has a different effect depending on the patient’s age. To answer this question we should simply add the interaction <code>Treatment*Age</code> in the model and plot the interaction plot. I find it easier to plot <code>Age</code> on the x-axis and show the probabilities of pain for different treatments. Let’s do that.</p>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
 <p><img src="examples/gzlm2/model1.png" class="img-responsive" alt=""></p>

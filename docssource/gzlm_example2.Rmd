@@ -78,9 +78,9 @@ Here we find the R-squared, that gives information about the goodness of fit of 
 
 <img src="examples/gzlm2/r.omnibus1.png" class="img-responsive" alt="">
 
-The omnibus Chi-Squared tests inform us on the main effects and interaction statistical significance. We can see there that we obtained a main effect of `Treatment` and one of `Sex`. Thus, on average, the probability of being in pain changes across treatments and is different between women and men. There is definitely no interaction ($\chi^2$=0, p=1).
+The omnibus Chi-Squared tests inform us on the main effects and interactions statistical significance. We can see there that we obtained a main effect of `Treatment` and one of `Sex`. Thus, on average, the probability of being in pain changes across treatments and it is different between women and men. There is clearly no interaction ($\chi^2$=0, p=1).
 
-To interpret the main effects, let's ask for the plot in the `Plots` panel:
+To interpret the main effects, let's ask for the plot in the `Plots` tab:
 
 <img src="examples/gzlm2/plots1.png" class="img-responsive" alt="">
 
@@ -88,13 +88,13 @@ and see what we obtain:
 
 <img src="examples/gzlm2/r.plots1.png" class="img-responsive" alt="">
 
-The effect of `Sex` is due to the fact that `men` group is much more likely to report pain than `women`. The effect of `Treatment` is mainly due to the higher pain report rate in the P treatment than in the other two. The treatments are working.
+The effect of `Sex` is due to the fact that the `men` group is much more likely to report pain than the group of  `women`. The effect of `Treatment` is mainly due to the higher pain report rate in the P treatment than in the other two conditions. The treatments are working.
 
   
 ## Leaving the comfort zone  (technical)
-(_you can skip this if you're not interested in beautiful details and some fundamental law of statistics_)
+(_you can skip this if you're not interested in beautiful details and some fundamental laws of statistics_)
 
-We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that `Sex` has a statistical significant effect on `Pain`, but in the plots the confidence intervals seem to overlap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weird error deviance being included in the SE computation, but is is not. We can remove `Treatment` and still find that `Sex` is significant but the confidence intervals of the two means of gender overlap. 
+We should stop for a while and think very broadly about these results, because they have many things to teach us in general terms. We can see that `Sex` has a statistical significant effect on `Pain`, but in the plots the confidence intervals seem to overlap quite a bit. One may be inclined to believe that it is about the 3 by 2 design weird error deviance being included in the SE computation, but it is not. We can remove `Treatment` and still find that `Sex` is significant but the confidence intervals of the two means of gender overlap. 
 
 <img src="examples/gzlm2/r.sex1.png" class="img-responsive" alt="">
 
@@ -153,7 +153,7 @@ Now we add `Duration` and `Age` as covariates, and see how they influence `Pain`
 
 <img src="examples/gzlm2/r.omnibus2.png" class="img-responsive" alt="">
 
-Results show that `Duration` does not have a significant effects on `Pain`, whereas `Age` does. We can check the direction of the `Age` effect by looking at the parameters.
+Results show that `Duration` does not have a significant effect on `Pain`, whereas `Age` does. We can check the direction of the `Age` effect by looking at the parameters.
 
 <img src="examples/gzlm2/r.params3.png" class="img-responsive" alt="">
 
@@ -162,14 +162,14 @@ The effect of Age is positive, B=0.268, and the odd-ratio is larger then 1, exp(
 As usual, a picture is worth a thousand words.
 
 <img src="examples/gzlm2/r.plots3.png" class="img-responsive" alt="">
-The older one gets, the more pain one reports, and the critical age seems to be around 70 years, where changes of reporting pain considerably increase.
+The older one gets, the more pain one reports, and the critical age seems to be around 70 years, where chanches of reporting pain considerably increase.
 
 
 As regards `Treatment` we can state that `Treatment` has still an effect even when `Age` and `Duration` are kept constant.
 
 # Moderation model
 
-The last interesting question is whether treatment has a different effect depending on the patient's age. To answer this question we should simply add the interaction `Treatment*Age` in the model and plot the interaction plot. I find it easier to plot `Age` on the x-axis and show the probabilities of pain for different treatments. Let's do all that.
+The last interesting question is whether treatment has a different effect depending on the patient's age. To answer this question we should simply add the interaction `Treatment*Age` in the model and plot the interaction plot. I find it easier to plot `Age` on the x-axis and show the probabilities of pain for different treatments. Let's do that.
 
 
 ## Set-up
