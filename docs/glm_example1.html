@@ -362,40 +362,40 @@ div.tocify {
 <h2>Results</h2>
 <p><img src="examples/glm1/model.results.png" class="img-responsive" alt=""></p>
 <p>Results show that both age and exercising have an effect on endurance while keeping constant the other variable. The <code>Model Info</code> table shows the R-squared, R-squared=.166 (adjusted .159), indicating the the two independent variables together explain around 16% of the dependent variable variance.</p>
-<p>The <code>Model Coefficients</code> table reports the B coefficients estimates. We can interpret the B coefficients (under <code>Estimate</code> column of <code>Model Coefficients</code> table) because the units of the variables are intuitively clear:</p>
+<p>The <code>Model Coefficients</code> table reports the estimates of the B coefficients. We can interpret the B coefficients (under <code>Estimate</code> column of <code>Model Coefficients</code> table) because the units of the variables are intuitively clear:</p>
 <ul>
 <li><code>xage</code> B=-.257: While keeping exercise constant, one year more in age corresponds on average to a decrease in endurance of .257 minutes.</li>
 <li><code>zexer</code> B=-.916: While keeping age constant, one year more of exercising corresponds on average to an increase in endurance of .916 minutes.</li>
 </ul>
-<p>For each coefficient the condidence interavals are also reported.</p>
-<p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, afterall, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable means. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
-<p>In general, we want to report standardized effect size indeces, for the sake of comparisons, meta-analyses, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
+<p>For each coefficient the condidence interaval is also reported.</p>
+<p>A special note should be made for the intercept (nobody interpret intercepts, but we do now). The intercept is the expected value (the mean) of the dependent variable, estimated for all independent variables equal to zero. In jamovi GLM, however, continuous variables are centered to their mean by default (this will prove very helpful later on), thus the interpretation of the intercept should be: the expected value of the dependent variable estimated for the average values of the independent variables. This is not bad, afterall, because 26.5 is actually the mean of the dependent variables (see descriptives above), thus a plot of the effects will be centered around the dependent variable mean. In case we want the independent variables not to be centered, we can select a different scaling in the `Covariates Scaling’ tab.</p>
+<p>In general, we want to report standardized effect size indexes, for the sake of comparison, meta-analysis, APA task forces (and probably the Marvel Avengers league). jamovi GLM offers a plethora of them:</p>
 <ul>
 <li>betas: standardized coefficients.</li>
-<li>eta-squared: proportion of variance explained over the total variance of the dependent variable.</li>
-<li>partial eta-squared: proportion of variance explained over the variance not explained by other effects.</li>
-<li>omega-squared: expected proportion of variance explained over the variance not explained by other effects, expected in the population.</li>
+<li>eta-squared: variance explained over the total variance of the dependent variable (proportion).</li>
+<li>partial eta-squared: variance explained over the variance not explained by other effects (proportion).</li>
+<li>omega-squared: expected proportion of variance explained. It is computed as variance explained over the variance not explained by other effects, expected in the population.</li>
 </ul>
-<p>By ticking the options in the variable definition panel, we obtain the ES indeces as follows.</p>
+<p>By ticking the options in the variable definition panel, we obtain the ES indexes as follows.</p>
 <p><img src="examples/glm1/model.results2.png" class="img-responsive" alt=""></p>
 </div>
 <div id="moderated-regression" class="section level2">
 <h2>Moderated regression</h2>
-<p>To include the interaction we simply add the interaction effect in the <code>Model Terms</code> under the <code>Model</code> tab.</p>
+<p>To include the interaction we simply add the interaction effect in the <code>Model Terms</code> in the <code>Model</code> tab.</p>
 <p><img src="examples/glm1/model2.png" class="img-responsive" alt=""></p>
-<p>The interaction is pushed in the <code>Model Terms</code> by selecting the variables on the left and click <code>interaction</code> in the “arrow” cascade menu.</p>
+<p>The interaction is pushed in the <code>Model Terms</code> by selecting the variables on the left side and clicking <code>interaction</code> in the “arrow” cascade menu.</p>
 <p><img src="glm/interactions.png" class="img-responsive" alt=""></p>
 </div>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
 <p>Let’s us first focus on the parameters estimates, the B coefficients.</p>
 <p><img src="examples/glm1/model2.results.png" class="img-responsive" alt=""></p>
-<p>The interaction term appears to be statistically significant, B=0.047, t(241)=3.48,p&lt;.001,eta^2=0.048, justifying interpreting the first-order effects as conditional effects. Because we have centered the variables to their means, we can interpret the first-order effect as “average” effects. On average:</p>
+<p>The interaction term appears to be statistically significant, B=0.047, t(241)=3.48,p&lt;.001,<span class="math inline">\(\eta^2\)</span>=0.048, justifying interpreting the first-order effects as conditional effects. Because variables are centered to their means, we can interpret the first-order effect as “average” effects. On average:</p>
 <ul>
 <li><code>xage</code> B=-.261: one year more in age corresponds on average to a decrease in endurance of .26 minutes.</li>
 <li><code>zexer</code> B=-.972: one year more of exercising corresponds on average to an increase in endurance of .97 minutes.</li>
 </ul>
-<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that jamovi GLM the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
+<p>One can also report the betas (last column in the <code>Model Coefficients</code> table). Please notice that in jamovi GLM, the estimates of the betas are correct also in the presence of the interaction, because the variables are standardized before the interaction term is computed.</p>
 </div>
 <div id="simple-slopes" class="section level2">
 <h2>Simple Slopes</h2>
