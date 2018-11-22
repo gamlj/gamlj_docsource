@@ -62,19 +62,19 @@ To get the feeling of possible effects of clustering, let's first look at the di
 
 We can notice that bars tend to have different means both in the `smile` and in the `beer` variables, pointing to possible dependency in the data.
 
-Furthermote, a scatterplot highligthing the bar classification seems to suggest that the poits do get clustered by bars, and reveals that a model in which each bars is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every customer.
+Furthermore, a scatterplot highligthing the bar classification seems to suggest that the points are clustered within bars, and reveals that a model in which each bar is allowed to express a different regression line would fit the data much better than a model with only one regression line, fixed for every bar.
 
 <img src="examples/mixed1/scat2.png" class="img-responsive" alt="">
 
 # Mixed model
 
-The mixed model allows to obtain exactly what we need here: estimating the relationship between beers and smiles by fitting a regression line with each bar, and then averaging the regression line to obtain an overall effect of `beer` on `smile`. The mixed model accomplishes that by letting the regression coefficients to vary from cluster to cluster, thus estimating different lines for different bars.
+The mixed model allows to obtain exactly what we need here: estimating the relationship between beers and smiles by fitting a regression line within each bar, and then averaging the regression lines to obtain an overall effect of `beer` on `smile`. The mixed model accomplishes that by letting the regression coefficients to vary from cluster to cluster, thus estimating different lines for different bars.
 
 The coefficients that vary from cluster to cluster are defined as __random coefficients__, and their mean (fixed expected value) are defined as __fixed coefficients__. 
 
-Because a simple regression line has two coefficients (the constant term and the slope) we can let only the instercept (or constant term) to vary across cluster, only the slope, or both. Practically, we define the intercept, or the slople (`beer`), or both as random coefficients.
+Because a simple regression line has two coefficients (the constant term and the slope) we can let the instercept (or constant term) to vary across clusters, the slope, or both. Practically, we define the intercept, or the slople (of `beer`), or both as random coefficients.
 
-Because we are interested in the overall effect of `beer` on `smile`, we want the effect of beer to be **also** a fixed effect, that is slope estimated for all participants. If the beer slope is allowed to vary from bar to bar (i.e. it is set to be random), then the fixed effect should be interpreted as the __average slope__, averaged across cluster. If the beer slope is not random, then the fixed effect is simply the beer effect estimated across participants.
+Because we are interested in the overall effect of `beer` on `smile`, we want the effect of beer to be **also** a fixed effect, that is a average slope estimated for across bars. If the beer slope is allowed to vary from bar to bar (i.e. it is set to be random), then the fixed effect should be interpreted as the __average slope__, averaged across clusters. If the beer slope is not random, then the fixed effect is simply the beer effect estimated across participants.
 
 # Random Intercepts Model
 

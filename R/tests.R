@@ -12,3 +12,5 @@ summary(model)
 anova(model, type=2, ddf="Kenward-Roger")
 
 ranova(model)
+
+mixedexample<- read.csv(url("http://psych.colorado.edu/~cjudd/mixedexample.csv"))
