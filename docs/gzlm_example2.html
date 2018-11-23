@@ -397,11 +397,11 @@ div.tocify {
 <p>Skipping the intercept (recall that nobody interprets the intercept :-) ), the first coefficient is <code>Sex1</code>: B=0.896. The <code>exp(B)</code> is 2.449. This means that the odd of reporting <code>Pain=yes</code> over <code>Pain=No</code> for men (see <code>Contrast</code> column) is 2.499 times larger than for the average of the sample (<code>(M,F)</code>). This comparison may sound awkward, but the awkwardness can be fixed. Recall that GAMLj default coding for factors is <code>deviations</code>, meaning that factors are coded such that each group (but the first) is compared with the average of the sample. When only two groups are present, a better coding is <code>simple</code>, that “simply” compares the two groups. We can set the coding in <code>Factor Coding</code>.</p>
 <p><img src="examples/gzlm2/contrasts1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.params2.png" class="img-responsive" alt=""></p>
-<p>The B and exp(B) parameters associated with <code>Sex</code> have changed, although the z-test and p-value did not. The odd-ratio associated with <code>Sex</code> is not exp(B)=6, and the contrast says <code>M-F</code>- This means that the odd of reporting the pain is 6 times larger for men than for women.</p>
+<p>The B and exp(B) parameters associated with <code>Sex</code> have changed, although the z-test and p-value did not. The odd-ratio associated with <code>Sex</code> is now exp(B)=6, and the contrast says <code>M-F</code>- This means that the odd of reporting the pain is 6 times larger for men than for women.</p>
 <p>Indeed, if we ask for the estimated marginal means of Sex averaging across Treatment we see the probabilities of reporting pain for the two genders.</p>
 <p><img src="examples/gzlm2/means1.png" class="img-responsive" alt=""></p>
 <p><img src="examples/gzlm2/r.means1.png" class="img-responsive" alt=""></p>
-<p>we can check that the probability of pain is .614 for men and .209 for women, which yields:</p>
+<p>We can check that the probability of pain is .614 for men and .209 for women, which yields:</p>
 <ul>
 <li>odd for men <span class="math inline">\({odd_M}={.614 \over {1-.614}}=1.58\)</span></li>
 <li>odd for women <span class="math inline">\({odd_F}={.209 \over {1-.209}}=.264\)</span></li>

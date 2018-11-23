@@ -123,7 +123,7 @@ This comparison may sound awkward, but the awkwardness can be fixed. Recall that
 
 <img src="examples/gzlm2/r.params2.png" class="img-responsive" alt="">
 
-The B and exp(B) parameters associated with `Sex` have changed, although the z-test and p-value did not. The odd-ratio associated with `Sex` is not exp(B)=6, and the contrast says `M-F`- This means that the odd of reporting the pain is 6 times larger for men than for women.  
+The B and exp(B) parameters associated with `Sex` have changed, although the z-test and p-value did not. The odd-ratio associated with `Sex` is now exp(B)=6, and the contrast says `M-F`- This means that the odd of reporting the pain is 6 times larger for men than for women.  
 
 Indeed, if we ask for the estimated marginal means of Sex averaging across Treatment we see the probabilities of reporting pain for the two genders.
 
@@ -131,7 +131,7 @@ Indeed, if we ask for the estimated marginal means of Sex averaging across Treat
 
 <img src="examples/gzlm2/r.means1.png" class="img-responsive" alt="">
 
-we can check that the probability of pain is .614 for men and .209 for women, which yields:
+We can check that the probability of pain is .614 for men and .209 for women, which yields:
 
 * odd for men ${odd_M}={.614 \over {1-.614}}=1.58$
 * odd for women ${odd_F}={.209 \over {1-.209}}=.264$
