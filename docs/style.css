@@ -93,6 +93,17 @@ span.draft {
   margin-bottom: 10px;
 }
 
+span.incomplete {
+  display: inline-block;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 5px; 
+  color: black;
+  background-color: #FF0000;
+  margin-bottom: 10px;
+}
 
 span.versiontitle {
   padding: 5px;

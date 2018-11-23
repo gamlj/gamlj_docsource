@@ -15,6 +15,8 @@ version<-function(ver) {
 
 draft<-'<span class="draft"> Draft version, mistakes may be around </span>'
 
+incomplete<-'<span class="incomplete"> Work in process: incomplete version </span>'
+
 
 get_files<-function() {
   lf<-list.files(pattern = ".Rmd",full.names = F)
