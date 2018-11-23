@@ -84,7 +84,6 @@ span.versiontitle {
 span.draft {
   display: inline-block;
   padding: 5px;
-  color: #FFFFFF;
   font-size: 12px;
   font-style: italic;
   border-radius: 5px; 
@@ -96,7 +95,6 @@ span.draft {
 span.incomplete {
   display: inline-block;
   padding: 5px;
-  color: #FFFFFF;
   font-size: 12px;
   font-style: italic;
   border-radius: 5px; 
