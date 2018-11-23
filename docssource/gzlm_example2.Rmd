@@ -18,7 +18,9 @@ source("../R/functions.R")
 
 `r keywords("jamovi, logistic models, generalized linear models, odd-ratios, ANOVA, ANCOVA, factorial designs, interactions")`
 
-`r version('0.9.7')`
+`r draft`, `r version('0.9.7')`
+
+
 
 In this example we analyze a 3 X 2 X 2 design, with a dichotomous dependent variable. We employ logistic regression for modelling the dichotomous dependent variable.
 
@@ -143,7 +145,7 @@ The other coefficients can be interpreted along the same line.
 
 # ANCOVA-like model.
 
-Now we add `Duration` and `Age` as covariates, and see how they influence `Pain`- We go back to the variables set-up and add them in the `Covariates` field.
+Now we add `Duration` and `Age` as covariates, and we see how they influence `Pain`- We go back to the variables set-up and add them in the `Covariates` field.
 
 
 

@@ -26,7 +26,7 @@ source("../R/functions.R")
 
 In this example we work out the analysis of a typical subjects by stimuli design using a mixed model (also called hierarchical linear model or multilevel model). We use the GAMLj module in Jamovi. One can follow the example by downloading the file [subjects by stimuli](https://github.com/mcfanda/gamlj_docs/blob/master/data/subjects_by_stimuli.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
-The design and the analyses are inspired by the discussion of the subjects by stimuli analysis reported in [Judd, Westfall, & Kenny, 2012](http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY)
+The design and the analyses are inspired by the discussion of  subjects by stimuli analyses reported in [Judd, Westfall, & Kenny, 2012](http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY)
 
 # The research design
 
@@ -36,32 +36,15 @@ Imagine a one-way repeated measures design with two conditions. Condition A and 
 
 ### stimuli crossed with conditions
 
-An example of stimuli crossed with conditions can be: A researcher investigates the effect of colors on reading words. Thirty words are randomly chosen from the dictionary and are used as stimuli in the experiment. The experimental factor is color of the word presented to the participant, repeated within participants: each word is presented to the participant once in blu and once in red on the computer screen. Thus, each participant reads the 30 words twice, once in the blue condition and once in the red condition. This kind of design is often implemented with different orders of presentation of the conditions to counterbalance order effects, making them a split-plot design. We consider this latter variant at the end of this page.
+An example of stimuli crossed with conditions can be: A researcher investigates the effect of colors on reading words. A list of words is randomly chosen from the dictionary and it is used as stimuli in the experiment. The experimental factor is color of the word presented to the participant, repeated within participants: each word is presented to the participant once in blu and once in red on the computer screen. Thus, each participant reads the all words twice, once in the blue condition and once in the red condition. This kind of design is often implemented with different orders of presentation of the conditions to counterbalance order effects, making them a split-plot design. We consider this latter variant at the end of this page.
 
-Another example can be an experiment in which the dependent variable is the response times in a task composed by several trials. The task is proposed to the participants in two different conditions. Thus, each participants responds to the same trials twice, once in each condition.
+Another example can be an experiment in which the dependent variable is the response times in a task composed by several trials. The task is proposed to the participants in two different conditions. Thus, each participants responds to the same trials twice, once for each condition.
 
 ### stimuli nested within conditions
 
-Consider the previos example regarding words and colors. In this new variant two list of words are employed: list A is presented in blue and list B is presented in red. The experimental factor is still color of the word presented to the participant, repeated within participants: each word is presented to the participant either in blu or in red on the computer screen. Thus, each participant reads the 30 words in total, 15 in the blue condition and 15 in the red condition. Also this kind of design can feature counterbalancing. We consider this conterbalanced variant at the end of this page.
+In the nested within condition variant, the stimuli are different across conditions. Consider the previous example regarding words and colors. In this new variant two lists of words are employed: list A is presented in blue fonts and list B is presented in red fonts. The experimental factor is still color of the word presented to the participant. If the lists, for instance,  are made of 15 words each, each participant reads 30 words in total, 15 in the blue condition and 15 in the red condition. Also this kind of design can feature counterbalancing. We consider the conterbalanced variant at the end of this page.
 
-Another example of this type of desing can be a research in which participants are asked to make judgments about African American and White males, with each stimulus person described with a name and photo. In this design, the experimental conditions vary the race of the stimulus person, with the individual stimulus persons nested under condition [Judd, Westfall, & Kenny, 2012](http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY). If we have, for instance, 20 photos, 10 with White stimulus persons and 10 with African American stimulus persons, the participant responds to each photo producing 20 measures of the dependent variable.
-
-
-
-
-
-
-with a we sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.
-
-We have then 15 bars, each including a different number of participants. In the data set, the classification of customers in bars is contained in the variable `bar`. The frequencies of participants in each bar is in the next table (in jamovi descriptives, tick `frequencies table`)  .
-
-<img src="examples/mixed1/freq.png" class="img-responsive" alt="">
-
-Number of beers and number of smiles are recorded in the dataset as `beer` and `smile`, respectively, with the following descriptives and distributions.
-
-<img src="examples/mixed1/desc.png" class="img-responsive" alt="">
-
-<img src="examples/mixed1/dist.png" class="img-responsive" alt="">
+Another example of this type of desing can be a research in which participants are asked to make judgments about African American and White males, with each stimulus person described with a name and photo. In this design, the experimental conditions are the races of the stimulus persons, with the individual stimulus persons nested under condition [Judd, Westfall, & Kenny, 2012](http://jakewestfall.org/publications/JWK.pdf?fbclid=IwAR2PT2AzWhJhWKIeuzJDD77OKsEi4UHuXfGy8-JppSA_U9wsdlQl7W3OdqY). If we have, for instance, 20 photos, 10 with White stimulus persons and 10 with African American stimulus persons, the participant responds to each photo producing 20 measures of the dependent variable.
 
 # Understanding the problem
 
