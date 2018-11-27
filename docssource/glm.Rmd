@@ -26,7 +26,7 @@ The module estimates a general linear model with categorial and/or continuous va
 The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis. 
 
 # Estimates
-The module provides ANOVA tables and parameter estimates for any estimated model. Effect size (eta, omega, and beta) are optionally computed.
+The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, omega, and beta) are optionally computed.
 
 Variables definition follows jamovi standards, with categorical independent variables defined in "factors" and continuous independent variables in "covariates".
 
@@ -47,7 +47,7 @@ By default, the model terms are filled in automatically for main effects and for
 
 <img src="glm/model.png" class="img-responsive" alt="">
 
-Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
+Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.
 
 The option `Fixed Intercept` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
 
