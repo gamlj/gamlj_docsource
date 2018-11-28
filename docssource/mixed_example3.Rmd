@@ -65,6 +65,8 @@ The simplest mixed model that captures (some) dependency among data due to the r
 $$ \hat{y}_{ij}=a+a_{i}+a_{j}+b \cdot C_{ij}$$
 where $a$ is the fixed intercept, $b$ is the fixed effect of $C$ on $y$, $a_i$ is the individual intercept associated with participant $i$, and $a_j$ is the individual intercept associated with stimulus $j$.
 
+We can also add random effects of $C_{ij}$, as we will see later on.
+
 # Assumptions
 
 It is important to notice that the approach we are taking requires both participants and stimuli to represent _a random sample of a larger population_. For participants this is seldom a problem, because participants recruited in research are usually randomly sampled from larger populations of participants. For stimuli, however, this assumption can be tricky. A set of stimuli can be a random sample of a larger population if each individual stimulus is not interesting per se, but only because it has some charateristic shared with the population of stimuli it comes from. Under this assumption, for instance, if we use the word "beer" as a stimulus, we use it because it represents an instance of words (taken from the population of all words in the dictionary), or an instance of 4 letter words (the population would be 4 letter words), or a word indicating a liquid. Had we sampled wine, it would have been a perfectly equivalent stimulus. 
@@ -115,7 +117,7 @@ The first interesting table is the `Model info` table, were some info is given (
 
 `r pic("examples/mixed3/results1.png")`
 
-Then we can explore the random variances. We can see that we have variance for the intercepts both across participant ($\sigma=4.55$) and across stimuli $\sigma=3.88$ and their impact is quite substantial $ICC=.312$ and $ICC=.279$, respectively. Thus, we can say that it was a good idea to capture those portions of variances by including random intercepts varying across both participants and stimuli.
+Then we can explore the random variances. We can see that we have variances larger than zero for the intercepts both across participant ($\sigma=4.55$) and across stimuli $\sigma=3.88$ and their impact is quite substantial $ICC=.312$ and $ICC=.279$, respectively. Thus, we can say that it was a good idea to capture those portions of variance by including random intercepts varying across both participants and stimuli.
 
 `r pic("examples/mixed3/results2.png")`
 
@@ -141,9 +143,9 @@ You may have noticed that we interpreted the plot as showing the random effects 
 
 In the new plot, there are 30 lines representing the effect of condition for each stimulus. Again, the lines are parallel but they show different height
 
-## The model II
+## The model (II)
 
-We can now enlarge the random components by adding other random effects. In particular, we can see whether the effect of `cond` varies across participants and across stimuli. Notice that both effects are possible. Each participant is measured in each condition, so we can compute the effect of condition in each participant and evaluate the variance of the effect across participant. Also each stimulus is measured (is present) in each condition, so we can compute the effect of condition for each stimulus and evaluate the variance of the effect across participant. 
+We can now enlarge the random components by adding other random effects. In particular, we can see whether the effect of `cond` varies across participants and across stimuli. Notice that both effects are possible. Each participant is measured in each condition, so we can compute the effect of condition in each participant and evaluate the variance of the effect across participants. Also each stimulus is measured (is present) in each condition, so we can compute the effect of condition for each stimulus and evaluate the variance of the effect across participant. 
 
 We do that in GAMLj by adding the required effects in the `Random Effects` tab.
 

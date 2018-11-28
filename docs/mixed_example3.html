@@ -368,6 +368,7 @@ div.tocify {
 <h1>The Mixed model</h1>
 <p>The simplest mixed model that captures (some) dependency among data due to the repeated measures is a model in which the <em>intercepts</em> vary across participants and across stimuli. In other words, the average individual differences across participants are captured by a random intercept across participants, the stimuli average differences are captured by a random intercept varying across stimuli. If we denote by <span class="math inline">\(i\)</span> each participant, and by <span class="math inline">\(j\)</span> each stimulus, <span class="math inline">\(C_{ij}\)</span> the condition variable (for simplicity with two conditions), <span class="math inline">\(y_{ij}\)</span> the dependent variable score for participant <span class="math inline">\(i\)</span> and stimulus <span class="math inline">\(j\)</span>, the model will be.</p>
 <p><span class="math display">\[ \hat{y}_{ij}=a+a_{i}+a_{j}+b \cdot C_{ij}\]</span> where <span class="math inline">\(a\)</span> is the fixed intercept, <span class="math inline">\(b\)</span> is the fixed effect of <span class="math inline">\(C\)</span> on <span class="math inline">\(y\)</span>, <span class="math inline">\(a_i\)</span> is the individual intercept associated with participant <span class="math inline">\(i\)</span>, and <span class="math inline">\(a_j\)</span> is the individual intercept associated with stimulus <span class="math inline">\(j\)</span>.</p>
+<p>We can also add random effects of <span class="math inline">\(C_{ij}\)</span>, as we will see later on.</p>
 </div>
 <div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
@@ -402,7 +403,7 @@ div.tocify {
 <h2>Results</h2>
 <p>The first interesting table is the <code>Model info</code> table, were some info is given (for the R-squared interpretation see <a href="mixed_example1.html">Mixed Models: Random coefficients regression</a>).</p>
 <p><img src=" examples/mixed3/results1.png " class="img-responsive" alt=""></p>
-<p>Then we can explore the random variances. We can see that we have variance for the intercepts both across participant (<span class="math inline">\(\sigma=4.55\)</span>) and across stimuli <span class="math inline">\(\sigma=3.88\)</span> and their impact is quite substantial <span class="math inline">\(ICC=.312\)</span> and <span class="math inline">\(ICC=.279\)</span>, respectively. Thus, we can say that it was a good idea to capture those portions of variances by including random intercepts varying across both participants and stimuli.</p>
+<p>Then we can explore the random variances. We can see that we have variances larger than zero for the intercepts both across participant (<span class="math inline">\(\sigma=4.55\)</span>) and across stimuli <span class="math inline">\(\sigma=3.88\)</span> and their impact is quite substantial <span class="math inline">\(ICC=.312\)</span> and <span class="math inline">\(ICC=.279\)</span>, respectively. Thus, we can say that it was a good idea to capture those portions of variance by including random intercepts varying across both participants and stimuli.</p>
 <p><img src=" examples/mixed3/results2.png " class="img-responsive" alt=""></p>
 <p>The fixed effect can now be interpreted as in any one-way ANOVA.</p>
 <p><img src=" examples/mixed3/results3.png " class="img-responsive" alt=""></p>
@@ -416,8 +417,8 @@ div.tocify {
 <p>In the new plot, there are 30 lines representing the effect of condition for each stimulus. Again, the lines are parallel but they show different height</p>
 </div>
 <div id="the-model-ii" class="section level2">
-<h2>The model II</h2>
-<p>We can now enlarge the random components by adding other random effects. In particular, we can see whether the effect of <code>cond</code> varies across participants and across stimuli. Notice that both effects are possible. Each participant is measured in each condition, so we can compute the effect of condition in each participant and evaluate the variance of the effect across participant. Also each stimulus is measured (is present) in each condition, so we can compute the effect of condition for each stimulus and evaluate the variance of the effect across participant.</p>
+<h2>The model (II)</h2>
+<p>We can now enlarge the random components by adding other random effects. In particular, we can see whether the effect of <code>cond</code> varies across participants and across stimuli. Notice that both effects are possible. Each participant is measured in each condition, so we can compute the effect of condition in each participant and evaluate the variance of the effect across participants. Also each stimulus is measured (is present) in each condition, so we can compute the effect of condition for each stimulus and evaluate the variance of the effect across participant.</p>
 <p>We do that in GAMLj by adding the required effects in the <code>Random Effects</code> tab.</p>
 <p><img src=" examples/mixed3/input7.png " class="img-responsive" alt=""></p>
 </div>
