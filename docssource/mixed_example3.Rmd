@@ -33,7 +33,7 @@ If you are not interested in the long story, you can jump to the <a href="#examp
 
 # The research design
 
-Imagine an one-way repeated measures design with two conditions. Condition A and condition B. Each participant  undergoes both conditions. In each condition, a series of stimuli is presented, and for each stimulus the participant produces a response (the dependent variable). If we only consider repeated measures experimental conditions, there are two variants of this design [Baayen, Davidson, and Bates, 2008](http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenDavidsonBates.pdf), a) one with stimuli crossed with conditions, and b) one with stimuli nested in conditions. We analyze both and we will see that from a model-building point of view, they are almost equivalent. That is, the way we analyze the two designs is the same, with very minor differences.
+Imagine a one-way repeated measures design with two conditions. Condition A and condition B. Each participant  undergoes both conditions. In each condition, a series of stimuli is presented, and for each stimulus the participant produces a response (the dependent variable). If we only consider repeated measures experimental conditions, there are two variants of this design [Baayen, Davidson, and Bates, 2008](http://www.sfs.uni-tuebingen.de/~hbaayen/publications/baayenDavidsonBates.pdf), a) one with stimuli crossed with conditions, and b) one with stimuli nested in conditions. We analyze both and we will see that from a model-building point of view, they are almost equivalent. That is, the way we analyze the two designs is the same, with very minor differences.
 
 ## Examples of the design variants
 
@@ -71,7 +71,7 @@ We can also add random effects of $C_{ij}$, as we will see later on.
 
 It is important to notice that the approach we are taking requires both participants and stimuli to represent _a random sample of a larger population_. For participants this is seldom a problem, because participants recruited in research are usually randomly sampled from larger populations of participants. For stimuli, however, this assumption can be tricky. A set of stimuli can be a random sample of a larger population if each individual stimulus is not interesting per se, but only because it has some charateristic shared with the population of stimuli it comes from. Under this assumption, for instance, if we use the word "beer" as a stimulus, we use it because it represents an instance of words (taken from the population of all words in the dictionary), or an instance of 4 letter words (the population would be 4 letter words), or a word indicating a liquid. Had we sampled wine, it would have been a perfectly equivalent stimulus. 
 
-Conversely, if we are interested in the particular stimuli we chose, stimuli would not be a random sample of a larger population, and the approach described here would not be correct. For instance, if we really care about the word "beer" as a peculiar and unique stimulus, we should consider it as a level of a factor in the analysis, and not as a random case in the sample of words.
+Conversely, if we are interested in the particular stimuli we choose, stimuli would not be a random sample of a larger population, and the approach described here would not be correct. For instance, if we really care about the word "beer" as a peculiar and unique stimulus, we should consider it as a level of a factor in the analysis, and not as a random case in the sample of words.
 
 Furthermore, if the stimuli are a sample of a larger population, their numerosity should be as large as possible. As for participants, also for stimuli the larger the sample, the more accurate and powerful are the results.
 
@@ -83,7 +83,7 @@ We now turn to practical examples.
 One can follow the example by downloading the file [subjects by stimuli](https://github.com/mcfanda/gamlj_docs/blob/master/data/subjects_by_stimuli.csv) and open it in [jamovi](https://www.jamovi.org/download.html).
 
 ## Design
-An one-way repeated measures design has two conditions:  A and B. Each participant  undergoes both conditions. In each condition, the same 30 stimuli are presented, and for each stimulus the participant produces a response (the dependent variable _y_). There are 50 participants in the sample. The following table shows how each stimulus is repeated for each condition, and it is measured 100 times, 50 per condition, where 50 is the number of participants.
+A one-way repeated measures design has two conditions:  A and B. Each participant  undergoes both conditions. In each condition, the same 30 stimuli are presented, and for each stimulus the participant produces a response (the dependent variable _y_). There are 50 participants in the sample. The following table shows how each stimulus is repeated for each condition, and it is measured 100 times, 50 per condition, where 50 is the number of participants.
 
 `r pic("examples/mixed3/design1.png")`
 
@@ -180,7 +180,7 @@ We can use the same data, but we consider the variable `nest_stimulus` as indica
 `r pic("examples/mixed3/input10.png")`
 
 ## Design
-An one-way repeated measures design has two conditions:  A and B. Each participant  undergoes both conditions. In each condition, a different set of 30 stimuli is presented, and for each stimulus the participant produces a response (the dependent variable _y_). There are 50 participants in the sample. The following table shows how each stimulus is present in only one condition, and it is measured 50 times in total, where 50 is the number of participants.
+A one-way repeated measures design has two conditions:  A and B. Each participant  undergoes both conditions. In each condition, a different set of 30 stimuli is presented, and for each stimulus the participant produces a response (the dependent variable _y_). There are 50 participants in the sample. The following table shows how each stimulus is present in only one condition, and it is measured 50 times in total, where 50 is the number of participants.
 
 `r pic("examples/mixed3/design11.png")`
 `r pic("examples/mixed3/design12.png")`

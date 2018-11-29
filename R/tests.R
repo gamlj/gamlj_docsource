@@ -14,16 +14,16 @@ anova(model, type=2, ddf="Kenward-Roger")
 ranova(model)
 
 sxs<-read.csv("data/subjects_by_stimuli.csv")
-sxs<-sxs[sxs$nest_stimulus %in% c(1,31,2,32) & sxs$subj %in% c(1,2,3),]
+#sxs<-sxs[sxs$nest_stimulus %in% c(1,31,2,32) & sxs$subj %in% c(1,2,3),]
 head(sxs)
 sxs$cond<-factor(sxs$cond)
 sxs$subj<-factor(sxs$subj)
 sxs$stimulus<-factor(sxs$stimulus)
 sxs$nest_stimulus<-factor(sxs$nest_stimulus)
 library(lmerTest)
-mod1<-lmer(y~(1|subj)+(1|stimulus)+cond,data=sxs)
+mod1<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=sxs)
 summary(mod1)
-mod2<-lmer(y~(1|subj)+(1|nest_stimulus)+cond,data=sxs)
+mod2<-lmer(y~(1+cond|subj)+(1|nest_stimulus)+cond,data=sxs)
 summary(mod2)
 
 vcov(mod2)
@@ -37,7 +37,6 @@ mod1@vcov_varpar
 Z<-getME(mod1,"Z")
 Zt<-getME(mod1,"Zt")
 as.matrix(Zt%*%Z)
-  getME()
 Z<-getME(mod2,"Z")
 Zt<-getME(mod2,"Zt")
 v<-Zt%*%Z
