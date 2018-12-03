@@ -15,32 +15,49 @@ ranova(model)
 
 sxs<-read.csv("data/subjects_by_stimuli.csv")
 #sxs<-sxs[sxs$nest_stimulus %in% c(1,31,2,32) & sxs$subj %in% c(1,2,3),]
-head(sxs)
+sxs2<-sxs
+sxs2$stimulus<-sxs2$stimulus+30
+sxs2<-rbind(sxs,sxs2)
+
+sxs2$cond<-factor(sxs2$cond)
+sxs2$subj<-factor(sxs2$subj)
+sxs2$stimulus<-factor(sxs2$stimulus)
+
 sxs$cond<-factor(sxs$cond)
 sxs$subj<-factor(sxs$subj)
 sxs$stimulus<-factor(sxs$stimulus)
 sxs$nest_stimulus<-factor(sxs$nest_stimulus)
 library(lmerTest)
+mod0<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=sxs2)
+summary(mod0)
+table(sxs2$stimulus)
 mod1<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=sxs)
 summary(mod1)
+
 mod2<-lmer(y~(1+cond|subj)+(1|nest_stimulus)+cond,data=sxs)
 summary(mod2)
+anova(mod1, type=2, ddf="Kenward-Roger")
+confint(mod1,method="boot")
+confint(mod2,method="boot")
 
-vcov(mod2)
-vcov(mod1)
+sigma(mod1)*diag(mod1@pp$unsc())*10
+
 
 mod1@vcov_varpar
 
-mm<-model.matrix(mod1)
+mm<-model.matrix(mod0)
 head(mm)
-mod1@vcov_varpar
+mod0@vcov_varpar
+Z<-getME(mod0,"Z")
+Zt<-getME(mod0,"Zt")
+as.matrix(Zt%*%Z)
+
+
 Z<-getME(mod1,"Z")
 Zt<-getME(mod1,"Zt")
-as.matrix(Zt%*%Z)
-Z<-getME(mod2,"Z")
-Zt<-getME(mod2,"Zt")
 v<-Zt%*%Z
 v<-as.matrix(v)
+v
 library(MASS)
 v
 
