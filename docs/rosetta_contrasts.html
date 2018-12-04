@@ -345,8 +345,8 @@ div.tocify {
 <li><p>As a comparison between sets of means tested with model-derived standard errors. jamovi ANOVA, <code>emmeans</code> R and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.</p></li>
 <li><p>As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here.</p></li>
 </ul>
-<p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software print out the <strong>contrast matrix</strong>, which contains the coding scheme describing the comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
-<p>Furthermore, in simple models (such as one-way ANOVA), the two first approaches gives exactly the same results. When models get more complex, results may diverge across software because they estimate different things. <strong>The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means</strong>.</p>
+<p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software prints out the <strong>contrast matrix</strong>, which contains the coding scheme describing the comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
+<p>Furthermore, in simple models (such as one-way ANOVA), the two first approaches give exactly the same results. When models get more complex, results may diverge across software because they estimate different things. <strong>The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means</strong>.</p>
 </div>
 <div id="terminology" class="section level1">
 <h1>Terminology</h1>
@@ -395,10 +395,9 @@ div.tocify {
 <h2>R</h2>
 <p>In R, deviation contrast is called <code>contr.sum</code>. The function defaults to omitting the last group, so we reverse it to omit the first.</p>
 <pre class="r"><code>file&lt;-&quot;../data/rosetta.contrasts.csv&quot;
-dat&lt;-read.csv2(file)
-
+dat&lt;-read.csv2(file,stringsAsFactors = F)
 dat$Group&lt;-factor(dat$Group)
-
+dat$Score&lt;-as.numeric(dat$Score)
 ### reverse contrast sum ###
 contrasts(dat$Group)&lt;-matrix(rev(contr.sum(4)),ncol=3)
 contrasts(dat$Group)</code></pre>
@@ -455,8 +454,8 @@ contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <p>Please notice that <code>emmeans</code> computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc.</p>
 </div>
 </div>
-<div id="contrast-simple" class="section level1">
-<h1>Contrast: Simple</h1>
+<div id="contrast-simple-dummy" class="section level1">
+<h1>Contrast: Simple &amp; Dummy</h1>
 <div id="meaning-1" class="section level2">
 <h2>Meaning</h2>
 <p><b>Definition:</b><i> Compares each group with the first group.</i></p>
@@ -534,6 +533,10 @@ contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 ##  2 - 1    -0.1001010 0.1148116 166  -0.872  0.3845
 ##  3 - 1     0.2435657 0.1083130 166   2.249  0.0258
 ##  4 - 1     0.4431212 0.1083130 166   4.091  0.0001</code></pre>
+</div>
+<div id="simple-vs-dummy" class="section level2">
+<h2>Simple vs Dummy</h2>
+<p>GAMLj distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
 </div>
 </div>
 <div id="contrast-repeated" class="section level1">

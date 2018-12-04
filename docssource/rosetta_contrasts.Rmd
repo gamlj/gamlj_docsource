@@ -48,9 +48,9 @@ Contrasts can be computed in two different ways:
 
 * As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here. 
 
-The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software print out the __contrast matrix__, which contains the coding scheme describing the comparisons. R model estimation requires the __model matrix__, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in [contrast vs model matrix details](#contrast_matrix_and_model_matrix_details)
+The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software prints out the __contrast matrix__, which contains the coding scheme describing the comparisons. R model estimation requires the __model matrix__, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in [contrast vs model matrix details](#contrast_matrix_and_model_matrix_details)
 
-Furthermore, in simple models (such as one-way ANOVA), the two first approaches gives exactly the same results. When models get more complex, results may diverge across software because they estimate different things. __The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means__. 
+Furthermore, in simple models (such as one-way ANOVA), the two first approaches give exactly the same results. When models get more complex, results may diverge across software because they estimate different things. __The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means__. 
 
 
 # Terminology
@@ -123,10 +123,9 @@ In R, deviation contrast is called `contr.sum`. The function defaults to omittin
 
 ```{r}
 file<-"../data/rosetta.contrasts.csv"
-dat<-read.csv2(file)
-
+dat<-read.csv2(file,stringsAsFactors = F)
 dat$Group<-factor(dat$Group)
-
+dat$Score<-as.numeric(dat$Score)
 ### reverse contrast sum ###
 contrasts(dat$Group)<-matrix(rev(contr.sum(4)),ncol=3)
 contrasts(dat$Group)
@@ -153,11 +152,12 @@ contrast(emm,"eff",reverse=T,adjust = "none")
 
 Please notice that `emmeans` computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc. 
 
-# Contrast: Simple
+# Contrast: Simple & Dummy
 
 ## Meaning
 
 <b>Definition:</b><i> Compares each group with the first group.</i>
+
 
 ## Jamovi ANOVA
 
@@ -229,6 +229,10 @@ contrast(emm,"dunnett",adjust = "none")
 
 ```
 
+
+## Simple vs Dummy
+
+GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the `Dummy` is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when _simple_ is used, the other variables effects are computed averaging across the sample; when _dummy_ is used, the other variables effects are computed for the reference group (the first group) defined by the _dummy_ coding.
 
 # Contrast: Repeated
 

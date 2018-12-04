@@ -16,6 +16,8 @@ ranova(model)
 sxs<-read.csv("data/subjects_by_stimuli.csv")
 #sxs<-sxs[sxs$nest_stimulus %in% c(1,31,2,32) & sxs$subj %in% c(1,2,3),]
 sxs2<-sxs
+sxs2$nest_stimulus<-sxs2$nest_stimulus+60
+
 sxs2$stimulus<-sxs2$stimulus+30
 sxs2<-rbind(sxs,sxs2)
 
@@ -31,14 +33,20 @@ library(lmerTest)
 mod0<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=sxs2)
 summary(mod0)
 table(sxs2$stimulus)
+table(sxs$stimulus)
+table(sxs2$cond)
+table(sxs$cond,)
+
 mod1<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=sxs)
 summary(mod1)
 
 mod2<-lmer(y~(1+cond|subj)+(1|nest_stimulus)+cond,data=sxs)
 summary(mod2)
-anova(mod1, type=2, ddf="Kenward-Roger")
-confint(mod1,method="boot")
-confint(mod2,method="boot")
+mod2<-lmer(y~(1+cond|subj)+(1|nest_stimulus)+cond,data=sxs2)
+summary(mod2)
+
+
+
 
 sigma(mod1)*diag(mod1@pp$unsc())*10
 
@@ -61,3 +69,27 @@ v
 library(MASS)
 v
 
+
+r<-5
+s<-10
+b<-rnorm(s,0,10)
+cond<-rep(c(0,1),s*r)
+cond2<-rep(c(0,1),each=s*r/2)
+
+data<-data.frame()
+j<-0
+for (i in 1:s) {
+  rowz<-(j+1):(j+r)
+  j<-max(rowz)
+  x<-cond[rowz]
+  x2<-cond2[rowz]
+  y<-b[i]+x+rnorm(r,0,1)
+  one<-cbind(i,y,x,x2)
+  data<-rbind(data,one)
+}
+data$x<-factor(data$x)
+data$x2<-factor(data$x2)
+data$i<-factor(data$i)
+table(data$x2)
+lmer(y~1+(1|i)+x,data=data)
+lmer(y~1+(1|i)+x2,data=data)
