@@ -437,13 +437,8 @@ summary(model)</code></pre>
 <h2>R emmeans</h2>
 <p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust=&quot;none&quot;</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
-<pre class="r"><code>library(emmeans)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;emmeans&#39;</code></pre>
-<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
-## 
-##     test</code></pre>
-<pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
+<pre class="r"><code>library(emmeans)
+model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 <pre><code>##  contrast    estimate         SE  df t.ratio p.value
@@ -568,13 +563,8 @@ contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 <div id="r-2" class="section level2">
 <h2>R</h2>
 <p>R does not have an out-of-the-box contrast equivalent to <code>repeated</code> contrast. One can, howerver, uses the <code>contr.sdif()</code> function in <code>MASS</code> package. As compared with jamovi and SPSS the comparisons are in the opposite direction, so we simply multiply the code by -1 (t-tests and p-values do not depend on this):</p>
-<pre class="r"><code>library(MASS)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;MASS&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Rsearchable&#39;:
-## 
-##     select</code></pre>
-<pre class="r"><code>repeated&lt;-(-1)*contr.sdif(4) 
+<pre class="r"><code>library(MASS)
+repeated&lt;-(-1)*contr.sdif(4) 
 repeated</code></pre>
 <pre><code>##     2-1  3-2   4-3
 ## 1  0.75  0.5  0.25
@@ -1019,7 +1009,7 @@ summary(model)</code></pre>
 ## Multiple R-squared:  0.1473, Adjusted R-squared:  0.1319 
 ## F-statistic: 9.557 on 3 and 166 DF,  p-value: 7.399e-06</code></pre>
 <p>The reason of this discrepancy is that the LMATRIX is the contrast matrix, a matrix that shows the linear hypotheses implied by the contrast and represents the starting point of the coding system, not the model matrix itself. Thus, the constrast matrix (SPSS LMATRIX) is useful to understand what is going on in the comparisons: by inspecting the contrast matrix one can easily see that in column 1 groups 1 and 2 are compared, in column 2 groups 2 vs 3, and so on.</p>
-<p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<strong><span class="math inline">\(C\)</span></strong>) in the Venable’s vignette) and the model matrix (<strong><span class="math inline">\(B\)</span></strong>) in the vignette).</p>
+<p>A clear technical explanation is provided in <a href="https://cran.r-project.org/web/packages/codingMatrices/vignettes/codingMatrices.pdf">Venables 2017</a>, where you find the definition of the contrast matrix (<strong><span class="math inline">\(C\)</span></strong> in the Venable’s vignette) and the model matrix (<strong><span class="math inline">\(B\)</span></strong> in the vignette).</p>
 <p>Ok, but what is the relation between the contrast matrix and the R model matrix? or even better: How do I get from the contrast matrix to the R model matrix? Just <strong>take the inverse of the contrast matrix and traspose it</strong>. In R, one can take the inverse of a matrix by using <code>MASS::ginv()</code> function. Let’s see:</p>
 <pre class="r"><code>##### SPSS LMATRIX ####
 ones</code></pre>
@@ -1069,7 +1059,7 @@ round(t(ilmat),digits = 3)</code></pre>
 ## [3,]    0    1    0
 ## [4,]    0    0    1</code></pre>
 <p>There you have the actual model matrix.</p>
-<p>Let’s be sure and check polynomial contrasts.</p>
+<p>Let us be sure and check polynomial contrasts.</p>
 <p>SPSS LMATRIX is: <img src="rosetta/contrasts/r.c7.spss3.png" class="img-responsive" alt=""></p>
 <p>R model matrix:</p>
 <pre class="r"><code>(polynom&lt;-contr.poly(4))</code></pre>
@@ -1078,7 +1068,7 @@ round(t(ilmat),digits = 3)</code></pre>
 ## [2,] -0.2236068 -0.5  0.6708204
 ## [3,]  0.2236068 -0.5 -0.6708204
 ## [4,]  0.6708204  0.5  0.2236068</code></pre>
-<p>They are the same this time! Does it means that in this case the “inversion” does not apply? Well, it does apply, but because the polynomial contrast codes are orthogonal, the inverse of the contrast matrix is equal to the transpose of the contrast matrix, thus taking the inverse and then transpose it gives back the same matrix (cf <a href="https://en.wikipedia.org/wiki/Orthogonal_matrix">orthogonam matrix</a>)</p>
+<p>They are the same this time! Does it means that in this case the “inversion” does not apply? Well, it does apply, but because the polynomial contrast codes are orthogonal, the inverse of the contrast matrix is equal to the transpose of the contrast matrix, thus taking the inverse and then transpose it gives back the same matrix (cf <a href="https://en.wikipedia.org/wiki/Orthogonal_matrix">orthogonal matrix</a>)</p>
 <pre class="r"><code>ipoly&lt;-ginv(polynom)
 t(ipoly)</code></pre>
 <pre><code>##            [,1] [,2]       [,3]
