@@ -3,8 +3,6 @@ output_dir: "../docs"
 navbar:
   title: "GAMLj"
   left:
-  - text: "Home"
-    href: index.html
   - text: "GLM"
     href:  glm.html
   - text: "Mixed"
