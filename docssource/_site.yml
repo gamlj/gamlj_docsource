@@ -11,6 +11,8 @@ navbar:
     href: mixed.html
   - text: "Generalized Models"
     href:  gzlm.html
+  - text: "Examples"
+    href:  examples.html
   - text: "Rosetta store"
     href:  rosetta.html
   - text: "Release notes"
