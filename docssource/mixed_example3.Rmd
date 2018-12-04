@@ -22,7 +22,7 @@ source("../R/functions.R")
 
 `r keywords("Mixed models, hierarchical linear model, multilevel model, ANOVA, subjects by stimuli")`
 
-`r version("0.9.7")` `r draft` 
+`r version("1.0.3")` `r draft` 
 
 # Intro 
 In this example we work out analyses for typical subjects by stimuli designs using a mixed model (also called hierarchical linear model or multilevel model). We use the GAMLj module in Jamovi. To follow the examples with the software, be sure to install GAMLj module from within jamovi library. 
