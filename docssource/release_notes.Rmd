@@ -12,9 +12,10 @@ output:
 
 #  version 1.0.4 (future)
 
+* Fix bug in simple effects display in Windows 10
 * Fix simple effects for "dummy" coded factors
 
-#  version 1.0.3
+#  version 1.0.3 (current)
 * add R interface command to obtain a ggplot object
 * fix some characters in Windows
 
@@ -63,7 +64,7 @@ output:
 * Several small bug fixes
 * Improved info table regarding model implementation
 
-#  version 0.9.7 (current)
+#  version 0.9.7 
 
 * fix cluster-based centering and standardizing
 
@@ -86,7 +87,7 @@ output:
 * Contrasts coding in line wiht ANOVA module
 
   
-#  version 0.9.3 (current)
+#  version 0.9.3 
 
 
 * Plotting raw data along with predicted effects
