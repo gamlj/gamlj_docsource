@@ -10,12 +10,19 @@ output:
 
 ---
 
-#  version 1.0.4 (future)
+
+#  version 1.0.5 (future)
+
+* Higher order effects
+* Update graphs when model terms are changed
+
+
+#  version 1.0.4 (current)
 
 * Fix bug in simple effects display in Windows 10
 * Fix simple effects for "dummy" coded factors
 
-#  version 1.0.3 (current)
+#  version 1.0.3 
 * add R interface command to obtain a ggplot object
 * fix some characters in Windows
 
