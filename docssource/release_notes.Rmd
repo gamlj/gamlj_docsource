@@ -13,7 +13,7 @@ output:
 
 #  version 1.0.5 (future)
 
-* Higher order effects
+* polynomial effects
 * Update graphs when model terms are changed
 
 

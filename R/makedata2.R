@@ -72,7 +72,7 @@ summary(model)
 contrasts(dat$cond)<-contr.sum(2)
 names(dat)
 dat<-dat[,c("y","cond","subj","stimulus")]
-write.csv(dat,"data/subjects_on_stimuli.csv")
+#write.csv(dat,"data/subjects_on_stimuli.csv")
 
 model<-lmer(y~(1+cond|subj)+(1|stimulus)+cond,data=dat)
 summary(model)
