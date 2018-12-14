@@ -15,7 +15,8 @@ output:
 
 * polynomial effects
 * Update graphs when model terms are changed
-
+* Fix the R-squared for not binomial GZLM 
+* added datasets
 
 #  version 1.0.4 (current)
 

@@ -327,15 +327,14 @@ div.tocify {
 <h1>Model info</h1>
 <div id="r-square" class="section level2">
 <h2>R-square</h2>
-<p>R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a></p>
-<p>It is implemented by taking the model log-likelihood and compare it with the null-model log-likelihood:</p>
-<p>`<br />
-### McFadden’s R-squared #####</p>
-<pre><code>sumr&lt;-summary(model)
-llfull&lt;-logLik(model)  ### model loglikelihood
-llnull&lt;-llfull-((sumr$null.deviance-sumr$deviance)/2) ## intercept only loglikelihood
-as.numeric(1-(llfull/llnull))</code></pre>
-<p>` ## AIC</p>
+<p>R-squared corresponds to McFadden’s R squared <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">ref info</a> for logistic regression. However, it is not computed as McFadden’s R, because of some oddities arising when computed across different generalized models.</p>
+<p>It is implemented by taking the model deviance and compare it with the null-model deviance:</p>
+<pre><code>    1- (model$deviance/model$null.deviance)</code></pre>
+<p>When the <span class="math inline">\(R^2\)</span> is computed like this, it corresponds to McFadden’s R in logistic regression, and to the OLS <span class="math inline">\(R^2\)</span> for guassian models. It also yields a results for Poisson models, that in R are not giving the likelihood required to compute McFadden’s R.</p>
+<p>It can be considered a measure of fit, or, equivalently, a measure of reduction of error.</p>
+</div>
+<div id="aic" class="section level2">
+<h2>AIC</h2>
 <p>Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R <code>glm</code> estimated model: <code>model$aic</code> for all GZLM model but the multinomial, which is <code>model$AIC</code></p>
 </div>
 <div id="deviance" class="section level2">
