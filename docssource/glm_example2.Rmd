@@ -35,7 +35,7 @@ The (simulated) dataset has three variables of interest. Imagine we measured ath
 
 ## Input
 
-We first set up a linear regression with only linear effects. We launch `General Linear Model` from the `Linear Models` menu. We put `performance` in the dependent variable field and `hours` in the `covariate. 
+We first set up a linear regression with only linear effects. We launch `General Linear Model` from the `Linear Models` menu. We put `performance` in the dependent variable field and `hours` in the `covariate`. 
 
 <img src="examples/glm2/variables.png" class="img-responsive" alt="">
 
@@ -58,7 +58,7 @@ Results show that the polinomial (linear+quaratic+cubic) effects of `hours` on `
 
 <img src="examples/glm2/results1_1.png" class="img-responsive" alt="">
 
-BY inspecting the F-tests and the estimates (B coefficients) we can see that we have a _linear_ and a _quadratic_ effect of `hours` to `performance`, whereas the _cubic_ effect ($hours^3$) is trivial and can be disregarded (the $\eta^2p$ is practically zero).
+BY inspecting the F-tests and the estimates (B coefficients) we can see that we have a _linear_ ($hours$) and a _quadratic_ ($hours^2$) effect of `hours` to `performance`, whereas the _cubic_ effect ($hours^3$) is trivial and can be disregarded (the $\eta^2p$ is practically zero).
 
 <img src="examples/glm2/results1_2.png" class="img-responsive" alt="">
 
@@ -79,7 +79,7 @@ We can now analyze possible difference due the the type of athletes by introduci
 When we go to the `Model` panel, we see that the main effect of `type` is automatically inserted in the model terms. 
 <img src="examples/glm2/input2_2.png" class="img-responsive" alt="">
 
-However, we want to see if the effects of `hours` depend on `type` so we need to include the interactions. We need to interactions: the interaction _linear hours_ by _type_, and _quadratic hours_ by _type_ (I removed _cubic hours_ based on the previous analysis).
+However, we want to see if the effects of `hours` depend on `type` so we need to include the interactions. We need two interactions: the interaction _linear hours_ by _type_, and _quadratic hours_ by _type_ (I removed _cubic hours_ based on the previous analysis).
 
 For the _linear_ by _type_ interaction, we select both `type` and `hours` and we press the `arrow` to move the interaction term to the `Model Terms` field.
 
@@ -93,7 +93,7 @@ We have done setting the new model.
 
 ## Results
 
-The model info table shows the actual model we estimated and the $R^2$, the latter clearly larger than the $R^2$ of the previous model.
+The model info table shows the actual R-syntax model we estimated and the $R^2$, the latter clearly larger than the $R^2$ of the previous model.
 
 <img src="examples/glm2/results2_1.png" class="img-responsive" alt="">
 
@@ -110,7 +110,7 @@ For professional athletes (`P`), the performace increases along hours of trainin
 
 ## Input
 
-Assume we want to test groups differences along the training hours continuum. That is we want to test the difference between the two groups at different levels of traning lenght. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with `simple` coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.
+Assume we want to test groups differences along the training hours continuum. That is, we want to test the difference between the two groups at different levels of training lenght. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with `simple` coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.
 
 <img src="examples/glm2/input3_1.png" class="img-responsive" alt="">
 
@@ -128,7 +128,7 @@ To visualize what we are doing, let's see the plot after standardizing the IV.
 
 <img src="examples/glm2/results3.plot1.png" class="img-responsive" alt="">
 
-In practice, the simple effects tests we have seen tested the difference between the two lines of the groups at -1, 0, and 1 levels of `hours`. Being `hours` standardized now, those values correspond to -1SD, mean, and +1SD of training hours.
+In practice, the simple effects tests we have seen tested the difference between the blue and the yellow curve at `hours` equal to -1, 0, and 1 . Because we standardized `hours`, those values correspond to -1SD, mean, and +1SD of training hours.
 
 
 # Related examples

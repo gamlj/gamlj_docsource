@@ -345,7 +345,7 @@ div.tocify {
 <h1>Non-linear (polynomial) effects</h1>
 <div id="input" class="section level2">
 <h2>Input</h2>
-<p>We first set up a linear regression with only linear effects. We launch <code>General Linear Model</code> from the <code>Linear Models</code> menu. We put <code>performance</code> in the dependent variable field and <code>hours</code> in the `covariate.</p>
+<p>We first set up a linear regression with only linear effects. We launch <code>General Linear Model</code> from the <code>Linear Models</code> menu. We put <code>performance</code> in the dependent variable field and <code>hours</code> in the <code>covariate</code>.</p>
 <p><img src="examples/glm2/variables.png" class="img-responsive" alt=""></p>
 <p>By defining the variables we obtain a simple regression in the output, but we want to specify a quadratic effect of <code>hours</code>, so we go to the <code>Model</code> panel. As soon as we select <code>hours</code> in the <code>Components</code> field, we can see on the right of the variable a little <code>1</code> appearing.</p>
 <p><img src="examples/glm2/model1.png" class="img-responsive" alt=""></p>
@@ -358,7 +358,7 @@ div.tocify {
 <h2>Results</h2>
 <p>Results show that the polinomial (linear+quaratic+cubic) effects of <code>hours</code> on <code>performance</code> explain about 50% of the variance <span class="math inline">\(R^2=.486\)</span>.</p>
 <p><img src="examples/glm2/results1_1.png" class="img-responsive" alt=""></p>
-<p>BY inspecting the F-tests and the estimates (B coefficients) we can see that we have a <em>linear</em> and a <em>quadratic</em> effect of <code>hours</code> to <code>performance</code>, whereas the <em>cubic</em> effect (<span class="math inline">\(hours^3\)</span>) is trivial and can be disregarded (the <span class="math inline">\(\eta^2p\)</span> is practically zero).</p>
+<p>BY inspecting the F-tests and the estimates (B coefficients) we can see that we have a <em>linear</em> (<span class="math inline">\(hours\)</span>) and a <em>quadratic</em> (<span class="math inline">\(hours^2\)</span>) effect of <code>hours</code> to <code>performance</code>, whereas the <em>cubic</em> effect (<span class="math inline">\(hours^3\)</span>) is trivial and can be disregarded (the <span class="math inline">\(\eta^2p\)</span> is practically zero).</p>
 <p><img src="examples/glm2/results1_2.png" class="img-responsive" alt=""></p>
 <p>When it comes to polynomial models, the best way to figure out the relationship between variables is to plot the effects. We can do that by selecting the <code>Plot</code> panel and by putting <code>hours</code> in the <code>Horizontal Axis</code> filed (mind that in GAMLj default the IV is centered to its mean, to obtain a nice plot I changed the IV scaling to <code>none</code> in <code>Covariates scaling</code> panel).</p>
 <p><img src="examples/glm2/plot1.png" class="img-responsive" alt=""></p>
@@ -371,7 +371,7 @@ div.tocify {
 <p>We can now analyze possible difference due the the type of athletes by introducing <code>type</code> as a factor in the model.</p>
 <p><img src="examples/glm2/input2_1.png" class="img-responsive" alt=""></p>
 <p>When we go to the <code>Model</code> panel, we see that the main effect of <code>type</code> is automatically inserted in the model terms. <img src="examples/glm2/input2_2.png" class="img-responsive" alt=""></p>
-<p>However, we want to see if the effects of <code>hours</code> depend on <code>type</code> so we need to include the interactions. We need to interactions: the interaction <em>linear hours</em> by <em>type</em>, and <em>quadratic hours</em> by <em>type</em> (I removed <em>cubic hours</em> based on the previous analysis).</p>
+<p>However, we want to see if the effects of <code>hours</code> depend on <code>type</code> so we need to include the interactions. We need two interactions: the interaction <em>linear hours</em> by <em>type</em>, and <em>quadratic hours</em> by <em>type</em> (I removed <em>cubic hours</em> based on the previous analysis).</p>
 <p>For the <em>linear</em> by <em>type</em> interaction, we select both <code>type</code> and <code>hours</code> and we press the <code>arrow</code> to move the interaction term to the <code>Model Terms</code> field.</p>
 <p><img src="examples/glm2/input2_3.png" class="img-responsive" alt=""></p>
 <p>For the <em>quadratic</em> by <em>type</em> interaction, we select both <code>type</code> and <code>hours</code>, and we increase the exponent of <code>hours</code> to signal that we want the quadratic term to interact with <code>type</code>. We press the <code>arrow</code> to move the interaction term to the <code>Model Terms</code> field.</p>
@@ -379,7 +379,7 @@ div.tocify {
 <p>We have done setting the new model.</p>
 <div id="results-1" class="section level2">
 <h2>Results</h2>
-<p>The model info table shows the actual model we estimated and the <span class="math inline">\(R^2\)</span>, the latter clearly larger than the <span class="math inline">\(R^2\)</span> of the previous model.</p>
+<p>The model info table shows the actual R-syntax model we estimated and the <span class="math inline">\(R^2\)</span>, the latter clearly larger than the <span class="math inline">\(R^2\)</span> of the previous model.</p>
 <p><img src="examples/glm2/results2_1.png" class="img-responsive" alt=""></p>
 <p>As regards the effects, we can see that we do have a <em>quadratic hours</em> by <em>type</em> interaction, so we can say that the effect of <code>hours</code> on <code>performance</code> has a different shape depending on the type of athlete. <img src="examples/glm2/results2_2.png" class="img-responsive" alt=""></p>
 <p>Inspecting the plot makes the interpretation easier.</p>
@@ -391,7 +391,7 @@ div.tocify {
 <h1>Simple effect analysis (Advanced)</h1>
 <div id="input-1" class="section level2">
 <h2>Input</h2>
-<p>Assume we want to test groups differences along the training hours continuum. That is we want to test the difference between the two groups at different levels of traning lenght. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with <code>simple</code> coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.</p>
+<p>Assume we want to test groups differences along the training hours continuum. That is, we want to test the difference between the two groups at different levels of training lenght. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with <code>simple</code> coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.</p>
 <p><img src="examples/glm2/input3_1.png" class="img-responsive" alt=""></p>
 <p>We then ask for the simple effects of <code>type</code> for different levels (mean and mean plus/minus one SD) of <code>hours</code>.</p>
 <p><img src="examples/glm2/input3_2.png" class="img-responsive" alt=""></p>
@@ -402,7 +402,7 @@ div.tocify {
 <p><img src="examples/glm2/results3_1.png" class="img-responsive" alt=""></p>
 <p>To visualize what we are doing, let’s see the plot after standardizing the IV.</p>
 <p><img src="examples/glm2/results3.plot1.png" class="img-responsive" alt=""></p>
-<p>In practice, the simple effects tests we have seen tested the difference between the two lines of the groups at -1, 0, and 1 levels of <code>hours</code>. Being <code>hours</code> standardized now, those values correspond to -1SD, mean, and +1SD of training hours.</p>
+<p>In practice, the simple effects tests we have seen tested the difference between the blue and the yellow curve at <code>hours</code> equal to -1, 0, and 1 . Because we standardized <code>hours</code>, those values correspond to -1SD, mean, and +1SD of training hours.</p>
 </div>
 </div>
 <div id="related-examples" class="section level1">
