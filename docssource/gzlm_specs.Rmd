@@ -49,7 +49,7 @@ Residual variance degrees of freedom: $DF_{M_s} -DF_{M_e}$, where $M_s$ is the s
 
 ## Value/DF
 
-a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson $\chi^2$ statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually > 3) indicate overdispersion. Values smaller than 1 (usually < .333) indicate underdispersion. It is useful to decide whether the Poisson model is mispresenting overdispersion, in which case `Quasipoisson` or `negative binomial` models may be preferred. 
+a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson $\chi^2$ statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually > 3) indicate overdispersion. Values smaller than 1 (usually < .333) indicate underdispersion. It is useful to decide whether the Poisson model is presenting overdispersion, in which case `Quasipoisson` or `negative binomial` models may be preferred. 
 
 It is implemented as follows:
 

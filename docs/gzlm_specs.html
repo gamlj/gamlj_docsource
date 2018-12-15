@@ -349,7 +349,7 @@ div.tocify {
 </div>
 <div id="valuedf" class="section level2">
 <h2>Value/DF</h2>
-<p>a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson <span class="math inline">\(\chi^2\)</span> statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually &gt; 3) indicate overdispersion. Values smaller than 1 (usually &lt; .333) indicate underdispersion. It is useful to decide whether the Poisson model is mispresenting overdispersion, in which case <code>Quasipoisson</code> or <code>negative binomial</code> models may be preferred.</p>
+<p>a measure of dispersion for Poisson-like model and binomial models. It is given by the Pearson <span class="math inline">\(\chi^2\)</span> statistics divided by the residual degrees of freedom. It is expected to be 1, thus larger number (usually &gt; 3) indicate overdispersion. Values smaller than 1 (usually &lt; .333) indicate underdispersion. It is useful to decide whether the Poisson model is presenting overdispersion, in which case <code>Quasipoisson</code> or <code>negative binomial</code> models may be preferred.</p>
 <p>It is implemented as follows:</p>
 <pre><code>  value &lt;- sum(residuals(model, type = &quot;pearson&quot;)^2)
   result &lt;- value/model$df.residual
