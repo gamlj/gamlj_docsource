@@ -359,7 +359,7 @@ div.tocify {
 <div id="post-hocs" class="section level1">
 <h1>Post-Hocs</h1>
 <p>Post-hoc tests are model-based: Each comparison comparares two groups means using the standard error derived from the model error. This means that the comparisons are consisistent to the model they belong to and that different models may produce different results for the same set of comparisons.</p>
-<p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. For all GZLM models estimated with <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html">glm function</a> (all but multinomial model) post hoc are implemented as follows (for any given <code>model</code> and <code>term</code> selected by the user) :</p>
+<p>Post-hocs tests are performed as implemented in the <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a>. For all GZLM models estimated with <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html">glm function</a> (all but the multinomial model) post hoc are implemented as follows (for any given <code>model</code> and <code>term</code> selected by the user) :</p>
 <pre><code>          referenceGrid &lt;- emmeans::emmeans(model, formula)
           none &lt;- summary(pairs(referenceGrid, adjust=&#39;none&#39;))
           tukey &lt;- summary(pairs(referenceGrid, adjust=&#39;tukey&#39;))
@@ -367,7 +367,7 @@ div.tocify {
           bonferroni &lt;- summary(pairs(referenceGrid, adjust=&#39;bonferroni&#39;))
           holm &lt;- summary(pairs(referenceGrid, adjust=&#39;holm&#39;))
       </code></pre>
-<p>For multinomial models, the estimation is slightly different. Following <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a> manual, the comparisons are carried out on the linear predictor recentered so that it averages to zero over the levels of the response variable (similar to sum-to-zero contrasts). Thus each latent variable can be regarded as the log probability at that level minus the average log probability over all levels.</p>
+<p>For the multinomial model, the estimation is slightly different. Following <a href="https://cran.r-project.org/web/packages/emmeans/index.html">emmeans package</a> docs, the comparisons are carried out on the linear predictor recentered so that it averages to zero over the levels of the response variable (similar to sum-to-zero contrasts). Thus, each latent variable can be regarded as the log probability at one level minus the average log probability over all levels.</p>
 <p>The comparisons are implemented as follows:</p>
 <pre><code>
 model&lt;-multinom(dependent ~term*otherterms, data = data, model = TRUE)

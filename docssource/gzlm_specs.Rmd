@@ -64,7 +64,7 @@ It is implemented as follows:
 
 Post-hoc tests are model-based: Each comparison comparares two groups means using the standard error derived from the model error. This means that the comparisons are consisistent to the model they belong to and that different models may produce different results for the same set of comparisons.
 
-Post-hocs tests are performed as implemented in the [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html). For all GZLM models estimated with [glm function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) (all but multinomial model) post hoc are implemented as follows (for any given  `model` and `term` selected by the user) :
+Post-hocs tests are performed as implemented in the [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html). For all GZLM models estimated with [glm function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) (all but the multinomial model) post hoc are implemented as follows (for any given  `model` and `term` selected by the user) :
 
 ```
           referenceGrid <- emmeans::emmeans(model, formula)
@@ -77,7 +77,7 @@ Post-hocs tests are performed as implemented in the [emmeans package](https://cr
 ```
 
 
-For multinomial models, the estimation is slightly different. Following [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html) manual, the comparisons are carried out on the linear predictor recentered so that it averages to zero over the levels of the response variable (similar to sum-to-zero contrasts). Thus each latent variable can be regarded as the log probability at that level minus the average log probability over all levels.
+For the multinomial model, the estimation is slightly different. Following [emmeans package](https://cran.r-project.org/web/packages/emmeans/index.html) docs, the comparisons are carried out on the linear predictor recentered so that it averages to zero over the levels of the response variable (similar to sum-to-zero contrasts). Thus, each latent variable can be regarded as the log probability at one level minus the average log probability over all levels.
 
 The comparisons are implemented as follows:
 ```

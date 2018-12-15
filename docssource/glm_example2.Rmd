@@ -110,7 +110,7 @@ For professional athletes (`P`), the performace increases along hours of trainin
 
 ## Input
 
-Assume we want to test groups differences along the training hours continuum. That is, we want to test the difference between the two groups at different levels of training lenght. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with `simple` coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.
+Assume we want to test groups differences along the training hours continuum. That is, we want to test the difference between the two groups at different levels of training length. To do that, it is convinient to rescale the variables: We standardize the independent variable and code the factor with `simple` coding, which yields coefficients associated with the factor equal to the groups difference in the expected value of the dependent variable.
 
 <img src="examples/glm2/input3_1.png" class="img-responsive" alt="">
 
@@ -120,7 +120,7 @@ We then ask for the simple effects of `type` for different levels (mean and mean
 
 ## Results
 
-The simple effects tables show that for low (-1SD) and high (+1SD) training the groups are statistically different and the difference is to the advantage of the Professional group ($P-A=2.977$ and $P-A=2.667$), whereas for average training the performance does not seem to be different between the two groups ($P-A=-0.0403$). By changing the covariate conditioning in the `Covariate Scaling` panel one can test these difference for all values of `hours` that we wish.
+The simple effects tables show that for low (-1SD) and high (+1SD) training the groups are statistically different and the difference is to the advantage of the Professional group ($P-A=2.977$ and $P-A=2.667$), whereas for average training the performance does not seem to be different between the two groups ($P-A=-0.0403$). By changing the covariate conditioning in the `Covariate Scaling` panel one can test these differences for all values of `hours` that we wish.
 
 <img src="examples/glm2/results3_1.png" class="img-responsive" alt="">
 
