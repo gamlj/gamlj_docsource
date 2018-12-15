@@ -120,7 +120,7 @@ We then ask for the simple effects of `type` for different levels (mean and mean
 
 ## Results
 
-The simple effects tables show that for low (-1SD) and high (+1SD) training the groups are statistically different and the difference is to the advantage of the Professional group ($P-A=2.977$ and $P-A=2.667$), whereas for average training the performance does not seem to be different between the two groups ($P-A=-0.0403$). By changing the covariate conditioning in the `Covariate Scaling` panel one can test these differences for all values of `hours` that we wish.
+The simple effects tables show that for low (-1SD) and high (+1SD) training the groups are statistically different and the difference is to the advantage of the Professional group ($P-A=2.977$ and $P-A=2.667$), whereas for average training the performance does not seem to be different between the two groups ($P-A=-0.0403$). By changing the covariate conditioning in the `Covariate Scaling` panel one can test these differences for all values of `hours` that one wishes.
 
 <img src="examples/glm2/results3_1.png" class="img-responsive" alt="">
 
