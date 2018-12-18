@@ -1,7 +1,9 @@
 ---
 title: "Logistic analysis in jamovi"
 author: "(by Marcello Gallucci)"
+nickname: logistic
 topic: gzlm
+category: example
 output: 
   html_document:
      includes:
