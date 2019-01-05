@@ -93,3 +93,18 @@ data$i<-factor(data$i)
 table(data$x2)
 lmer(y~1+(1|i)+x,data=data)
 lmer(y~1+(1|i)+x2,data=data)
+
+
+a<-4.644391
+utf8ToInt("r")
+q<-c(104,97,112,112,121,32,110,101,119,32,121,101,97,114)
+u<-unique(q)
+u<-u[order(u)]
+
+u<-c(32,97,101,104,110,112,114,119,121)
+paste0(sapply(u[c(4,2,6,6,9,1,5,3,8,1,9,3,2,7)],intToUtf8),collapse = "")
+
+u<-c(46,97,71,70,119,99,72,107,103,98,109,86,51,73,72,108,108,89,88,73)
+jmvcore::fromB64(paste0(sapply(u,intToUtf8),collapse = ""))
+
+  

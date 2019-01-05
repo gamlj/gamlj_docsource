@@ -1,8 +1,8 @@
 ---
-title: "GLM: Polynomial Effects"
+title: "Mixed: Individul Growth Model"
 author: "(Marcello Gallucci)"
-nickname: polynomial
-topic: glm
+nickname: igm
+topic: mixed
 category: example
 output: 
   html_document:
@@ -18,15 +18,17 @@ source("../R/functions.R")
 ```
 
 
-`r keywords("Polynomial regression, non linear effects, general linear model")`
+`r keywords("Individual Growth Model, Polynomial mixed model, non linear effects, linear model")`
 
 `r version("1.0.5")`
 
-In this example we exemplify polynomial regression (GLM) in jamovi GAMLj. Data are (simulated data) [here](https://github.com/mcfanda/gamlj/data/qsport.csv). 
+In this example we work out an example of individual growth model using polynomial effects in the mixed model, using jamovi GAMLj. Data are (simulated data) [here](https://github.com/mcfanda/gamlj/data/tempdata.csv). 
 
-# The dataset
+# The research design
 
-The (simulated) dataset has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can bee good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable `types`), professionals (`P`) and amateurs (`A`), and we want to check if the effects of training may be different in the two groups.
+The (simulated) dataset is inspired by 
+
+has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can bee good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable `types`), professionals (`P`) and amateurs (`A`), and we want to check if the effects of training may be different in the two groups.
 
 <img src="examples/glm2/desc.png" class="img-responsive" alt="">
 

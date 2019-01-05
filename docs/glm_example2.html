@@ -12,7 +12,7 @@
 <meta name="author" content="(Marcello Gallucci)" />
 
 
-<title>GLM: Polynomial Effects</title>
+<title>Mixed: Individul Growth Model</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -110,6 +110,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -124,7 +127,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -144,6 +146,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -165,18 +204,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -327,18 +425,19 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">GLM: Polynomial Effects</h1>
+<h1 class="title toc-ignore">Mixed: Individul Growth Model</h1>
 <h4 class="author"><em>(Marcello Gallucci)</em></h4>
 
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression, non linear effects, general linear model </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Individual Growth Model, Polynomial mixed model, non linear effects, linear model </span></p>
 <p><span class="version"> <span class="versiontitle"> GALMj version ≥ </span> 1.0.5 </span></p>
-<p>In this example we exemplify polynomial regression (GLM) in jamovi GAMLj. Data are (simulated data) <a href="https://github.com/mcfanda/gamlj/data/qsport.csv">here</a>.</p>
-<div id="the-dataset" class="section level1">
-<h1>The dataset</h1>
-<p>The (simulated) dataset has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can bee good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable <code>types</code>), professionals (<code>P</code>) and amateurs (<code>A</code>), and we want to check if the effects of training may be different in the two groups.</p>
+<p>In this example we work out an example of individual growth model using polynomial effects in the mixed model, using jamovi GAMLj. Data are (simulated data) <a href="https://github.com/mcfanda/gamlj/data/tempdata.csv">here</a>.</p>
+<div id="the-research-design" class="section level1">
+<h1>The research design</h1>
+<p>The (simulated) dataset is inspired by</p>
+<p>has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can bee good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable <code>types</code>), professionals (<code>P</code>) and amateurs (<code>A</code>), and we want to check if the effects of training may be different in the two groups.</p>
 <p><img src="examples/glm2/desc.png" class="img-responsive" alt=""></p>
 </div>
 <div id="non-linear-polynomial-effects" class="section level1">
@@ -410,9 +509,6 @@ div.tocify {
 <ul>
 <li>
 <a href="glm_example1.html">GLM: Multiple regression, moderated regression, and simple slopes</a>
-</li>
-<li>
-<a href="glm_example2.html">GLM: Polynomial Effects</a>
 </li>
 </ul>
 <h1>

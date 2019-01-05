@@ -11,7 +11,7 @@ output:
 ---
 
 
-#  version 1.0.5 (future)
+#  version 1.0.5 (current)
 
 * polynomial effects
 * Update graphs when model terms are changed
