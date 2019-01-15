@@ -1,0 +1,31 @@
+---
+title: "Mixed: Individual Growth Model"
+author: "(Marcello Gallucci)"
+nickname: igm
+topic: mixed
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
+
+
+`r keywords("Individual Growth Model, Polynomial mixed model, non linear effects, linear model")`
+
+`r version("1.1.0")`
+
+In this example we work out an example of individual growth model using polynomial effects in the mixed model, using jamovi GAMLj. Data are (simulated data) [here](https://github.com/mcfanda/gamlj/data/tempdata.csv). 
+
+
+# Related examples
+`r include_examples("mixed")`
+
+`r issues()`
