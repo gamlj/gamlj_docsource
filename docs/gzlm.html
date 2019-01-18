@@ -461,13 +461,13 @@ div.tocify {
 <h1>Estimates</h1>
 <p>The module provides Analysis of Deviance tables and parameter estimates for any estimated model. Variables definition follows jamovi standards, with categorical independent variables defined in “factors” and continuous independent variables in “covariates”.</p>
 <p><img src="gzlm/variables.png" class="img-responsive" alt=""></p>
-<p>Effect size indexes are optionally computed by selecting <code>Odd rations (expB)</code>. Odd ratios apply the exponential function to the parameter estimates, thus they make sense for all model where the link function is based on the logarithm.</p>
+<p>Effect size indexes are optionally computed by selecting <code>Odd rations (expB)</code>. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.</p>
 </div>
 <div id="model" class="section level1">
 <h1>Model</h1>
 <p>By default, the model terms are filled in automatically for main effects and for interactions with categorical variables.</p>
 <p><img src="gzlm/model.png" class="img-responsive" alt=""></p>
-<p>Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.</p>
+<p>Interactions between continuous variables or categorical and continuous ones can be set by selecting one or more variables and clicking the second arrow icon.</p>
 <p>The option <code>Fixed Intercept</code> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
 </div>
 <div id="factors-coding" class="section level1">
@@ -482,7 +482,7 @@ div.tocify {
 <div id="covariates-scaling" class="section level1">
 <h1>Covariates Scaling</h1>
 <p><img src="commons/pics/xscoring.png" class="img-responsive" alt=""></p>
-<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simple select <code>none</code>.</p>
+<p>Continuous variables can be centered, standardized or used as they are (<code>none</code>). The default is <code>centered</code> because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercepts, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to <em>unscale</em> the variable, simply select <code>none</code>.</p>
 <p><code>Covariates conditioning</code> rules how the model is conditioned to different values of the continuous independent variables in the <em>simple effects</em> estimation and in the <em>plots</em> when there is an interaction in the model.</p>
 <ul>
 <li><p><code>Mean+SD</code>: means that the IV is conditioned to the <span class="math inline">\(mean\)</span>, to <span class="math inline">\(mean+k \cdot sd\)</span>, and to <span class="math inline">\(mean-k\cdot sd\)</span>, where <span class="math inline">\(k\)</span> is ruled by the white field below the option. Default is 1 SD.</p></li>

@@ -58,7 +58,7 @@ The module provides Analysis of Deviance tables and parameter estimates for any 
 <img src="gzlm/variables.png" class="img-responsive" alt="">
 
 
-Effect size indexes are optionally computed by selecting `Odd rations (expB)`. Odd ratios apply the exponential function to the parameter estimates, thus they make sense for all model where the link function is based on the logarithm.
+Effect size indexes are optionally computed by selecting `Odd rations (expB)`. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.
 
 
 # Model 
@@ -67,7 +67,7 @@ By default, the model terms are filled in automatically for main effects and for
 
 <img src="gzlm/model.png" class="img-responsive" alt="">
 
-Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
+Interactions between continuous variables or categorical and continuous ones can be set by selecting one or more variables and clicking the second arrow icon.
 
 The option `Fixed Intercept` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
 
@@ -82,7 +82,7 @@ The option `Fixed Intercept` includes an intercept in the model. Unflag it to es
 # Covariates Scaling
 <img src="commons/pics/xscoring.png" class="img-responsive" alt="">
 
-Continuous variables can be centered, standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simple select `none`.
+Continuous variables can be centered, standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercepts, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `none`.
 
 
 ```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
