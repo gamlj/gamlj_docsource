@@ -10,7 +10,12 @@ output:
 
 ---
 
+```{r, echo=FALSE}
 
+source("../R/functions.R")
+cw<-write_commits()
+
+```
 #  version 1.0.5 (current)
 
 * polynomial effects

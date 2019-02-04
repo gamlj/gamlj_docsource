@@ -18,7 +18,7 @@ source("../R/functions.R")
 ```
 
 
-`r keywords("Non-linear regression, Polynomial model, non linear effects, linear model")`
+`r keywords("Non-linear regression, Polynomial model, non-linear effects, linear model")`
 
 `r version("1.5.0")`
 
@@ -26,7 +26,7 @@ In this example we work out an example of polynomial regression in the GLM, usin
 
 # The research design
 
-The dataset has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can be good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable `types`), professionals (`P`) and amateurs (`A`), and we want to check if the effects of training may be different in the two groups.
+The dataset has three variables of interest. Imagine we measured athletes performace in a match using a standard scale and the number of hours they trained in a week. The idea is to study the relationship between hours of training and performance. Because training can be good for performance but training too much may have detrimental effects on performance, we foresee a non-linear effect of training hours on performance. Furthermore, athletes are divided in two groups (variable `types`), professionals (`P`) and amateurs (`A`), and we want to check if the effects of training is different in the two groups.
 
 <img src="examples/glm2/desc.png" class="img-responsive" alt="">
 
@@ -62,7 +62,7 @@ BY inspecting the F-tests and the estimates (B coefficients) we can see that we 
 
 <img src="examples/glm2/results1_2.png" class="img-responsive" alt="">
 
-When it comes to polynomial models, the best way to figure out the relationship between variables is to plot the effects. We can do that by selecting the `Plot` panel and by putting `hours` in the `Horizontal Axis` filed (mind that in GAMLj default the IV is centered to its mean, to obtain a nice plot I changed the IV scaling to `none` in `Covariates scaling` panel).
+When it comes to polynomial models, the best way to figure out the relationship between variables is to plot the effects. We can do that by selecting the `Plot` panel and by putting `hours` in the `Horizontal Axis` field (mind that in GAMLj default the IV is centered to its mean, to obtain a nice plot I changed the IV scaling to `none` in `Covariates scaling` panel).
 
 <img src="examples/glm2/plot1.png" class="img-responsive" alt="">
 
@@ -72,14 +72,14 @@ We can see that, on average, up to 10 hours, one more hour of training is good f
 
 # Conditional polynomial effects
 
-We can now analyze possible difference due the the type of athletes by introducing `type` as a factor in the model.
+We can now analyze possible differences due the the type of athletes by introducing `type` as a factor in the model.
 
 <img src="examples/glm2/input2_1.png" class="img-responsive" alt="">
 
 When we go to the `Model` panel, we see that the main effect of `type` is automatically inserted in the model terms. 
 <img src="examples/glm2/input2_2.png" class="img-responsive" alt="">
 
-However, we want to see if the effects of `hours` depend on `type` so we need to include the interactions. We need two interactions: the interaction _linear hours_ by _type_, and _quadratic hours_ by _type_ (I removed _cubic hours_ based on the previous analysis).
+However, we want to see if the effect of `hours` depends on `type` so we need to include the interactions. We need two interactions: the interaction _linear hours_ by _type_, and _quadratic hours_ by _type_ (I removed _cubic hours_ based on the previous analysis).
 
 For the _linear_ by _type_ interaction, we select both `type` and `hours` and we press the `arrow` to move the interaction term to the `Model Terms` field.
 
