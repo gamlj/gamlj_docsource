@@ -10,13 +10,14 @@ output:
 
 ---
 
-```{r, echo=FALSE}
+Releases and changes
+
+```{r, echo=FALSE,results='asis'}
 
 source("../R/functions.R")
 cw<-write_commits()
 
 ```
-#  version 1.0.5 (current)
 
 * polynomial effects
 * Update graphs when model terms are changed
