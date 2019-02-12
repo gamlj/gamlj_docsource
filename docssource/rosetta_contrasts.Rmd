@@ -209,7 +209,7 @@ In R, simple contrast can be obtained as follows:
 
 ```{r}
 
-#### contrast=treatment or effect dummy #######
+#### contrast=simple #######
 dat$Group<-factor(dat$Group)
 k<-4 # number of levels
 contrasts(dat$Group)<-contr.treatment(k)-(1/k)
@@ -218,6 +218,8 @@ model<-lm(Score~Group,data=dat)
 summary(model)
 
 ```
+
+If one need the uncentered _dummy_ coding, it can be obtained in R using `contr.treatment(k)`.
 
 ## R emmeans
 
@@ -233,7 +235,7 @@ contrast(emm,"dunnett",adjust = "none")
 
 ## Simple vs Dummy
 
-GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the `Dummy` is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when _simple_ is used, the other variables effects are computed averaging across the sample; when _dummy_ is used, the other variables effects are computed for the reference group (the first group) defined by the _dummy_ coding. In R, _dummy_ can be obtained using `contr.treatment(k)`.
+GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the `Dummy` is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when _simple_ is used, the other variables effects are computed averaging across the sample; when _dummy_ is used, the other variables effects are computed for the reference group (the first group) defined by the _dummy_ coding. 
 
 # Contrast: Repeated
 
