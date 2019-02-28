@@ -1,5 +1,5 @@
 ---
-title: "Released Notes"
+title: "Releases Notes"
 output: 
   html_document:
     includes:
