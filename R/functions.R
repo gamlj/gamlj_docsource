@@ -106,7 +106,7 @@ write_commits<-function() {
   for (i in seq_along(coms)) {
     test<-grep("!",coms[[i]],fixed=T)
     if (length(test)>0) next()
-    test<-grep("Merge pull",coms[[i]],fixed=T)
+    test<-grep("Merge",coms[[i]],fixed=T)
     if (length(test)>0) next()
     test<-grep("#",coms[[i]],fixed=T)
     if (length(test)>0) {
@@ -121,12 +121,15 @@ write_commits<-function() {
   versions<-rev(versions)
   coms<-do.call("rbind",sel)
   for (i in seq_along(versions)) {
-    cat(paste("#",versions[i],"\n\n"))
+    rel<-""
+    if (i==1) rel<-"(future)"
+    if (i==2) rel<-"(current)"
+    
+    cat(paste("#",versions[i],rel,"\n\n"))
     cs<-coms[coms[,2]==versions[i],1]
     for (j in cs)
       cat(paste("*",j,"\n\n"))
   }
-  
   setwd(wd)
   #coms
 }

@@ -19,12 +19,14 @@ cw<-write_commits()
 
 ```
 
+#  version 1.0.5 (current)
+
 * polynomial effects
 * Update graphs when model terms are changed
 * Fix the R-squared for not binomial GZLM 
 * added datasets
 
-#  version 1.0.4 (current)
+#  version 1.0.4 
 
 * Fix bug in simple effects display in Windows 10
 * Fix simple effects for "dummy" coded factors
