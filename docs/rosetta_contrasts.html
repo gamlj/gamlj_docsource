@@ -109,9 +109,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -126,6 +123,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -145,43 +143,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -203,77 +164,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -536,6 +438,9 @@ summary(model)</code></pre>
 <p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust=&quot;none&quot;</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
 <pre class="r"><code>library(emmeans)</code></pre>
+<pre><code>## NOTE: As of emmeans versions &gt; 1.2.3,
+##       The &#39;cld&#39; function will be deprecated in favor of &#39;CLD&#39;.
+##       You may use &#39;cld&#39; only if you have package:multcomp attached.</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;emmeans&#39;</code></pre>
 <pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
