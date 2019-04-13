@@ -109,6 +109,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -123,7 +126,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -143,6 +145,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -164,18 +203,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -345,7 +443,7 @@ div.tocify {
 <li><p>As a comparison between sets of means tested with model-derived standard errors. jamovi ANOVA, <code>emmeans</code> R and SPSS use this approach. This approach is simpler and straightforward. In simple models, it works perfectly fine.</p></li>
 <li><p>As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here.</p></li>
 </ul>
-<p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software prints out the <strong>contrast matrix</strong>, which contains the coding scheme describing the comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
+<p>The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may be different. The majority of software prints out the <strong>contrast matrix</strong>, which contains the coding scheme describing the tested comparisons. R model estimation requires the <strong>model matrix</strong>, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in <a href="#contrast_matrix_and_model_matrix_details">contrast vs model matrix details</a></p>
 <p>Furthermore, in simple models (such as one-way ANOVA), the two first approaches give exactly the same results. When models get more complex, results may diverge across software because they estimate different things. <strong>The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means</strong>.</p>
 </div>
 <div id="terminology" class="section level1">
@@ -369,9 +467,7 @@ div.tocify {
 </div>
 <div id="jamovi-gamlj-glm" class="section level2">
 <h2>Jamovi GAMLj GLM</h2>
-<p><img src="rosetta/contrasts/c1.gamlj1.png" class="img-responsive" alt=""></p>
-<p>By default, GAMLj sets contrasts to <code>deviation</code>, so <code>default</code> and <code>deviation</code> is equivalent (this may change in future releases)</p>
-<p><img src="rosetta/contrasts/c1.gamlj2.png" class="img-responsive" alt=""></p>
+<p><img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt=""></p>
 <p>Results:</p>
 <p><img src="rosetta/contrasts/r.c1.gamlj1.png" class="img-responsive" alt=""></p>
 <p>The expected means of the four groups are:</p>
@@ -438,9 +534,6 @@ summary(model)</code></pre>
 <p>To employ <code>emmeans</code> package, we first estimate the model (which conding we use does not matter), then we run the function <code>emm&lt;-emmeans(model,specs)</code>, where <code>specs</code> is the factor for which we want to compare the means, and then we apply <code>contrast(emm,contrast_type)</code> to the emmeans object. <code>contrast_type</code> is a string equal to the contrast function we want to use. We add <code>adjust=&quot;none&quot;</code> to obtain the same p-values as in the previous analyses, but any adjustment supported by <code>emmeans</code> can be applied here. If we omit the <code>adjust</code> option, the default multiplicity adjustment method is “fdr” , cf. <a href="https://www.google.it/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwjqpImqvYLYAhVQpKQKHTcMBtUQFggqMAA&amp;url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Femmeans%2Femmeans.pdf&amp;usg=AOvVaw1kHsWAafZ1Rhf3b-f7uruS">emmeans package</a>.</p>
 <p>The <code>deviation</code> contrast it is named <code>eff</code> in emmeans.</p>
 <pre class="r"><code>library(emmeans)</code></pre>
-<pre><code>## NOTE: As of emmeans versions &gt; 1.2.3,
-##       The &#39;cld&#39; function will be deprecated in favor of &#39;CLD&#39;.
-##       You may use &#39;cld&#39; only if you have package:multcomp attached.</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;emmeans&#39;</code></pre>
 <pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
@@ -472,7 +565,8 @@ contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="jamovi-gamlj-glm-1" class="section level2">
 <h2>Jamovi GAMLj GLM</h2>
-<p>Setting the contrasts in GAMLj is identical to the ANOVA module, so I omitted the screenshot from now on. Results are:</p>
+<p>This is GAMLj default (since version 1.5). The contrasts in GAMLj is identical to the ANOVA module.</p>
+<p><img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt=""></p>
 <p><img src="rosetta/contrasts/r.c2.gamlj1.png" class="img-responsive" alt=""></p>
 </div>
 <div id="spss-1" class="section level2">
@@ -541,7 +635,7 @@ contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
 </div>
 <div id="simple-vs-dummy" class="section level2">
 <h2>Simple vs Dummy</h2>
-<p>GAMLj distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
+<p>GAMLj distinguishes between <em>simple</em> and <em>dummy</em> coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the <code>Dummy</code> is not centered, and so when the codes are involved in interactions, the effects of the other variables have different meaning. In the presence of interactions, when <em>simple</em> is used, the other variables effects are computed averaging across the sample; when <em>dummy</em> is used, the other variables effects are computed for the reference group (the first group) defined by the <em>dummy</em> coding.</p>
 </div>
 </div>
 <div id="contrast-repeated" class="section level1">

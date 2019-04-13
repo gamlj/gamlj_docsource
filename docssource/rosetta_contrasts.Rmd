@@ -48,7 +48,7 @@ Contrasts can be computed in two different ways:
 
 * As a comparison between groups means, with group specific standard errors. None of the software used here uses this approach, so we do not deal with it here. 
 
-The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may different in order to simplify interpretation. The majority of software prints out the __contrast matrix__, which contains the coding scheme describing the comparisons. R model estimation requires the __model matrix__, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in [contrast vs model matrix details](#contrast_matrix_and_model_matrix_details)
+The first two approaches give the same results if the contrasts are defined in the same way. However, the contrast coding displayed by the software may be different. The majority of software prints out the __contrast matrix__, which contains the coding scheme describing the tested comparisons. R model estimation requires the __model matrix__, which is generally different from the contrast matrix and represents the weights associated with the dummy variables needed to cast a categorical variable into the linear model estimating the contrasts. How they are related and how to obtain one from the other is explained in [contrast vs model matrix details](#contrast_matrix_and_model_matrix_details)
 
 Furthermore, in simple models (such as one-way ANOVA), the two first approaches give exactly the same results. When models get more complex, results may diverge across software because they estimate different things. __The present results apply to one-way ANOVA, balanced factorial ANOVA with centered coding scheme, ANCOVA models with continuous covariates centered to their means__. 
 
@@ -81,11 +81,7 @@ Results:
 
 ## Jamovi GAMLj GLM
 
-<img src="rosetta/contrasts/c1.gamlj1.png" class="img-responsive" alt="">
-
-By default, GAMLj sets contrasts to `deviation`, so `default` and `deviation` is equivalent (this may change in future releases)
-
-<img src="rosetta/contrasts/c1.gamlj2.png" class="img-responsive" alt="">
+<img src="rosetta/contrasts/c1.anova2.png" class="img-responsive" alt="">
 
 Results:
 
@@ -172,7 +168,9 @@ Results:
 
 ## Jamovi GAMLj GLM
 
-Setting the contrasts in GAMLj is identical to the ANOVA module, so I omitted the screenshot from now on. Results are:
+This is GAMLj default (since version 1.5). The contrasts in GAMLj is identical to the ANOVA module.
+
+<img src="rosetta/contrasts/c2.anova1.png" class="img-responsive" alt="">
 
 <img src="rosetta/contrasts/r.c2.gamlj1.png" class="img-responsive" alt="">
 
@@ -235,7 +233,7 @@ contrast(emm,"dunnett",adjust = "none")
 
 ## Simple vs Dummy
 
-GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the `Dummy` is not centered, and so when the codes are involved in interactions, the effects of the other variables should have different meaning. In the presence of interactions, when _simple_ is used, the other variables effects are computed averaging across the sample; when _dummy_ is used, the other variables effects are computed for the reference group (the first group) defined by the _dummy_ coding. 
+GAMLj distinguishes between _simple_ and _dummy_ coding schemes. They give equivalent results in means comparisons, simple effects, and contrast coefficients. The only difference is that the `Dummy` is not centered, and so when the codes are involved in interactions, the effects of the other variables have different meaning. In the presence of interactions, when _simple_ is used, the other variables effects are computed averaging across the sample; when _dummy_ is used, the other variables effects are computed for the reference group (the first group) defined by the _dummy_ coding. 
 
 # Contrast: Repeated
 
