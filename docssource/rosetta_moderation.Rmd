@@ -347,7 +347,7 @@ and get the simple slopes we needed
 <img src="rosetta/moderation/r.process1.png" class="img-responsive" alt="">
 
 
-Please notice that we estimated the centered model for the sake of caparability, but in PROCESS you do not need to center the variables because the macro will center them for you. PROCESS produces also the syntax for plotting the simple slopes, using the strategies we used in _pure SPSS_ section.
+Please notice that we estimated the centered model for the sake of comparability, but in PROCESS you do not need to center the variables because the macro will center them for you. PROCESS produces also the syntax for plotting the simple slopes, using the strategies we used in _pure SPSS_ section.
 
 
 
