@@ -24,13 +24,13 @@ source("../R/functions.R")
 
 `r version("0.9.7")` 
 
-In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj_docs/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. The complete set of analyses and results (for the lazy reader) can be downloaded [here](https://github.com/mcfanda/gamlj/blob/master/docs/examples/beers_bars.omv)
+In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj_docs/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
 # The research design
 
 Imagine we sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.
 
-We have then 15 bars, each including a different number of participants. In the data set, the classification of customers in bars is contained in the variable `bar`. The frequencies of participants in each bar is in the next table (in jamovi descriptives, tick `frequencies table`)  .
+We have then 15 bars, each including a different number of customers In the data set, the classification of customers in bars is contained in the variable `bar`. The frequencies of customers in each bar is in the next table (in jamovi descriptives, tick `frequencies table`)  .
 
 <img src="examples/mixed1/freq.png" class="img-responsive" alt="">
 
