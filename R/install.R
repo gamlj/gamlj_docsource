@@ -7,5 +7,4 @@ system("git push origin master")
 
 
 
-source("R/constants.R")
 

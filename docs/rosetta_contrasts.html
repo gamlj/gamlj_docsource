@@ -82,9 +82,7 @@ h6 {
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -202,8 +200,6 @@ $(document).ready(function () {
   menuAnchor.closest('li.dropdown').addClass('active');
 });
 </script>
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -361,6 +357,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -542,11 +548,11 @@ summary(model)</code></pre>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;eff&quot;,reverse=T,adjust = &quot;none&quot;)</code></pre>
-<pre><code>##  contrast    estimate         SE  df t.ratio p.value
-##  1 effect -0.14664646 0.06719177 166  -2.183  0.0305
-##  2 effect -0.24674747 0.07192926 166  -3.430  0.0008
-##  3 effect  0.09691919 0.06669951 166   1.453  0.1481
-##  4 effect  0.29647475 0.06669951 166   4.445  &lt;.0001</code></pre>
+<pre><code>##  contrast estimate     SE  df t.ratio p.value
+##  1 effect  -0.1466 0.0672 166 -2.183  0.0305 
+##  2 effect  -0.2467 0.0719 166 -3.430  0.0008 
+##  3 effect   0.0969 0.0667 166  1.453  0.1481 
+##  4 effect   0.2965 0.0667 166  4.445  &lt;.0001</code></pre>
 <p>Please notice that <code>emmeans</code> computes all possible comparisons: group 1 against the grand mean, group 2 against the grand mean, etc.</p>
 </div>
 </div>
@@ -628,10 +634,10 @@ summary(model)</code></pre>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;dunnett&quot;,adjust = &quot;none&quot;)</code></pre>
-<pre><code>##  contrast   estimate        SE  df t.ratio p.value
-##  2 - 1    -0.1001010 0.1148116 166  -0.872  0.3845
-##  3 - 1     0.2435657 0.1083130 166   2.249  0.0258
-##  4 - 1     0.4431212 0.1083130 166   4.091  0.0001</code></pre>
+<pre><code>##  contrast estimate    SE  df t.ratio p.value
+##  2 - 1      -0.100 0.115 166 -0.872  0.3845 
+##  3 - 1       0.244 0.108 166  2.249  0.0258 
+##  4 - 1       0.443 0.108 166  4.091  0.0001</code></pre>
 </div>
 <div id="simple-vs-dummy" class="section level2">
 <h2>Simple vs Dummy</h2>
@@ -710,10 +716,10 @@ summary(lm(Score~Group,data=dat))</code></pre>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;consec&quot;,adjust = &quot;none&quot;,reverse=T)</code></pre>
-<pre><code>##  contrast   estimate        SE  df t.ratio p.value
-##  1 - 2     0.1001010 0.1148116 166   0.872  0.3845
-##  2 - 3    -0.3436667 0.1142361 166  -3.008  0.0030
-##  3 - 4    -0.1995556 0.1077028 166  -1.853  0.0657</code></pre>
+<pre><code>##  contrast estimate    SE  df t.ratio p.value
+##  1 - 2       0.100 0.115 166  0.872  0.3845 
+##  2 - 3      -0.344 0.114 166 -3.008  0.0030 
+##  3 - 4      -0.200 0.108 166 -1.853  0.0657</code></pre>
 </div>
 </div>
 <div id="contrast-polynomial" class="section level1">
@@ -775,10 +781,10 @@ summary(lm(Score~Group,data=dat))</code></pre>
 <pre class="r"><code>model&lt;-lm(Score~Group,data=dat)
 emm&lt;-emmeans(model,~Group)
 contrast(emm,&quot;poly&quot;,adjust = &quot;none&quot;)</code></pre>
-<pre><code>##  contrast    estimate        SE  df t.ratio p.value
-##  linear     1.6730303 0.3444348 166   4.857  &lt;.0001
-##  quadratic  0.2996566 0.1574217 166   1.904  0.0587
-##  cubic     -0.5878788 0.3594172 166  -1.636  0.1038</code></pre>
+<pre><code>##  contrast  estimate    SE  df t.ratio p.value
+##  linear       1.673 0.344 166  4.857  &lt;.0001 
+##  quadratic    0.300 0.157 166  1.904  0.0587 
+##  cubic       -0.588 0.359 166 -1.636  0.1038</code></pre>
 </div>
 </div>
 <div id="contrast-difference" class="section level1">
@@ -913,10 +919,10 @@ round(difference.emmc(levels(dat$Group)),digits = 3)</code></pre>
 ## 4             0           0.0         1.000</code></pre>
 <pre class="r"><code>#### results ##############
 contrast(emm,&quot;difference&quot;,adjust=&quot;none&quot;)</code></pre>
-<pre><code>##  contrast        estimate         SE  df t.ratio p.value
-##  2 vs previous -0.1001010 0.11481160 166  -0.872  0.3845
-##  3 vs previous  0.2936162 0.09536968 166   3.079  0.0024
-##  4 vs previous  0.3952997 0.08893268 166   4.445  &lt;.0001</code></pre>
+<pre><code>##  contrast      estimate     SE  df t.ratio p.value
+##  2 vs previous   -0.100 0.1148 166 -0.872  0.3845 
+##  3 vs previous    0.294 0.0954 166  3.079  0.0024 
+##  4 vs previous    0.395 0.0889 166  4.445  &lt;.0001</code></pre>
 <p>Same results as before.</p>
 </div>
 </div>
@@ -1052,10 +1058,10 @@ helmert.emmc(levels(dat$Group))</code></pre>
 ## 3      -0.3333333   -5.000000e-01    1.000000e+00
 ## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
-<pre><code>##  contrast          estimate         SE  df t.ratio p.value
-##  1 vs subsequent -0.1955286 0.08958902 166  -2.183  0.0305
-##  2 vs subsequent -0.4434444 0.10074677 166  -4.402  &lt;.0001
-##  3 vs subsequent -0.1995556 0.10770283 166  -1.853  0.0657</code></pre>
+<pre><code>##  contrast        estimate     SE  df t.ratio p.value
+##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
+##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
+##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
 <p>Same results!</p>
 </div>
 </div>
@@ -1258,10 +1264,10 @@ helmert.emmc(levels(dat$Group))</code></pre>
 ## 3      -0.3333333   -5.000000e-01    1.000000e+00
 ## 4      -0.3333333   -5.000000e-01   -1.000000e+00</code></pre>
 <pre class="r"><code>contrast(emm,&quot;helmert&quot;,adjust=&quot;none&quot;)</code></pre>
-<pre><code>##  contrast          estimate         SE  df t.ratio p.value
-##  1 vs subsequent -0.1955286 0.08958902 166  -2.183  0.0305
-##  2 vs subsequent -0.4434444 0.10074677 166  -4.402  &lt;.0001
-##  3 vs subsequent -0.1995556 0.10770283 166  -1.853  0.0657</code></pre>
+<pre><code>##  contrast        estimate     SE  df t.ratio p.value
+##  1 vs subsequent   -0.196 0.0896 166 -2.183  0.0305 
+##  2 vs subsequent   -0.443 0.1007 166 -4.402  &lt;.0001 
+##  3 vs subsequent   -0.200 0.1077 166 -1.853  0.0657</code></pre>
 <p>and we get the contrast estimates as expected. For the <code>difference</code> contrast we can use <code>con_weights&lt;-contr.helmert(n)</code> in the function and we get the correct codes.</p>
 </div>
 </div>

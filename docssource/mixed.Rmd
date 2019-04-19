@@ -15,7 +15,7 @@ output:
 source("../R/functions.R")
 ```
 
-`r version("1.0.0")` 
+`r version("1.5.0")` 
 
 
 **Mixed Linear Models** module of the GAMLj suite for jamovi

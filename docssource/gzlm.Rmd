@@ -18,6 +18,8 @@ source("../R/functions.R")
 
 **Generalized Linear Models** module of the GAMLj suite for jamovi
 
+`r version("1.5.0")` 
+
 <img src="gzlm/main.png" class="img-responsive" alt="">
 
 The module estimates generalized linear models with categorial and/or continuous  dependent and independent variables, with options to facilitate estimation ofinteractions, simple slopes, simple effects, etc.

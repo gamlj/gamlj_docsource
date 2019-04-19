@@ -18,6 +18,8 @@ source("../R/functions.R")
 
 **General Linear Model** module of the GAMLj suite for jamovi
 
+`r version("1.5.0")` 
+
 <img src="glm/main.png  " class="img-responsive" alt="">
 
 The module estimates a general linear model with categorial and/or continuous variables, with options to facilitate estimation ofinteractions, simple slopes, simple effects, etc.
