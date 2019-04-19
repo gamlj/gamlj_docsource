@@ -100,7 +100,6 @@ write_commits<-function() {
       return(FALSE)
   coms<-a[1:(grep("initialize",a,fixed=T)-1)]
   coms<-rev(unique(coms))
-  print(coms)
   sel<-list()
   j<-1
   version="none"
