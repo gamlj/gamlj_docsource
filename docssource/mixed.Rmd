@@ -48,7 +48,10 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates that the coefficient associated with `term` is random across `cluster`. 
 
-By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting `Correlated Effects` option.
+By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the `Random coefficients` will be correlated. To obtain a _variance component_ model, select `Not correlated`. A custom pattern of correlation can be obtained by selecting `Correlated block`.  For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of `x` to be correlated, whereas the effect of `wfac` is independent from the others.   
+
+<img src="mixed/random2.png" class="img-responsive" alt="">
+
 
 The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The test basically compares the likelihood of a model with the `effect` included versus a model with the `effect` excluded. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
@@ -58,6 +61,12 @@ The option `LRT for random effects` produces a table of *Likelihood Ratio Tests*
 By default, the model fixed effects terms are filled in automatically for main effects and for interactions with categorical variables. 
 
 Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.
+
+
+```{Call_child, child='commons/nonlinear_chunk.Rmd'}
+```
+
+
 
 # Factors coding
 
@@ -97,7 +106,7 @@ Continuous variables can be centered, standardized, cluster-based centered, clus
 ```{Call_child, child='commons/plots_chunk.Rmd'}
 ```
 
-By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. 
+By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
 
 # Estimated marginal means
 

@@ -49,6 +49,10 @@ By default, the model terms are filled in automatically for main effects and for
 
 Interactions between continuous variables or categorical and continuous variables can be set by clicking the second arrow icon.
 
+```{Call_child, child='commons/nonlinear_chunk.Rmd'}
+```
+
+
 The option `Fixed Intercept` includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see [here](https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/) before you do it ). 
 
 # Factors coding

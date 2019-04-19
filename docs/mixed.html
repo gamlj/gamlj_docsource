@@ -450,7 +450,8 @@ div.tocify {
 <h1>Random effects</h1>
 <p><img src="mixed/random.png" class="img-responsive" alt=""></p>
 <p>Random effects across clustering variables are automatically prepared by the module following R lmer() standards: <code>term | cluster</code> indicates that the coefficient associated with <code>term</code> is random across <code>cluster</code>.</p>
-<p>By default the module assumes correlated random effects. A variance component model can be estimated by de-selecting <code>Correlated Effects</code> option.</p>
+<p>By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the <code>Random coefficients</code> will be correlated. To obtain a <em>variance component</em> model, select <code>Not correlated</code>. A custom pattern of correlation can be obtained by selecting <code>Correlated block</code>. For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of <code>x</code> to be correlated, whereas the effect of <code>wfac</code> is independent from the others.</p>
+<p><img src="mixed/random2.png" class="img-responsive" alt=""></p>
 <p>The option <code>LRT for random effects</code> produces a table of <em>Likelihood Ratio Tests</em> for the random effects. The table is estimated with <code>lmerTest::ranova</code> command, documented <a href="https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf">here</a>. The test basically compares the likelihood of a model with the <code>effect</code> included versus a model with the <code>effect</code> excluded. For example, <code>x in (1+x|cluster)</code> means that the model with <code>(1+x|cluster)</code> random structure is compared with a model with <code>1|cluster)</code> random structure. If significant, the model with random effect <code>x</code> is significantly better (in terms of likelihood) than the model with <code>(1|cluster)</code> structure.</p>
 </div>
 <div id="fixed-effects-model" class="section level1">
@@ -458,11 +459,16 @@ div.tocify {
 <p><img src="mixed/i3.png" class="img-responsive" alt=""></p>
 <p>By default, the model fixed effects terms are filled in automatically for main effects and for interactions with categorical variables.</p>
 <p>Interactions between continuous variables or categorical and continuous can be set by clicking the second arrow icon.</p>
+<p>Polinomial effects for continuous variables can be added to the model. When a variable is selected in the <code>Components</code> field, a little number appears on the right side of the selection. The number indicates the <em>order</em> of the effect.</p>
+<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p>By increasing that number before dragging the term into the <code>Model Terms</code> field, one can include any high order effect.</p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
+<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effect of a variable.</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
 <p><img src="commons/pics/factorCoding.png" class="img-responsive" alt=""></p>
-<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameter estimates.</p>
+<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameter estimates. The default coding schema is <code>simple</code>, which is centered to zero and compares each means with the reference category mean. The reference category is the first appearing in the variable levels.</p>
 <p>Note that all contrasts but <code>dummy</code> guarantee to be centered to zero (intercept being the grand mean), so when involved in interactions the other variables coefficients can be interpret as (main) average effects. If contrast <code>dummy</code> is set, the intercept and the effects of other variables in interactions are estimated for the first group of the categorical IV.</p>
 <p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting “Show contrast definition table”.</p>
 <p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
@@ -513,7 +519,7 @@ div.tocify {
 <p>By filling in <code>Separate plots</code> one can probe three-way interactions. If the selected variable is a factor, one obtains a two-way graph (as previously defined) for each level of the “Separate plots” variable. If the selected variable is a covariate, one obtains a two-way graph (as previously defined) for the <code>Separate plots</code> variable centered to conditioning values selected in the <code>Covariates conditioning</code> options.</p>
 <p>Flagging the <code>Display</code> options add <code>Confidence intervals</code> (or confidence bands) or <code>Standard errors</code> to the plots.</p>
 <p><code>Plot</code> options allow to add observed data to the plot (<code>Observed scores</code>) or to fix the range of the plot to the actual range of the dependent variable (<code>Y-axis observed range</code>), without the need to plot the actual predicted values. When <code>Separate plots</code> are required, in each plot are showed only the observed scores of the moderator level for which the plot is done when the moderator is a categorical one, otherwise all data are plot in each plot.</p>
-<p>By flagging <code>Random effects</code> one obtains the random effects estimated values in the plot along with the fixed effects.</p>
+<p>By flagging <code>Random effects</code> one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the <code>cluster</code> field of “variable role” panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the “variable role” definition.</p>
 </div>
 <div id="estimated-marginal-means" class="section level1">
 <h1>Estimated marginal means</h1>

@@ -468,12 +468,17 @@ div.tocify {
 <p>By default, the model terms are filled in automatically for main effects and for interactions with categorical variables.</p>
 <p><img src="gzlm/model.png" class="img-responsive" alt=""></p>
 <p>Interactions between continuous variables or categorical and continuous ones can be set by selecting one or more variables and clicking the second arrow icon.</p>
+<p>Polinomial effects for continuous variables can be added to the model. When a variable is selected in the <code>Components</code> field, a little number appears on the right side of the selection. The number indicates the <em>order</em> of the effect.</p>
+<p><img src="commons/pics/nonlinear1.png" class="img-responsive" alt=""></p>
+<p>By increasing that number before dragging the term into the <code>Model Terms</code> field, one can include any high order effect.</p>
+<p><img src="commons/pics/nonlinear2.png" class="img-responsive" alt=""></p>
+<p>Increasing the order number and combining the selection with other variables allows including interactions involving higher order effect of a variable.</p>
 <p>The option <code>Fixed Intercept</code> includes an intercept in the model. Unflag it to estimate zero-intercept models (Regression through the origin, but see <a href="https://dynamicecology.wordpress.com/2017/04/13/dont-force-your-regression-through-zero-just-because-you-know-the-true-intercept-has-to-be-zero/">here</a> before you do it ).</p>
 </div>
 <div id="factors-coding" class="section level1">
 <h1>Factors coding</h1>
 <p><img src="commons/pics/factorCoding.png" class="img-responsive" alt=""></p>
-<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameter estimates.</p>
+<p>It allows to code the categorical variables according to different coding schemas. The coding schema applies to all parameter estimates. The default coding schema is <code>simple</code>, which is centered to zero and compares each means with the reference category mean. The reference category is the first appearing in the variable levels.</p>
 <p>Note that all contrasts but <code>dummy</code> guarantee to be centered to zero (intercept being the grand mean), so when involved in interactions the other variables coefficients can be interpret as (main) average effects. If contrast <code>dummy</code> is set, the intercept and the effects of other variables in interactions are estimated for the first group of the categorical IV.</p>
 <p>Contrasts definitions are provided in the estimates table. More detailed definitions of the comparisons operated by the contrasts can be obtained by selecting “Show contrast definition table”.</p>
 <p>Differently to standard R naming system, contrasts variables are always named with the name of the factor and progressive numbers from 1 to K-1, where K is the number of levels of the factor.</p>
