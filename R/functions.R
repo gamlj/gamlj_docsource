@@ -109,6 +109,9 @@ write_commits<-function() {
     if (length(test)>0) next()
     test<-grep("Merge",coms[[i]],fixed=T)
     if (length(test)>0) next()
+    test<-grep("§",coms[[i]],fixed=T)
+    if (length(test)>0) coms[[i]]<-paste("<b>",coms[[i]],"</b>")
+    
     test<-grep("#",coms[[i]],fixed=T)
     if (length(test)>0) {
       version<-strsplit(coms[[i]],"#",fixed = T)[[1]][2]

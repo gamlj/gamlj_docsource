@@ -9,4 +9,3 @@ system("git push origin master")
 
 source("R/constants.R")
 
-write_commits()
