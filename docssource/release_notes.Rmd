@@ -7,7 +7,8 @@ output:
     toc: true
     toc_float:
          collapsed: false
-
+editor_options: 
+  chunk_output_type: console
 ---
 
 Releases and changes

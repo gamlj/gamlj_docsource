@@ -50,12 +50,12 @@ gg+scale_color_manual(name="Condition",values=c(jmvcore::colorPalette(2, "jmv", 
 
 # The mixed model
 
-Mixed models are perfectly fit to model the data we are discussing. They allow time to be considered a continuous repeated independent variable for which we can compute polynomial effects (linear and quadratic effects, for instance). We can also estimate individual trajectories by allowing the the effects of time to vary from participant to participant, by setting their coefficients as random across the cluster variable `subj`, that is participant.   
+Mixed models are perfectly fit to model the data we are discussing. They allow time to be considered a continuous repeated independent variable for which we can compute polynomial effects (linear and quadratic effects, for instance). We can also estimate individual trajectories by allowing the effects of time to vary from participant to participant, by setting their coefficients as random across the cluster variable `subj`, that is participant.   
 
 # Model 1: capturing the effect of time
 
 ## Input 
-We start focusing on the effect of time, so we ignore for the moment the experimental conditions. We need to specify the dependent variable `y`, `timebin` as continuous independent variable (`Covariates`) and the cluster variable `subj`.
+We start focusing on the effect of time, so we ignore for the moment the experimental conditions. We need to specify the dependent variable `y`, then `timebin` as continuous independent variable (`Covariates`) and then the cluster variable `subj`.
 
 <img src="examples/mixed4/variables1.png" class="img-responsive" alt="">
 
@@ -88,7 +88,7 @@ The coefficients composing the effect of time, and their associated inferential 
 
 On average, there is a linear effect of time on temperature, B=-0.076,t(79.1)=-15.85, p.<.001, and a quadratic effect, B=-0.009,t(88.1)=87.8, p.<.001. The negative linear effect indicates a general tendency of the temperature to decrease in time, and the positive quadratic effect indicates that the temperature trend tends to become flat over time. 
 
-Looking at the random effect variances (`Random Components` table) we can appreciate that participants are indeed different in the averge temperature in the middle of the experiment (variance of the intercepts), in the linear effects (variance of the effect of `timebin`) and in the bending of the individual curves (variances of othe `timebin^2` effect). The variance of the quadratic effect seems to be miniscule, but letting the parameter be random makes the model more sensible from a practical point of view: people may differ in the speed their termperature stabilizes and recovers back to normal!
+Looking at the random effects variances (`Random Components` table) we can appreciate that participants are indeed different in the averge temperature in the middle of the experiment (variance of the intercepts), in the linear effects (variance of the effect of `timebin`) and in the bending of the individual curves (variances of othe `timebin^2` effect). The variance of the quadratic effect seems to be miniscule, but letting the parameter as random makes the model more sensible from a practical point of view: people may differ in the speed their termperature stabilizes and recovers back to normal!
 
 <img src="examples/mixed4/variances1.png" class="img-responsive" alt="">
 
@@ -126,7 +126,7 @@ It is clear that the two conditions show an overall different average temperatur
 
 <img src="examples/mixed4/params2.png" class="img-responsive" alt="">
 
-Our interpretation of the plot is supported by the model parameters. We see a main effect of _condition_ and an interaction between _condition_ and _timebin_. So, the two conditions are different in the average temperature and the decrease over time seems is different. Furthermore, the significant interaction  _condition_ times $timebin^2$ indicates that condition 1 bends more than condition 1, in which the quadratic term is smaller (the interaction B is negative).
+Our interpretation of the plot is supported by the model parameters. We see a main effect of _condition_ and an interaction between _condition_ and _timebin_. So, the two conditions are different in the average temperature and the decrease over time seems to be different. Furthermore, the significant interaction  _condition_ times $timebin^2$ indicates that condition 1 bends more than condition 2, in which the quadratic term is smaller (the interaction B is negative).
 
 # Conclusions
 

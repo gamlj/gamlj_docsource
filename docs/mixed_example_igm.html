@@ -452,13 +452,13 @@ div.tocify {
 </div>
 <div id="the-mixed-model" class="section level1">
 <h1>The mixed model</h1>
-<p>Mixed models are perfectly fit to model the data we are discussing. They allow time to be considered a continuous repeated independent variable for which we can compute polynomial effects (linear and quadratic effects, for instance). We can also estimate individual trajectories by allowing the the effects of time to vary from participant to participant, by setting their coefficients as random across the cluster variable <code>subj</code>, that is participant.</p>
+<p>Mixed models are perfectly fit to model the data we are discussing. They allow time to be considered a continuous repeated independent variable for which we can compute polynomial effects (linear and quadratic effects, for instance). We can also estimate individual trajectories by allowing the effects of time to vary from participant to participant, by setting their coefficients as random across the cluster variable <code>subj</code>, that is participant.</p>
 </div>
 <div id="model-1-capturing-the-effect-of-time" class="section level1">
 <h1>Model 1: capturing the effect of time</h1>
 <div id="input" class="section level2">
 <h2>Input</h2>
-<p>We start focusing on the effect of time, so we ignore for the moment the experimental conditions. We need to specify the dependent variable <code>y</code>, <code>timebin</code> as continuous independent variable (<code>Covariates</code>) and the cluster variable <code>subj</code>.</p>
+<p>We start focusing on the effect of time, so we ignore for the moment the experimental conditions. We need to specify the dependent variable <code>y</code>, then <code>timebin</code> as continuous independent variable (<code>Covariates</code>) and then the cluster variable <code>subj</code>.</p>
 <p><img src="examples/mixed4/variables1.png" class="img-responsive" alt=""></p>
 <p>Then we go to the <code>Fixed Effects</code> panel to specify the fixed effects model. We need the linear effect of time, and (at least) the quadratic effect, so we capture the curvature of the mean trajectory of temperature over time.</p>
 <p><img src="examples/mixed4/fixed1.png" class="img-responsive" alt=""></p>
@@ -476,7 +476,7 @@ div.tocify {
 <p>The coefficients composing the effect of time, and their associated inferential tests, can be seen in the <code>Parameters Estimates</code> table.</p>
 <p><img src="examples/mixed4/params1.png" class="img-responsive" alt=""></p>
 <p>On average, there is a linear effect of time on temperature, B=-0.076,t(79.1)=-15.85, p.&lt;.001, and a quadratic effect, B=-0.009,t(88.1)=87.8, p.&lt;.001. The negative linear effect indicates a general tendency of the temperature to decrease in time, and the positive quadratic effect indicates that the temperature trend tends to become flat over time.</p>
-<p>Looking at the random effect variances (<code>Random Components</code> table) we can appreciate that participants are indeed different in the averge temperature in the middle of the experiment (variance of the intercepts), in the linear effects (variance of the effect of <code>timebin</code>) and in the bending of the individual curves (variances of othe <code>timebin^2</code> effect). The variance of the quadratic effect seems to be miniscule, but letting the parameter be random makes the model more sensible from a practical point of view: people may differ in the speed their termperature stabilizes and recovers back to normal!</p>
+<p>Looking at the random effects variances (<code>Random Components</code> table) we can appreciate that participants are indeed different in the averge temperature in the middle of the experiment (variance of the intercepts), in the linear effects (variance of the effect of <code>timebin</code>) and in the bending of the individual curves (variances of othe <code>timebin^2</code> effect). The variance of the quadratic effect seems to be miniscule, but letting the parameter as random makes the model more sensible from a practical point of view: people may differ in the speed their termperature stabilizes and recovers back to normal!</p>
 <p><img src="examples/mixed4/variances1.png" class="img-responsive" alt=""></p>
 <p>This individual variability may be related to the condition, so we now add the condition variable to the model</p>
 </div>
@@ -500,7 +500,7 @@ div.tocify {
 <p><img src="examples/mixed4/plot2.png" class="img-responsive" alt=""></p>
 <p>It is clear that the two conditions show an overall different average temperature. The decrease over time seems to be different as well, whereas the difference in bending is not that evident. We turn to the parameter estimates to support what we see in the plot.</p>
 <p><img src="examples/mixed4/params2.png" class="img-responsive" alt=""></p>
-<p>Our interpretation of the plot is supported by the model parameters. We see a main effect of <em>condition</em> and an interaction between <em>condition</em> and <em>timebin</em>. So, the two conditions are different in the average temperature and the decrease over time seems is different. Furthermore, the significant interaction <em>condition</em> times <span class="math inline">\(timebin^2\)</span> indicates that condition 1 bends more than condition 1, in which the quadratic term is smaller (the interaction B is negative).</p>
+<p>Our interpretation of the plot is supported by the model parameters. We see a main effect of <em>condition</em> and an interaction between <em>condition</em> and <em>timebin</em>. So, the two conditions are different in the average temperature and the decrease over time seems to be different. Furthermore, the significant interaction <em>condition</em> times <span class="math inline">\(timebin^2\)</span> indicates that condition 1 bends more than condition 2, in which the quadratic term is smaller (the interaction B is negative).</p>
 </div>
 </div>
 <div id="conclusions" class="section level1">
