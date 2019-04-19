@@ -93,12 +93,14 @@ source("../R/constants.R")
 write_commits<-function() {
   wd<-getwd()
   setwd(TARGETD)
-  a<-system("git log --pretty=format:'%cd %s' --date=short",intern = T)
+### With dates ...  a<-system("git log --pretty=format:'%cd %s' --date=short",intern = T)
+  a<-system("git log --pretty=format:'%s' --date=short",intern = T)
   test<-grep("initialize",a,fixed=T)
   if (length(test)==0)
       return(FALSE)
   coms<-a[1:(grep("initialize",a,fixed=T)-1)]
   coms<-rev(unique(coms))
+  print(coms)
   sel<-list()
   j<-1
   version="none"

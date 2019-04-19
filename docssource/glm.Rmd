@@ -110,7 +110,7 @@ Continuous variables can be centered, standardized or used as they are (`none`).
 
 * `Normality of residuals` provides [Klomogorov-Smirnov](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test){target="_blank"} and [Shapiro-Wilk](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation){target="_blank"} tests for normality of residuals.
 
-* `Q-Q` plots outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
+* `Q-Q` plot outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
 
 
 # Examples
