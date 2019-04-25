@@ -1,5 +1,6 @@
 library(rmarkdown)
-SOURCE_FOLDER="../pubs"
+HERE<-getwd()
+SOURCE_FOLDER="pubs"
 TARGET_FOLDER="../gamlj.github.io"
 msg<-"updates"
 render_site("docssource/")
@@ -8,7 +9,12 @@ system(paste('git commit -m "',msg,'"'))
 system("git push origin master")
 
 cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
-system("cp ")
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
 
 
 
