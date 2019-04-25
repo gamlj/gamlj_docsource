@@ -4,13 +4,6 @@ library(Rsearchable)
 
 source("../R/constants.R")
 
-localdatafolder<-function() {
-  ishttps<-(length(grep("https:/",DATALINK,fixed = T))>0)
-  ishttp<-(length(grep("http:/",DATALINK,fixed = T))>0)
-  if (ishttp || ishttps)
-    return(FALSE)
-  return(DATALINK) 
-}
 
 
 datafile<-function(name,file) {
