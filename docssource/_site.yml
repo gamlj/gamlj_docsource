@@ -1,5 +1,5 @@
 name: "gamlj-website"
-output_dir: "../docs"
+output_dir: "../../gamlj.github.io/"
 navbar:
   title: "GAMLj"
   left:
