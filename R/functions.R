@@ -97,7 +97,7 @@ test<-function() return("xx xxxxxx x")
 
 write_commits<-function() {
   wd<-getwd()
-  setwd(TARGETD)
+  setwd(MODULE_FOLDER)
 ### With dates ...  a<-system("git log --pretty=format:'%cd %s' --date=short",intern = T)
   a<-system("git log --pretty=format:'%s' --date=short",intern = T)
   test<-grep("initialize",a,fixed=T)
