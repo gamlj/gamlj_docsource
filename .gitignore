@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 # clean tree
 pubs/
 
+=======
+>>>>>>> 146ca06be0aac231685efbe4e22ca4f7a810890e
 # History files
 .Rhistory
 .Rapp.history
@@ -8,6 +11,7 @@ pubs/
 # Session Data files
 .RData
 
+<<<<<<< HEAD
 # jamovi
 build/
 temp/
@@ -16,6 +20,8 @@ gamlj.jmo
 problems/
 future/
 
+=======
+>>>>>>> 146ca06be0aac231685efbe4e22ca4f7a810890e
 # Example code in package build process
 *-Ex.R
 
@@ -24,7 +30,10 @@ future/
 
 # Output files from R CMD check
 /*.Rcheck/
+<<<<<<< HEAD
 *.Rproj
+=======
+>>>>>>> 146ca06be0aac231685efbe4e22ca4f7a810890e
 
 # RStudio files
 .Rproj.user/
@@ -43,9 +52,15 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+<<<<<<< HEAD
 .Rproj.user
 
 # docs sources
 
 analytics.txt
 
+=======
+
+# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
+rsconnect/
+>>>>>>> 146ca06be0aac231685efbe4e22ca4f7a810890e
