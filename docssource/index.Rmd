@@ -14,7 +14,7 @@ source("../R/functions.R")
 ```
   
 
-General, Mixed and Generalized Models module for Jamovi
+General, Mixed and Generalized Models module for jamovi
 
 <img src="docs/i1.png" class="img-responsive" alt="">
 
