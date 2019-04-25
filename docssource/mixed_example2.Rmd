@@ -22,7 +22,7 @@ source("../R/functions.R")
 
 In this example we work out the analysis of a simple repeated measures design with a within-subject factor and a between-subject factor: we do a mixed Anova with the mixed model.
 
-We use the GAMLj module in Jamovi. One can follow the example by downloading the file `r datafile("wicksell.csv","wicksell.csv"). Be sure to install GAMLj module from within jamovi library. 
+We use the GAMLj module in Jamovi. One can follow the example by downloading the file `r datafile("wicksell.csv","wicksell.csv")`. Be sure to install GAMLj module from within jamovi library. 
 
 The data are from a [David C. Howell](https://www.uvm.edu/~dhowell/StatPages/More_Stuff/Mixed-Models-Repeated/Mixed-Models-for-Repeated-Measures1.html) website. You can find there a lot of very clear information and discussion of repeated measures mixed model analysis, in SPSS, SAS, and R. As you would expect from David C. Howell, the material is simply great.
 
