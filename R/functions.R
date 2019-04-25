@@ -2,7 +2,13 @@ library(yaml)
 library(rmarkdown)
 library(Rsearchable)
 
+source("../R/constants.R")
 
+datafile<-function(name,file) {
+  if (length(grep(":/",file,fixed = T))==0)
+    file<-paste0(DATALINK,"/",file)
+  paste0('[',name,'](',file,')')
+}
 
 keywords<-function(key) {
   span<-'<span class="keywords"> <span class="keytitle"> keywords </span>'
@@ -88,7 +94,6 @@ issues<-function() {
 
 test<-function() return("xx xxxxxx x")
 
-source("../R/constants.R")
 
 write_commits<-function() {
   wd<-getwd()

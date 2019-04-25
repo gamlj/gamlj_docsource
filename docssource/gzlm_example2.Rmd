@@ -26,7 +26,8 @@ source("../R/functions.R")
 
 In this example we analyze a 3 X 2 X 2 design, with a dichotomous dependent variable. We employ logistic regression for modelling the dichotomous dependent variable.
 
-We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the [csv file](https://github.com/mcfanda/gamlj_docs/blob/master/data/neuralgia.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
+We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the
+`r datafile("cvs file","neuralgia.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
 
 The data are from a [SAS User's Guide](https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_logistic_sect060.htm) example, 51.2. There you can find similar analyses in SAS.
 

@@ -24,7 +24,12 @@ source("../R/functions.R")
 
 `r version("0.9.7")` 
 
-In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file [beers at bars](https://github.com/mcfanda/gamlj_docs/blob/master/data/beers_bars.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
+In this example we work out the analysis of some clustered data estimating a mixed model (also called hierarchical linear model or multilevel model) on some simulated (silly) data. We use the GAMLj module in Jamovi. One can follow the example by downloading the file `r datafile("beers at bars","beers_bars.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
+
+Data can also be opened within jamovi in the jamovi data library, with the name `Beers`.
+
+<img src="commons/pics/librarydata.png" class="img-responsive" alt="">
+
 
 # The research design
 

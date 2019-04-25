@@ -1,7 +1,5 @@
 library(rmarkdown)
 HERE<-getwd()
-SOURCE_FOLDER="pubs"
-TARGET_FOLDER="../gamlj.github.io"
 msg<-"updates"
 render_site("docssource/")
 system("git add .")

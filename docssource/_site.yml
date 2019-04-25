@@ -18,7 +18,7 @@ navbar:
 
   right: 
   - text: "View on Github"
-    href: https://github.com/mcfanda/gamlj
+    href: https://github.com/gamlj/gamlj
 output:
   html_document:
     css: style.css

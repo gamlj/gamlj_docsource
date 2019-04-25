@@ -23,7 +23,7 @@ source("../R/functions.R")
 
 In this example we analyze a dependent variable featuring frequency of events, or count data. The indipendent variables are one continuous and one dichotomous. We employ a poisson regression model.
 
-We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the [csv file](https://github.com/mcfanda/gamlj_docs/blob/master/data/cells.csv) and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install GAMLj module from within jamovi library. 
+We run the analyses with the GAMLj module in jamovi. One can follow the example by downloading the `r datafile("csv file","cells.csv")`. Be sure to install GAMLj module from within jamovi library. 
 
 The data are simulated, not real, so please do not cite them to argue about any issue. The reason of this is to provide an example where the Poisson model assumptions are surely met, so some of the difficulties of dealing with count data and frequencies are not present. For more elaborated examples see `r link_pages(nickname="overPoisson")`.
 
