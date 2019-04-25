@@ -4,5 +4,3 @@ MODULE_FOLDER="../../gamlj"
 SOURCE_FOLDER="pubs"
 TARGET_FOLDER="../gamlj.github.io"
 DATALINK<-"https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data"
-## DATALINK can be a 
-DATALINK<-"data"
