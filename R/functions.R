@@ -5,7 +5,6 @@ library(Rsearchable)
 source("../R/constants.R")
 
 
-
 datafile<-function(name,file) {
   if (length(grep(":/",file,fixed = T))==0)
     file<-paste0(DATALINK,"/",file)
