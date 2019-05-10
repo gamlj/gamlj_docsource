@@ -5,6 +5,7 @@ SOURCE_FOLDER="pubs"
 TARGET_FOLDER="../gamlj.github.io"
 DATALINK<-"https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data"
 
+# These handle the release notes from commits
 MODULE_REPO="gamlj"
 MODULE_REPO_OWNER="gamlj"
 FIRST_VERSION="version.1.5.0"
