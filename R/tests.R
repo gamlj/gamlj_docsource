@@ -107,4 +107,8 @@ paste0(sapply(u[c(4,2,6,6,9,1,5,3,8,1,9,3,2,7)],intToUtf8),collapse = "")
 u<-c(46,97,71,70,119,99,72,107,103,98,109,86,51,73,72,108,108,89,88,73)
 jmvcore::fromB64(paste0(sapply(u,intToUtf8),collapse = ""))
 
-write_commits()
+source("../R/constants.R")
+source("../R/functions.R")
+source("../R/secrets.R")
+
+write_commits2()

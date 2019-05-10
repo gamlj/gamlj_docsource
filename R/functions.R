@@ -165,7 +165,6 @@ get_commits<-function() {
   for (r in vers) {
     query<-paste0("/repos/:owner/:repo/commits")
     coms<-gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
-    print(paste("##########",r$name,"#########"))
     for (com in coms) {
       results[[j]]<-c(sha=com$sha,msg=com$commit$message,version=r$name)
       j<-j+1
@@ -173,14 +172,13 @@ get_commits<-function() {
     date<-coms[[1]]$commit$author$date
   }
   data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
-  head(data)
-  length(data$sha)
-  data[!duplicated(data$sha),]
+  data<-data[!duplicated(data$sha),]
+  data<-data[!duplicated(data$msg),]
   
 }
 
 
-write_commits2<-function() {
+write_commits2_old<-function() {
   commits<-get_commits()
   sel<-list()
   j<-1
@@ -198,6 +196,45 @@ write_commits2<-function() {
     if (length(test)>0) {
       next()
     }
+    sel[[j]]<-c(msg,commits[i,"version"])
+    j<-j+1
+  }
+  sel<-rev(sel)
+  versions<-rev(unique(commits$version))
+  coms<-do.call("rbind",sel)
+  for (i in seq_along(versions)) {
+    rel<-""
+    if (i==1) rel<-"(future)"
+    if (i==2) rel<-"(current)"
+    
+    cat(paste("#",versions[i],rel,"\n\n"))
+    cs<-coms[coms[,2]==versions[i],1]
+    for (j in cs)
+      cat(paste("*",j,"\n\n"))
+  }
+  #coms
+}
+
+write_commits2<-function() {
+  commits<-get_commits()
+  sel<-list()
+  j<-1
+  for (i in 1:dim(commits)[1]) {
+    msg<-trimws(commits[i,"msg"])
+    gonext=FALSE
+    for (rule in BANNED_COMMITS) {
+      if (msg==rule)
+        gonext=TRUE
+    }
+    for (rule in BANNED_COMMITS_GREP) {
+      if (length(grep(rule,msg)))
+           gonext=TRUE
+    }
+    
+    if (gonext)
+      next()
+    test<-grep("§",msg,fixed=T)
+    if (length(test)>0) msg<-paste("<b>",msg,"</b>")
     sel[[j]]<-c(msg,commits[i,"version"])
     j<-j+1
   }
