@@ -11,11 +11,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Current version known bugs
-
-
-
-Releases and changes
+#Releases and changes
 
 ```{r, echo=FALSE,results='asis'}
 
