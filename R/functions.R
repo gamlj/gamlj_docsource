@@ -1,6 +1,7 @@
 library(yaml)
 library(rmarkdown)
 library(Rsearchable)
+library(gh)
 
 source("../R/constants.R")
 
@@ -141,5 +142,77 @@ write_commits<-function() {
       cat(paste("*",j,"\n\n"))
   }
   setwd(wd)
+  #coms
+}
+
+get_commits<-function() {
+  
+  query<-paste0("/repos/:owner/:repo/branches")
+  vers<-gh(query, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+  rvers<-rev(vers)
+  vernames<-sapply(rvers,function(a) a$name)
+  nvers<-1:(which(vernames==FIRST_VERSION)+1)
+  rvers<-rvers[nvers]
+  vers<-rev(rvers)
+  vernames<-sapply(vers,function(a) a$name)
+  r<-vers[[1]]
+  query<-paste0("/repos/:owner/:repo/commits")
+  coms<-gh(query,sha=r$name, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+  date<-coms[[1]]$commit$author$date
+  vers<-vers[2:length(vernames)]
+  j<-1
+  results<-list()
+  for (r in vers) {
+    query<-paste0("/repos/:owner/:repo/commits")
+    coms<-gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+    print(paste("##########",r$name,"#########"))
+    for (com in coms) {
+      results[[j]]<-c(sha=com$sha,msg=com$commit$message,version=r$name)
+      j<-j+1
+    }
+    date<-coms[[1]]$commit$author$date
+  }
+  data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
+  head(data)
+  length(data$sha)
+  data[!duplicated(data$sha),]
+  
+}
+
+
+write_commits2<-function() {
+  commits<-get_commits()
+  sel<-list()
+  j<-1
+  for (i in 1:dim(commits)[1]) {
+    msg<-commits[i,"msg"]
+    test<-grep("#",msg,fixed=T)
+    if (length(test)>0) next()
+    test<-grep("!",msg,fixed=T)
+    if (length(test)>0) next()
+    test<-grep("Merge",msg,fixed=T)
+    if (length(test)>0) next()
+    test<-grep("§",msg,fixed=T)
+    if (length(test)>0) msg<-paste("<b>",msg,"</b>")
+    test<-grep("#",msg,fixed=T)
+    if (length(test)>0) {
+      next()
+    }
+    sel[[j]]<-c(msg,commits[i,"version"])
+    j<-j+1
+  }
+  sel<-rev(sel)
+  versions<-rev(unique(commits$version))
+  coms<-do.call("rbind",sel)
+  for (i in seq_along(versions)) {
+    rel<-""
+    if (i==1) rel<-"(future)"
+    if (i==2) rel<-"(current)"
+    
+    cat(paste("#",versions[i],rel,"\n\n"))
+    cs<-coms[coms[,2]==versions[i],1]
+    for (j in cs)
+      cat(paste("*",j,"\n\n"))
+  }
   #coms
 }

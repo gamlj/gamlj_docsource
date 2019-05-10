@@ -63,3 +63,5 @@ analytics.txt
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 >>>>>>> 146ca06be0aac231685efbe4e22ca4f7a810890e
+
+secrets.R
