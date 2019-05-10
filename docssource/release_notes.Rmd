@@ -11,16 +11,20 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Current version known bugs
+
+
+
 Releases and changes
 
 ```{r, echo=FALSE,results='asis'}
 
 source("../R/functions.R")
-cw<-write_commits()
+cw<-write_commits2()
 
 ```
 
-#  version 1.0.5 (current)
+#  version 1.0.5 
 
 * polynomial effects
 * Update graphs when model terms are changed
