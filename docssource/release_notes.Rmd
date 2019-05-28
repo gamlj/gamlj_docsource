@@ -16,7 +16,7 @@ editor_options:
 ```{r, echo=FALSE,results='asis'}
 source("../R/secrets.R")
 source("../R/functions.R")
-cw<-write_commits2()
+write_commits2()
 
 ```
 
