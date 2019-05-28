@@ -14,7 +14,7 @@ editor_options:
 #Releases and changes
 
 ```{r, echo=FALSE,results='asis'}
-
+source("../R/secrets.R")
 source("../R/functions.R")
 cw<-write_commits2()
 
