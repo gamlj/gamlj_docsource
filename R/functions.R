@@ -3,7 +3,6 @@ library(rmarkdown)
 library(Rsearchable)
 library(gh)
 
-source("../R/constants.R")
 
 
 datafile<-function(name,file) {
@@ -149,8 +148,12 @@ get_commits<-function() {
   
   query<-paste0("/repos/:owner/:repo/branches")
   vers<-gh(query, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+  vernames<-sapply(vers,function(a) a$name)
+  ord<-order(vernames)
+  vernames<-vernames[ord]
+  vers<-vers[ord]
+  vernames<-rev(vernames)
   rvers<-rev(vers)
-  vernames<-sapply(rvers,function(a) a$name)
   nvers<-1:(which(vernames==FIRST_VERSION)+1)
   rvers<-rvers[nvers]
   vers<-rev(rvers)
