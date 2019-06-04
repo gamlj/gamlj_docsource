@@ -16,7 +16,7 @@ source("../R/functions.R")
 
 General, Mixed and Generalized Models module for jamovi
 
-<img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png">
+<img src="commons/pics/ui.png" class="img-responsive" alt="commons/pics/ui.png" width="400">
 
 
 GAMLj offers tools to estimate, visualize, and interpret General Linear Models, Mixed Linear Models and Generalized Linear Models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc tests, etc.
