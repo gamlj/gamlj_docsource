@@ -151,7 +151,6 @@ get_commits<-function() {
   vernames<-sapply(vers,function(a) a$name)
   ord<-order(vernames)
   vernames<-vernames[ord]
-  print(vernames)
   vers<-vers[ord]
   vernames<-rev(vernames)
   rvers<-rev(vers)
