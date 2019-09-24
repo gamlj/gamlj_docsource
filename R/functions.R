@@ -136,7 +136,7 @@ write_commits<-function() {
     if (i==2) rel<-"(current)"
     
     cat(paste("#",versions[i],rel,"\n\n"))
-    cs<-coms[coms[,2]==versions[i],1]
+    cs<-rev(coms[coms[,2]==versions[i],1])
     for (j in cs)
       cat(paste("*",j,"\n\n"))
   }
@@ -174,10 +174,11 @@ get_commits<-function() {
     }
     date<-coms[[1]]$commit$author$date
   }
+  
   data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
   data<-data[!duplicated(data$sha),]
   data<-data[!duplicated(data$msg),]
-  
+  data  
 }
 
 
