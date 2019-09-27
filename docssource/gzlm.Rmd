@@ -18,7 +18,7 @@ source("../R/functions.R")
 
 **Generalized Linear Models** module of the GAMLj suite for jamovi
 
-`r version("1.5.0")` 
+`r version("1.6.0")` 
 
 <img src="gzlm/main.png" class="img-responsive" alt="">
 
@@ -34,7 +34,7 @@ The module can estimate several linear models:
 * Logistic model
 * Probit model
 * Multinomial model
-
+* Custom model with combinations of distribution and link function
 
 <img src="gzlm/variables.png" class="img-responsive" alt="">
 
@@ -53,6 +53,22 @@ Models are defined by a link function (LF) and the dependent variable distributi
 
 * Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables. 
 
+* Custom model: combination of distribution family and link function. 
+    
+    - The available distributions are:
+
+        - Gaussian
+        - Binomial
+        - Gamma
+        - Inverse Gaussian
+
+    - The available link functions are:
+        - Identity
+        - Log
+        - Inverse
+        - Inverse squared
+
+The plausibility of the distribution/link function combination is no checked, but errors are issued if the data do not conform to the chosen custom model. 
 
 # Estimates
 The module provides Analysis of Deviance tables and parameter estimates for any estimated model. Variables definition follows jamovi standards, with categorical independent variables defined in "factors" and continuous independent variables in "covariates".
@@ -60,7 +76,9 @@ The module provides Analysis of Deviance tables and parameter estimates for any 
 <img src="gzlm/variables.png" class="img-responsive" alt="">
 
 
-Effect size indexes are optionally computed by selecting `Odd rations (expB)`. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.
+Effect size indexes are optionally computed by selecting `Odd rations (expB)`. Odd ratios apply the exponential function to the parameter estimates, thus they make sense in all models where the link function is based on the logarithm.`Relative risk (RR)` indexes can be obtained for logistic models.
+
+<img src="gzlm/effectsizes.png" class="img-responsive" alt="">
 
 
 # Model 
