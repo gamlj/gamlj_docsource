@@ -52,12 +52,15 @@ Available models are:
 * Overdispersed Poisson ANOVA-like model (GZLM)
 * Negative binomial regression (GZLM)
 * Negative binomail  ANOVA-like model (GZLM)
+* Random coefficients logistic model (GlmMixed)
+* Random coefficients poisson model (GlmMixed)
 
 Please visit the sub-modules pages for details:
 
 * [GAMLj GLM](glm.html)
 * [GAMLj Mixed models](mixed.html)
 * [GAMLj Generalized Models](gzlm.html)
+* [GAMLj Generalized Mixed Models](gzlmmixed.html)
 
 # Examples
 
