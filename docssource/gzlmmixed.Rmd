@@ -19,7 +19,7 @@ source("../R/functions.R")
 `r version("2.0.0")` 
 
 
-**Generalized Mixed Linear Models** module of the GAMLj suite for jamovi
+**Generalized Mixed Linear Models** module of the GAMLj suite for `r jamovi()`
 
 <img src="gzlmmixed/main.png" class="img-responsive" alt="">
 
@@ -44,15 +44,11 @@ For each model, any combination of categorical and continuous variables can be s
 
 Models are defined by a link function (LF) and the dependent variable distribution, thus allowing to model different types of dependent variables:
 
-* Linear model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.
-* Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.
-* Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
-* Negative binomial model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
-
 * Logistic model: logit LF, binomial distribution, modelling dichotomous dependent variables.
 * Probit model: inverse of the cumulative normal distribution link function, binomial distribution, modelling dichotomous dependent variables.
 
-* Multinomial model: logit LF, multinomial distribution, modelling categorical dependent variables. 
+* Poisson model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.
+* Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
 
 * Custom model: combination of distribution family and link function. 
     
@@ -76,7 +72,7 @@ The plausibility of the distribution/link function combination is no checked, bu
 # Estimates
 The module provides a parameter estimates of the fixed effects, the random variances and correlation among random coefficients.
 
-Variables definition follows jamovi standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
+Variables definition follows `r jamovi()` standards, with categorical independent variables defined in "fixed factors" and continuous independent variables in "covariates".
 
 <img src="gzlmmixed/estimates.png" class="img-responsive" alt="">
 
@@ -162,6 +158,6 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 # Examples
 
-Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)
+Some worked out examples of the analyses carried out with `r jamovi()` GAMLj Mixed models are posted here (more to come)
 
 `r include_examples("glmmixed")`
