@@ -3,7 +3,9 @@ library(rmarkdown)
 library(Rsearchable)
 library(gh)
 
-
+jamovi<-function() {
+  paste0('<span class="jamovi">jamovi</span>')
+}
 
 datafile<-function(name,file) {
   if (length(grep(":/",file,fixed = T))==0)

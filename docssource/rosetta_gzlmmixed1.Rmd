@@ -21,18 +21,18 @@ source("../R/functions.R")
 ```
 
 
-`r keywords("jamovi, R, SPSS, logistic, generalized mixed, mixed models")`
+`r keywords("`r jamovi()`, R, SPSS, logistic, generalized mixed, mixed models")`
 
 `r version("2.0.0")` `r draft` 
 
 
-Here you can find comparisons of results obtained in jamovi GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).
+Here you can find comparisons of results obtained in `r jamovi()` GAMLj,R, and SPSS. When not explicitly discussed, the code of different software is written with the aim of obtaining identical results across programs (not necessarily with the most efficient strategy).
 
 In this example we compare GAMLj results with R results obtained by IDRE on their [tutorial web page](https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/)
 
 # The research design
 
-In this example, we are going to explore lung cancer remission using a simulated dataset, which we have posted online. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as Experience that we will use in our example ([IDRE](https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/)). Data can be downloaded [here](https://stats.idre.ucla.edu/stat/data/hdp.csv)
+In this example, we are going to explore lung cancer remission using a simulated dataset. A variety of outcomes were collected on patients, who are nested within doctors, who are in turn nested within hospitals. There are also a few doctor level variables, such as Experience that we will use in our example ([IDRE](https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/)). Data can be downloaded [here](https://stats.idre.ucla.edu/stat/data/hdp.csv)
 
 # R
 The researcher is interested in studying the relationships between cancer remission and both patients and doctors characteristics. The analyst uses the R `glmer` command from the `lme4 Package`  to estimate a mixed effects logistic regression model with `Il6`, `CRP`, and `LengthofStay` as patient level continuous predictors, `CancerStage` as a patient level categorical predictor (I, II, III, or IV), `Experience` as a doctor level continuous predictor, and a random intercept by `DID`, doctor ID.
@@ -93,7 +93,7 @@ se <- sqrt(diag(vcov(m)))
 ## Experience      0.12009  0.06628  0.173895
 ```
 
-and finally, the $e^B$ are computed.
+Also the $e^B$ are computed.
 
 ```
 exp(tab)
@@ -115,7 +115,7 @@ exp(tab)
 
 # GAMLj 
 
-jamovi GAMLj module for `Generalized mixed models` can be used to estimate a random coefficient mixed model. First, it requires choose the specific model we want to run: the `Logistic` model.
+`r jamovi()` GAMLj module for `Generalized mixed models` can be used to estimate a random coefficient mixed model. First, it requires choose the specific model we want to run: the `Logistic` model.
 
 <img src="rosetta/gzlmmixed/modelpick.png" class="img-responsive" alt="">
 
@@ -123,7 +123,7 @@ Then we set the variables in the right field depending on their role in the mode
 
 <img src="rosetta/gzlmmixed/variables.png" class="img-responsive" alt="">
 
-Please note that we put `LengthOfStay` in covariates because it is a continuous variable, even though jamovi recognizes it a categorical. By putting it in `Covariates`, we implicitly ask the module to treat it a continuous variable. The opposite holds for `DID` (doctors ID) which jamovi recognizes as continuous but the module treats as categorical after we put it in the `Clusters` field.
+Please note that we put `LengthOfStay` in covariates because it is a continuous variable, even though `r jamovi()` recognizes it a categorical. By putting it in `Covariates`, we implicitly ask the module to treat it a continuous variable. The opposite holds for `DID` (doctors ID) which `r jamovi()` recognizes as continuous but the module treats as categorical after we put it in the `Clusters` field.
 
 After the first setup, we need to specify the random effects. Following the IDRE analysis, we specify the intercept as random coefficient across doctors (`DID`).
 
@@ -251,7 +251,7 @@ We can then run the analysis.
 <img src="rosetta/gzlmmixed/results_spss_coefs.png" class="img-responsive" alt="">
 
 
-As regards the fixed effects coefficients, we notice that the continuous predictors show B's that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and jamovi, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of _not remission_, that is `remission=0`, because SPSS sets `remission=1` as the reference level. That explains the opposite sign. For the categorical independent variable `CancerStage`, SPSS picks the group `CancerStage=IV` as reference group, whereas GAMLj and R pick `CancerStage=I`. That explains the differences in the parameters.
+As regards the fixed effects coefficients, we notice that the continuous predictors show B's that are equivalent to R and `r jamovi()` estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and `r jamovi()`, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of _not remission_, that is `remission=0`, because SPSS sets `remission=1` as the reference level. That explains the opposite sign. For the categorical independent variable `CancerStage`, SPSS picks the group `CancerStage=IV` as reference group, whereas GAMLj and R pick `CancerStage=I`. That explains the differences in the parameters.
 
 In SPSS generalized mixed models we can change the reference level in the `Build Options` tab, selecting `Descending` in the `Sorting Order` options.
 

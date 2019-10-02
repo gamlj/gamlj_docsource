@@ -164,4 +164,4 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 Some worked out examples of the analyses carried out with jamovi GAMLj Mixed models are posted here (more to come)
 
-`r include_examples("mixed")`
+`r include_examples("glmmixed")`
