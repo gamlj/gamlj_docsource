@@ -21,7 +21,7 @@ source("../R/functions.R")
 ```
 
 
-`r keywords("`r jamovi()`, R, SPSS, logistic, generalized mixed, mixed models")`
+`r keywords("jamovi, R, SPSS, logistic, generalized mixed, mixed models")`
 
 `r version("2.0.0")` `r draft` 
 
