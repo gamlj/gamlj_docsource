@@ -257,7 +257,7 @@ We can then run the analysis.
 
 As regards the fixed effects coefficients, we notice that the continuous predictors show B's that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and jamovi, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of _not remission_, that is `remission=0`, because SPSS sets `remission=1` as the reference level. That explains the opposite sign. For the categorical independent variable `CancerStage`, SPSS picks the group `CancerStage=IV` as reference group, whereas GAMLj and R pick `CancerStage=I`. That explains the differences in the parameters.
 
-In SPSS generalized mixed models we can change the reference group in the `Build Options` tab, selecting `Descending` in the `Sorting order` options.
+In SPSS generalized mixed models we can change the reference level in the `Build Options` tab, selecting `Descending` in the `Sorting order` options.
 
 <img src="rosetta/gzlmmixed/spss_rescale.png" class="img-responsive" alt="">
 
@@ -266,11 +266,11 @@ Now the interpretation of the coefficients is equivalent to the one for R and GA
 <img src="rosetta/gzlmmixed/results_spss_fixed2.png" class="img-responsive" alt="">
 
 
-As regards the random coefficients variance is quite different from the R or GAMLj results.
+As regards the random coefficients variance, it is quite different from the R or GAMLj results.
 
 <img src="rosetta/gzlmmixed/results_spss_random.png" class="img-responsive" alt="">
 
-Finally, as regards the omnibus tests SPSS outputs the F-tests, not the Chi-square. Nevertheless, the p-values associated with the tests are in line with the ones obtained in GAMLj and R.
+Finally, as regards the omnibus tests, SPSS outputs the F-tests, not the Chi-square. Nevertheless, the p-values associated with the tests are in line with the ones obtained in GAMLj and R.
 
 <img src="rosetta/gzlmmixed/results_spss_chi.png" class="img-responsive" alt="">
 
