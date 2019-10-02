@@ -216,17 +216,13 @@ Notice, however, that the conclusions of the analyses are equivalent no matter t
 
 # SPSS
 
-In SPSS we can run a logistic mixed models with `Generalized mixed models` menu. 
-
-<img src="rosetta/gzlmmixed/spss_results.png" class="img-responsive" alt="">
-
-However, from within the `Generalized mixed models` module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the `Variable view` tab of the SPSS spreadsheet window. 
+In SPSS we can run a logistic mixed models with `Generalized mixed models` menu. However, from within the `Generalized mixed models` module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the `Variable view` tab of the SPSS spreadsheet window. 
 
 <img src="rosetta/gzlmmixed/spss_scale.png" class="img-responsive" alt="">
 
-We want to be sure that `LengthOfStay`, `IL6`, `CRP` and `Experience` are set as `Scale`, whereas `DID` and `CancerStage` should be `Nominal`.
+We want to be sure that `LengthOfStay`, `IL6`, `CRP` and `Experience` are set as `Scale` in the `measure` column, whereas `DID` and `CancerStage` should be `Nominal`.
 
-The we can go to the mixed model menu. 
+Then we can go to the mixed models menu. 
 
 <img src="rosetta/gzlmmixed/spss_menu.png" class="img-responsive" alt="">
 
@@ -257,7 +253,7 @@ We can then run the analysis.
 
 As regards the fixed effects coefficients, we notice that the continuous predictors show B's that are equivalent to R and jamovi estimates, but with opposite sign. The intercept and the categorical predictor are clearly very differ. Those differences are due to way SPSS picks the reference level of the dummy coding for categorical variables. In R and jamovi, the reference level is the first level in the standard ordering of the variable levels (such as the cardinal order or the alphabetical one). SPSS picks the last group! Thus, here we are predicting the probability of _not remission_, that is `remission=0`, because SPSS sets `remission=1` as the reference level. That explains the opposite sign. For the categorical independent variable `CancerStage`, SPSS picks the group `CancerStage=IV` as reference group, whereas GAMLj and R pick `CancerStage=I`. That explains the differences in the parameters.
 
-In SPSS generalized mixed models we can change the reference level in the `Build Options` tab, selecting `Descending` in the `Sorting order` options.
+In SPSS generalized mixed models we can change the reference level in the `Build Options` tab, selecting `Descending` in the `Sorting Order` options.
 
 <img src="rosetta/gzlmmixed/spss_rescale.png" class="img-responsive" alt="">
 
