@@ -220,7 +220,7 @@ In SPSS we can run a logistic mixed models with `Generalized mixed models` menu.
 
 <img src="rosetta/gzlmmixed/spss_results.png" class="img-responsive" alt="">
 
-However, the `Generalized mixed models` module does not allow to specify whether a variable should be considered as continuous or categorical, so we have to define variables types in the `Variable view` tab of the SPSS spreadsheet window. 
+However, from within the `Generalized mixed models` module one cannot specify whether a variable is a continuous or categorical one, so we have to define variables types in the `Variable view` tab of the SPSS spreadsheet window. 
 
 <img src="rosetta/gzlmmixed/spss_scale.png" class="img-responsive" alt="">
 
@@ -230,7 +230,7 @@ The we can go to the mixed model menu.
 
 <img src="rosetta/gzlmmixed/spss_menu.png" class="img-responsive" alt="">
 
-First, we should specify the cluster variable, by dragging `DID` into the `Subject` field, on the right of the `Canvas` panel.
+First, we should specify the cluster variable, by dragging `DID` into the `Subject` field, on the right, in the `Canvas` panel.
 
 <img src="rosetta/gzlmmixed/spss_cluster.png" class="img-responsive" alt="">
 
@@ -246,7 +246,7 @@ The random intercept can be specified in the `Random Effects` tab.
 
 <img src="rosetta/gzlmmixed/spss_random.png" class="img-responsive" alt="">
 
-Here we need to flag the `Include intercept` options and select `DID` from the menu `Subject combination`. This means _allow intercepts to vary  across DID_.
+Here we need to flag the `Include intercept` option and select `DID` from the menu `Subject combination`. This means _allow intercepts to vary  across DID_.
 
 We can then run the analysis.
 
