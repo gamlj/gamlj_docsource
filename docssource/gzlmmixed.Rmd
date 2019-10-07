@@ -155,6 +155,13 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 ```
 
 
+# Options
+
+<img src="gzlmmixed/options.png" class="img-responsive" alt="">
+
+The `precision/speed` parameter applies to mixed model with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the `nAGQ` parameter of `glmer` command in R package [lme4](https://cran.r-project.org/web/packages/lme4/index.html). For models with more than
+
+The `CI method` decides which method is used for computing confidence intervals. `Wald` uses Wald statistics and it is less precise than the other methods, but it is significantly faster. `Profile` is more precise but slower. `Boot`, bootstrap method, is the slowest. Details of the implementation can be found in [lme4 manual](https://cran.r-project.org/web/packages/lme4/lme4.pdf)
 
 # Examples
 
