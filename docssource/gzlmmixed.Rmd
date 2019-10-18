@@ -167,4 +167,8 @@ The `CI method` decides which method is used for computing confidence intervals.
 
 Some worked out examples of the analyses carried out with `r jamovi()` GAMLj Mixed models are posted here (more to come)
 
-`r include_examples("glmmixed")`
+`r include_examples("gzlmmixed")`
+
+# Comparison with other software
+
+`r list_pages(category="rosetta", topic="gzlmmixed")`
