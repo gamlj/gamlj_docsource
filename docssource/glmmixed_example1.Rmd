@@ -84,19 +84,19 @@ The other information in the table helps to interpret the results. In particulat
 
 ## Random component
 
-For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy. It also show that the intercepts account for a large portion of variability ($ICC=.50$), indicating that schools are very different in the students' average probability of passing the exam.
+For this model, with only intercepts as random coefficients across schools, the random component table is pretty simply. It shows the variance of the random intercepts. It is non-zero, so we are happy. It also shows that the intercepts account for a large portion of variability ($ICC=.50$), indicating that schools are very different in the students' average probability of passing the exam.
 
 ## Omnibus test
 
 <img src="examples/gzlmmixed1/results_omnibus1.png" class="img-responsive" alt="">
 
-The omnibus (Wald) Chi-Squared test tests the main effects of the independent variables and their interaction. Notice that in GAMLj the continuous variables are centered by default, and thus we can interpret the linear effects of `math` and `activity` as _average effects_ or simply _main effects_ . Based on the p-value, our results seem to support an interaction and two main effects.
+The omnibus (Wald) Chi-Squared test tests the main effects of the independent variables and their interaction. Notice that in GAMLj the continuous variables are centered to their mean by default, and thus we can interpret the linear effects of `math` and `activity` as _average effects_ or _main effects_ . Based on the p-value, our results seem to support an interaction and two main effects.
 
 ## Parameter estimates
 
-The same information can be extracted from the parameter estimates table.
+The same information can be extracted from the parameters estimates table.
 
-<img src="examples/gzlmmixed1/results_params1.png" class="img-responsive" alt="">
+<img src="examples/gzlmmixed1/results_params.png" class="img-responsive" alt="">
 
 Here we also obtain the `odd ratio` (exp(B)) of the effects, useful to interpret the effects in terms of rate of change in the dependent variable odd.
 
