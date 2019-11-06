@@ -24,7 +24,7 @@ data<-read.csv2("../data/school_exam.csv")
 In this example we estimate a multilevel logistic regression, with interactions, using `r jamovi()` GAMLj module. 
 
 One can follow the example by downloading the
-`r datafile("cvs file","school_exam.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install the new version of GAMLj module from within jamovi library. Data are similated for educational purposes, and should be used only for exercising.
+`r datafile("cvs file","school_exam.csv")` and open it in [jamovi](https://www.jamovi.org/download.html). Be sure to install the new version of GAMLj module from within jamovi library. Data are simulated for educational purposes, and should be used only for exercising.
 
 # The research design
 
@@ -32,7 +32,7 @@ Imagine a study conducted in `r length(unique(data$school))` schools. In each sc
 
 The researcher wants to estimate the effect of the math test on the probability of passing the exam, and also test whether the amount of extracurricular activities may moderate the math effect.
 
-Each schools has different number of students, ranging from `r min(table(data$school))` to `r max(table(data$school))`. Each student presents three variable values: the score in the `math` test, the number of `activity` undertaken and whether the exam was passed `pass=1` or not, `pass=0`.
+Each school has a different number of students, ranging from `r min(table(data$school))` to `r max(table(data$school))`. Each student presents three variable values: the score in the `math` test, the number of `activity` undertaken and whether the exam was passed `pass=1` or not, `pass=0`.
 
 
 Here are the frequency table for the `pass` variable and an abridged table for the schools variable. `frequencies` -> `Contingency tables`.
