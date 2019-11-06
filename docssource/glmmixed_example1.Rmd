@@ -104,7 +104,7 @@ Here we also obtain the `odd ratio` (exp(B)) of the effects, useful to interpret
 
 ## Plots
 
-For generalized linear model, mixed included, a good strategy is to visualize the effects by plotting the predicted values. GAMLj plots the predicted values after transforming them back to the original scale of the dependent variable, in this case probability.
+For generalized linear models, mixed included, a good strategy is to visualize the effects by plotting the predicted values. GAMLj plots the predicted values after transforming them back to the original scale of the dependent variable, in this case probability.
 
 Ask for the plot in the `Plots` panel. Add `math` as the variable whose values go in the `Horizontal axis` and `activity` as `separate lines`. 
 

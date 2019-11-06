@@ -23,7 +23,7 @@ source("../R/functions.R")
 
 <img src="gzlmmixed/main.png" class="img-responsive" alt="">
 
-The module estimates generalized mixed linear model with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. 
+The module estimates generalized mixed linear models with categorial and/or continuous variables, with options to facilitate estimation of interactions, simple slopes, simple effects, post-hoc, etc. In this page you can find some hint to get started with the mixed models module. 
  
 
 # Module
