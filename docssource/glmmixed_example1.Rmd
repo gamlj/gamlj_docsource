@@ -122,7 +122,7 @@ We can also visualize the random effects by asking them in the imput panel.
 
 <img src="examples/gzlmmixed1/results_plot2.png" class="img-responsive" alt="">
 
-Notice that the random effects depict different curves for different schools, even though the only random effect is the intercept. This is not weired in generalized linear models. The random intercept is estimated for the logit, so each school will have a different shape of the response. If we wish to appreciate how the random linear effects vary, we can ask for the `Linear Predictor` plot, which plots the effects in the logit scale.
+Notice that the random effects depict different curves for different schools, even though the only random effect is the intercept. This is not weird in generalized linear models. The random intercept is estimated for the logit, thus it is the intercept of the straight lines computed for predicting the logit. When the logit is transformed back to probabilities, the function relating Y to X is no longer a straight line, and its shapes changes depending also on the value of the interecpt. If we wish to appreciate how the random _linear_ effects vary, we can ask for the `Linear Predictor` plot, which plots the effects in the logit scale.
 
 <img src="examples/gzlmmixed1/plot3.png" class="img-responsive" alt="">
 
