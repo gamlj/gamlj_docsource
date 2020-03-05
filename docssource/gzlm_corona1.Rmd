@@ -71,6 +71,8 @@ u1000<-u1000[order(u1000)]
 
 `r keywords("Polynomial regression, Gamma distribution, Generalized linear model")`
 
+`r draft` 
+
 ```{r res, include=F}
 
 res<-list()
