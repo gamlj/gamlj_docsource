@@ -259,3 +259,16 @@ write_commits2<-function() {
   }
   #coms
 }
+
+jtable<-function(jobject,digits=3) {
+  snames<-sapply(jobject$columns,function(a) a$title)
+  asDF<-jobject$asDF
+  tnames<-unlist(lapply(names(asDF) ,function(n) snames[[n]]))
+  names(asDF)<-tnames
+  kableExtra::kable(asDF,"html",
+                    table.attr='class="jmv-results-table-table"',
+                    row.names = F,
+                    digits=3)
+}
+
+
