@@ -205,7 +205,7 @@ modi<-gamlj::gamljGzlm(
   custom_link = "log")
 modi
 ```
-As we can see in the recap info table, the $R^2$ would be considered very good (.795) 
+As we can see in the recap info table, the $R^2$ would be considered very good (>.70) 
 ```{r intro_res1, results="asis",warning=FALSE,echo=FALSE}
 
   cat("<pre class='jamovitable'>")
@@ -250,7 +250,7 @@ modc
 If we look at the plot and compared the predicted values (the curve) with the actual confirmed cases (cyan dots), we can see that the model does not really fit, and cannot fit the data well. We should allow the curve to bend down, or to smooth out, in order to follow the evolution of the DV over time.
 
 
-Furthermore, as we can see in the recap info table, the $R^2$ is definitely not  good for this kind of applications (.648) 
+Furthermore, as we can see in the recap info table, the $R^2$ is definitely not  good for this kind of applications (<.70) 
 ```{r intro_res2, results="asis",warning=FALSE,echo=FALSE}
 
   cat("<pre class='jamovitable'>")
