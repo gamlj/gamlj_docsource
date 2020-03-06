@@ -318,7 +318,7 @@ modc<-gamlj::gamljGzlm(
 
 We can see that the model really works. But what about the Italian and French data, that were very different? Well, the model works for Italy and France as well, thanks to the model flexibility. Actually, it works well for all countries with available data. All $R^2$ are close to 1, and the predicted values are very close to the observed one. At this point, one can start working on these models and use them to extrapolate information, make comparisons, and do whaterver one usually do with statistical models. 
 
-The fit of the same model estimation (polynomial up to the 4th grade), is shown in the next section for all countries with more than 1000 confirmed cases. 
+The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 1000 data points. 
 
 # Replications across countries
 
