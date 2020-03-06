@@ -120,7 +120,7 @@ lastday<-unique(data$Date[which.max(data$Day)])
 
 In this section we look at how to model cumulative distributions over time with the Generalized Linear Model. There are many different ways to model this kind of data, but the purpose here is to show how easy and flexible the generalized linear model is. With `r jamovi()` GAMLj things get very easy.
 
-We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, available at [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19). Data are updated every day, at the moment ranging from `r firstday` to `r lastday`. As new data arrive, results may change. Data are from different countries. Here we consider only countries were the confirmed cases times number of days provides more then 1000 data points, so we can fit more robust models.
+We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, available at [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19). Data are updated every day, at the moment ranging from `r firstday` to `r lastday`. As new data arrive, results may change. Data are from different countries. Here we consider only countries where confirmed cases times number of days provides more than 1000 data points, so we can fit more robust models.
 
 _Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists_.
 
