@@ -1,0 +1,189 @@
+---
+title: "GzLM: Polynomial Gamma regression for coronavirus trend prediction"
+author: "(Marcello Gallucci)"
+nickname: corona
+topic: gzlm
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+knitr::opts_chunk$set(echo = FALSE)
+
+knitr::knit_hooks$set(plot = function(x, options) {
+  paste('<figure><figcaption>', options$fig.cap, '</figcaption><img src="',
+        knitr::opts_knit$get('base.url'), paste(x, collapse = '.'),
+        '"></figure>',
+        sep = '')
+})
+```
+```
+
+```{r setup, include=FALSE}
+folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
+ff<-list.files(folder)
+ff<-ff[grep("20",ff,fixed = T)]
+data<-read.csv(paste0(folder,ff[1]))
+nn<-names(data)
+
+data$Date<-"ok"
+data$Day<-0
+data<-data[0,]
+
+d<-0
+f<-"ok"
+for (f in ff) {
+   d<-d+1
+   data0<-read.csv(paste0(folder,f))
+   data0<-data0[,nn]
+   date<-gsub(".csv","",f,fixed = T)
+   data0$Date<-date
+   data0$Day<-d
+   data<-rbind(data,data0)
+}
+
+data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
+data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
+data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
+
+data<-data[data$Confirmed>0,]
+tdata<-aggregate(data$Confirmed,list(data$Country),sum)
+
+adata<-aggregate(data$Confirmed,list(data$Country,data$Day),sum)
+names(adata)<-c("Country","Day","Confirmed")
+library(gamlj)
+form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
+tt<-tapply(data$Confirmed,data$Country.Region,sum)
+u1000<-names(which(tt>1000))
+u1000<-u1000[order(u1000)]
+
+```
+
+
+`r keywords("Polynomial regression, Gamma distribution, Generalized linear model")`
+
+
+
+```{r res, include=F}
+
+res<-list()
+for (u in u1000) {
+ddata1<-adata[adata$Country==u,]
+mod2<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ddata1$Day<-ddata1$Day-(max(ddata1$Day)-3)
+mod1<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+
+r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
+res0<-list(u,r2,mod2$descPlot,mod1$main$fixed)
+res[[u]]<-res0
+}
+
+today<-Sys.Date()
+firstday<-unique(data$Date[which.min(data$Day)])
+lastday<-unique(data$Date[which.max(data$Day)])
+
+```
+
+# Introduction
+
+In this section we look use a polynomial gamma regression to predict the trend of the coronavirous outbreak across different countries.
+
+We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, available at [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19). Data are updated every day, at the moment ranging from `r firstday` to `r lastday`. As new data arrive, results may change. Data are from different countries. Here we consider only countries where confirmed cases times number of days provides more than 1000 data points, so we can fit more robust models.
+
+_Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists_.
+
+
+
+# The model
+
+The actual trend of the dependent variable over time may take different shapes. At the onset of the contagion phase, the trend of increase is typically exponential. Later on the shape will change, and thus a pure exponential model will not work. Usually, the spread of a virus follow a *logistic curve* (sigma-shaped curve). Here we approximate it with a Polynomial gamma regression. 
+
+In polynomial regression, one adds power terms ($x^2$, $x^3$, $x^4$ ..) in order to allow the curve to follow different paths along the time line. A squared term, for instance, allows the curve to stay flatter at the begining and stear up quickly. A cubic term allows the curve to smooth. The more polynomial terms one adds, more flexibility one allows to the curve shape. 
+
+For the present data, a polynomial regression up to the 4th grade can be enough (so far). Thus, the model is now:
+
+$$ \hat{ln(y)}=a+b_1 \cdot x + b_2 \cdot x^2, b_3 \cdot x^3+b_4 \cdot x^4$$
+
+The polymomial we are using has the advantages of fitting the data quite well. It also has the drawback of overfitting the data a bit, whith the consequence of being slightly too sensible to small change in the trends. However, if daily predictions are the goal, this last feature may result as a positive feature.
+
+# Extracting numerical interesting info
+
+One of the most interesting parameter of the fitted curve is the _inflection point_, namely the time-point corresponding to the time in which the trend reverses its direction, and begins to slow down (the rate of spread starts to decreases). This is usually defined based on the  _growth factor_,the ratio between the confirmed case at T is equal to the confirmed cases at T+1. Being the outcome a cumulative distribution, one can see that if this ratio is 1, and stay 1 or lower, the number of infected cases is decreasing over time. 
+The growth factor, outside epidemics, is simple the _odd ratio_ of the linear trend of a generalized linear model, computed as some time along the x-axis. It is the rate of change of cases. Formally, the rate of change of the increase (or decrease) is an odd ratio defined (usually called $exp_b$) as: 
+
+$$ exp_b=exp(log(y_T+1)-log(y_T+1))=y_{T+1)/y_T$$ 
+
+where T is any time along the x-axis and y is the number of confirmed cases. Th inflextion point (if any) is given by $exp_b=1$. 
+
+Unfortunately, at the beginning of an outbreak, there is no inflection point. Nonetheless, one can look at the instant rate of change of the infected cases (growth factor or $exp_b$) at a significant time-points. 
+
+
+where $y$ is the confirmed cases count. The flext point is where $exp_b=1$. Here we computed the $exp_b$
+for $T=max(T)-3)$, so we can monitor the rate of the increase in the last few days.
+
+The $exp_b$ produced with the graphs tells us the increase in confirmed case each contries is experiencing, on average, in the last three days. 
+
+
+# Replications across countries
+
+Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is `r today`.
+
+```{r out, results="asis"}
+
+for (a in res) {
+  cat("##",a[[1]],"\n\n")
+  cat("**R^2=",a[[2]],"**\n\n")
+  print(a[[3]])
+  cat("\n\n")
+  cat("<pre class='jamovitable'>")
+  print(a[[4]])
+  cat("</pre>")
+  
+  cat("\n\n")
+
+}
+
+```
+# The mixed model
+
+When enough contries are available, variability across coefficients, and thus differences in trends, can be evaluated with the mixed model. This will be done later on.
+
+# Data
+
+Here are the data downloaded from the [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19) divided by contries. You can import them in  `r jamovi()` and exercise with them.
+
+
+```{r files, results="markdown"}
+base<-"data/corona/"
+ff<-list.files("data/corona/")
+
+for (f in ff) {
+print(paste0('[','ciao','](',base,f,')'))
+}
+```
+

@@ -341,13 +341,14 @@ When enough contries are available, variability across coefficients, and thus di
 
 # Data
 
-Here are the data downloaed from the [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19) divided by contries. You can import them in  'r jamovi()` and exercise with them.
+Here are the data downloaded from the [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19) divided by contries. You can import them in  `r jamovi()` and exercise with them.
 
 
-```{r files, results="asis"}
+```{r files, results="markdown"}
+base<-"data/corona/"
 ff<-list.files("data/corona/")
-
 for (f in ff) {
-paste0('[','ciao','](',f,')')
+print(paste0('[','ciao','](',base,f,')'))
 }
 ```
+
