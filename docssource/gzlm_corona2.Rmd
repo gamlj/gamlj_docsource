@@ -99,6 +99,7 @@ mod1<-gamlj::gamljGzlm(
   custom_link = "log")
 
 r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
+g<-
 res0<-list(u,r2,mod2$descPlot,mod1$main$fixed)
 res[[u]]<-res0
 }
@@ -136,18 +137,19 @@ The polymomial we are using has the advantages of fitting the data quite well. I
 One of the most interesting parameter of the fitted curve is the _inflection point_, namely the time-point corresponding to the time in which the trend reverses its direction, and begins to slow down (the rate of spread starts to decreases). This is usually defined based on the  _growth factor_,the ratio between the confirmed case at T is equal to the confirmed cases at T+1. Being the outcome a cumulative distribution, one can see that if this ratio is 1, and stay 1 or lower, the number of infected cases is decreasing over time. 
 The growth factor, outside epidemics, is simple the _odd ratio_ of the linear trend of a generalized linear model, computed as some time along the x-axis. It is the rate of change of cases. Formally, the rate of change of the increase (or decrease) is an odd ratio defined (usually called $exp_b$) as: 
 
-$$ exp_b=exp(log(y_T+1)-log(y_T+1))=y_{T+1)/y_T$$ 
+$$ exp_b=exp(log(y_{T+1})-log(y_{T}))={y_{T+1} \over y_T} $$ 
 
-where T is any time along the x-axis and y is the number of confirmed cases. Th inflextion point (if any) is given by $exp_b=1$. 
-
-Unfortunately, at the beginning of an outbreak, there is no inflection point. Nonetheless, one can look at the instant rate of change of the infected cases (growth factor or $exp_b$) at a significant time-points. 
+where T is any time along the x-axis and y is the expected number of confirmed cases. The inflextion point (if any) is given by $exp_b=1$. The flext point is where $exp_b=1$. 
 
 
-where $y$ is the confirmed cases count. The flext point is where $exp_b=1$. Here we computed the $exp_b$
-for $T=max(T)-3)$, so we can monitor the rate of the increase in the last few days.
+Unfortunately, at the beginning of an outbreak, there is no inflection point. Nonetheless, one can look at the instant rate of change of the infected cases (growth factor or $exp_b$) at a significant time-points. This parameter can be estimated at any interesting time by centering the time variable to the value we want, and evaluate the $exp_b$ of the linear term.
+
+
+Here we computed the $exp_b$ for $T=max(T)-3)$, so we can monitor the rate of the increase in the last few days.
 
 The $exp_b$ produced with the graphs tells us the increase in confirmed case each contries is experiencing, on average, in the last three days. 
 
+The coefficients of the models, are computed with standard time scale, so they can be used to predict future outcomes with standard time scale.
 
 # Replications across countries
 

@@ -3,7 +3,7 @@ title: "GzLM: Polynomial Gamma regression for coronavirus data"
 author: "(Marcello Gallucci)"
 nickname: corona
 topic: gzlm
-category: example
+category: hidden
 output: 
   html_document:
      includes:
