@@ -89,7 +89,7 @@ mod2<-gamlj::gamljGzlm(
   modelSelection = "custom",
   custom_family = "poisson",
   custom_link = "log")
-ddata1$Day<-ddata1$Day-max(ddata1$Day)
+#ddata1$Day<-ddata1$Day-max(ddata1$Day)
 mod1<-gamlj::gamljGzlm(
   scaling = list(list(var="Day",type="none")),
   formula = form,
