@@ -56,6 +56,9 @@ data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
 
 ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"South Korea"
+
+ii<-grep("Republic of Korea",data$Country.Region,fixed=T)
 data$Country.Region[ii]<-"Iran"
 
 data<-data[data$Confirmed>0,]
