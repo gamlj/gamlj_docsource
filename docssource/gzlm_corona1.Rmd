@@ -26,7 +26,7 @@ knitr::knit_hooks$set(plot = function(x, options) {
         sep = '')
 })
 ```
-```
+
 
 ```{r setup, include=FALSE}
 folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
@@ -55,7 +55,11 @@ data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
 data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
 
+ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"Iran"
+
 data<-data[data$Confirmed>0,]
+
 tdata<-aggregate(data$Confirmed,list(data$Country),sum)
 
 adata<-aggregate(data$Confirmed,list(data$Country,data$Day),sum)
