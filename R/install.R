@@ -16,9 +16,3 @@ system(paste('git commit -m "',msg,'"'))
 system("git push origin master")
 setwd(HERE)
 
-base<-"data/corona/"
-ff<-list.files("data/corona/")
-for (f in ff) {
-  print(paste0('[','ciao','](',base,f,')'))
-}
-
