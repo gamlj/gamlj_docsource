@@ -1,5 +1,5 @@
 ---
-title: "GzLM: Polynomial Gamma regression for coronavirus data"
+title: "GzLM: Polynomial Poisson regression for coronavirus data"
 author: "(Marcello Gallucci)"
 nickname: corona
 topic: gzlm
@@ -76,7 +76,7 @@ u1000<-u1000[order(u1000)]
 ```
 
 
-`r keywords("Polynomial regression, Gamma distribution, Generalized linear model")`
+`r keywords("Polynomial regression, Poisson distribution, Generalized linear model")`
 
 `r draft` 
 
@@ -147,20 +147,20 @@ datac<-adata[adata$Country=="Mainland China",]
 
 ```
 
-A gamma distribution shape depends on the _shape_ parameter and the _rate_ parameter, an example with small shape and rate is in Figure 2.
-```{r fig2, results="asis",fig.cap="Figure 2. Theoretical gamma distributions"}
+A Poisson distribution shape depends on the _mean_ parameter, an example with small mean  is in Figure 2.
+```{r fig2, results="asis",fig.cap="Figure 2. Theoretical Poisson distributions"}
 par(mfrow=c(1,2))
 
 
-x <- round(rgamma(1000,shape = .2,rate = 0.5),1)
-hist(x,main="shape=.2,rate=.5", breaks = 100 )
+x <- rpois(1000,1)
+hist(x,main="mean=1", breaks = 100 )
 
-x <- round(rgamma(1000,shape = 1,rate = 0.5),1)
+x <- round(rpois(1000, 10),1)
 hist(x,main="shape=1,rate=.5", breaks = 100 )
 
 ```
 
-This distribution can be accomodated with a _Poisson distribution_ or a _Gamma distribution_. Even though Gamma is a continuous distribution (and number of confirmed cases is not), preliminary analyses showed that the models fits better assuming it, so we will go for it. 
+This distribution can be accomodated with a _Poisson distribution_ or a _Gamma distribution_, even though Gamma is a continuous distribution (and number of confirmed cases is not). 
 
 Please note: because we want to model how the dependent variable changes over time, which is the main goal of the analysis, we are not going to deal with the inferential tests associated with the parameter estimates, so the assumed distribution is not crucial here, as long as the model fit. The same applies to the autocorrelation of the data, which is not a concern for our purposes.
 
@@ -187,7 +187,7 @@ As an example, let's fit a GzLM as discussed above. We are going to use GAMLj `G
 
 <img src="examples/corona/input.menu.png" class="img-responsive" alt="">
 
-In the input panel, we need to select a `custom model`, because we need to set the `Gamma` as the DV distribution and the `Log` as the link function. 
+In the input panel, we need to select a `custom model`, because we need to set the `Poisson` as the DV distribution and the `Log` as the link function. 
 
 <img src="examples/corona/input.model.png" class="img-responsive" alt="">
 
@@ -205,7 +205,7 @@ modi<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 modi
 ```
@@ -238,7 +238,7 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 modc
 
@@ -300,7 +300,7 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 
 ```
