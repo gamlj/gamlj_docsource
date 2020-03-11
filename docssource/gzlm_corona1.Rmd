@@ -84,16 +84,6 @@ for (u in u1000) {
 ddata1<-adata[adata$Country==u,]
 
 write.csv(ddata1,file=paste0("../data/corona/data_",u,".csv"),row.names=F)
-mod2<-gamlj::gamljGzlm(
-  scaling = list(list(var="Day",type="none")),
-  formula = form,
-  data = ddata1,
-  plotHAxis = Day,
-  plotRaw = TRUE,
-  modelSelection = "custom",
-  custom_family = "poisson",
-  custom_link = "log")
-#ddata1$Day<-ddata1$Day-max(ddata1$Day)
 mod1<-gamlj::gamljGzlm(
   scaling = list(list(var="Day",type="none")),
   formula = form,
@@ -103,9 +93,21 @@ mod1<-gamlj::gamljGzlm(
   modelSelection = "custom",
   custom_family = "poisson",
   custom_link = "log")
+ddata1$Day<-ddata1$Day-max(ddata1$Day)
+mod2<-gamlj::gamljGzlm(
+  scaling = list(list(var="Day",type="none")),
+  formula = form,
+  data = ddata1,
+  plotHAxis = Day,
+  plotRaw = TRUE,
+  modelSelection = "custom",
+  custom_family = "poisson",
+  custom_link = "log")
+ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
+gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
 
 r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
-res0<-list(u,r2,mod2$descPlot,mod1$main$fixed)
+res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf)
 res[[u]]<-res0
 }
 
@@ -221,7 +223,7 @@ If we look at the plot and compared the predicted values (the curve) with the ac
 
 ```
 
-In many applications our results would be considered as satisfactory, but in this case we want to do better. First, it is clear that the confirmed cases increase at a faster rate that the predicted one. Second, the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to grossly misfit, sooner or later. Let's fit the same model (the input is equivalent so I'm not going to show it again) for the Mainland China data, in which the outbreak happened earlier than in Italy. For Mainland China, considering the first 40 days yealds very different results as compared with Italy.
+In many applications our results would be considered as satisfactory, but in this case we want to do better. First, it is clear that the confirmed cases increase at a faster rate that the predicted one. Second, the model will not work for long. The number of confirmed cases cannot increase exponentialy forever, so the model will start to grossly misfit, sooner or later. Let's fit the same model (the input is equivalent so I'm not going to show it again) for the Mainland China data, in which the outbreak happened earlier than in Italy. For Mainland China, considering the first 40 days yields very different results as compared with Italy.
 
 ```{r intro_hide2, include=FALSE}
 #datac<-datac[datac$Day<40,]
@@ -319,6 +321,12 @@ We can see that the model really works. But what about the Italian and French da
 
 The fit of the same model estimation (polynomial up to the 4th grade) is shown in the next section for all countries with more than 1000 data points. 
 
+# Interpreting the parameters
+
+Two interesting parameters can be examined in the model. One is the intercept $exp_B$. That is the expected value of _confirmed case_ at a given T(ime), and the $exp_B$ of the linear trend (`Day`), that gives us the expected _growth factor_ at a given T, that is the expected ratio between the number of cases at T and the number of cases at T-1. Recall, however, that in polynomial regression, all the lower order coefficients are estimated for the independent variable equal to zero, so T=0. When you run a model in GAMLj, the independent variable is centered to its mean, so T=mean(Day). To estimate the following models, we do not center the variables, so T=0 for all the models we estimate below. Those are the coefficients to find in the model.
+
+Nonetheless, it would be more interesting to obtain the expected cases (EC) for the last day available, and the expected growth factor (GF) for the last day available, so we can monitor what is going on in the model for the latest information available. To do that, one simply needs to re-estimate the model centering the time variable (`Day`) to the last day available. That is, compute $Day_{c}=Day-max(Day))$ and use it to estimate the model.  The new model intercept $exp_B$ is the EC, the linear trend $exp_B$ is the latest GF. 
+
 # Replications across countries
 
 Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is `r today`.
@@ -328,6 +336,9 @@ Here are the models fitted for all available countries with more than 1000 data 
 for (a in res) {
   cat("##",a[[1]],"\n\n")
   cat("**R^2=",a[[2]],"**\n\n")
+  cat("**EC=",a[[5]],"**\n\n")
+  cat("**GF=",a[[6]],"**\n\n")
+
   print(a[[3]])
   cat("\n\n")
   cat("<pre class='jamovitable'>")
