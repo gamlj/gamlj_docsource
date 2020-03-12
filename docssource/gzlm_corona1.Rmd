@@ -3,7 +3,7 @@ title: "GzLM: Polynomial Poisson regression for coronavirus data"
 author: "(Marcello Gallucci)"
 nickname: corona
 topic: gzlm
-category: hidden
+category: example
 output: 
   html_document:
      includes:
