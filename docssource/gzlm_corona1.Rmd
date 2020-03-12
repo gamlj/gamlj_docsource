@@ -56,10 +56,14 @@ data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
 
 ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
-data$Country.Region[ii]<-"South Korea"
+data$Country.Region[ii]<-"Iran"
 
 ii<-grep("Korea",data$Country.Region,fixed=T)
 data$Country.Region[ii]<-"South Korea"
+
+ii<-grep("China",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"Mainland China"
+
 
 data<-data[data$Confirmed>0,]
 
@@ -67,12 +71,18 @@ tdata<-aggregate(data$Confirmed,list(data$Country),sum)
 
 adata<-aggregate(data$Confirmed,list(data$Country,data$Day),sum)
 names(adata)<-c("Country","Day","Confirmed")
+
+
 library(gamlj)
 form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
 tt<-tapply(data$Confirmed,data$Country.Region,sum)
 u1000<-names(which(tt>1000))
 u1000<-u1000[order(u1000)]
 
+for (u in u1000) {
+  idata<-adata[adata$Country==u,]
+  adata[adata$Country==u,"Day"]<-1:length(idata$Day)
+}
 ```
 
 
@@ -128,6 +138,9 @@ We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, 
 
 _Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists_.
 
+# Data
+
+The data we analyze here are the confirmed cases over time per country. Time is rescaled in each country such that Day=0 is the first day in which the country showed one or more confirmed cases. 
 
 # Cumulative distributions
 
