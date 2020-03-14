@@ -35,6 +35,9 @@ ff<-ff[grep("20",ff,fixed = T)]
 data<-read.csv(paste0(folder,ff[1]))
 nn<-names(data)
 
+#data<-read.csv(paste0(folder,"03-11-2020.csv"))
+#data[data$Country.Region=="Italy",]
+
 data$Date<-"ok"
 data$Day<-0
 data<-data[0,]
@@ -54,6 +57,9 @@ for (f in ff) {
 data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
 data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
+
+ii<-grep("Italy",data$Country.Region,fixed=T)
+data[ii,]
 
 ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
 data$Country.Region[ii]<-"Iran"
