@@ -58,8 +58,8 @@ data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
 data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
 
-ii<-grep("Italy",data$Country.Region,fixed=T)
-data[ii,]
+ii<-grep("United Kindom",data$Country.Region,fixed=T)
+data$Country.Region[ii]<-"UK"
 
 ii<-grep("Islamic Republic",data$Country.Region,fixed=T)
 data$Country.Region[ii]<-"Iran"
