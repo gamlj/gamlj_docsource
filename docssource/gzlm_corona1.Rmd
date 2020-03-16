@@ -29,6 +29,7 @@ knitr::knit_hooks$set(plot = function(x, options) {
 
 
 ```{r setup, include=FALSE}
+
 folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
 ff<-list.files(folder)
 ff<-ff[grep("20",ff,fixed = T)]
@@ -100,6 +101,8 @@ for (u in u1000) {
 `r draft` 
 
 ```{r res, include=F}
+
+unlink("../data/corona/*")
 
 res<-list()
 for (u in u1000) {
