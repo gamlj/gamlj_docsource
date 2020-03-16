@@ -388,7 +388,7 @@ Here are the data downloaded from the [CSSEGISandData](https://github.com/CSSEGI
 
 
 ```{r files, results="asis"}
-base<-"/data/corona/"
+base<-"https://github.com/gamlj/gamlj_docsource/tree/master/data/corona/"
 
 ff<-list.files("../data/corona/")
 for (f in ff) {
