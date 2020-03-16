@@ -1,12 +1,12 @@
-"Country","Day","Confirmed"
-"South Africa",1,1
-"South Africa",2,1
-"South Africa",3,1
-"South Africa",4,3
-"South Africa",5,3
-"South Africa",6,7
-"South Africa",7,13
-"South Africa",8,17
-"South Africa",9,24
-"South Africa",10,38
-"South Africa",11,51
+"Country","Day","Confirmed","Deaths","Recovered"
+"South Africa",1,1,0,0
+"South Africa",2,1,0,0
+"South Africa",3,1,0,0
+"South Africa",4,3,0,0
+"South Africa",5,3,0,0
+"South Africa",6,7,0,0
+"South Africa",7,13,0,0
+"South Africa",8,17,0,0
+"South Africa",9,24,0,0
+"South Africa",10,38,0,0
+"South Africa",11,51,0,0

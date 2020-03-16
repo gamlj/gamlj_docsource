@@ -1,15 +1,15 @@
-"Country","Day","Confirmed"
-"Saudi Arabia",1,1
-"Saudi Arabia",2,1
-"Saudi Arabia",3,1
-"Saudi Arabia",4,5
-"Saudi Arabia",5,5
-"Saudi Arabia",6,5
-"Saudi Arabia",7,11
-"Saudi Arabia",8,15
-"Saudi Arabia",9,20
-"Saudi Arabia",10,21
-"Saudi Arabia",11,45
-"Saudi Arabia",12,86
-"Saudi Arabia",13,103
-"Saudi Arabia",14,103
+"Country","Day","Confirmed","Deaths","Recovered"
+"Saudi Arabia",1,1,0,0
+"Saudi Arabia",2,1,0,0
+"Saudi Arabia",3,1,0,0
+"Saudi Arabia",4,5,0,0
+"Saudi Arabia",5,5,0,0
+"Saudi Arabia",6,5,0,0
+"Saudi Arabia",7,11,0,0
+"Saudi Arabia",8,15,0,0
+"Saudi Arabia",9,20,0,1
+"Saudi Arabia",10,21,0,1
+"Saudi Arabia",11,45,0,1
+"Saudi Arabia",12,86,0,1
+"Saudi Arabia",13,103,0,1
+"Saudi Arabia",14,103,0,1

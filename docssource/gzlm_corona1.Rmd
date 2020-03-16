@@ -76,8 +76,8 @@ data<-data[data$Confirmed>0,]
 
 tdata<-aggregate(data$Confirmed,list(data$Country),sum)
 
-adata<-aggregate(data$Confirmed,list(data$Country,data$Day),sum)
-names(adata)<-c("Country","Day","Confirmed")
+adata<-aggregate(data[,c("Confirmed","Deaths","Recovered")],list(data$Country,data$Day),sum)
+names(adata)<-c("Country","Day","Confirmed","Deaths","Recovered")
 
 
 library(gamlj)
