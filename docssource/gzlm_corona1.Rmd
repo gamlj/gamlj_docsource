@@ -130,9 +130,9 @@ mod2<-gamlj::gamljGzlm(
   custom_link = "log")
 ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
-
+ac<-max(ddata1$Confirmed)
 r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
-res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf)
+res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac)
 res[[u]]<-res0
 }
 
@@ -365,6 +365,7 @@ for (a in res) {
   cat("##",a[[1]],"\n\n")
   cat("**R^2=",a[[2]],"**\n\n")
   cat("**EC=",a[[5]],"**\n\n")
+  cat("**AC=",a[[7]],"**\n\n")
   cat("**GF=",a[[6]],"**\n\n")
 
   print(a[[3]])
