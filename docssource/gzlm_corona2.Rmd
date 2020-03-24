@@ -114,7 +114,7 @@ lastday<-unique(data$Date[which.max(data$Day)])
 
 This is a follow up of the overall page about these data, but for Italian regions.
 
-_Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for mediacal purposes and interpreted by medical scientists_.
+_Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for medical purposes and interpreted by medical scientists_.
 
 
 # Replications across Italian regions
