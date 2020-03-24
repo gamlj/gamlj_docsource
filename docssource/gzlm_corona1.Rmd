@@ -119,7 +119,7 @@ mod1<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 ddata1$Day<-ddata1$Day-max(ddata1$Day)
 mod2<-gamlj::gamljGzlm(
@@ -129,7 +129,7 @@ mod2<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
@@ -330,6 +330,18 @@ modc<-gamlj::gamljGzlm(
   custom_family = "Gamma",
   custom_link = "log")
 
+# rr<-NULL
+# datax<-datai
+# for (i in 1:length(datax$Day)) {
+#   datal<-datax
+#   datal$Day<-datax$Day-i
+#   mod<-glm(form,data=datal,family = Gamma("log"))
+#   pp<-predict(mod)
+#   ss<-exp(mod$coefficients[[2]])
+#   rr<-c(rr,ss)
+# }
+# plot(pp)
+#plot(rr)
 ```
 
 ```{r intro_res3, results="asis",warning=FALSE,echo=FALSE}

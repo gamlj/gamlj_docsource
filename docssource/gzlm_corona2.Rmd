@@ -83,7 +83,7 @@ mod1<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 ddata1$Day<-ddata1$Day-max(ddata1$Day)
 mod2<-gamlj::gamljGzlm(
@@ -93,7 +93,7 @@ mod2<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
