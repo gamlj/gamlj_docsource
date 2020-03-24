@@ -1,5 +1,5 @@
 ---
-title: "GzLM: Polynomial Poisson regression for coronavirus data"
+title: "GzLM:  Generalized Polynomial Regression for coronavirus data"
 author: "(Marcello Gallucci)"
 nickname: corona
 topic: gzlm
@@ -96,7 +96,7 @@ for (u in u1000) {
 ```
 
 
-`r keywords("Polynomial regression, Poisson distribution, Generalized linear model")`
+`r keywords("Polynomial regression,Gamma regression, Poisson distribution, Generalized linear model")`
 
 `r draft` 
 
@@ -116,7 +116,7 @@ mod1<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "poisson",
+  custom_family = "Gamma",
   custom_link = "log")
 ddata1$Day<-ddata1$Day-max(ddata1$Day)
 mod2<-gamlj::gamljGzlm(
@@ -126,7 +126,7 @@ mod2<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "poisson",
+  custom_family = "Gamma",
   custom_link = "log")
 ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
@@ -212,7 +212,7 @@ As an example, let's fit a GzLM as discussed above. We are going to use GAMLj `G
 
 <img src="examples/corona/input.menu.png" class="img-responsive" alt="">
 
-In the input panel, we need to select a `custom model`, because we need to set the `Poisson` as the DV distribution and the `Log` as the link function. 
+In the input panel, we need to select a `custom model`, because we need to set the `Gamma` as the DV distribution and the `Log` as the link function. If you want to try out, you can select `poisson` as the distribution. As long as the link function is `Log`, the models will not change much.
 
 <img src="examples/corona/input.model.png" class="img-responsive" alt="">
 
@@ -230,7 +230,7 @@ modi<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "poisson",
+  custom_family = "Gamma",
   custom_link = "log")
 modi
 ```
@@ -263,7 +263,7 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "poisson",
+  custom_family = "Gamma",
   custom_link = "log")
 modc
 
@@ -314,7 +314,7 @@ By repeating the operation for order 3 and 4, we obtained the desired model.
 
 # Output
 
-If we fit the polynomial generalized model on the data from Mainland Chine, we obtain a $R^2$ pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.
+If we fit the polynomial generalized model on the data from Mainland China, we obtain a $R^2$ pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.
 
 ```{r intro_hide3, include=FALSE}
 
@@ -325,9 +325,19 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "poisson",
+  custom_family = "Gamma",
   custom_link = "log")
 
+# data0<-adata[adata$Country=="Italy",]
+# dat<-data0
+# ee<-NULL
+# for (i in 1:length(data0$Day)) {
+# dat$Day<-data0$Day-i
+# mod<-glm(form,data=dat,family = Gamma("log"))
+# ee<-c(ee,(exp(mod$coefficients[[2]])))
+# }
+# plot(ee)
+# plot(predict(mod))
 ```
 
 ```{r intro_res3, results="asis",warning=FALSE,echo=FALSE}
