@@ -46,15 +46,18 @@ data<-data[0,]
 d<-0
 f<-"ok"
 for (f in ff) {
+     print(f)
+
    d<-d+1
    data0<-read.csv(paste0(folder,f))
+   names(data0)<-gsub("_",".",names(data0),fixed=T)
    data0<-data0[,nn]
    date<-gsub(".csv","",f,fixed = T)
+   print(head(data0))
    data0$Date<-date
    data0$Day<-d
    data<-rbind(data,data0)
 }
-
 data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
 data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
@@ -148,7 +151,6 @@ In this section we look at how to model cumulative distributions over time with 
 
 We are going to use the data from the recent _coronavirus_ (COVID-19) outbreak, available at [CSSEGISandData](https://github.com/CSSEGISandData/COVID-19). Data are updated every day, at the moment ranging from `r firstday` to `r lastday`. As new data arrive, results may change. Data are from different countries. Here we consider only countries where data are available for more than 10 days and the number of confirmed cases is larger than 50.
 
-_Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for medical purposes and interpreted by medical scientists_.
 
 # Data
 
@@ -328,16 +330,6 @@ modc<-gamlj::gamljGzlm(
   custom_family = "Gamma",
   custom_link = "log")
 
-# data0<-adata[adata$Country=="Italy",]
-# dat<-data0
-# ee<-NULL
-# for (i in 1:length(data0$Day)) {
-# dat$Day<-data0$Day-i
-# mod<-glm(form,data=dat,family = Gamma("log"))
-# ee<-c(ee,(exp(mod$coefficients[[2]])))
-# }
-# plot(ee)
-# plot(predict(mod))
 ```
 
 ```{r intro_res3, results="asis",warning=FALSE,echo=FALSE}
