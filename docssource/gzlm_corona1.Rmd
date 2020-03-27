@@ -232,7 +232,7 @@ modi<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 modi
 ```
@@ -265,7 +265,7 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 modc
 
@@ -319,7 +319,6 @@ By repeating the operation for order 3 and 4, we obtained the desired model.
 If we fit the polynomial generalized model on the data from Mainland China, we obtain a $R^2$ pretty close to 1, showing how well the model now fits the data. More clearly, the plot of the new model shows the flexibility of the GzLM in adjusting itself to the data trend.
 
 ```{r intro_hide3, include=FALSE}
-
 modc<-gamlj::gamljGzlm(
   scaling = list(list(var="Day",type="none")),
   formula = form,
@@ -327,7 +326,7 @@ modc<-gamlj::gamljGzlm(
   plotHAxis = Day,
   plotRaw = TRUE,
   modelSelection = "custom",
-  custom_family = "Gamma",
+  custom_family = "poisson",
   custom_link = "log")
 
 # rr<-NULL
