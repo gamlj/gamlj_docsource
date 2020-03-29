@@ -60,6 +60,7 @@ data$Deaths<-data$deceduti
 data$Recovered<-data$dimessi_guariti
 data<-data[data$Confirmed>0,]
 
+
 library(gamlj)
 form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
 
@@ -71,6 +72,16 @@ form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
 `r draft` 
 
 ```{r res, include=F}
+data0<-data[data$denominazione_regione=="Lombardia",]
+plot(data0$deceduti/data0$totale_casi~data0$Day)
+plot(data0$deceduti~data0$tamponi)
+mod<-glm(totale_casi~I(totale_casi/tamponi),data=data0,family = gaussian())
+
+plot(mod$residuals~data0$Day)
+
+data0<-data[data$denominazione_regione=="Veneto",]
+plot(data0$totale_casi~data0$tamponi)
+plot(data0$deceduti~data0$totale_casi)
 
 
 res<-list()
