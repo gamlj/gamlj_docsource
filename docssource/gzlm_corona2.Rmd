@@ -76,8 +76,8 @@ data0<-data[data$denominazione_regione=="Lombardia",]
 plot(data0$deceduti/data0$totale_casi~data0$Day)
 plot(data0$deceduti~data0$tamponi)
 mod<-glm(totale_casi~I(totale_casi/tamponi),data=data0,family = gaussian())
-
-plot(mod$residuals~data0$Day)
+mod
+plot(mod$fitted.values~data0$tamponi)
 
 data0<-data[data$denominazione_regione=="Veneto",]
 plot(data0$totale_casi~data0$tamponi)
