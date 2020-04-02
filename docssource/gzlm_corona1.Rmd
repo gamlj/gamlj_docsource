@@ -110,7 +110,6 @@ unlink("../data/corona/*")
 res<-list()
 for (u in u1000) {
 ddata1<-adata[adata$Country==u,]
-
 write.csv(ddata1,file=paste0("../data/corona/data_",u,".csv"),row.names=F)
 mod1<-gamlj::gamljGzlm(
   scaling = list(list(var="Day",type="none")),
@@ -135,7 +134,7 @@ ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
 ac<-max(ddata1$Confirmed)
 r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
-res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac)
+res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac,last)
 res[[u]]<-res0
 }
 
