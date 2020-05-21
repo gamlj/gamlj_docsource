@@ -1,0 +1,512 @@
+d<-0
+f<-"ok"
+for (f in ff) {
+print(f)
+d<-d+1
+data0<-read.csv(paste0(folder,f))
+data0<-data0[,nn]
+date<-gsub(".csv","",f,fixed = T)
+print(head(data0))
+data0$Date<-date
+data0$Day<-d
+data<-rbind(data,data0)
+}
+data0<-read.csv(paste0(folder,"03-23-2020.csv"))
+data0
+names(data0)
+head(data0)
+data0<-read.csv(paste0(folder,"01-23-2020.csv"))
+head(data0)
+folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
+ff<-list.files(folder)
+ff<-ff[grep("20",ff,fixed = T)]
+data<-read.csv(paste0(folder,ff[1]))
+nn<-names(data)
+nn
+data0<-read.csv(paste0(folder,"03-23-2020.csv"))
+head(data0)
+names(data0)
+nn
+names(data0)
+gsub("_",".",names(data0),fixed=T)
+nn
+folder<-"/home/marcello/Skinner/Stat/data/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
+ff<-list.files(folder)
+ff<-ff[grep("20",ff,fixed = T)]
+data<-read.csv(paste0(folder,ff[1]))
+nn<-names(data)
+data$Date<-"ok"
+data$Day<-0
+data<-data[0,]
+d<-0
+f<-"ok"
+for (f in ff) {
+print(f)
+d<-d+1
+data0<-read.csv(paste0(folder,f))
+names(data0)<-gsub("_",".",names(data0),fixed=T)
+data0<-data0[,nn]
+date<-gsub(".csv","",f,fixed = T)
+print(head(data0))
+data0$Date<-date
+data0$Day<-d
+data<-rbind(data,data0)
+}
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+modi<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = Confirmed~Day,
+data = datai,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "Gamma",
+custom_link = "log")
+modi
+print(modi$descPlot)
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = Confirmed~Day,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "Gamma",
+custom_link = "log")
+modc
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "Gamma",
+custom_link = "log")
+modc
+datal<-datac
+glm(form)
+form
+glm(form,data=datal,family = Gamma("log"))
+mod$coefficients
+mod$coefficients[[2]]
+rr<-NULL
+for (i in 1:length(datac$Country)) {
+datal<-datac
+datal$Day<-datac$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+rr<-c(rr,mod$coefficients[[2]])
+}
+rr
+plot(rr)
+pp<-predict(mod)
+mod$coefficients[[2]]*pp[i]
+pp[i]
+mod$coefficients[[2]]
+ss<-exp(mod$coefficients[[2]])*pp[i]
+ss
+rr<-NULL
+for (i in 1:length(datac$Country)) {
+datal<-datac
+datal$Day<-datac$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])*pp[i]
+rr<-c(rr,ss)
+}
+plot(rr)
+rr<-NULL
+for (i in 1:length(datac$Country)) {
+datal<-datac
+datal$Day<-datac$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])
+rr<-c(rr,ss)
+}
+plot(rr)
+rr<-NULL
+datax<-datai
+for (i in 1:length(datax$Country)) {
+datal<-datac
+datal$Day<-datax$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])
+rr<-c(rr,ss)
+}
+rr<-NULL
+datax<-datai
+rr<-NULL
+datax<-datai
+for (i in 1:length(datax$Country)) {
+datal<-datax
+datal$Day<-datax$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])
+rr<-c(rr,ss)
+}
+plot(rr)
+rr<-NULL
+datax<-datai
+for (i in 1:length(datax$Day)) {
+datal<-datax
+datal$Day<-datax$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])
+rr<-c(rr,ss)
+}
+plot(rr)
+rr<-NULL
+datax<-datai
+for (i in 1:length(datax$Day)) {
+datal<-datax
+datal$Day<-datax$Day-i
+mod<-glm(form,data=datal,family = Gamma("log"))
+pp<-predict(mod)
+ss<-exp(mod$coefficients[[2]])
+rr<-c(rr,ss)
+}
+plot(pp)
+datai
+datai
+plot(pp)
+plot(rr)
+plot(pp)
+plot(rr)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "Gamma",
+custom_link = "log")
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = Confirmed~Day,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "poisson",
+custom_link = "log")
+modc
+form
+form<-Confirmed ~ Day + I(Day^2) + I(Day^3)
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "poisson",
+custom_link = "log")
+modc
+form<-Confirmed ~ Day + I(Day^2) + I(Day^3)+I(Day^4)
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+modelSelection = "custom",
+custom_family = "poisson",
+custom_link = "log")
+modc
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+plotDvScale = "linear"
+modelSelection = "custom",
+custom_family = "poisson",
+custom_link = "log")
+modc<-gamlj::gamljGzlm(
+scaling = list(list(var="Day",type="none")),
+formula = form,
+data = datac,
+plotHAxis = Day,
+plotRaw = TRUE,
+plotDvScale = "linear",
+modelSelection = "custom",
+custom_family = "poisson",
+custom_link = "log")
+glm(form,datac,family=poisson())
+mm<-glm(form,datac,family=poisson())
+plot(predict(mm))
+plot(predict(mm,type = "response"))
+plot(predict(mm))
+mm<-glm(form,datai,family=poisson())
+plot(predict(mm))
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+ddata1
+ddata1$data
+ddata1$data[1]
+as.character(ddata1$data[1])
+strsplit(as.character(ddata1$data[1]),"T",fixed=T)
+strsplit(as.character(ddata1$data[1]),"T",fixed=T)[[1]]
+strsplit(as.character(ddata1$data[1]),"T",fixed=T)[[1]][1]
+strsplit(as.character(ddata1$data[length(ddata1$data)]),"T",fixed=T)[[1]][1]
+last<-strsplit(as.character(ddata1$data[length(ddata1$data)]),"T",fixed=T)[[1]][1]
+last<-strsplit(as.character(ddata1$data[length(ddata1$data)]),"T",fixed=T)[[1]][1]
+last
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+246*2
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)
+version()
+version
+Version
+version
+rversion
+knitr::opts_chunk$set(echo = TRUE)
+library(gamlj)
+cars
+cars
+library(jmv)
+cars$dist
+cars$dist
+sleep
+sleep
+sleep
+sleep$extra
+sleep$group
+sleep$
+jmv::ttestIS(extra,group,data = sleep)
+jmv::ttestIS(extra,group,data = sleep)
+test<-jmv::ttestIS(extra,group,data = sleep)
+test<-jmv::ttestIS(extra,group,data = sleep)
+cat("<pre class='jamovitable'>")
+install.packages("stringi")
+knitr::opts_chunk$set(echo = TRUE)
+library(jmv)
+jmv::anovaOneW(deps = extra,group = group,data = sleep)
+atest<-jmv::anovaOneW(deps = extra,group = group,data = sleep)
+atest$anova
+atest<-jmv::anovaOneW(deps = extra,group = group,data = sleep,desc = T)
+library(rmarkdown)
+HERE<-getwd()
+msg<-"updates"
+render_site("docssource/")
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+### the following is needed for organization pages
+source("R/constants.R")
+cmd<-paste("cp -R ",paste0(SOURCE_FOLDER,"/*"),paste0(TARGET_FOLDER,"/"))
+system(cmd)
+setwd(TARGET_FOLDER)
+system("git add .")
+system(paste('git commit -m "',msg,'"'))
+system("git push origin master")
+setwd(HERE)

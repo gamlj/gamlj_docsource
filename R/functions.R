@@ -149,7 +149,7 @@ write_commits<-function() {
 get_commits<-function() {
   
   query<-paste0("/repos/:owner/:repo/branches")
-  vers<-gh(query, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+  vers<-gh::gh(query, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
   vernames<-sapply(vers,function(a) a$name)
   ord<-order(vernames)
   vernames<-vernames[ord]
@@ -162,14 +162,14 @@ get_commits<-function() {
   vernames<-sapply(vers,function(a) a$name)
   r<-vers[[1]]
   query<-paste0("/repos/:owner/:repo/commits")
-  coms<-gh(query,sha=r$name, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+  coms<-gh::gh(query,sha=r$name, owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
   date<-coms[[1]]$commit$author$date
   vers<-vers[2:length(vernames)]
   j<-1
   results<-list()
   for (r in vers) {
     query<-paste0("/repos/:owner/:repo/commits")
-    coms<-gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+    coms<-gh::gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
     for (com in coms) {
       results[[j]]<-c(sha=com$sha,msg=com$commit$message,version=r$name)
       j<-j+1

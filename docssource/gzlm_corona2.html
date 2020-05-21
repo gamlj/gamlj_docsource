@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>GzLM: Generalized Polynomial Regression for coronavirus italian data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110344212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110344212-1');
+</script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GAMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="glm.html">GLM</a>
+</li>
+<li>
+  <a href="mixed.html">Mixed</a>
+</li>
+<li>
+  <a href="gzlm.html">Generalized Models</a>
+</li>
+<li>
+  <a href="gzlmmixed.html">Generalized Mixed Models</a>
+</li>
+<li>
+  <a href="examples.html">Examples</a>
+</li>
+<li>
+  <a href="rosetta.html">Rosetta store</a>
+</li>
+<li>
+  <a href="release_notes.html">Release notes</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/gamlj/gamlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">GzLM: Generalized Polynomial Regression for coronavirus italian data</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> Polynomial regression,Gamma regression, Poisson distribution, Generalized linear model </span></p>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This is a follow up of the overall page about these data, but for Italian regions.</p>
+<p><em>Please note that no medical or policy-making conclusions should be drawn from these analyses. The only purpose of this page is to show how the Generalized Linear Model may help in understanding some non-linear distributions of data. Here we use the data only to show how the software and the models work. For medical interpretation of the data please look for other sources where these data are analyzed for medical purposes and interpreted by medical scientists</em>.</p>
+</div>
+<div id="replications-across-italian-regions" class="section level1">
+<h1>Replications across Italian regions</h1>
+<p>Here are the models fitted for all available Italian regions. Data are update every day. The last update is 2020-05-21.</p>
+<div id="piemonte" class="section level2">
+<h2>Piemonte</h2>
+<p><strong>R^2= 0.9992256 </strong></p>
+<p><strong>EC= 28184 </strong></p>
+<p><strong>AC= 29058 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-1.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                               
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z             p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.25501583    0.067692091    0.7749042    0.6782495    0.8843578     -3.767291     0.0001650   
+   Day              0.57638401    0.006145861    1.7795918    1.7583554    1.8012307     93.784088    < .0000001   
+   Day²            -0.01322106    1.987794e-4    0.9868660    0.9864805    0.9872495    -66.511227    < .0000001   
+   Day³            1.443883e-4    2.719558e-6    1.0001444    1.0001391    1.0001497     53.092562    < .0000001   
+   Day⁴           -6.084282e-7    1.335330e-8    0.9999994    0.9999994    0.9999994    -45.563877    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="valle-daosta" class="section level2">
+<h2>Valle d’Aosta</h2>
+<p><strong>R^2= 0.9936895 </strong></p>
+<p><strong>EC= 1103 </strong></p>
+<p><strong>AC= 1163 </strong></p>
+<p><strong>GF= 0.98 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-2.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)         Lower          Upper          z            p            
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -5.66188705    0.350386566    0.003475951    0.001736643    0.006858382    -16.15897    < .0000001   
+   Day              0.81487661    0.031410809    2.258896928    2.125099528    2.403555723     25.94255    < .0000001   
+   Day²            -0.02025750    0.001005269    0.979946304    0.978004613    0.981866198    -20.15132    < .0000001   
+   Day³            2.270759e-4    1.364986e-5    1.000227102    1.000200488    1.000254008     16.63576    < .0000001   
+   Day⁴           -9.554938e-7    6.667853e-8    0.999999045    0.999998913    0.999999175    -14.32986    < .0000001   
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="lombardia" class="section level2">
+<h2>Lombardia</h2>
+<p><strong>R^2= 0.9996037 </strong></p>
+<p><strong>EC= 81948 </strong></p>
+<p><strong>AC= 83298 </strong></p>
+<p><strong>GF= 1 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-3.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                  
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z             p            
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     4.375959978    0.018025980    79.5161367    76.7509737    82.3704702     242.75851    < .0000001   
+   Day             0.399852434    0.001835906     1.4916046     1.4862542     1.4969889     217.79569    < .0000001   
+   Day²           -0.009431983    6.535490e-5     0.9906124     0.9904853     0.9907391    -144.31944    < .0000001   
+   Day³            1.029987e-4    9.649697e-7     1.0001030     1.0001011     1.0001049     106.73772    < .0000001   
+   Day⁴           -4.253159e-7    5.034382e-9     0.9999996     0.9999996     0.9999996     -84.48225    < .0000001   
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="p.a.-bolzano" class="section level2">
+<h2>P.A. Bolzano</h2>
+<p><strong>R^2= 0.9345931 </strong></p>
+<p><strong>EC= 3306 </strong></p>
+<p><strong>AC= 4312 </strong></p>
+<p><strong>GF= 0.98 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-4.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z            p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -3.62514153     0.13792276    0.02664533    0.02030185    0.03486057    -26.28385    < .0000001   
+   Day              0.71843503     0.01244639    2.05122060    2.00201762    2.10211544     57.72237    < .0000001   
+   Day²            -0.01740434    4.006421e-4    0.98274624    0.98197190    0.98351528    -43.44112    < .0000001   
+   Day³            1.930842e-4    5.464981e-6    1.00019310    1.00018242    1.00020385     35.33117    < .0000001   
+   Day⁴           -8.109704e-7    2.679065e-8    0.99999919    0.99999914    0.99999924    -30.27066    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="veneto" class="section level2">
+<h2>Veneto</h2>
+<p><strong>R^2= 0.9990982 </strong></p>
+<p><strong>EC= 18843 </strong></p>
+<p><strong>AC= 18813 </strong></p>
+<p><strong>GF= 1 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-5.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z            p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     3.052707779    0.040406253    21.1725976    19.5537891    22.9096718     75.55038    < .0000001   
+   Day             0.336045375    0.004058920     1.3994025     1.3883504     1.4106167     82.79182    < .0000001   
+   Day²           -0.006585337    1.430719e-4     0.9934363     0.9931571     0.9937142    -46.02817    < .0000001   
+   Day³            6.008019e-5    2.096671e-6     1.0000601     1.0000560     1.0000642     28.65504    < .0000001   
+   Day⁴           -2.125810e-7    1.087504e-8     0.9999998     0.9999998     0.9999998    -19.54761    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="friuli-venezia-giulia" class="section level2">
+<h2>Friuli Venezia Giulia</h2>
+<p><strong>R^2= 0.9991632 </strong></p>
+<p><strong>EC= 3086 </strong></p>
+<p><strong>AC= 3156 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-6.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                               
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z             p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -1.40290509     0.15454081    0.2458816    0.1812007    0.3320881     -9.077894    < .0000001   
+   Day              0.55760030     0.01450844    1.7464765    1.6978024    1.7971594     38.432822    < .0000001   
+   Day²            -0.01298546    4.824989e-4    0.9870985    0.9861610    0.9880280    -26.912937    < .0000001   
+   Day³            1.384608e-4    6.755567e-6    1.0001385    1.0001253    1.0001518     20.495813    < .0000001   
+   Day⁴           -5.604351e-7    3.381693e-8    0.9999994    0.9999994    0.9999995    -16.572618    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="liguria" class="section level2">
+<h2>Liguria</h2>
+<p><strong>R^2= 0.9985751 </strong></p>
+<p><strong>EC= 8810 </strong></p>
+<p><strong>AC= 8930 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-7.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                              
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z            p            
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -1.34904137     0.11100031    0.2594889    0.2084583    0.3220950    -12.15349    < .0000001   
+   Day              0.59968455     0.01019303    1.8215441    1.7857027    1.8584959     58.83282    < .0000001   
+   Day²            -0.01407579    3.328817e-4    0.9860228    0.9853770    0.9866636    -42.28466    < .0000001   
+   Day³            1.532203e-4    4.591339e-6    1.0001532    1.0001443    1.0001623     33.37160    < .0000001   
+   Day⁴           -6.324673e-7    2.269694e-8    0.9999994    0.9999993    0.9999994    -27.86575    < .0000001   
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="emilia-romagna" class="section level2">
+<h2>Emilia-Romagna</h2>
+<p><strong>R^2= 0.9988319 </strong></p>
+<p><strong>EC= 27242 </strong></p>
+<p><strong>AC= 26979 </strong></p>
+<p><strong>GF= 1 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-8.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z            p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     3.069745988    0.035011866    21.5364315    20.1033070    23.0606676     87.67730    < .0000001   
+   Day             0.375297701    0.003492113     1.4554246     1.4455237     1.4654473    107.47010    < .0000001   
+   Day²           -0.007813428    1.223638e-4     0.9922170     0.9919786     0.9924545    -63.85410    < .0000001   
+   Day³            7.466414e-5    1.785597e-6     1.0000747     1.0000712     1.0000782     41.81466    < .0000001   
+   Day⁴           -2.710728e-7    9.233294e-9     0.9999997     0.9999997     0.9999997    -29.35820    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="toscana" class="section level2">
+<h2>Toscana</h2>
+<p><strong>R^2= 0.9996384 </strong></p>
+<p><strong>EC= 9614 </strong></p>
+<p><strong>AC= 9829 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-9.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                               
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z             p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -0.84450675    0.095161346    0.4297693    0.3562591    0.5173296     -8.874473    < .0000001   
+   Day              0.57857995    0.008805775    1.7835040    1.7531279    1.8146984     65.704606    < .0000001   
+   Day²            -0.01327604    2.897147e-4    0.9868117    0.9862494    0.9873701    -45.824544    < .0000001   
+   Day³            1.405142e-4    4.023370e-6    1.0001405    1.0001327    1.0001484     34.924505    < .0000001   
+   Day⁴           -5.675671e-7    2.001281e-8    0.9999994    0.9999994    0.9999995    -28.360191    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="umbria" class="section level2">
+<h2>Umbria</h2>
+<p><strong>R^2= 0.9978039 </strong></p>
+<p><strong>EC= 1400 </strong></p>
+<p><strong>AC= 1419 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-10.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)         Lower          Upper         z            p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -5.10927803     0.26120856    0.006040442    0.003602234    0.01002873    -19.56015    < .0000001   
+   Day              0.82034995     0.02383891    2.271294539    2.168407871    2.38080483     34.41222    < .0000001   
+   Day²            -0.02031302    7.758953e-4    0.979891897    0.978393412    0.98137365    -26.18011    < .0000001   
+   Day³            2.211705e-4    1.069455e-5    1.000221195    1.000200341    1.00024227     20.68068    < .0000001   
+   Day⁴           -8.913634e-7    5.292623e-8    0.999999109    0.999999004    0.99999921    -16.84162    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="marche" class="section level2">
+<h2>Marche</h2>
+<p><strong>R^2= 0.9989931 </strong></p>
+<p><strong>EC= 6371 </strong></p>
+<p><strong>AC= 6588 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-11.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                               
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z             p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)      0.43850853    0.079165555    1.5503931    1.3264106    1.8090462      5.539133    < .0000001   
+   Day              0.52034803    0.007751802    1.6826131    1.6573517    1.7084858     67.126073    < .0000001   
+   Day²            -0.01281548    2.671827e-4    0.9872663    0.9867477    0.9877817    -47.965224    < .0000001   
+   Day³            1.434252e-4    3.850494e-6    1.0001434    1.0001359    1.0001510     37.248517    < .0000001   
+   Day⁴           -6.035507e-7    1.972776e-8    0.9999994    0.9999994    0.9999994    -30.593978    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="lazio" class="section level2">
+<h2>Lazio</h2>
+<p><strong>R^2= 0.9995627 </strong></p>
+<p><strong>EC= 7185 </strong></p>
+<p><strong>AC= 7250 </strong></p>
+<p><strong>GF= 1 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-12.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                              
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z            p            
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -1.70860571     0.12580090    0.1811181    0.1412864    0.2313448    -13.58182    < .0000001   
+   Day              0.59835013     0.01146894    1.8191150    1.7789180    1.8607169     52.17138    < .0000001   
+   Day²            -0.01349400    3.725931e-4    0.9865966    0.9858730    0.9873139    -36.21644    < .0000001   
+   Day³            1.399999e-4    5.120438e-6    1.0001400    1.0001300    1.0001501     27.34139    < .0000001   
+   Day⁴           -5.517096e-7    2.524917e-8    0.9999994    0.9999994    0.9999995    -21.85061    < .0000001   
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="abruzzo" class="section level2">
+<h2>Abruzzo</h2>
+<p><strong>R^2= 0.998391 </strong></p>
+<p><strong>EC= 3021 </strong></p>
+<p><strong>AC= 3127 </strong></p>
+<p><strong>GF= 0.98 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-13.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                  
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower          Upper         z            p            
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -4.37078429     0.22615230    0.01264132    0.008080469    0.01960761    -19.32673    < .0000001   
+   Day              0.74584750     0.02014569    2.10822740    2.027240713    2.19381639     37.02268    < .0000001   
+   Day²            -0.01779504    6.416406e-4    0.98236235    0.981119758    0.98359050    -27.73366    < .0000001   
+   Day³            1.944298e-4    8.677477e-6    1.00019445    1.000177530    1.00021155     22.40626    < .0000001   
+   Day⁴           -8.042828e-7    4.224152e-8    0.99999920    0.999999113    0.99999928    -19.04010    < .0000001   
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="molise" class="section level2">
+<h2>Molise</h2>
+<p><strong>R^2= 0.993859 </strong></p>
+<p><strong>EC= 418 </strong></p>
+<p><strong>AC= 401 </strong></p>
+<p><strong>GF= 1.07 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-14.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                               
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z             p            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.163291349    0.435289492    1.1773797    0.4919971    2.7118899     0.3751328     0.7075617   
+   Day             0.133529958    0.041844653    1.1428555    1.0542045    1.2421760     3.1910877     0.0014174   
+   Day²            0.002089073    0.001413943    1.0020913    0.9992854    1.0048408     1.4774799     0.1395470   
+   Day³           -7.923500e-5    1.999135e-5    0.9999208    0.9998819    0.9999603    -3.9634642     0.0000739   
+   Day⁴            5.465591e-7    1.006388e-7    1.0000005    1.0000003    1.0000007     5.4309007    < .0000001   
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="campania" class="section level2">
+<h2>Campania</h2>
+<p><strong>R^2= 0.9991883 </strong></p>
+<p><strong>EC= 4711 </strong></p>
+<p><strong>AC= 4630 </strong></p>
+<p><strong>GF= 1.01 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-15.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)       Lower        Upper        z              p            
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     0.111456457     0.12503568    1.1179051    0.8729918    1.4251899      0.8913972     0.3727161   
+   Day             0.392034428     0.01172756    1.4799887    1.4465938    1.5146482     33.4284800    < .0000001   
+   Day²           -0.006675907    3.905954e-4    0.9933463    0.9925819    0.9941029    -17.0916190    < .0000001   
+   Day³            4.670126e-5    5.478131e-6    1.0000467    1.0000360    1.0000575      8.5250360    < .0000001   
+   Day⁴           -1.025824e-7    2.746213e-8    0.9999999    0.9999998    1.0000000     -3.7354132     0.0001874   
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="puglia" class="section level2">
+<h2>Puglia</h2>
+<p><strong>R^2= 0.9994784 </strong></p>
+<p><strong>EC= 4255 </strong></p>
+<p><strong>AC= 4348 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-16.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z            p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -3.13753656     0.18298415    0.04338955    0.03021779    0.06191098    -17.14649    < .0000001   
+   Day              0.66026815     0.01640486    1.93531121    1.87450716    1.99900634     40.24833    < .0000001   
+   Day²            -0.01507150    5.253970e-4    0.98504151    0.98402178    0.98605044    -28.68593    < .0000001   
+   Day³            1.584352e-4    7.137407e-6    1.00015845    1.00014452    1.00017251     22.19786    < .0000001   
+   Day⁴           -6.345044e-7    3.486972e-8    0.99999937    0.99999930    0.99999943    -18.19643    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="basilicata" class="section level2">
+<h2>Basilicata</h2>
+<p><strong>R^2= 0.994362 </strong></p>
+<p><strong>EC= 388 </strong></p>
+<p><strong>AC= 399 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-17.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                     
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)         Lower          Upper          z             p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -8.60874845    0.728126155    1.825022e-4    4.248620e-5    7.373411e-4    -11.823155    < .0000001   
+   Day              0.90396680    0.063439241      2.4693792      2.1854591      2.8024101     14.249332    < .0000001   
+   Day²            -0.02131703    0.001984582      0.9789086      0.9750535      0.9826679    -10.741320    < .0000001   
+   Day³            2.238348e-4    2.646558e-5      1.0002239      1.0001726      1.0002764      8.457581    < .0000001   
+   Day⁴           -8.769814e-7    1.274289e-7      0.9999991      0.9999989      0.9999994     -6.882122    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="calabria" class="section level2">
+<h2>Calabria</h2>
+<p><strong>R^2= 0.9985419 </strong></p>
+<p><strong>EC= 1110 </strong></p>
+<p><strong>AC= 1140 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-18.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)         Lower          Upper          z            p            
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -6.01580769    0.360243227    0.002439877    0.001192829    0.004895648    -16.69929    < .0000001   
+   Day              0.81503185    0.032067858    2.259247631    2.123114661    2.407477279     25.41585    < .0000001   
+   Day²            -0.01953464    0.001021608    0.980654924    0.978675444    0.982602322    -19.12146    < .0000001   
+   Day³            2.101093e-4    1.382992e-5    1.000210131    1.000183229    1.000237450     15.19237    < .0000001   
+   Day⁴           -8.478794e-7    6.741950e-8    0.999999152    0.999999019    0.999999283    -12.57617    < .0000001   
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="sicilia" class="section level2">
+<h2>Sicilia</h2>
+<p><strong>R^2= 0.9971777 </strong></p>
+<p><strong>EC= 3359 </strong></p>
+<p><strong>AC= 3354 </strong></p>
+<p><strong>GF= 1 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-19.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                 
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)        Lower         Upper         z            p            
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -2.86056890     0.18897867    0.05723619    0.03937352    0.08258683    -15.13699    < .0000001   
+   Day              0.62856232     0.01712359    1.87491311    1.81353141    1.93943574     36.70740    < .0000001   
+   Day²            -0.01410810    5.536213e-4    0.98599095    0.98491456    0.98705424    -25.48330    < .0000001   
+   Day³            1.440643e-4    7.581285e-6    1.00014407    1.00012930    1.00015902     19.00262    < .0000001   
+   Day⁴           -5.560045e-7    3.728692e-8    0.99999944    0.99999937    0.99999952    -14.91152    < .0000001   
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+<div id="sardegna" class="section level2">
+<h2>Sardegna</h2>
+<p><strong>R^2= 0.9977105 </strong></p>
+<p><strong>EC= 1308 </strong></p>
+<p><strong>AC= 1345 </strong></p>
+<p><strong>GF= 0.99 </strong></p>
+<figure>
+<figcaption>
+</figcaption>
+<img src="gzlm_corona2_files/figure-html/out-20.png">
+</figure>
+<pre class='jamovitable'>
+ Parameter Estimates                                                                                                    
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   Names          Estimate        SE             exp(B)         Lower          Upper          z            p            
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+   (Intercept)     -5.32937165     0.32760748    0.004847115    0.002532017    0.009145015    -16.26755    < .0000001   
+   Day              0.77403459     0.02927412    2.168497632    2.048646883    2.297753393     26.44092    < .0000001   
+   Day²            -0.01843699    9.350567e-4    0.981731932    0.979921145    0.983519503    -19.71751    < .0000001   
+   Day³            1.978091e-4    1.268091e-5    1.000197829    1.000173121    1.000222840     15.59896    < .0000001   
+   Day⁴           -7.983123e-7    6.189463e-8    0.999999202    0.999999080    0.999999322    -12.89793    < .0000001   
+ ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+</pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

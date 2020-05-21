@@ -227,7 +227,7 @@ Results are almost self-explanatory:
 
 Time 0 mean (on average across groups) differs from the mean of all the other three times, time 1 mean differs (based on NHST)  only from time 6, and time 3 and 6 are not differnt. That concludes the probing of the main effect of time. The same can be done for the interaction, which would produce  ${(8 \cdot 7) \over 2}=28$ comparisons. We stop here because post-hoc tests are very boring.
 
-# Estiamted Marginal Means
+# Estimated Marginal Means
 
 In any case, one can inspect the means involved in the main effects and of in the interaction by clicking `Estimated Marginal Means` in the `Estimated Marginal Means` panel.
 

@@ -16,9 +16,13 @@ editor_options:
 ```{r, echo=FALSE,results='asis'}
 source("../R/secrets.R")
 source("../R/functions.R")
+#source("../R/functions.R")
+#source("../R/functions.R")
+
 write_commits2()
 
 ```
+
 
 #  version 1.0.5 
 
