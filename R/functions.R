@@ -166,18 +166,20 @@ get_commits<-function() {
   date<-coms[[1]]$commit$author$date
   vers<-vers[2:length(vernames)]
   j<-1
+  r<-vers[[2]]
   results<-list()
   for (r in vers) {
     query<-paste0("/repos/:owner/:repo/commits")
     coms<-gh::gh(query, sha=r$name, since=date,owner = "gamlj", repo = "gamlj",.limit=Inf,.token=API_TOKEN)
+    if (length(coms)==0)
+       next()
     for (com in coms) {
       results[[j]]<-c(sha=com$sha,msg=com$commit$message,version=r$name)
       j<-j+1
     }
     date<-coms[[1]]$commit$author$date
   }
-  
-  data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
+    data<-data.frame(do.call("rbind",results),stringsAsFactors = FALSE)
   data<-data[!duplicated(data$sha),]
   data<-data[!duplicated(data$msg),]
   data  

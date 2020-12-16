@@ -14,11 +14,12 @@ editor_options:
 #Releases and changes
 
 ```{r, echo=FALSE,results='asis'}
-source("../R/secrets.R")
-source("../R/functions.R")
+where<-"../"
+#where=""
+source(paste0(where,"R/secrets.R"))
+source(paste0(where,"R/functions.R"))
 #source("../R/functions.R")
 #source("../R/functions.R")
-
 write_commits2()
 
 ```
