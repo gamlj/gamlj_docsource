@@ -16,6 +16,7 @@ editor_options:
 ```{r, echo=FALSE,results='asis'}
 where<-"../"
 #where=""
+source(paste0(where,"R/constants.R"))
 source(paste0(where,"R/secrets.R"))
 source(paste0(where,"R/functions.R"))
 #source("../R/functions.R")
@@ -140,4 +141,4 @@ write_commits2()
 * First release to go public
 
 
-`r issues()`
+`r #¯issues()`
