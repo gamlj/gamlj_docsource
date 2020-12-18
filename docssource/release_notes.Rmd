@@ -15,7 +15,7 @@ editor_options:
 
 ```{r, echo=FALSE,results='asis'}
 where<-"../"
-where=""
+#where=""
 source(paste0(where,"R/constants.R"))
 source(paste0(where,"R/secrets.R"))
 source(paste0(where,"R/functions.R"))
