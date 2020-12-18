@@ -157,4 +157,8 @@ As a final touch, we can visualize the results by asking the plot of the expecte
 `r pic("examples/gzlmmixed2/output_plot2.png")`
 
 
+# Related example
+
+`r include_examples("gmixed")`
+
 `r issues()`

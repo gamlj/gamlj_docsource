@@ -131,4 +131,10 @@ Notice that the random effects depict different curves for different schools, ev
 As expected, the random effects are all parallel, because we allowed only the intercepts to be random.
 
 At this point, one can expand the model by allowing also the IVs effects to vary, and evaluate the goodness of the models, comparing them, and further investigate the relationships we observed, with simple effects analysis and additional plots.
+
+# Related examples
+`r include_examples("gmixed")`
+
+
+
 `r issues()`
