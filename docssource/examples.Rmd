@@ -31,4 +31,9 @@ Here you can find some application of GLMj module.
 
 `r include_examples("gzlm")`
 
+# Generalized Mixed Models
+
+`r include_examples("gmixed")`
+
+
 `r issues()`
