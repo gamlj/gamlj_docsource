@@ -54,11 +54,11 @@ for (f in ff) {
    data0$Day<-d
    data<-rbind(data,data0)
 }
-names(data)
 data$Confirmed<-data$totale_casi
 data$Deaths<-data$deceduti
 data$Recovered<-data$dimessi_guariti
 data<-data[data$Confirmed>0,]
+data<-data[data$Day<80,]
 
 
 library(gamlj)
@@ -130,7 +130,7 @@ _Please note that no medical or policy-making conclusions should be drawn from t
 
 # Replications across Italian regions
 
-Here are the models fitted for all available Italian regions. Data are update every day. The last update is `r today`.
+Here are the models fitted for all available Italian regions. Data are update every day. The last update was april 2020.
 
 ```{r out, results="asis"}
 

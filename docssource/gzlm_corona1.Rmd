@@ -46,18 +46,16 @@ data<-data[0,]
 d<-0
 f<-"ok"
 for (f in ff) {
-     print(f)
-
    d<-d+1
    data0<-read.csv(paste0(folder,f))
    names(data0)<-gsub("_",".",names(data0),fixed=T)
    data0<-data0[,nn]
    date<-gsub(".csv","",f,fixed = T)
-   print(head(data0))
    data0$Date<-date
    data0$Day<-d
    data<-rbind(data,data0)
 }
+data<-data[data$Day<80,]
 data$Confirmed<-ifelse(is.na(data$Confirmed),0,data$Confirmed)
 data$Deaths<-ifelse(is.na(data$Deaths),0,data$Deaths)
 data$Recovered<-ifelse(is.na(data$Recovered),0,data$Recovered)
@@ -134,10 +132,10 @@ ec<-round(mod2$main$fixed$asDF[1,4],digit=0)
 gf<-round(mod2$main$fixed$asDF[2,4],digit=2)
 ac<-max(ddata1$Confirmed)
 r2<-as.numeric(as.character(mod1$info$asDF[5,2]))
-res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac,last)
+res0<-list(u,r2,mod1$descPlot,mod1$main$fixed,ec,gf,ac)
 res[[u]]<-res0
 }
-
+res
 today<-Sys.Date()
 firstday<-unique(data$Date[which.min(data$Day)])
 lastday<-unique(data$Date[which.max(data$Day)])
@@ -369,7 +367,7 @@ Nonetheless, it would be more interesting to obtain the expected cases (EC) for 
 
 # Replications across countries
 
-Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update is `r today`.
+Here are the models fitted for all available countries with more than 1000 data points. Data are update every day. The last update was april 2020.
 
 ```{r out, results="asis"}
 
