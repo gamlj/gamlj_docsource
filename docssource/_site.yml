@@ -1,5 +1,5 @@
 name: "gamlj-website"
-output_dir: "../pubs"
+output_dir: "../pubs/"
 navbar:
   title: "GAMLj"
   left:
