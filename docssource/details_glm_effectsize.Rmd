@@ -107,7 +107,6 @@ In option tab `Options` it is possible to ask additional tables for the effect s
 Details for the confidence intervals computation can be found in [Ben-Shachar, Makowski & Lüdecke (2020). Compute and interpret indices of effect size. CRAN](https://github.com/easystats/effectsize)
 
 
-`r list_pages(category="glm")`
 
 
 
