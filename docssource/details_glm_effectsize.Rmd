@@ -18,7 +18,7 @@ topic: effect_size
 source("../R/functions.R")
 ```
 
-`r keywords("jamovi, GLM, effect size indices, omega-sqaured, eta-squared, epsilon-squared")`
+`r keywords("jamovi, GLM, effect size indices, omega-squared, eta-squared, epsilon-squared")`
 
 `r version("2.4.0")` 
 
