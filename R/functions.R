@@ -7,6 +7,10 @@ jamovi<-function() {
   paste0('<span class="jamovi">jamovi</span>')
 }
 
+gamlj<-function() {
+  paste0('<span class="gamlj">GAMLj</span>')
+}
+
 datafile<-function(name,file) {
   if (length(grep(":/",file,fixed = T))==0)
     file<-paste0(DATALINK,"/",file)
@@ -67,7 +71,8 @@ link_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
  }
  return(a)  
 }
-  
+ 
+
 list_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
   pages<-get_pages(nickname,topic,category)
   ul<-'<ul>\n'
@@ -78,7 +83,8 @@ list_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
     a<-paste(a,b)
   }
   a<-paste(ul,a,'</ul>\n')
-  return(a)
+
+  return(pages)
 }
 
 include_examples<-function(topic)  {
@@ -274,3 +280,4 @@ jtable<-function(jobject,digits=3) {
 }
 
 
+  
