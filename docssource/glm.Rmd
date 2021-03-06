@@ -42,7 +42,10 @@ Effect size indices are optionally computed by selecting the following options (
   - $\omega^2$p : partial omega-squared 
   - $\epsilon^2$p : partial epsilon-squared 
 
-Confidence intervals of the parameters can be also selected.
+Confidence intervals of the parameters can be also selected in `Options` tab.
+
+<img src="glm/effectsize1.png" class="img-responsive" alt="">
+
 
 # Model 
 
