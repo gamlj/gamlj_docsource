@@ -1,7 +1,15 @@
 ---
 title: "Post-hocs Details"
 author: "Marcello Gallucci"
-output: html_document
+output: 
+  html_document:
+     toc: true
+     toc_float:
+        collapsed: false
+
+topic: glm
+category: details
+
 ---
 
 # Post Hocs

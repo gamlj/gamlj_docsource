@@ -1,7 +1,7 @@
 ---
 title: "Mixed Models module technical details"
 topic: mixed
-category: specs
+category: details
 output: 
   html_document:
      includes:
@@ -11,6 +11,11 @@ output:
         collapsed: false
 
 ---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+```
 
 
 # Degrees of freedom
@@ -25,3 +30,7 @@ As far as it is possible, inferential tests are based on an automatic selection 
 
 ```{r child="posthoc_specs.Rmd"}
 ```
+
+
+`r backto("mixed")`
+

@@ -141,11 +141,18 @@ Plots interpretation varies depending on the model being estimated. All plots ar
 
 
 
-
 # Examples
 
 Some worked out examples of the analyses carried out with jamovi GAMLj GZLM are posted here (more to come)
 
 `r include_examples("gzlm")`
+
+
+# Details
+
+Some more information about the module specs can be found here
+
+`r include_details("gzlm")`
+
 
 `r issues()`

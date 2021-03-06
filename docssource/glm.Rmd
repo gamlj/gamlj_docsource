@@ -145,5 +145,12 @@ Some worked out examples of the analyses carried out with jamovi GAMLj are poste
 
 `r include_examples("glm")`
 
+# Details
+
+Some more information about the module specs can be found here
+
+`r include_details("glm")`
+
+
 `r issues()`
 
