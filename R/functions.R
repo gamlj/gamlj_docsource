@@ -84,7 +84,7 @@ list_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
   }
   a<-paste(ul,a,'</ul>\n')
 
-  return(pages)
+  return(a)
 }
 
 include_examples<-function(topic)  {
