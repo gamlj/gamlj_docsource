@@ -1,17 +1,13 @@
 ---
 title: 'Details: GLM effect size indices'
-editor_options:
-  chunk_output_type: console
 nickname: details_glm_effectsize
-output:
-  pdf_document:
-    toc: yes
+output: 
   html_document:
-    includes:
-      in_header: ganalytics.txt
-    toc: yes
-    toc_float:
-      collapsed: yes
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
 category: details
 topic: effect_size
 
