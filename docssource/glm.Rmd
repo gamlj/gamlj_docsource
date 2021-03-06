@@ -18,7 +18,7 @@ source("../R/functions.R")
 
 **General Linear Model** module of the GAMLj suite for jamovi
 
-`r version("1.5.0")` 
+`r version("2.4.0")` 
 
 <img src="glm/main.png  " class="img-responsive" alt="">
 
@@ -28,18 +28,19 @@ The module estimates a general linear model with categorial and/or continuous va
 The module can estimate OLS linear models for any combination of categorical and continuous variables, thus providing an easy way for multiple regression, ANOVA, ANCOVA and moderation analysis. 
 
 # Estimates
-The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, omega, and beta) are optionally computed.
+The module provides ANOVA tables and parameters estimates for any estimated model. Effect size indices (eta, partial eta, partial omega, partial epsilon, and beta) are optionally computed.
 
 Variables definition follows jamovi standards, with categorical independent variables defined in "factors" and continuous independent variables in "covariates".
 
 <img src="glm/variables.png" class="img-responsive" alt="">
 
-Effect size indices are optionally computed by selecting the following options:
+Effect size indices are optionally computed by selecting the following options (see  `r link_pages("details_glm_effectsize")`):
 
   - __beta__ : standardized regression coefficients. Continuous variables are standardized and categorical ones are contrast coded (-1 0 1) before estimating the parameters.
-  - __eta^2__: "semi-partial" eta-squared computed as the sum-of-squares of the effect divided by the total sum-of-square.
-  - partial __eta^2__: partial eta-squared computed as the sum-of-squares of the effect divided by the  sum-of-squares of the effect plus the sum-of-squares of error.
-  - __omega^2__: omega-squared 
+  - $\eta^2$: "semi-partial" eta-squared 
+  - $\eta^2$p : partial eta-squared
+  - $\omega^2$p : partial omega-squared 
+  - $\epsilon^2$p : partial epsilon-squared 
 
 Confidence intervals of the parameters can be also selected.
 
@@ -68,13 +69,15 @@ More details and examples `r link_pages("ros_contrasts")`.
 
 
 # Covariates Scaling
-<img src="commons/pics/xscoring.png" class="img-responsive" alt="">
+<img src="glm/xscoring.png" class="img-responsive" alt="">
 
-Continuous variables can be centered, standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `none`.
+Continuous variables can be centered, standardized (`z-scores`), log-transformed (`Log`) or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `none`.
 
 
 ```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
 ```
+
+The option __Dependent variable__ `score` allows to transform the dependent variable. The dependent variable can be centered, standardized (`z-scores`), log-transformed (`Log`) or used as they are (`none`). The default is `none`, so no transformation is applied.
 
 # Post-hocs
 <img src="commons/pics/posthoc.png" class="img-responsive" alt="">
@@ -112,7 +115,25 @@ Continuous variables can be centered, standardized or used as they are (`none`).
 
 * `Normality of residuals` provides [Klomogorov-Smirnov](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test){target="_blank"} and [Shapiro-Wilk](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test#Interpretation){target="_blank"} tests for normality of residuals.
 
-* `Q-Q` plot outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
+* `Q-Q plot` outputs a Q-Q plot (observed residual quantiles on expected residual quantiles). More general info [here](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot){target="_blank"}
+
+* `Residuals histogram` outputs the histogram of the distribution of the residuals, with an overlaying ideal normal distribution with mean and variance equal to the residuals distribution parameters.
+
+* `Residuals-Predicted plot` produces a scatterplot with the residuals on the Y-axis and the predicted in the X-axis. It can be usufull to assess heteroschdasticity.
+
+# Options
+
+<img src="glm/options.png" class="img-responsive" alt="">
+
+Additional options that do not fit elsewhere.
+
+* __`Additional Info`__
+
+    * `On intercept`_ provides effect size for the intercept
+    * `On Effect sizes`: outputs a new table with all effect sizes available, with confidence intervals 
+    * see `r link_pages("details_glm_effectsize")`
+
+
 
 
 # Examples
