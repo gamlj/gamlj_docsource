@@ -11,6 +11,7 @@ output:
          toc: true
          toc_float:
          collapsed: false
+         css: style.css
   
 vignette: >
   %\VignetteIndexEntry{Examples of gamljGLM}
