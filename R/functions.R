@@ -91,6 +91,11 @@ include_examples<-function(topic)  {
   return(list_pages(topic=topic,category = "example"))
 }
 
+include_details<-function(topic)  {
+  return(list_pages(topic=topic,category = "details"))
+}
+
+
 issues<-function() {
   a<-'<h1>Comments?</h1>\n'
   a<-paste(a,'<p>Got comments, issues or spotted a bug? Please open an issue on
@@ -100,6 +105,18 @@ issues<-function() {
   return(a)
   
 }
+
+backto<-function(topic) {
+  a<-'<p class="return"> Return to main help page: ' 
+  p<-get_pages(topic=topic,category = "help")[[1]]
+  link<-paste0(p$filename,".html")
+  b<-paste0('<a href="',link,'">',p$title,'</a>')
+  d<-paste(a,b,"</p>")
+  return(d)
+  
+}
+
+backto("mixed")
 
 test<-function() return("xx xxxxxx x")
 
