@@ -26,8 +26,6 @@ GAMLj module can be installed and used in R as a standard R packages. Please che
 
 
 ```{r}
-print(list.files())
-get_vignettes()
 
 ```
 
