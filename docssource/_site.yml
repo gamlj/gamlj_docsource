@@ -17,6 +17,8 @@ navbar:
     href:  rosetta.html
   - text: "Release notes"
     href:  release_notes.html
+  - text: "GAMLj in R"
+    href:  vignettes.html
 
   right: 
   - text: "View on Github"

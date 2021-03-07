@@ -12,3 +12,6 @@ FIRST_VERSION="version.1.5.0"
 BANNED_COMMITS=list("initialize","fix commits","remove some marks","typo in random table #73","1.5.0")
 BANNED_COMMITS_GREP=list("^#","^!","^Merge branch","spelling")
 
+# These handle the R vignettes
+
+VIGNETTES_FOLDER="/home/marcello/Skinner/Forge/jamovi/gamlj/vignettes/"

@@ -1,0 +1,35 @@
+---
+title: "GAMLj in R"
+topic: r
+category: help
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+---
+
+
+```{r echo=FALSE,results='hide'}
+source("../R/constants.R")
+source("../R/functions.R")
+a<-'commons/nonlinear_chunk.Rmd'
+```
+
+`r version("2.4.0")` 
+# Introduction
+
+GAMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
+
+
+
+```{r}
+print(list.files())
+get_vignettes()
+
+```
+
+`r issues()`
+
