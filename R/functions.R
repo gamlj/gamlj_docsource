@@ -312,7 +312,7 @@ link_vignettes<-function() {
   a<-""
   for (p in pages) {
     link<-paste0(p$filename,".html")
-    b<-paste0('<li><a href="',link,'">',p$title,'</a></li>\n')
+    b<-paste0('<li><h2><a href="',link,'">',p$title,'</a></h2></li>\n')
     a<-paste(a,b)
   }
   a<-paste(ul,a,'</ul>\n')
