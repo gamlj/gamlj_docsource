@@ -33,8 +33,8 @@ incomplete<-'<span class="incomplete"> Work in progress: incomplete version </sp
 pic<-function(name) paste('<img src="',name,'" class="img-responsive" alt="">')
 
 
-get_files<-function() {
-  lf<-list.files(pattern = ".Rmd",full.names = F)
+get_files<-function(path=".",pattern=".Rmd") {
+  lf<-list.files(path=path,pattern = pattern,full.names = F)
   files<-list()
   for (f in lf) {
    name<-gsub(".Rmd","",f)
@@ -295,9 +295,27 @@ jtable<-function(jobject,digits=3) {
                     digits=3)
 }
 
-get_vignettes<-function() {
+copy_vignettes<-function() {
   files<-list.files(path=VIGNETTES_FOLDER,pattern = "*.Rmd")
   cpcommand<-paste0("cp ",VIGNETTES_FOLDER,"*.Rmd", "  docssource")
   system(cpcommand)
 }
+get_vignettes<-function() {
+  files<-get_files(path=VIGNETTES_FOLDER,pattern = "*.Rmd")
+  return(files)
+}
+
+link_vignettes<-function() {
+  pages<-get_files(path=VIGNETTES_FOLDER,pattern = "*.Rmd")
+  ul<-'<ul>\n'
+  a<-""
+  for (p in pages) {
+    link<-paste0(p$filename,".html")
+    b<-paste0('<li><a href="',link,'">',p$title,'</a></li>\n')
+    a<-paste(a,b)
+  }
+  a<-paste(ul,a,'</ul>\n')
   
+  return(a)
+}
+

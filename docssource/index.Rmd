@@ -101,6 +101,16 @@ jmvtools::install()
 
 ```
 
+# Install in R
+
+To install it in R, simple use:
+
+```
+
+devtools::install_github("gamlj/gamlj")
+
+```
+
 # Troubleshooting
 
 Please check out the  [troubleshooting page](https://mcfanda.github.io/gamlj_docs/troubles.html). 
