@@ -1,5 +1,6 @@
 library(rmarkdown)
 HERE<-getwd()
+get_vignettes()
 msg<-"updates"
 render_site("docssource/")
 system("git add .")

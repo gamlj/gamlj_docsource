@@ -297,9 +297,7 @@ jtable<-function(jobject,digits=3) {
 
 get_vignettes<-function() {
   files<-list.files(path=VIGNETTES_FOLDER,pattern = "*.Rmd")
-  cpcommand<-paste0("cp ",VIGNETTES_FOLDER,"*.Rmd", "  .")
-  print(cpcommand)
+  cpcommand<-paste0("cp ",VIGNETTES_FOLDER,"*.Rmd", "  docssource")
   system(cpcommand)
-  return(files)  
 }
   
