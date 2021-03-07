@@ -9,7 +9,8 @@ output:
          includes:
             in_header: ganalytics.txt
          toc: true
-         collapsed: false
+         toc_float:
+             collapsed: false
          css: style.css
   
 vignette: >

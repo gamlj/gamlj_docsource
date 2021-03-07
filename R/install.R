@@ -2,7 +2,7 @@ library(rmarkdown)
 HERE<-getwd()
 copy_vignettes()
 msg<-"updates"
-render_site("docssource/")
+render_site("docssource/",output_format = "html_document")
 system("git add .")
 system(paste('git commit -m "',msg,'"'))
 system("git push origin master")
