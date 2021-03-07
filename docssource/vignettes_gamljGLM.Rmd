@@ -1,5 +1,7 @@
 ---
 title: "Examples of gamljGLM"
+author: Marcello Gallucci
+date: '`r Sys.Date()`'
 output: 
      rmarkdown::html_vignette:
         css: style.css
