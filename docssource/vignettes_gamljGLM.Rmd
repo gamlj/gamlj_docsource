@@ -4,12 +4,19 @@ author: Marcello Gallucci
 date: '`r Sys.Date()`'
 output: 
      rmarkdown::html_vignette:
-        css: style.css
+          css: style.css
+     html_document:
+         includes:
+            in_header: ganalytics.txt
+         toc: true
+         toc_float:
+         collapsed: false
   
 vignette: >
   %\VignetteIndexEntry{Examples of gamljGLM}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
 ---
 
 ```{r, include = FALSE}
