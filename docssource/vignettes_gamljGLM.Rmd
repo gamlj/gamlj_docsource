@@ -1,6 +1,9 @@
 ---
 title: "Examples of gamljGLM"
-output: rmarkdown::html_vignette
+output: 
+     rmarkdown::html_vignette:
+        css: style.css
+  
 vignette: >
   %\VignetteIndexEntry{Examples of gamljGLM}
   %\VignetteEngine{knitr::rmarkdown}
