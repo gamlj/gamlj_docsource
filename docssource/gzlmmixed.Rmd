@@ -78,7 +78,7 @@ Variables definition follows `r jamovi()` standards, with categorical independen
 <img src="gzlmmixed/estimates.png" class="img-responsive" alt="">
 
 
-The grouping variable is simply set by putting the corresponding variable(s) into `cluster`. In this version, multiple clustering variables are possible, but not combinations of classifications ( see [Technical Details](mixed_specs.html) ). 
+The grouping variable is simply set by putting the corresponding variable(s) into `r opt("cluster")`. In this version, multiple clustering variables are possible, but not combinations of classifications. That can be easily solved by recoding the clustering variables ( see [Technical Details](mixed_specs.html) ). 
 
 Confidence intervals for the parameters estimates and for the exponential of them (expB).
 
@@ -90,7 +90,7 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates that the coefficient associated with `term` is random across `cluster`. 
 
-By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the `Random coefficients` will be correlated. To obtain a _variance component_ model, select `Not correlated`. A custom pattern of correlation can be obtained by selecting `Correlated by block`.  For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of `x` to be correlated, whereas the effect of `wfac` is independent from the others.   
+By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the `r opt("Random coefficients")` will be correlated. To obtain a _variance component_ model, select `r opt("Not correlated")`. A custom pattern of correlation can be obtained by selecting `Correlated by block`.  For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of `x` to be correlated, whereas the effect of `wfac` is independent from the others.   
 
 <img src="mixed/random2.png" class="img-responsive" alt="">
 
@@ -121,9 +121,9 @@ More details and examples `r link_pages("ros_contrasts")`.
 # Covariates Scaling
 <img src="commons/pics/xscoring.png" class="img-responsive" alt="">
 
-Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simply select `none`.
+Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized, log-transformed or used as they are (`none`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simple select `r opt("none")`.
 
- `cluster-based centered` and `cluster-based standardized` center each score using the mean of the cluster in which the score belongs. For `cluster-based standardized` the score is also divided by the cluster standard deviation.
+`r opt("Centered clusterwise")` and `r opt("z-scores clusterwise")` center each score using the mean of the cluster in which the score belongs. For `r opt("z-scores clusterwise")` the score is also divided by the cluster standard deviation. `r opt("Log")` applies a simple natural logarithm transformation to the variable.
 
 
 ```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
@@ -146,7 +146,7 @@ Continuous variables can be centered, standardized, cluster-based centered, clus
 ```{Call_child, child='commons/plots_chunk.Rmd'}
 ```
 
-By flagging `Random effects` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
+By flagging `r opt("Random effects")` one obtains the random effects estimated values in the plot along with the fixed effects. In case of multiple cluster variables, the first cluster variable in the `cluster` field of "variable role" panel is used (if it is included in the model). To change the cluster variable used to plot the random effects, change the order of the variables in the "variable role" definition.
 
 # Estimated marginal means
 
@@ -160,9 +160,9 @@ By flagging `Random effects` one obtains the random effects estimated values in 
 
 <img src="gzlmmixed/options.png" class="img-responsive" alt="">
 
-The `precision/speed` parameter applies to mixed models with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the `nAGQ` parameter of `glmer` command in R package [lme4](https://cran.r-project.org/web/packages/lme4/index.html). For models with more than
+The `r opt("precision/speed")` parameter applies to mixed models with one random effect. Higher numbers increase precision in the estimation with a speed cost. It corresponds to the `nAGQ` parameter of `glmer` command in R package [lme4](https://cran.r-project.org/web/packages/lme4/index.html). For models with more than
 
-The `CI method` decides which method is used for computing confidence intervals. `Wald` uses Wald statistics and it is less precise than the other methods, but it is significantly faster. `Profile` is more precise but slower. `Boot`, bootstrap method, is the slowest. Details of the implementation can be found in [lme4 manual](https://cran.r-project.org/web/packages/lme4/lme4.pdf)
+The `r opt("CI method")` decides which method is used for computing confidence intervals. `r opt("Wald")` uses Wald statistics and it is less precise than the other methods, but it is significantly faster. `r opt("Profile")` is more precise but slower. `r opt("Boot")`, bootstrap method, is the slowest. Details of the implementation can be found in [lme4 manual](https://cran.r-project.org/web/packages/lme4/lme4.pdf)
 
 # Examples
 
