@@ -11,6 +11,10 @@ gamlj<-function() {
   paste0('<span class="gamlj">GAMLj</span>')
 }
 
+opt<-function(opt) {
+  paste0('<span class="option">',opt,'</span>')
+}
+
 datafile<-function(name,file) {
   if (length(grep(":/",file,fixed = T))==0)
     file<-paste0(DATALINK,"/",file)
