@@ -13,8 +13,6 @@ navbar:
     href:  gzlmmixed.html
   - text: "Examples"
     href:  examples.html
-  - text: "Rosetta store"
-    href:  rosetta.html
   - text: "Release notes"
     href:  release_notes.html
   - text: "GAMLj in R"
