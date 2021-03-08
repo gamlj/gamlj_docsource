@@ -45,7 +45,7 @@ Models are defined by a link function (LF) and the dependent variable distributi
 
 * `r opt("Linear")` model: identity LF, gaussian distribution, yielding a general linear model for continuous dependent variables.
 * `r opt("Poisson")` model: logarithm LF, Poisson distribution, modelling count dependent variables. This model is often called log-linear model when the independent variables are all categorical.
-* `r opt("Poisson (overdispersion)") model: Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
+* `r opt("Poisson (overdispersion)")` model: Overdispersed Poisson model: logarithm LF, Poisson distribution, quasi-maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
 * `r opt("Negative binomial")` model: logarithm LF, negative binomial distribution, maximum likelihood estimation, with overdispersion, modelling count dependent variables. This model is often used for overdispersed data.
 
 * `r opt("Logistic")` model: logit LF, binomial distribution, modelling dichotomous dependent variables.
