@@ -52,12 +52,12 @@ The actual estimation occurs when the dependent variable, the clustering variabl
 
 Random effects across clustering variables are automatically prepared by the module following R lmer() standards: `term | cluster` indicates that the coefficient associated with `term` is random across `cluster`. 
 
-By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the `Random coefficients` will be correlated. To obtain a _variance component_ model, select `Not correlated`. A custom pattern of correlation can be obtained by selecting `Correlated block`.  For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of `x` to be correlated, whereas the effect of `wfac` is independent from the others.   
+By default the module assumes correlated random effects. All the effects varying across the same cluster variable appearing in the `r opt("Random coefficients")` will be correlated. To obtain a _variance component_ model, select `r opt("Not correlated")`. A custom pattern of correlation can be obtained by selecting `r opt("Correlated block")`.  For instance, in Fig. below, a custom structure has been defined by allowing the intercept and the effect of `x` to be correlated, whereas the effect of `wfac` is independent from the others.   
 
 <img src="mixed/random2.png" class="img-responsive" alt="">
 
 
-The option `LRT for random effects` produces a table of *Likelihood Ratio Tests* for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The test basically compares the likelihood of a model with the `effect` included versus a model with the `effect` excluded. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
+The option `r opt("LRT for random effects")` produces a table of _Likelihood Ratio Tests_ for the random effects. The table is estimated with `lmerTest::ranova` command, documented [here](https://cran.r-project.org/web/packages/lmerTest/lmerTest.pdf). The test basically compares the likelihood of a model with the `effect` included versus a model with the `effect` excluded. For example, `x in (1+x|cluster)` means that the model with `(1+x|cluster)` random structure is compared with a model with `1|cluster)` random structure. If significant, the model with random effect `x` is significantly  better (in terms of likelihood) than the model with `(1|cluster)` structure.
 
 # Fixed effects Model 
 <img src="mixed/i3.png" class="img-responsive" alt="">
@@ -83,11 +83,13 @@ More details and examples `r link_pages("ros_contrasts")`.
 
 
 # Covariates Scaling
-<img src="commons/pics/xscoring.png" class="img-responsive" alt="">
+<img src="commons/pics/dscoring.png" class="img-responsive" alt="">
 
-Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized or used as they are (`none`). The default is `centered` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simple select `none`.
+Continuous variables can be centered, standardized, cluster-based centered, cluster-based standardized, log-transformed or used as they are (`none`). The default is `r opt("centered")` because it makes our lives much easier when there are interactions in the model, and do not affect the B coefficients when there are none. Thus, if one is comparing results with other software that does not center the continuous variables, without interactions in the model one would find only a discrepancy in the intercept, because in GAMLj the intercept represents the expected value of the dependent variable for the average value of the independent variable. If one needs to _unscale_ the variable, simple select `r opt("none")`.
 
- `cluster-based centered` and `cluster-based standardized` center each score using the mean of the cluster in which the score belongs. For `cluster-based standardized` the score is also divided by the cluster standard deviation.
+`r opt("Centered clusterwise")` and `r opt("z-scores clusterwise")` center each score using the mean of the cluster in which the score belongs. For `r opt("z-scores clusterwise")` the score is also divided by the cluster standard deviation. `r opt("Log")` apply a simple natural logarithm transformation to the variable.
+
+The same transformations can be applied to the dependent variable by selecting an option in `r opt("Dependent variable")` _scale_.
 
 
 ```{Call_child, child='commons/covariateScaling_chunk.Rmd'}
