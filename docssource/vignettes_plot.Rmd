@@ -41,10 +41,9 @@ library(gamlj)
 
 `gamlj` functions (`gamljGlm()`,`gamljGzlm()`,`gamljMixed()` and `gamljGlmMixed()`) can produce plots including up to three variables. The plots portrait the model predicted values in the Y-axis. Using the functions, one can obtain the plots by using the following options:
 
-* `plotHAxis` defining the variable in the X-axis
-* `plotSepLines` defining the variable whose levels define the way the effect of the variable in the X-axis is broken down (the moderator)
-* `plotSepPlots` defining the variable whose levels define the way the two-way interaction is broken down
-
+* `plotHAxis` the variable in the X-axis
+* `plotSepLines` the moderator variable, whose levels define the traces (separated lines)
+* `plotSepPlots` the variable whose levels define the two-way interactions in multiple plots (separated plots)
 
 # Example
 
