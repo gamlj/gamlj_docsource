@@ -2,7 +2,7 @@
 title: "Mixed Models: Subjects by Stimuli random effects"
 author: (Marcello Gallucci)
 topic: mixed
-category: example
+category: examplex
 nickname: subjects_by_stimuli
 output: 
   html_document:
