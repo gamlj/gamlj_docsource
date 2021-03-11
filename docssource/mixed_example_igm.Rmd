@@ -3,7 +3,7 @@ title: "Mixed: Individual Growth Model"
 author: "(Marcello Gallucci)"
 nickname: igm
 topic: mixed
-category: example
+category: examplex
 output: 
   html_document:
      includes:
