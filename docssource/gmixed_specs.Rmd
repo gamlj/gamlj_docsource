@@ -50,11 +50,11 @@ Furthermore, GAMLj outputs also the logLikelyhood (`logLik`), which is simply th
 
 ## AIC
 
-Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::extractAIC(model)`. Details in [@lme4; @lme4cran]. The AIC is computed based on the Uncoditional absolute deviance.
+Aikake Information Criterion: it can be used for model comparison. A model has a better fit than another when its AIC is smaller than the other's. It is implemented by simply estracting it from the R `glmer` estimated model: `stats::extractAIC(model)`. Details in [@lme4; @lme4cran]. The AIC is computed based on the uncoditional absolute deviance.
 
 ## BIC
 
-Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::BIC(model)`. Details in [@lme4; @lme4cran]. The BIC is computed based on the Uncoditional absolute deviance.
+Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::BIC(model)`. Details in [@lme4; @lme4cran]. The BIC is computed based on the uncoditional absolute deviance.
 
 
 
