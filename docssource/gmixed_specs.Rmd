@@ -40,7 +40,7 @@ Two R-squares values are reported:
 
 ## Deviance
 
-The implementation follows exactly the indication of R package `lme4` [@lme4cran]. In generalized mixed model, deviance can be defined in different ways. One dichotomy is the deviance. The absolute deviance of the model vs the deviance resulting from subtracting the deviance of a saturated model. These two may be called absolute vs relative variance. A crossing factor is whether the deviance is conditional to the random effect (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cell of the potential 2x2 table of possible deviance definitions:
+The implementation follows exactly the indication of R package `lme4` [@lme4cran]. In generalized mixed model, deviance can be defined in different ways. One dichotomy is the relativity to a saturated model. The absolute deviance of the model vs the deviance resulting from subtracting the deviance of a saturated model. These two may be called absolute vs relative variance. A crossing factor is whether the deviance is conditional to the random effect (all effects affect the deviance) or it is not conditional to them (only the fixed effects affect the deviance). GAMLj computes two cell of the potential 2x2 table of possible deviance definitions:
 
 * `-2*LogLikel.`, `Unconditioal absolute deviance`: Computed by `-2*logLik(model)`
 *  `Deviance`, `Conditional relative deviance` : Computed by `stats::deviance(model)`
