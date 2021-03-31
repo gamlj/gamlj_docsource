@@ -1,5 +1,5 @@
 ---
-title: "Examples"
+title: "Infos"
 author: (Marcello Gallucci)
 output: 
   html_document:
@@ -17,21 +17,23 @@ source("../R/functions.R")
 ```
 
 
+# Examples
 Here you can find some applications of GALMj module.
 
-# GLM
+
+## GLM
 
 `r include_examples("glm")`
 
-# Mixed model
+## Mixed model
 
 `r include_examples("mixed")`
 
-# Generalized Linear Model
+## Generalized Linear Model
 
 `r include_examples("gzlm")`
 
-# Generalized Mixed Models
+## Generalized Mixed Models
 
 `r include_examples("gmixed")`
 
@@ -41,6 +43,10 @@ Comparisons with other software: Here you can find comparisons of  results obtai
 
 
 `r list_pages(category="rosetta")`
+
+# Specs
+
+`r list_pages(category="details")`
 
 
 
