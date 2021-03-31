@@ -16,12 +16,14 @@ category: details
 source("../R/functions.R")
 ```
 
+`r version("2.5.0")` 
 
-In this page some details about the GAMLj GZLM (Generalized linear model) implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.
+
+In this page some details about the GAMLj GZLM (Generalized linear model)  implementation are given. When the code is showed, it is meant to be R code underlying the GAMLj module.
 
 # Model info
 
-## R-square
+## R-squared
 R-squared corresponds to McFadden’s R squared [ref info](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/) for logistic regression. However, it is not computed as McFadden’s R, because of some oddities arising when computed across different generalized models. 
 
 It is implemented by taking the model deviance and compare it with the null-model deviance:
@@ -36,7 +38,12 @@ It can be considered a measure of fit, or, equivalently, a measure of reduction 
 
 ## AIC
 
-Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `model$aic` for all GZLM model but the multinomial, which is `model$AIC`
+Aikake Information Criterion: it can be used for model comparisons. A model has a better fit than another when its AIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::extractAIC(model)`
+
+## BIC
+
+Bayesian Information Criterion: it can be used for model comparisons. A model has a better fit than another when its BIC is smaller. It is implemented by simply estracting it from the R `glm` estimated model: `stats::BIC(model)`
+
 
 
 ## Deviance
