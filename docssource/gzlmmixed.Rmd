@@ -170,6 +170,13 @@ Some worked out examples of the analyses carried out with `r jamovi()` GAMLj Mix
 
 `r include_examples("gzlmmixed")`
 
+# Details
+
+Some more information about the module specs can be found here
+
+`r include_details("glm")`
+
+
 # Comparison with other software
 
 `r list_pages(category="rosetta", topic="gzlmmixed")`
