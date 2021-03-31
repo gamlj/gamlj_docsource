@@ -17,7 +17,7 @@ source("../R/functions.R")
 ```
 
 
-Here you can find some applications of GLMj module.
+Here you can find some applications of GALMj module.
 
 # GLM
 
