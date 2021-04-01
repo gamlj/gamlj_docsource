@@ -45,7 +45,7 @@ The implementation follows exactly the indication of R package `lme4` [@lme4cran
 * `-2*LogLikel.`, `Unconditioal absolute deviance`: Computed by `-2*logLik(model)`
 *  `Deviance`, `Conditional relative deviance` : Computed by `stats::deviance(model)`
 
-Furthermore, GAMLj outputs also the logLikelyhood (`logLik`), which is simply the absolute likelihood computed as `stats::logLik(model)`.
+Furthermore, GAMLj outputs also the logLikelihood (`logLik`), which is simply the absolute log likelihood computed as `stats::logLik(model)`.
 
 
 ## AIC
