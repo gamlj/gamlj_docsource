@@ -305,6 +305,16 @@ copy_vignettes<-function() {
   system(cpcommand)
   
 }
+
+copy_rhelp<-function() {
+  folder<-paste0(MODULE_FOLDER,"/man/")
+  files<-list.files(path=folder,pattern = "*.Rd")
+  cpcommand<-paste0("cp ",folder,"*.Rd", "  docssource/rhelp/")
+  system(cpcommand)
+  
+}
+
+
 get_vignettes<-function() {
   files<-get_files(path=VIGNETTES_FOLDER,pattern = "*.Rmd")
   return(files)
@@ -322,5 +332,19 @@ link_vignettes<-function() {
   a<-paste(ul,a,'</ul>\n')
   
   return(a)
+}
+
+
+fixRd<-function(rd) {
+  print(val<-Rdpack::Rdo_locate_core_section(rdo = rd,sec = "\\value"))
+  val<-Rdpack::Rdo_locate_core_section(rdo = rd,sec = "\\value")[[1]]$pos
+  value<-rd[[val]]
+  rvalue<-Rdpack::Rdapply(value,function(r) {
+    if(length(grep("$",r,fixed = T))>0)
+      return(paste0("`",r,"`"))
+    else return(r)
+  })
+  rdvalue<-Rdpack::char2Rdpiece(value,name = "value")
+  Rdpack::Rdo_replace_section(rd,rdvalue)
 }
 
