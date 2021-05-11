@@ -27,7 +27,7 @@ In this page some details about the GAMLj GMixed (Generalized mixed model)  impl
 # Model info
 
 ## R-squared
-R-squared corresponds pseudo R-squared implemented  [here](http://jslefche.github.io/piecewiseSEM/) and described in [@lefcheck] and in [@nagawa2] [@effectsize] [@man1]
+R-squared corresponds pseudo R-squared implemented  [here](http://jslefche.github.io/piecewiseSEM/) and described in [@lefcheck] and in [@nagawa2] 
 
 Two R-squares values are reported:
 
